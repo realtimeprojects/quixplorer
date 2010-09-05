@@ -26,13 +26,11 @@
      under either the MPL or the GPL."
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
-Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
+Authors: quix@free.fr, ck@realtime-projects.com
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.4.2
 	Main File
 	
 	Have Fun...
