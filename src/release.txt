@@ -1,6 +1,18 @@
 --------------------------------------------------------------------------------
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 --------------------------------------------------------------------------------
+Version 2.4.2 2010-09-05
+
+	This version is the first "official" release on git of QuiXplorer.
+
+	There have been no changes on code, however, some minor documentation
+	changed.
+
+	Contribute on QuiXplorer using git:
+
+	git://quixplorer.git.sourceforge.net/gitroot/quixplorer/quixplorer
+
+--------------------------------------------------------------------------------
 Version 2.4.1 BETA - 2008-10-03
 
 	!! WARNING, THIS IS A UNSTABLE BETA VERSION !!
