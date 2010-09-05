@@ -32,7 +32,6 @@ Author: The QuiX project
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
 	Administrative Functions
 	
 	Have Fun...
@@ -40,8 +39,11 @@ Comment:
 
 require "./.include/permissions.php";
 
-//------------------------------------------------------------------------------
-function admin($admin, $dir) {			// Change Password & Manage Users Form
+/**
+ * Change Password & Manage Users Form
+ */
+function admin($admin, $dir)
+{
 	show_header($GLOBALS["messages"]["actadmin"]);
 	
 	// Javascript functions:
@@ -62,14 +64,17 @@ function admin($admin, $dir) {			// Change Password & Manage Users Form
 	echo "\" onClick=\"return check_pwd();\">\n</TD></TR></FORM></TABLE>\n";
 	
 	// Edit / Add / Remove User
-	if($admin) {
+	if($admin)
+	{
 		echo "<HR width=\"95%\"><TABLE width=\"350\"><TR><TD colspan=\"6\" class=\"header\" nowrap>";
 		echo "<B>".$GLOBALS["messages"]["actusers"].":</B></TD></TR>\n";
 		echo "<TR><TD colspan=\"5\">".$GLOBALS["messages"]["miscuseritems"]."</TD></TR>\n";
 		echo "<FORM name=\"userform\" action=\"".make_link("admin",$dir,NULL)."\" method=\"post\">\n";
 		echo "<INPUT type=\"hidden\" name=\"action2\" value=\"edituser\">\n";
 		$cnt=count($GLOBALS["users"]);
-		for($i=0;$i<$cnt;++$i) {
+
+		for($i = 0; $i < $cnt; ++$i)
+		{
 			// Username & Home dir:
 			$user=$GLOBALS["users"][$i][0];	if(strlen($user)>15) $user=substr($user,0,12)."...";
 			$home=$GLOBALS["users"][$i][2];	if(strlen($home)>30) $home=substr($home,0,27)."...";
@@ -100,8 +105,13 @@ function admin($admin, $dir) {			// Change Password & Manage Users Form
 // -->
 </script><?php
 }
-//------------------------------------------------------------------------------
-function changepwd($dir) {			// Change Password
+
+
+/**
+ * Change Password
+ */
+function changepwd ($dir)
+{
 	$pwd=md5(stripslashes($GLOBALS['__POST']["oldpwd"]));
 	if($GLOBALS['__POST']["newpwd1"]!=$GLOBALS['__POST']["newpwd2"]) show_error($GLOBALS["error_msg"]["miscnopassmatch"]);
 	
@@ -114,10 +124,14 @@ function changepwd($dir) {			// Change Password
 	
 	header("location: ".make_link("list",$dir,NULL));
 }
-//------------------------------------------------------------------------------
+
+/**
+ * Add User
+ */
 function adduser ($dir)
-{			// Add User
-	if(isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"]=="true") {
+{
+	if(isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"]=="true")
+	{
 		$user=stripslashes($GLOBALS['__POST']["user"]);
 		if($user=="" || $GLOBALS['__POST']["home_dir"]=="") {
 			show_error($GLOBALS["error_msg"]["miscfieldmissed"]);
@@ -186,7 +200,11 @@ function adduser ($dir)
 // -->
 </script><?php
 }
-//------------------------------------------------------------------------------
+
+
+/**
+ * edit user
+ */
 function edituser($dir)
 {
 	// Determine the user name from the post data	
@@ -197,11 +215,14 @@ function edituser($dir)
 	if($data==NULL) show_error($user.": ".$GLOBALS["error_msg"]["miscnofinduser"]);
 	if($self=($user==$GLOBALS['__SESSION']["s_user"])) $dir="";
 	
-	if(isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"]=="true") {
+	if(isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"]=="true") 
+	{
 		$nuser=stripslashes($GLOBALS['__POST']["nuser"]);
-		if($nuser=="" || $GLOBALS['__POST']["home_dir"]=="") {
+		if($nuser=="" || $GLOBALS['__POST']["home_dir"]=="")
+		{
 			show_error($GLOBALS["error_msg"]["miscfieldmissed"]);
 		}
+		
 		if(isset($GLOBALS['__POST']["chpass"]) &&
 			$GLOBALS['__POST']["chpass"]=="true")
 		{
@@ -284,8 +305,12 @@ function edituser($dir)
 		echo $GLOBALS["messages"]["btncancel"]."\" onClick=\"javascript:location='";
 		echo make_link("admin",$dir,NULL)."';\"></TD></TR></FORM></TABLE><BR>\n";
 }
-//------------------------------------------------------------------------------
-function removeuser($dir) {			// Remove User
+
+/**
+ * remove user
+ */
+function removeuser($dir)
+{
 	$user=stripslashes($GLOBALS['__POST']["user"]);
 	if($user==$GLOBALS['__SESSION']["s_user"]) show_error($GLOBALS["error_msg"]["miscselfremove"]);
 	if(!user_remove($user)) show_error($user.": ".$GLOBALS["error_msg"]["deluser"]);

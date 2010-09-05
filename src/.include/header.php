@@ -32,13 +32,16 @@ Author: The QuiX project
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
 	Header File
 	
 	Have Fun...
 -------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
-function show_header($title) {			// header for html-page
+/**
+ * header for html-page
+**/
+function show_header($title)
+{
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	header("Cache-Control: no-cache, must-revalidate");
@@ -56,5 +59,6 @@ function show_header($title) {			// header for html-page
 	if($GLOBALS["require_login"] && isset($GLOBALS['__SESSION']["s_user"])) echo "[".$GLOBALS['__SESSION']["s_user"]."] - ";
 	echo $title."</td></tr></tbody></table>\n\n";
 }
+
 //------------------------------------------------------------------------------
 ?>
