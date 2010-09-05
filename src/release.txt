@@ -1,6 +1,11 @@
 --------------------------------------------------------------------------------
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 --------------------------------------------------------------------------------
+Version 2.4.3 2010-09-05
+
+	added lost directories .include and .config
+
+--------------------------------------------------------------------------------
 Version 2.4.2 2010-09-05
 
 	This version is the first "official" release on git of QuiXplorer.
