@@ -38,14 +38,16 @@ Comment:
 	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
-function show_error($error,$extra=NULL) {		// show error-message
-	show_header($GLOBALS["error_msg"]["error"]);
-	echo "<CENTER><BR>".$GLOBALS["error_msg"]["error"].":"."<BR><BR>\n";
-	echo $error."\n<BR><BR><A HREF=\"javascript:window.history.back()\">";
-	echo $GLOBALS["error_msg"]["back"]."</A>";
-	if($extra!=NULL) echo " - ".$extra;
-	echo "<BR><BR></CENTER>\n";
-	show_footer();
+// show error-message
+function show_error ($error, $extra = NULL)
+{
+	global $smarty;
+	$smarty->assign('status', $GLOBALS["error_msg"]["error"]);
+	$smarty->assign('error', $GLOBALS["error_msg"]["error"]);
+	$smarty->assign('message', $error);
+	$smarty->assign('details', $extra);
+	$smarty->assign('back', $GLOBALS["error_msg"]["back"]);
+	$smarty->display('error.tpl');
 	exit;
 }
 //------------------------------------------------------------------------------

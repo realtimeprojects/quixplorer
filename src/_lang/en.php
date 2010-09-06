@@ -67,6 +67,7 @@ $GLOBALS["error_msg"] = array(
 	"miscselfremove"	=> "You can't remove yourself.",
 	"miscuserexist"		=> "User already exists.",
 	"miscnofinduser"	=> "Can't find user.",
+	"miscnologin"		=> "Login failed!",
 );
 $GLOBALS["messages"] = array(
 	// links

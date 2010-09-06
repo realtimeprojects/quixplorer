@@ -36,7 +36,10 @@ Comment:
 	Main File
 	
 	Have Fun...
-------------------------------------------------------------------------------*/
+------)------------------------------------------------------------------------*/
+require_once "./_include/users.php";
+require_once "./_include/debug.php";
+
 //------------------------------------------------------------------------------
 // Vars
 if(isset($_SERVER)) {
@@ -55,17 +58,8 @@ if(isset($_SERVER)) {
 }
 //------------------------------------------------------------------------------
 // Get Action
-if(isset($GLOBALS['__GET']["action"])) $GLOBALS["action"]=$GLOBALS['__GET']["action"];
-else $GLOBALS["action"]="list";
-if($GLOBALS["action"]=="post" && isset($GLOBALS['__POST']["do_action"])) {
-	$GLOBALS["action"]=$GLOBALS['__POST']["do_action"];
-}
-if($GLOBALS["action"]=="") $GLOBALS["action"]="list";
-$GLOBALS["action"]=stripslashes($GLOBALS["action"]);
-// Default Dir
-if(isset($GLOBALS['__GET']["dir"])) $GLOBALS["dir"]=stripslashes($GLOBALS['__GET']["dir"]);
-else $GLOBALS["dir"]="";
-if($GLOBALS["dir"]==".") $GLOBALS["dir"]=="";
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "list";
+
 // Get Item
 if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=stripslashes($GLOBALS['__GET']["item"]);
 else $GLOBALS["item"]="";
@@ -78,23 +72,19 @@ if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 // Get Language
-if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=$GLOBALS['__GET']["lang"];
-elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["lang"];
 //------------------------------------------------------------------------------
 // Necessary files
 ob_start(); // prevent unwanted output
-require "./.config/conf.php";
-if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
-require "./_lang/".$GLOBALS["language"].".php";
-require "./_lang/".$GLOBALS["language"]."_mimes.php";
-require "./.config/mimes.php";
-require "./.include/fun_extra.php";
-require "./.include/header.php";
-require "./.include/footer.php";
-require "./.include/error.php";
-ob_start(); // prevent unwanted output
-require_once "./.include/login.php";
-ob_end_clean(); // get rid of cached unwanted output
+require "./_config/conf.php";
+require('_include/lang.php');
+require "./_config/mimes.php";
+require "./_include/fun_extra.php";
+require "./_include/error.php";
+require "smarty/Smarty.class.php";
+require_once "./_include/login.php";
+
+_init_smarty();
+
 $tmp_msg = $GLOBALS["login_prompt"][$GLOBALS["language"]];
 if (isset($tmp_msg))
 	$GLOBALS["messages"]["actloginheader"] = $tmp_msg;
@@ -102,36 +92,73 @@ if (isset($tmp_msg))
 ob_end_clean(); // get rid of cached unwanted output
 //------------------------------------------------------------------------------
 do_login();
+
+$user = user_get_current();
+// Default Dir
+if (isset($_REQUEST["dir"]))
+	$GLOBALS["dir"] = stripslashes($_REQUEST["dir"]);
+else
+	$GLOBALS["dir"] = $user->home;
+debug("user home: $user->name, $user->home, " . $GLOBALS['dir']);
+
+
 //------------------------------------------------------------------------------
 $abs_dir=get_abs_dir($GLOBALS["dir"]);
-if(!@file_exists($GLOBALS["home_dir"])) {
-	if($GLOBALS["require_login"]) {
-		$extra="<A HREF=\"".make_link("logout",NULL,NULL)."\">".
-			$GLOBALS["messages"]["btnlogout"]."</A>";
-	} else $extra=NULL;
-	show_error($GLOBALS["error_msg"]["home"],$extra);
+
+debug("absolute directory: $abs_dir");
+if (!@is_dir($abs_dir))
+{
+	show_error($GLOBALS["error_msg"]["home"],$user->home);
 }
+
 if(!down_home($abs_dir)) show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["abovehome"]);
 if(!is_dir($abs_dir)) show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["direxist"]);
 //------------------------------------------------------------------------------
+function _init_smarty ()
+{
+	global $smarty;
+	$smartycfg = $GLOBALS['config']['smarty'];
+
+
+		// Set up smarty
+	include($phpTodo_smarty_dir . 'Smarty.class.php');
+	$smarty = new Smarty;
+
+	// Smarty directories
+	$smarty->template_dir = $smartycfg['template_dir'] . "/" . $GLOBALS['config']['settings']['theme'];
+	$smarty->compile_dir = $smartycfg['compile_dir'];
+	$smarty->cache_dir = $smartycfg['cache_dir'];
+	$smarty->config_dir = $smartycfg['config_dir'];
+
+	// Assign the version number to smarty
+	$smarty->assign('version', $GLOBALS['config']['version']);
+
+	// Assign the homepage to smarty
+	$smarty->assign('homepage', $GLOBALS['config']['site']['homepage']);
+	$smarty->assign('sitename', $GLOBALS['config']['site']['name']);
+	global $lang;
+	$smarty->assign('lang', $lang);
+	$smarty->assign('messages', $GLOBALS['messages']);
+	$smarty->assign('themedir', $smarty->template_dir);
+	$smarty->assign('error_msg', $GLOBALS['error_msg']);
+	$smarty->assign('languages', $GLOBALS['languages']);
+	$smarty->assign('directory', $GLOBALS['dir']);
+	$smarty->assign('logon_user', user_get_current_username());
+
+}
+	
 /**
-  Do the login if required
-  */
+  Do the login, if required
+*/
 function do_login ()
 {
-	if ($GLOBALS["action"]=="logout")
+	if ($GLOBALS['action'] == "logout")
 	{
+		debug("logging out");
 		logout();
 		return;
-	}
+	} 
 
-	// if no login is required and the user does not explicitly call
-	// the login function, no login is required.
-	if ($GLOBALS["require_login"] == false 
-	&& $GLOBALS['action'] != "login"
-	&& !isset($GLOBALS['__SESSION']["s_user"])
-	&& !isset($GLOBALS['__POST']["p_user"]))
-		return;
 	login();
 }
 ?>

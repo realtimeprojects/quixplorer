@@ -59,14 +59,17 @@ function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NUL
 	return $link;
 }
 //------------------------------------------------------------------------------
-function get_abs_dir($dir) {			// get absolute path
-	$abs_dir=$GLOBALS["home_dir"];
-	if($dir!="") $abs_dir.="/".$dir;
+// get absolute path
+function get_abs_dir ($dir)
+{
+	$abs_dir = $GLOBALS['config']['site']['root'];
+	if( $dir != "")
+		$abs_dir .= "/" . $dir;
 	return $abs_dir;
 }
 //------------------------------------------------------------------------------
 function get_abs_item($dir, $item) {		// get absolute file+path
-	return get_abs_dir($dir)."/".$item;
+	return get_abs_dir($dir) . "/" . $item;
 }
 //------------------------------------------------------------------------------
 function get_rel_item($dir,$item) {		// get file relative from home
@@ -132,7 +135,7 @@ function get_file_date($dir, $item) {		// file date
 }
 //------------------------------------------------------------------------------
 function parse_file_date($date) {		// parsed file date
-	return @date($GLOBALS["date_fmt"],$date);
+	return @date($GLOBALS['date_fmt'], $date);
 }
 //------------------------------------------------------------------------------
 function get_is_image($dir, $item) {		// is this file an image?
@@ -146,22 +149,27 @@ function get_is_editable($dir, $item) {		// is this file editable?
 	return false;
 }
 //-----------------------------------------------------------------------------
-function get_mime_type($dir, $item, $query) {	// get file's mimetype
-	if(get_is_dir($dir, $item)) {			// directory
+// get file's mimetype
+function get_mime_type($dir, $item, $query)
+{
+	if(get_is_dir($dir, $item))
+	{			// directory
 		$mime_type	= $GLOBALS["super_mimes"]["dir"][0];
 		$image		= $GLOBALS["super_mimes"]["dir"][1];
 		
-		if($query=="img") return $image;
-		else return $mime_type;
+		if ($query=="img")
+			return $image;
+		return $mime_type;
 	}
 				// mime_type
-	foreach($GLOBALS["used_mime_types"] as $mime) {
-		list($desc,$img,$ext)	= $mime;
-		if(@eregi($ext,$item)) {
-			$mime_type	= $desc;
-			$image		= $img;
-			if($query=="img") return $image;
-			else return $mime_type;
+	foreach($GLOBALS["used_mime_types"] as $mime)
+	{
+		list($desc, $img, $ext)	= $mime;
+		if(@eregi($ext,$item))
+		{
+			if($query == "img")
+				return $img;
+			return $desc;
 		}
 	}
 	
@@ -176,19 +184,29 @@ function get_mime_type($dir, $item, $query) {	// get file's mimetype
 		$image		= $GLOBALS["super_mimes"]["file"][1];
 	}
 	
-	if($query=="img") return $image;
+	if($query=="img")
+		return $image;
 	else return $mime_type;
 }
 //------------------------------------------------------------------------------
 function get_show_item($dir, $item) {		// show this file?
-	if($item == "." || $item == ".." ||
-		(substr($item,0,1)=="." && $GLOBALS["show_hidden"]==false)) return false;
+	$user = user_get_current();
+
+	debug("get_show_item($dir, $item)");
+	if ($item == "." 
+	|| $item == ".."
+	|| (substr($item,0,1)=="." && $user->show_hidden == false))
+		return false;
 		
-	if($GLOBALS["no_access"]!="" && @eregi($GLOBALS["no_access"],$item)) return false;
+	if ($user->no_access != "" && @eregi($user->no_access, $item))
+		return false;
 	
-	if($GLOBALS["show_hidden"]==false) {
-		$dirs=explode("/",$dir);
-		foreach($dirs as $i) if(substr($i,0,1)==".") return false;
+	if ($user->show_hidden == false)
+	{
+		$dirs = explode("/", $dir);
+		foreach ($dirs as $i) 
+			if (substr($i,0,1) == ".")
+				return false;
 	}
 	
 	return true;

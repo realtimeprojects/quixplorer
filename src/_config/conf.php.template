@@ -1,0 +1,61 @@
+<?php
+//------------------------------------------------------------------------------
+// Configuration Variables
+	
+	// the filename of the QuiXplorer script: (you rarely need to change this)
+	$GLOBALS["script_name"] = "http://".$GLOBALS['__SERVER']['HTTP_HOST'].$GLOBALS['__SERVER']["PHP_SELF"];
+	
+	// allow Zip, Tar, TGz -> Only (experimental) Zip-support
+	$GLOBALS["zip"] = false;	//function_exists("gzcompress");
+	$GLOBALS["tar"] = false;
+	$GLOBALS["tgz"] = false;
+	
+//------------------------------------------------------------------------------
+// Global User Variables (used when $require_login==false)
+	
+//------------------------------------------------------------------------------
+
+	// Adding values for each language to this array changes
+	// the login prompt message from the language-specific file.
+	// If there is no value for a language here, the default value
+	// of the language file is used.
+	$GLOBALS["login_prompt"] = array(
+		"de"	=> "Willkommen beim Download-Server",
+		"en"	=> "Welcome to this download server",
+		"da"  => "Velkommen til denne download server");
+
+$GLOBALS['config'] = array
+	(
+	 	'settings' => array
+		(
+		 	'language' => 'en',
+			'theme' => 'default',
+		),
+	 	'version' => array
+		(
+	 		'version' => '2.4.0beta1',
+			'revision' => '$Rev: 200 $',
+			'id' => '$HeadURL: https://quixplorer.svn.sourceforge.net/svnroot/quixplorer/Software/branches/B0002_Smarty/_config/conf.php.template $',
+		),
+		'site' => array
+		(
+		 	'homepage' => 'http://indigo.local/dl',
+			'name' => 'claudiok download server',
+			'root' => '/Library/WebServer/Documents/dl',
+		),
+		'smarty' => array
+		(
+			'template_dir' => 'templates',
+			'compile_dir' => 'templates_c',
+			'cache_dir' => 'templates_c/cache',
+			'config_dir' => '_config',
+		),
+	);
+/* NOTE:
+	Users can be defined by using the Admin-section,
+	or in the file ".config/.htusers.php".
+	For more information about PCRE Regex Syntax,
+	go to http://www.php.net/pcre.pattern.syntax
+*/
+//------------------------------------------------------------------------------
+?>

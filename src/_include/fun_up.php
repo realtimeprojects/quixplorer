@@ -37,7 +37,7 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
+require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 // upload file
 function upload_items($dir)
@@ -83,7 +83,7 @@ function upload_items($dir)
 				$ok = @move_uploaded_file($tmp, $abs);
 			} else {
 				$ok = @copy($tmp, $abs);
-				@nlink($tmp);	// try to delete...
+				@unlink($tmp);	// try to delete...
 			}
 			
 			if($ok===false) {

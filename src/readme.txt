@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------
-QuiXplorer - README
+QuiXplorer 2.3 - README
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 Usage:
@@ -29,10 +29,9 @@ Troubleshooting:
 	  This is due to a bug in PHP 4.1.2; we would advise you to upgrade to a higher version.
 ----------------------------------------------------------------------------------------------------
 Users:
-	* user-authentication is activated by default, set "require_login" to false to
-	  disable user-authentication in ".config/conf.php";
+	* To enable user-authentication, set "require_login" to true in ".config/conf.php";
 	  you should also set the path for the admin user in ".config/.htusers".
-	* You can easily manage users using the "admin" section of QuiXplorer.
+	* You can easily magage users using the "admin" section of QuiXplorer.
 	* Standard, there is only one user, "admin", with password "pwd_admin";
 	  you should change this password immediately.
 ----------------------------------------------------------------------------------------------------
@@ -43,6 +42,5 @@ Languages:
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 author:		the QuiX project
-		Claudio Klingler
-www:		http://quixplorer.sourceforge.net
+www:		http://www.quix.tk, http://quixplorer.sourceforge.net
 ----------------------------------------------------------------------------------------------------

@@ -1,0 +1,27 @@
+body { font-family: Verdana; font-size:12px; }
+.files { font-family: Verdana; font-size:12px; }
+.files th a { color:black; }
+.files th a { color:black; }
+.files th a { color:black; }
+.files th img { border:0px; }
+.files #name { width:40%; text-align:left; }
+.files #size { width:10%; text-align:right;}
+.files #type { width:10%; text-align:right;}
+.files #modified { width:15%; text-align:right;}
+.files #permissions { width:10%; text-align:right;}
+.files #edit { width:15%;}
+.files a { border:0px; text-decoration:none;}
+.files th  { background:darkgrey; margin-bottom:7px; }
+.rowdata a img { border:0px; }
+.rowdata td { padding:2px; }
+.rowdatasel a img { border:0px; }
+.rowdatasel { background:lightgrey; border:0px; }
+#dirmarker td  { border-bottom:1px solid grey; padding-top:9px; }
+.button { margin-bottom:-8px; }
+#buttons { width:80%; text-align:left;}
+#toolbar { margin-left:30px; padding-bottom:5px; text-align:left;}
+#search { float:right}
+#edit img { width:16px; height:16px; }
+td.errormessage * { color:red; }
+
+table * {font-size:12px;}
