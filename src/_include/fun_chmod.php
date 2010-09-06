@@ -37,7 +37,7 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
+require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 // change permissions
 function chmod_item($dir, $item)

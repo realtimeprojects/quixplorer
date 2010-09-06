@@ -37,7 +37,7 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
+require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 function savefile($file_name) {			// save edited file
 	$code = stripslashes($GLOBALS['__POST']["code"]);

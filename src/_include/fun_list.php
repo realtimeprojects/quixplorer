@@ -37,8 +37,8 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
-require_once("./.include/login.php");
+require_once("./_include/permissions.php");
+require_once("./_include/login.php");
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
@@ -229,7 +229,7 @@ function list_dir($dir)
 	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
 	
 	// Javascript functions:
-	include "./.include/javascript.php";
+	include "./_include/javascript.php";
 	
 	// Sorting of items
 	$_img = "&nbsp;<IMG width=\"10\" height=\"10\" border=\"0\" align=\"ABSMIDDLE\" src=\"_img/";

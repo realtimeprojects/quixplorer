@@ -83,17 +83,17 @@ elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["l
 //------------------------------------------------------------------------------
 // Necessary files
 ob_start(); // prevent unwanted output
-require "./.config/conf.php";
+require "./_config/conf.php";
 if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
 require "./_lang/".$GLOBALS["language"].".php";
 require "./_lang/".$GLOBALS["language"]."_mimes.php";
-require "./.config/mimes.php";
-require "./.include/fun_extra.php";
-require "./.include/header.php";
-require "./.include/footer.php";
-require "./.include/error.php";
+require "./_config/mimes.php";
+require "./_include/fun_extra.php";
+require "./_include/header.php";
+require "./_include/footer.php";
+require "./_include/error.php";
 ob_start(); // prevent unwanted output
-require_once "./.include/login.php";
+require_once "./_include/login.php";
 ob_end_clean(); // get rid of cached unwanted output
 $tmp_msg = $GLOBALS["login_prompt"][$GLOBALS["language"]];
 if (isset($tmp_msg))

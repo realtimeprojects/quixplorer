@@ -38,32 +38,32 @@ Comment:
 //------------------------------------------------------------------------------
 umask(002); // Added to make created files/dirs group writable
 //------------------------------------------------------------------------------
-require "./.include/init.php";	// Init
+require "./_include/init.php";	// Init
 //------------------------------------------------------------------------------
 switch($GLOBALS["action"]) {		// Execute action
 //------------------------------------------------------------------------------
 // EDIT FILE
 case "edit":
-	require "./.include/fun_edit.php";
+	require "./_include/fun_edit.php";
 	edit_file($GLOBALS["dir"], $GLOBALS["item"]);
 break;
 //------------------------------------------------------------------------------
 // DELETE FILE(S)/DIR(S)
 case "delete":
-	require "./.include/fun_del.php";
+	require "./_include/fun_del.php";
 	del_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // COPY/MOVE FILE(S)/DIR(S)
 case "copy":	case "move":
-	require "./.include/fun_copy_move.php";
+	require "./_include/fun_copy_move.php";
 	copy_move_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // DOWNLOAD FILE
 case "download":
 	ob_start(); // prevent unwanted output
-	require "./.include/fun_down.php";
+	require "./_include/fun_down.php";
 	ob_end_clean(); // get rid of cached unwanted output
 	download_item($GLOBALS["dir"], $GLOBALS["item"]);
 	ob_start(false); // prevent unwanted output
@@ -72,44 +72,44 @@ break;
 //------------------------------------------------------------------------------
 // UPLOAD FILE(S)
 case "upload":
-	require "./.include/fun_up.php";
+	require "./_include/fun_up.php";
 	upload_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // CREATE DIR/FILE
 case "mkitem":
-	require "./.include/fun_mkitem.php";
+	require "./_include/fun_mkitem.php";
 	make_item($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // CHMOD FILE/DIR
 case "chmod":
-	require "./.include/fun_chmod.php";
+	require "./_include/fun_chmod.php";
 	chmod_item($GLOBALS["dir"], $GLOBALS["item"]);
 break;
 //------------------------------------------------------------------------------
 // SEARCH FOR FILE(S)/DIR(S)
 case "search":
-	require "./.include/fun_search.php";
+	require "./_include/fun_search.php";
 	search_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // CREATE ARCHIVE
 case "arch":
-	require "./.include/fun_archive.php";
+	require "./_include/fun_archive.php";
 	archive_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // USER-ADMINISTRATION
 case "admin":
-	require "./.include/fun_admin.php";
+	require "./_include/fun_admin.php";
 	show_admin($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // DEFAULT: LIST FILES & DIRS
 case "list":
 default:
-	require "./.include/fun_list.php";
+	require "./_include/fun_list.php";
 	list_dir($GLOBALS["dir"]);
 //------------------------------------------------------------------------------
 }				// end switch-statement

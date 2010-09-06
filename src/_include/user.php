@@ -55,7 +55,7 @@ function _idx ($what)
 */
 function user_load ()
 {
-	require "./.config/.htusers.php";
+	require "./_config/.htusers.php";
 }
 //------------------------------------------------------------------------------
 function _saveUsers ()
@@ -75,7 +75,7 @@ function _saveUsers ()
 	$content.="\r\n); ?>";
 	
 	// Write to File
-	$fp = @fopen("./.config/.htusers.php", "w");
+	$fp = @fopen("./_config/.htusers.php", "w");
 	if($fp===false) return false;	// Error
 	fputs($fp,$content);
 	fclose($fp);

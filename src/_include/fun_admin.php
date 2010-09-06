@@ -37,7 +37,7 @@ Comment:
 	Have Fun...
 ------------------------------------------------------------------------------*/
 
-require "./.include/permissions.php";
+require "./_include/permissions.php";
 
 /**
  * Change Password & Manage Users Form
@@ -47,7 +47,7 @@ function admin($admin, $dir)
 	show_header($GLOBALS["messages"]["actadmin"]);
 	
 	// Javascript functions:
-	include "./.include/js_admin.php";
+	include "./_include/js_admin.php";
 	
 	// Change Password
 	echo "<BR><HR width=\"95%\"><TABLE width=\"350\"><TR><TD colspan=\"2\" class=\"header\"><B>";
@@ -156,7 +156,7 @@ function adduser ($dir)
 	show_header($GLOBALS["messages"]["actadmin"].": ".$GLOBALS["messages"]["miscadduser"]);
 	
 	// Javascript functions:
-	include "./.include/js_admin2.php";
+	include "./_include/js_admin2.php";
 	
 	echo "<FORM name=\"adduser\" action=\"".make_link("admin",$dir,NULL)."&action2=adduser\" method=\"post\">\n";
 	echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"true\"><BR><TABLE width=\"450\">\n";
@@ -258,7 +258,7 @@ function edituser($dir)
 	show_header($GLOBALS["messages"]["actadmin"].": ".sprintf($GLOBALS["messages"]["miscedituser"],$data[0]));
 	
 	// Javascript functions:
-	include "./.include/js_admin3.php";
+	include "./_include/js_admin3.php";
 	
 	echo "<FORM name=\"edituser\" action=\"".make_link("admin",$dir,NULL)."&action2=edituser\" method=\"post\">\n";
 	echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"true\"><INPUT type=\"hidden\" name=\"user\" value=\"".$data[0]."\">\n";
