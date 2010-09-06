@@ -8,6 +8,8 @@ interface changes:
 	  translated to all languages.
 
 	- the configuration file has completely changed.
+	- the .config directory is now named _config
+	- the .include directory is now named _include
 
 change log:
 
