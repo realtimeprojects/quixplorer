@@ -1,3 +1,4 @@
 *.swp
-src/_conf/conf.php
+src/_config/conf.php
 src/templates_c/*
+src/debug.log
