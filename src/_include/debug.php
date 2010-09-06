@@ -1,5 +1,10 @@
 <?php
 
+function testprint($what)
+{
+	echo "<h2>$what</h2>";
+}
+
 function debug ($data)
 {
 	$debug = 1;
