@@ -40,21 +40,18 @@ Comment:
 //------------------------------------------------------------------------------
 umask(002); // Added to make created files/dirs group writable
 require_once "./_include/debug.php";
-debug("------------------------ index.php will load..");
+debug("loading index.php..");
 
-//------------------------------------------------------------------------------
-require "./_include/init.php";	// Init
-//------------------------------------------------------------------------------
+require "./_include/init.php";
+
 switch($action)
-{		// Execute action
-//------------------------------------------------------------------------------
-// EDIT FILE
+{
 case "edit":
 	require "./_include/fun_edit.php";
 	edit_file($GLOBALS["dir"], $GLOBALS["item"]);
 break;
-//------------------------------------------------------------------------------
-// DELETE FILE(S)/DIR(S)
+
+// delete files or directories 
 case "delete":
 	require "./_include/delete.php";
 	del_items($GLOBALS["dir"]);

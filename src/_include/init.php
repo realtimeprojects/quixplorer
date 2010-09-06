@@ -39,6 +39,7 @@ Comment:
 ------)------------------------------------------------------------------------*/
 require_once "./_include/users.php";
 require_once "./_include/debug.php";
+debug("loading init.php");
 
 //------------------------------------------------------------------------------
 // Vars
@@ -71,10 +72,10 @@ if($GLOBALS["order"]=="") $GLOBALS["order"]=="name";
 if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET']["srt"]);
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
-// Get Language
-//------------------------------------------------------------------------------
-// Necessary files
-ob_start(); // prevent unwanted output
+
+// prevent unwanted output
+ob_start();
+
 require "./_config/conf.php";
 require('_include/lang.php');
 require "./_config/mimes.php";
@@ -83,6 +84,7 @@ require "./_include/error.php";
 require "smarty/Smarty.class.php";
 require_once "./_include/login.php";
 
+// initialise the smarty template engine
 _init_smarty();
 
 $tmp_msg = $GLOBALS["login_prompt"][$GLOBALS["language"]];
