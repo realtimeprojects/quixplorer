@@ -1,2 +1,3 @@
-src/.readme.txt.swp
-src/.release.txt.swp
+*.swp
+_include/conf.php
+templates_c/*
