@@ -111,6 +111,7 @@ case "search":
 // DEFAULT: LIST FILES & DIRS
 case "list":
 default:
+	debug("loading list.php");
 	require "./_include/list.php";
 	list_dir($GLOBALS["dir"]);
 //------------------------------------------------------------------------------

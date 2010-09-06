@@ -118,9 +118,9 @@ function _init_smarty ()
 {
 	global $smarty;
 	$smartycfg = $GLOBALS['config']['smarty'];
+	// TODO: Add error handling
 
-
-		// Set up smarty
+	// Set up smarty
 	include($phpTodo_smarty_dir . 'Smarty.class.php');
 	$smarty = new Smarty;
 
