@@ -180,7 +180,8 @@ function copy_move_items ($dir)
 	// ALL OK?
 	if(!@file_exists(get_abs_dir($new_dir))) show_error($new_dir.": ".$GLOBALS["error_msg"]["targetexist"]);
 	if(!get_show_item($new_dir,"")) show_error($new_dir.": ".$GLOBALS["error_msg"]["accesstarget"]);
-	if(!down_home(get_abs_dir($new_dir))) show_error($new_dir.": ".$GLOBALS["error_msg"]["targetabovehome"]);
+	if(!is_directory_under_home(get_abs_dir($new_dir)))
+		show_error($new_dir.": ".$GLOBALS["error_msg"]["targetabovehome"]);
 	
 	
 	// copy / move files

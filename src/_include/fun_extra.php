@@ -275,7 +275,14 @@ function get_max_file_size() {			// get php max_upload_file_size
 	return $max;
 }
 //------------------------------------------------------------------------------
-function down_home($abs_dir) {			// dir deeper than home?
+/**
+ * check if $this_directory is under the home directory
+ * 
+ * @param string $this_directory directory to check
+ * @return true if $this_directory is under home, otherwise false
+ */
+function is_directory_under_home($this_directory)
+{
 	$real_home = @realpath($GLOBALS["home_dir"]);
 	$real_dir = @realpath($abs_dir);
 	

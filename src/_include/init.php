@@ -92,16 +92,11 @@ else
 require('_include/lang.php');
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
-require "./_include/error.php";
 require "smarty/Smarty.class.php";
 require_once "./_include/login.php";
 
 // initialise the smarty template engine
 _init_smarty();
-
-$tmp_msg = $GLOBALS["login_prompt"][$GLOBALS["language"]];
-if (isset($tmp_msg))
-	$GLOBALS["messages"]["actloginheader"] = $tmp_msg;
 
 ob_end_clean(); // get rid of cached unwanted output
 //------------------------------------------------------------------------------
@@ -125,8 +120,11 @@ if (!@is_dir($abs_dir))
 	show_error($GLOBALS["error_msg"]["home"],$user->home);
 }
 
-if(!down_home($abs_dir)) show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["abovehome"]);
-if(!is_dir($abs_dir)) show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["direxist"]);
+if (!is_directory_under_home($abs_dir))
+	show_error($GLOBALS["error_msg"]["abovehome"], "directory: " . $abs_dir);
+	
+if (!is_dir($abs_dir))
+	show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["direxist"]);
 //------------------------------------------------------------------------------
 function _init_smarty ()
 {
@@ -135,7 +133,6 @@ function _init_smarty ()
 	// TODO: Add error handling
 
 	// Set up smarty
-	include($phpTodo_smarty_dir . 'Smarty.class.php');
 	$smarty = new Smarty;
 
 	// Smarty directories
@@ -156,7 +153,6 @@ function _init_smarty ()
 	$smarty->assign('themedir', $smarty->template_dir);
 	$smarty->assign('error_msg', $GLOBALS['error_msg']);
 	$smarty->assign('languages', $GLOBALS['languages']);
-	$smarty->assign('directory', $GLOBALS['dir']);
 	$smarty->assign('logon_user', user_get_current_username());
 
 }
