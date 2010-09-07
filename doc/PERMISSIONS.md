@@ -24,24 +24,30 @@ delete users.
 
 For each user you may define the following access permissions:
 
-- *Read*	The user may read and download all files
-		in his home directory
+-	*Read*
+	
+	The user may read and download all files in his home directory
 
-- *Write*	The user may upload new files to his home
-		directory, even if he has no rights to
-		download files.
+-	*Write*
 
-- *Change*	The user may change, move and rename
-		existing files it his home directory, even
-		if he has now rights to upload new files.
+	The user may upload new files to his home directory,
+	even if he has no rights to download files.
+	
+-	*Change*
 
-- *Delete* 	The user may delete existing files from
-		his home directory
+	The user may change, move and rename existing files it his
+	home directory, even if he has now rights to upload new files.
 
-- *Change Password*
-		The user may change is own password
+-	*Delete*
 
-- *Administrator*
-		The user may add, change and remove users
-		and their access permissions.
+	The user may delete existing files from his home directory
+
+-	*Change Password*
+
+	The user may change is own password
+
+-	*Administrator*
+
+	The user may add, change and remove users
+	and their access permissions.
 
