@@ -24,7 +24,7 @@ function CheckAll(checked)
 {
 	var ml = document.selform;
 	var len = ml.elements.length;
-	for(var i=0; i<len; ++i)
+	for(var i=0; i < len; ++i)
 	{
 		var e = ml.elements[i];
 		if(e.name == "selitems[]")
@@ -40,7 +40,7 @@ function AllChecked()
 {
 	ml = document.selform;
 	len = ml.elements.length;
-	for(var i=0; i<len; ++i)
+	for(var i=0; i < len; ++i)
 	{
 		if(ml.elements[i].name == "selitems[]" && !ml.elements[i].checked)
 			return false;
@@ -52,7 +52,7 @@ function NumChecked() {
 	ml = document.selform;
 	len = ml.elements.length;
 	num = 0;
-	for(var i=0; i<len; ++i) {
+	for(var i=0; i < len; ++i) {
 		if(ml.elements[i].name == "selitems[]" && ml.elements[i].checked) ++num;
 	}
 	return num;
