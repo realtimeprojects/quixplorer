@@ -1,4 +1,36 @@
 <?php
+/**
+ * Error handling functions
+ * 
+ * @author: Claudio Klingler, The QuiX project
+ */
+
+/**
+ * Show an error message.
+ * 
+ * If the smarty template engine has already been loaded,
+ * the error will be printed using the corresponding template,
+ * otherwise a simple <h2>message</h2> is printed out.
+ */
+function show_error ($error, $extra = NULL)
+{
+	global $smarty;
+	if (!defined($smarty))
+	{
+		echo "<h2>$error</h2>";
+		if ($extra != NULL)
+			echo "<h4>$extra</h4>";
+		return;
+	}
+	
+	$smarty->assign('status', $GLOBALS["error_msg"]["error"]);
+	$smarty->assign('error', $GLOBALS["error_msg"]["error"]);
+	$smarty->assign('message', $error);
+	$smarty->assign('details', $extra);
+	$smarty->assign('back', $GLOBALS["error_msg"]["back"]);
+	$smarty->display('error.tpl');
+	exit;
+}
 /*------------------------------------------------------------------------------
      The contents of this file are subject to the Mozilla Public License
      Version 1.1 (the "License"); you may not use this file except in
@@ -25,30 +57,5 @@
      the provisions above, a recipient may use your version of this file
      under either the MPL or the GPL."
 ------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------
-Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
-	http://quixplorer.sourceforge.net
-	
-Comment:
-	QuiXplorer Version 2.3
-	Error Reporting File
-	
-	Have Fun...
-------------------------------------------------------------------------------*/
-//------------------------------------------------------------------------------
-// show error-message
-function show_error ($error, $extra = NULL)
-{
-	global $smarty;
-	$smarty->assign('status', $GLOBALS["error_msg"]["error"]);
-	$smarty->assign('error', $GLOBALS["error_msg"]["error"]);
-	$smarty->assign('message', $error);
-	$smarty->assign('details', $extra);
-	$smarty->assign('back', $GLOBALS["error_msg"]["back"]);
-	$smarty->display('error.tpl');
-	exit;
-}
-//------------------------------------------------------------------------------
+
 ?>
