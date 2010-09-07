@@ -6,6 +6,19 @@
  */
 
 /**
+ * Print out a warning to the user.
+ * 
+ * @param $with_message Text of the warning message
+ * @param $and_details	Some more details on the warning
+ */
+function warn ($with_message, $and_details = NULL)
+{
+		echo "<h3>$with_message</h3>";
+		if ($and_details != NULL)
+			echo "<h4>$and_details</h4>";
+}
+
+/**
  * Show an error message.
  * 
  * If the smarty template engine has already been loaded,
@@ -20,7 +33,7 @@ function show_error ($error, $extra = NULL)
 		echo "<h2>$error</h2>";
 		if ($extra != NULL)
 			echo "<h4>$extra</h4>";
-		return;
+		exit;
 	}
 	
 	$smarty->assign('status', $GLOBALS["error_msg"]["error"]);
