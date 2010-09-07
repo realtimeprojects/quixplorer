@@ -77,10 +77,9 @@ switch($action)
 	// DEFAULT: LIST FILES & DIRS
 	case "list":
 	default:
-		list_dir($GLOBALS["dir"]);
 		debug("loading list.php");
 		require "./_include/list.php";
-
+		list_dir($GLOBALS["dir"]);
 }
 
 /*------------------------------------------------------------------------------
