@@ -14,74 +14,75 @@ require "./_include/init.php";
 
 switch($action)
 {
-case "edit":
-	require "./_include/fun_edit.php";
-	edit_file($GLOBALS["dir"], $GLOBALS["item"]);
-break;
+	case "edit":
+		require "./_include/fun_edit.php";
+		edit_file($GLOBALS["dir"], $GLOBALS["item"]);
+	break;
+	
+	// delete files or directories 
+	case "delete":
+		require "./_include/delete.php";
+		del_items($GLOBALS["dir"]);
+	break;
+	
+	// copy or move files and directories
+	case "copy":	case "move":
+		require "./_include/fun_copy_move.php";
+		copy_move_items($GLOBALS["dir"]);
+	break;
+	
+	// download a file
+	case "download":
+		ob_start(); // prevent unwanted output
+		require "./_include/fun_down.php";
+		ob_end_clean(); // get rid of cached unwanted output
+		download_item($GLOBALS["dir"], $GLOBALS["item"]);
+		ob_start(false); // prevent unwanted output
+		exit;
+	break;
 
-// delete files or directories 
-case "delete":
-	require "./_include/delete.php";
-	del_items($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
-// COPY/MOVE FILE(S)/DIR(S)
-case "copy":	case "move":
-	require "./_include/fun_copy_move.php";
-	copy_move_items($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
-// DOWNLOAD FILE
-case "download":
-	ob_start(); // prevent unwanted output
-	require "./_include/fun_down.php";
-	ob_end_clean(); // get rid of cached unwanted output
-	download_item($GLOBALS["dir"], $GLOBALS["item"]);
-	ob_start(false); // prevent unwanted output
-	exit;
-break;
-//------------------------------------------------------------------------------
-// UPLOAD FILE(S)
-case "upload":
-	require "./_include/fun_up.php";
-	upload_items($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
-// CREATE DIR/FILE
-case "mkitem":
-	require "./_include/fun_mkitem.php";
-	make_item($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
-// CHMOD FILE/DIR
-case "chmod":
-	require "./_include/fun_chmod.php";
-	chmod_item($GLOBALS["dir"], $GLOBALS["item"]);
-break;
-//------------------------------------------------------------------------------
-// CREATE ARCHIVE
-case "arch":
-	require "./_include/fun_archive.php";
-	archive_items($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
-// USER-ADMINISTRATION
-case "admin":
-	require "./_include/admin.php";
-	admin_show($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
-// SEARCH FOR FILE(S)/DIR(S)
-case "search":
-// DEFAULT: LIST FILES & DIRS
-case "list":
-default:
-	debug("loading list.php");
-	require "./_include/list.php";
-	list_dir($GLOBALS["dir"]);
-//------------------------------------------------------------------------------
-}				// end switch-statement
-//------------------------------------------------------------------------------
+	// upload file(s)
+	case "upload":
+		require "./_include/fun_up.php";
+		upload_items($GLOBALS["dir"]);
+	break;
+	
+	// create a file or directory
+	case "mkitem":
+		require "./_include/fun_mkitem.php";
+		make_item($GLOBALS["dir"]);
+	break;
+	
+	// change file permissions
+	case "chmod":
+		require "./_include/fun_chmod.php";
+		chmod_item($GLOBALS["dir"], $GLOBALS["item"]);
+	break;
+	
+	// create an archive of the file
+	case "arch":
+		require "./_include/fun_archive.php";
+		archive_items($GLOBALS["dir"]);
+	break;
+	
+
+	// user admin dialog
+	case "admin":
+		require "./_include/admin.php";
+		admin_show($GLOBALS["dir"]);
+	break;
+
+	// search for files or directories
+	case "search":
+	// DEFAULT: LIST FILES & DIRS
+	case "list":
+	default:
+		list_dir($GLOBALS["dir"]);
+		debug("loading list.php");
+		require "./_include/list.php";
+
+}
+
 /*------------------------------------------------------------------------------
      The contents of this file are subject to the Mozilla Public License
      Version 1.1 (the "License"); you may not use this file except in
