@@ -39,6 +39,7 @@ Comment:
 ------)------------------------------------------------------------------------*/
 require_once "./_include/users.php";
 require_once "./_include/debug.php";
+require_once '_include/error.php';
 debug("loading init.php");
 
 //------------------------------------------------------------------------------
@@ -73,10 +74,21 @@ if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 
+// *** basic definitions ***
+$CONFIG_FILENAME="./_config/conf.php";
+
 // prevent unwanted output
 ob_start();
 
-require "./_config/conf.php";
+if (file_exists($CONFIG_FILENAME))
+	require $CONFIG_FILENAME;
+else
+{
+	show_error("$CONFIG_FILENAME not found!",
+		"did you forget renaming conf.php.template?");
+	return -1;
+}
+
 require('_include/lang.php');
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
