@@ -15,6 +15,36 @@ QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 - When a login fails an error message is displayed
 - Quixplorer now uses the smarty template engine.
 
+### Version 2.4.3 2010-09-05
+
+	added lost directories .include and .config
+
+### Version 2.4.2 2010-09-05
+
+	This version is the first "official" release on git of QuiXplorer.
+
+	There have been no changes on code, however, some minor documentation
+	changed.
+
+	Contribute on QuiXplorer using git:
+
+	git://quixplorer.git.sourceforge.net/gitroot/quixplorer/quixplorer
+
+### Version 2.4.1 BETA - 2008-10-03
+
+	!! WARNING, THIS IS A UNSTABLE BETA VERSION !!
+
+	This version may contain bugs as well as some security issues.
+	Don't use unless you did some tests and ensured that it works
+	well for you.
+
+	USAGE IS ALWAYS AT YOUR OWN RISK, THERE IS ABSOLUTELY NO WARRANTY
+	ON CORRECT FUNCTIONALITY OR SECURITY ISSUES.
+	
+	Features:
+
+	- Implemented combined anonymous access / registered access mode.
+	  See the wiki documentation for details.
 
 ### Version 2.4.0 BETA - 2008-05-17
 

@@ -44,4 +44,3 @@ For each user you may define the following access permissions:
 - *Administrator*
 		The user may add, change and remove users
 		and their access permissions.
-
