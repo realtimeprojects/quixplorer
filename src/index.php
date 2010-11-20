@@ -12,6 +12,15 @@ umask(002);
 require_once "./_include/debug.php";
 require "./_include/init.php";
 
+// TODO
+// make a method "call-action" that takes a parameter "action" and sources
+// a files _include/$action" automatically and runs the modules-"do" command
+//
+// function do_action($action)
+// {
+//	require ./_include/$action.php
+//	do_action()
+// } 
 switch($action)
 {
 	case "edit":

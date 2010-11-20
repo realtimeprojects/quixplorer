@@ -57,6 +57,7 @@ function user_load ()
 	fclose($fp);
 }
 
+
 /**
   converts user structrue from "old style" into "new style"
   */
@@ -94,7 +95,14 @@ function _convert ()
 	fclose($fp);
 }
 
-//------------------------------------------------------------------------------
+/**
+ * brief
+ *
+ * detail
+ *
+ * @param $param
+ * @return 
+ */
 function _saveUsers ()
 {
 	// Write to File
@@ -107,7 +115,7 @@ function _saveUsers ()
 	
 	return true;
 }
-//------------------------------------------------------------------------------
+
 /**
 	try to find the user with the username $user and the password $pass
 	in the user table.
