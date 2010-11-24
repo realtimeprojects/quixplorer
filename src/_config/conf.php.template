@@ -39,9 +39,9 @@ $GLOBALS['config'] = array
 		),
 		'site' => array
 		(
-		 	'homepage' => 'http://indigo.local/dl',
-			'name' => 'claudiok download server',
-			'root' => '/Library/WebServer/Documents/dl',
+		 	'homepage' => '<put your homepage url here>',
+			'name' => 'your download server',
+			'root' => '<put your documents root directory here>',
 		),
 		'smarty' => array
 		(
