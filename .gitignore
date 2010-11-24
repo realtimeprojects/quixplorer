@@ -2,3 +2,4 @@
 src/_config/conf.php
 src/templates_c/*
 src/debug.log
+data/
