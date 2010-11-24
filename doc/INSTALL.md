@@ -6,13 +6,20 @@ This document guides you to the installation of quixplorer on your webserver.
 ### Installation steps
 
 1. Download the latest version of QuiXplorer.
+
 2. Unzip it to a folder on your website. (e.g. /home/you/htdocs/quixplorer)
    (you may want to protect this folder using .htaccess)
+
 3. Open the file "_config/conf.php",
+
 4. set "home_dir" to your desired home folder (e.g. /home/you/htdocs)
+
 5. and set "home_url" to the corresponding URL. (e.g. http://yoursite)
-6. ** Change the admin passwort immediatly **
+
+6. ** Change the admin passwort (pwd_admin) immediately **
+
 7. Have Fun...
+
 
 ### Troubleshooting
 
