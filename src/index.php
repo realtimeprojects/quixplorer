@@ -35,16 +35,19 @@ switch($action)
 	break;
 	
 	// copy or move files and directories
-	case "copy":	case "move":
+	case "copy":
+	case "move":
 		require "./_include/fun_copy_move.php";
 		copy_move_items($GLOBALS["dir"]);
 	break;
 	
 	// download a file
 	case "download":
-		ob_start(); // prevent unwanted output
+	 	// prevent unwanted output			
+		ob_start();
 		require "./_include/fun_down.php";
-		ob_end_clean(); // get rid of cached unwanted output
+		// get rid of cached unwanted output
+		ob_end_clean(); 
 		download_item($GLOBALS["dir"], $GLOBALS["item"]);
 		ob_start(false); // prevent unwanted output
 		exit;
