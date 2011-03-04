@@ -53,9 +53,12 @@ function _idx ($what)
 /**
 	loads the user database for authenticating the users
 */
-function user_load ()
+function user_load ($file)
 {
-	require "./_config/.htusers.php";
+	if (!isset($file))
+		require "./_config/.htusers.php";
+
+	require $file;
 }
 //------------------------------------------------------------------------------
 function _saveUsers ()
@@ -89,6 +92,9 @@ function _saveUsers ()
 */
 function user_get_index ($user)
 {
+	if (!isset($GLOBALS['users']))
+		return -1;
+
 	// determine the number of registered users
 	$cnt = count($GLOBALS["users"]);
 
