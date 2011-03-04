@@ -8,11 +8,12 @@ This document guides you to the installation of quixplorer on your webserver.
 1. Download the latest version of QuiXplorer.
 2. Unzip it to a folder on your website. (e.g. /home/you/htdocs/quixplorer)
    (you may want to protect this folder using .htaccess)
-3. Copy the file "_config/conf.php.template" to "_config/conf.php",
-4. Set "home_dir" to your desired home folder (e.g. /home/you/htdocs)
-5. and set "home_url" to the corresponding URL. (e.g. http://yoursite)
-6. ** Change the admin passwort immediatly **
-7. Have Fun...
+3. Copy the file "_config/_htusers.php.template" to "_config/.htusers.php",
+4. Copy the file "_config/conf.php.template" to "_config/conf.php",
+5. Set "home_dir" in 'conf.php' to your desired home folder (e.g. /home/you/htdocs)
+6. and set "home_url" to the corresponding URL. (e.g. http://yoursite)
+7. ** Change the admin passwort immediatly **
+8. Have Fun...
 
 ### Troubleshooting
 
@@ -25,7 +26,7 @@ This document guides you to the installation of quixplorer on your webserver.
   (NOTE: for php-files, this extension is correct)
 * If you are unable to perform certain operations,
   try using an FTP-chmod to set the directories to 755 and the files to 644.
-* If you don't know the full name of a directory on your website,
+* If you don''t know the full name of a directory on your website,
   you can use a php-script containing '<?php echo getcwd(); ?>' to get it.
 * The Search Function uses PCRE regex syntax to search; though wildcards like * and ?
   should work (like with 'ls' on Linux), it may show unexpected behaviour.

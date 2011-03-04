@@ -1,2 +1,3 @@
 *.swp
 src/_config/conf.php
+src/_config/.htusers.php
