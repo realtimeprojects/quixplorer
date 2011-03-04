@@ -34,6 +34,8 @@ Comment:
 	
 ------------------------------------------------------------------------------*/
 
+require_once("./_include/session.php");
+
 /**
 	This functions creates the list of assignments of
 	permission values and it's logical description (permission name).
@@ -87,7 +89,7 @@ function permissions_get ()
 function permissions_grant ($dir, $file, $action)
 {
 	// determine if a user has logged in
-	$user = $GLOBALS['__SESSION']["s_user"];
+	$user = session_get("s_user");
 
 	// if no user is logged in, use the global permissions
 	if (!isset($user))
