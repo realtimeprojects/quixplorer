@@ -82,18 +82,12 @@ function _saveUsers ()
 	
 	return true;
 }
-//------------------------------------------------------------------------------
+
 /**
-	try to find the user with the username $user and the password $pass
-	in the user table.
-
-	if you provide NULL as password, no password and user active check
-	is done. otherwise, this function returns the user, if $pass matches
-	the user password and the user is active.
-
-	if the user is inactive or the password mismatches, NULL is returned.
+  @returns the index of the user in the user configuration
+  @return -1 if the user was not found.
 */
-function &user_find ($user, $pass)
+function user_get_index ($user)
 {
 	// determine the number of registered users
 	$cnt = count($GLOBALS["users"]);
@@ -107,27 +101,46 @@ function &user_find ($user, $pass)
 		if ($user != $GLOBALS["users"][$ii][_idx('username')])
 			continue;
 
-		// if no password check should be done, return
-		// the user
-		if ($pass == NULL)
-			return $GLOBALS["users"][$ii];
-		
-		// check if the password matches
-		if ($pass != $GLOBALS["users"][$ii][_idx('password')])
-		{
-			return NULL;
-		}
-
-		// check if the user is active
-		if (!$GLOBALS["users"][$ii][_idx('useractive')])
-			return NULL;
-
-		// return the user if all checks are passed
-		return $GLOBALS["users"][$ii];
+		// return the index of the user
+		return $ii;
 	}
 	
-	// return NULL if the user has not been found
-	return NULL;
+	// return -1 if the user has not been found
+	return -1;
+	
+}
+//------------------------------------------------------------------------------
+/**
+	try to find the user with the username $user and the password $pass
+	in the user table.
+
+	if you provide NULL as password, no password and user active check
+	is done. otherwise, this function returns the user, if $pass matches
+	the user password and the user is active.
+
+	if the user is inactive or the password mismatches, NULL is returned.
+*/
+function user_find ($user, $pass)
+{
+	$idx = user_get_index($user);
+	if ($idx < 0)
+		return;
+
+	// if no password check should be done, return
+	// the user
+	if ($pass == NULL)
+		return $GLOBALS["users"][$idx];
+		
+	// check if the password matches
+	if ($pass != $GLOBALS["users"][$idx][_idx('password')])
+		return;
+
+	// check if the user is active
+	if (!$GLOBALS["users"][$idx][_idx('useractive')])
+		return;
+
+	// return the user if all checks are passed
+	return $GLOBALS["users"][$idx];
 }
 
 //------------------------------------------------------------------------------
@@ -153,7 +166,7 @@ function user_activate($user, $pass)
 	$data = user_find($user,$pass);
 
 	// if the user could not be authenticated, return false.
-	if ($data == NULL)
+	if (!isset($data))
 		return false;
 	
 	// store the user data in the globals variable
@@ -173,11 +186,12 @@ function user_activate($user, $pass)
 */
 function user_update($user,$new_data)
 {
-	$data = &user_find($user,NULL);
-	if ($data==NULL)
-		return false;
+	$idx = user_get_index($user);
+	if ($idx < 0)
+		return;
 	
 	$data=$new_data;
+	$GLOBALS["users"][$idx] = $new_data;
 	return _saveUsers();
 }
 //------------------------------------------------------------------------------
@@ -200,18 +214,11 @@ function user_add($data)
 */
 function user_remove ($user)
 {
-	$data = &user_find($user,NULL);
-	if($data==NULL)
-		return false;
-	
-	// Remove
-	$data=NULL;
-	
 	// Copy Valid Users
 	$cnt = count($GLOBALS["users"]);
 	for ($i=0; $i < $cnt; ++$i)
 	{
-		if ($GLOBALS["users"][$i] != NULL)
+		if ($GLOBALS["users"][$i][0] != $user)
 			$save_users[] = $GLOBALS["users"][$i];
 	}
 	$GLOBALS["users"]=$save_users;
@@ -231,8 +238,8 @@ function	user_get_permissions ($username)
 	$data = user_find($username, NULL);
 
 	// return NULL if the user does not exists
-	if ($data == NULL)
-		return NULL;
+	if (!isset($data))
+		return;
 
 	// return the user permissions
 	return $data[_idx('permissions')];
