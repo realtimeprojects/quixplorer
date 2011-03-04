@@ -53,7 +53,7 @@ function _idx ($what)
 /**
 	loads the user database for authenticating the users
 */
-function user_load ($file)
+function user_load ($file = NULL)
 {
 	if (!isset($file))
 		require "./_config/.htusers.php";
@@ -126,7 +126,7 @@ function user_get_index ($user)
 
 	if the user is inactive or the password mismatches, NULL is returned.
 */
-function user_find ($user, $pass)
+function user_find ($user, $pass = NULL)
 {
 	$idx = user_get_index($user);
 	if ($idx < 0)
