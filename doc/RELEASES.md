@@ -1,6 +1,14 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.4.4
+
+- Renamed '.config' and '.include' to '_config' and '_include'
+  
+  If you are upgrading from a previous installation, you have to
+  manu copy your .config/conf.php to _config/conf.php and
+  delete the old directories.
+
 ### Version 2.4.3 2010-09-05
 
 	added lost directories .include and .config
@@ -21,7 +29,7 @@ QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 	!! WARNING, THIS IS A UNSTABLE BETA VERSION !!
 
 	This version may contain bugs as well as some security issues.
-	Don't use unless you did some tests and ensured that it works
+	Don''t use unless you did some tests and ensured that it works
 	well for you.
 
 	USAGE IS ALWAYS AT YOUR OWN RISK, THERE IS ABSOLUTELY NO WARRANTY
