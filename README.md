@@ -8,6 +8,13 @@ quixplorer is a simple web based file management software. It allows you to:
 
 News
 ----
+#### 2011-03-04 Smarty template engine .. a lot of work
+
+Since the work on the smarty template engine version of quixplorer takes a lot of
+time (which in fact i don't have at the moment), this work is currently stopped.
+
+Sorry, you have to wait some more time..
+
 #### 2010-05-07 - using the smarty template engine
 
 I'm currently working on the migration of the smarty template engine into quixplorer.
