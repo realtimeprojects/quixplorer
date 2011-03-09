@@ -9,8 +9,8 @@ This document guides you to the installation of quixplorer on your webserver.
 2. Unzip it to a folder on your website. (e.g. /home/you/htdocs/quixplorer)
    (you may want to protect this folder using .htaccess)
 3. Copy the file _\_config/\_htusers.php.template_ to _config/.htusers.php_,
-4. Copy the file _\_config/conf.php.template" to _\_config/conf.php_,
-5. Set _home_dir_ in _conf.php_ to your desired home folder (e.g. /home/you/htdocs)
+4. Copy the file _\_config/conf.php.template to _\_config/conf.php_,
+5. Set _home_dir_ in _conf.php_ to your desired home folder (e.g. /home/you/htdocs). Don't use "/" as home_dir since it will not work properly at is very unsafe.
 6. and set _home_url_ to the corresponding URL. (e.g. http://yoursite)
 7. ** Change the admin passwort immediatly **
 8. Have Fun...
