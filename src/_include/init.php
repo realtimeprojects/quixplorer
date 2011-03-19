@@ -84,6 +84,7 @@ elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["l
 // Necessary files
 ob_start(); // prevent unwanted output
 require "./_config/conf.php";
+require "./_config/configs.php";
 if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
 require "./_lang/".$GLOBALS["language"].".php";
 require "./_lang/".$GLOBALS["language"]."_mimes.php";
