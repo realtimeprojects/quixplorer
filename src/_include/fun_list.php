@@ -293,10 +293,19 @@ function list_dir($dir)
 	
 	foreach($GLOBALS["langs"] as $langs) {
 		
-		echo "<TD><A HREF=\"".make_link("list",$dir,NULL,NULL,NULL,$langs[0])."\"><IMG border=\"0\" width=\"16\" height=\"11\" ";
-		echo "align=\"ABSMIDDLE\" src=\"".$langs[1]."\" ALT=\"".$langs[0];
-		echo "\" TITLE=\"".$langs[2]."\"></A></TD>\n";
+		echo "<TD><A HREF=\"".make_link("list",$dir,NULL,NULL,NULL,$langs[0])."\">";
 	
+		if (!file_exists($langs[1]))
+		{
+			echo "&nbsp;$langs[0] ";
+		}
+		else
+		{
+			echo "<IMG border=\"0\" width=\"16\" height=\"11\" ";
+			echo "align=\"ABSMIDDLE\" src=\"".$langs[1]."\" ALT=\"".$langs[0];
+			echo "\" TITLE=\"".$langs[2]."\"/></A></TD>\n";
+		}
+
 		//list($slang,$img,$ext,$type)	= $mime;
 		/*if(@eregi($ext,$item)) {
 			$mime_type	= $desc;
