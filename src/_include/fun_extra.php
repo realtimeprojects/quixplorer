@@ -118,12 +118,15 @@ function get_mime_type($dir, $item, $query) {	// get file's mimetype
 	}
 				// mime_type
 	foreach($GLOBALS["used_mime_types"] as $mime) {
-		list($desc,$img,$ext)	= $mime;
+		list($desc,$img,$ext,$type)	= $mime;
 		if(@eregi($ext,$item)) {
 			$mime_type	= $desc;
 			$image		= $img;
-			if($query=="img") return $image;
+			if($query=="img"){ return $image;}
+			else if($query=="ext"){ return $type;}
 			else return $mime_type;
+			
+			
 		}
 	}
 	
