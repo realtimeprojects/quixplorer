@@ -199,16 +199,25 @@ function print_table($dir, $list)
 		{
 			_print_link("edit", permissions_grant($dir, $item, "change"), $dir, $item);
 		} else {
-			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
+			// UNZIP
+			if(get_is_unzipable($dir, $item))
+			{
+				_print_link("unzip", permissions_grant($dir, $item, "create"), $dir, $item);
+			}else{
+				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+				echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
+			}			
 		}
+		
+		
+		
 		// DOWNLOAD
 		if(get_is_file($dir,$item))
 		{
 			_print_link("download", permissions_grant($dir, $item, "read"), $dir, $item);
 		} else {
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
+			echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
 		}
 		echo "</TABLE>\n</TD></TR>\n";
 	}
