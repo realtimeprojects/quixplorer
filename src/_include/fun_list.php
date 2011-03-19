@@ -365,9 +365,13 @@ function list_dir($dir)
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR><TR>\n<TD class=\"header\"></TD>";
 	echo "<TD class=\"header\">".$num_items." ".$GLOBALS["messages"]["miscitems"]." (";
 	if(function_exists("disk_free_space")) {
+		try{
 		$free=parse_file_size(disk_free_space(get_abs_dir($dir)));
+		}catch(Exception $e){echo "error on freespace";}
 	} elseif(function_exists("diskfreespace")) {
+		try{
 		$free=parse_file_size(diskfreespace(get_abs_dir($dir)));
+		}catch(Exception $e){echo "error on freespace";}
 	} else $free="?";
 	// echo "Total: ".parse_file_size(disk_total_space(get_abs_dir($dir))).", ";
 	echo $GLOBALS["messages"]["miscfree"].": ".$free.")</TD>\n";
