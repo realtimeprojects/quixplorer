@@ -253,19 +253,19 @@ function list_dir($dir)
 	
 	// PARENT DIR
 	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_up.gif\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["uplink"]."\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></A></TD>\n";
 	// HOME DIR
 	echo "<TD><A HREF=\"".make_link("list",NULL,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_home.gif\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["home"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["homelink"]."\" TITLE=\"".$GLOBALS["messages"]["homelink"]."\"></A></TD>\n";
 	// RELOAD
 	echo "<TD><A HREF=\"javascript:location.reload();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-	echo "align=\"ABSMIDDLE\" src=\"_img/_refresh.gif\" ALT=\"".$GLOBALS["messages"]["reloadlink"];
+	echo "align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["reload"]."\" ALT=\"".$GLOBALS["messages"]["reloadlink"];
 	echo "\" TITLE=\"".$GLOBALS["messages"]["reloadlink"]."\"></A></TD>\n";
 	// SEARCH
 	echo "<TD><A HREF=\"".make_link("search",$dir,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_search.gif\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["search"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["searchlink"]."\" TITLE=\"".$GLOBALS["messages"]["searchlink"];
 	echo "\"></A></TD>\n";
 	
@@ -387,38 +387,42 @@ function _print_link ($function, $allow, $dir, $item)
 	// the list of all available button and the coresponding data
 	$functions = array(
 			"copy" => array("jfunction" => "javascript:Copy();",
-					"image" => "_img/_copy.gif",
-					"imagedisabled" => "_img/_copy_.gif",
+					"image" => $GLOBALS["baricons"]["copy"],
+					"imagedisabled" => $GLOBALS["baricons"]["notcopy"],
 					"message" => $GLOBALS["messages"]["copylink"]),
 			"move" => array("jfunction" => "javascript:Move();",
-					"image" => "_img/_move.gif",
-					"imagedisabled" => "_img/_move_.gif",
+					"image" => $GLOBALS["baricons"]["move"],
+					"imagedisabled" => $GLOBALS["baricons"]["notmove"],
 					"message" => $GLOBALS["messages"]["movelink"]),
 			"delete" => array("jfunction" => "javascript:Delete();",
-					"image" => "_img/_delete.gif",
-					"imagedisabled" => "_img/_delete_.gif",
+					"image" => $GLOBALS["baricons"]["delete"],
+					"imagedisabled" => $GLOBALS["baricons"]["notdelete"],
 					"message" => $GLOBALS["messages"]["dellink"]),
 			"upload" => array("jfunction" => make_link("upload", $dir, NULL),
-					"image" => "_img/_upload.gif",
-					"imagedisabled" => "_img/_upload_.gif",
+					"image" => $GLOBALS["baricons"]["upload"],
+					"imagedisabled" => $GLOBALS["baricons"]["notupload"],
 					"message" => $GLOBALS["messages"]["uploadlink"]),
 			"archive" => array("jfunction" => "javascript:Archive();",
-					"image" => "_img/_archive.gif",
+					"image" => $GLOBALS["baricons"]["archive"],
 					"message" => $GLOBALS["messages"]["comprlink"]),
 			"admin" => array("jfunction" => make_link("admin", $dir, NULL),
-					"image" => "_img/_admin.gif",
+					"image" => $GLOBALS["baricons"]["admin"],
 					"message" => $GLOBALS["messages"]["adminlink"]),
 			"logout" => array("jfunction" => make_link("logout", NULL, NULL),
-					"image" => "_img/_logout.gif",
+					"image" => $GLOBALS["baricons"]["logout"],
 					"imagedisabled" => "_img/_logout_.gif",
 					"message" => $GLOBALS["messages"]["logoutlink"]),
 			"edit" => array("jfunction" => make_link("edit", $dir, $item),
-					"image" => "_img/_edit.gif",
-					"imagedisabled" => "_img/_edit_.gif",
+					"image" => $GLOBALS["baricons"]["edit"],
+					"imagedisabled" => $GLOBALS["baricons"]["notedit"],
 					"message" => $GLOBALS["messages"]["editlink"]),
+			"unzip" => array("jfunction" => make_link("unzip", $dir, $item),
+					"image" => $GLOBALS["baricons"]["unzip"],
+					"imagedisabled" => $GLOBALS["baricons"]["notunzip"],
+					"message" => $GLOBALS["messages"]["unziplink"]),
 			"download" => array("jfunction" => make_link("download", $dir, $item),
-					"image" => "_img/_download.gif",
-					"imagedisabled" => "_img/_download_.gif",
+					"image" => $GLOBALS["baricons"]["download"],
+					"imagedisabled" => $GLOBALS["baricons"]["notdownload"],
 					"message" => $GLOBALS["messages"]["downlink"]),
 			);
 	
