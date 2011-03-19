@@ -55,23 +55,23 @@ function show_header($title)
 	echo "<title>" . $GLOBALS["site_name"] ." || ". $GLOBALS["xplorer_name"] ."</title>\n";
 	echo "<LINK href=\"_style/style.css\" rel=\"stylesheet\" type=\"text/css\">\n";
 	
-	echo "<link href=\"/apps/uploadify/uploadify.css\" type=\"text/css\" rel=\"stylesheet\" />\n";
+	echo "<link href=\"_lib/uploadify/uploadify.css\" type=\"text/css\" rel=\"stylesheet\" />\n";
 	
-	echo "<script type=\"text/javascript\" src=\"/apps/uploadify/jquery-1.4.2.min.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"/apps/uploadify/swfobject.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"/apps/uploadify/jquery.uploadify.v2.1.4.min.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/jquery-1.4.2.min.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/swfobject.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/jquery.uploadify.v2.1.4.min.js\"></script>\n";
 	
-	echo "<script type=\"text/javascript\" src=\"/apps/daxesapps/addtag.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"/apps/edit_area/edit_area_full.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/daxesapps/addtag.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/edit_area/edit_area_full.js\"></script>\n";
 	
 	/*
 	echo "<!-- Thirdparty intialization scripts, needed for the Google Gears and BrowserPlus runtimes -->\n";
-	echo "<script type=\"text/javascript\" src=\"/apps/plupload/js/gears_init.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/gears_init.js\"></script>\n";
 	echo "<script type=\"text/javascript\" src=\"http://bp.yahooapis.com/2.4.21/browserplus-min.js\"></script>\n";
 
 	echo "<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->\n";
-	echo "<script type=\"text/javascript\" src=\"/apps/plupload/js/plupload.full.min.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"/apps/plupload/js/jquery.plupload.queue.min.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/plupload.full.min.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/jquery.plupload.queue.min.js\"></script>\n";
 	*/
 
 	
