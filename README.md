@@ -8,6 +8,17 @@ quixplorer is a simple web based file management software. It allows you to:
 
 News
 ----
+#### 2011-03-19 Uploadify, editarea, zip/unzip support for quixplorer
+
+Thanks to the contribution of LaurenceHR, quixplorer has some new features
+like using uploadify for file upload and editarea as edit tool.
+
+However, this version is not very testet yet so i did not merge it into
+the master branch yet. But you'll find this changes in the branch
+	branches/LaurenceHR
+
+I welcome every feedback!
+
 #### 2011-03-04 Smarty template engine .. a lot of work
 
 Since the work on the smarty template engine version of quixplorer takes a lot of
