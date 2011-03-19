@@ -34,9 +34,9 @@
 	$GLOBALS["zip"] = false;	//function_exists("gzcompress");
 	$GLOBALS["tar"] = false;
 	$GLOBALS["tgz"] = false;
+
+	$GLOBALS["use_uploadify"] = false;
 	
-	// QuiXplorer version:
-	$GLOBALS["version"] = "2.4.0BETA";
 //------------------------------------------------------------------------------
 // Global User Variables (used when $require_login==false)
 	

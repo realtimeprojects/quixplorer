@@ -72,7 +72,9 @@ break;
 //------------------------------------------------------------------------------
 // UPLOAD FILE(S)
 case "upload":
-	require "./_include/fun_up_uploadify.php";
+	$use_uploadify = isset($GLOBALS["use_uploadify"]) ? $GLOBALS["use_uploadify"] : false;
+	$upload_script = $use_uploadify ? "fun_up_uploadify.php" : "fun_up.php";
+	require "./_include/$upload_script";
 	upload_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
