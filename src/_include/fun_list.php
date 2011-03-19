@@ -286,13 +286,40 @@ function list_dir($dir)
 		// LOGOUT
 		_print_link("logout", true, $dir, NULL);
 	}
+	
+	echo "<TD>::</TD>";
+	//Languages
+	
+	
+	foreach($GLOBALS["langs"] as $langs) {
+		
+		echo "<TD><A HREF=\"".make_link("list",$dir,NULL,NULL,NULL,$langs[0])."\"><IMG border=\"0\" width=\"16\" height=\"11\" ";
+		echo "align=\"ABSMIDDLE\" src=\"".$langs[1]."\" ALT=\"".$langs[0];
+		echo "\" TITLE=\"".$langs[2]."\"></A></TD>\n";
+	
+		//list($slang,$img,$ext,$type)	= $mime;
+		/*if(@eregi($ext,$item)) {
+			$mime_type	= $desc;
+			$image		= $img;
+			if($query=="img"){ return $image;}
+			else if($query=="ext"){ return $type;}
+			else return $mime_type;
+		*/	
+			
+		}
+	
+	
+	//
+	
 	echo "</TR></TABLE></TD>\n";
 	
 	// Create File / Dir
 	if (permissions_grant($dir, NULL, "create"))
 	{
 		echo "<TD align=\"right\"><TABLE><FORM action=\"".make_link("mkitem",$dir,NULL)."\" method=\"post\">\n<TR><TD>";
-		echo "<SELECT name=\"mktype\"><option value=\"file\">".$GLOBALS["mimes"]["file"]."</option>";
+		echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["add"]."\" />";
+		echo "<SELECT name=\"mktype\">";
+		echo "<option value=\"file\">".$GLOBALS["mimes"]["file"]."</option>";
 		echo "<option value=\"dir\">".$GLOBALS["mimes"]["dir"]."</option></SELECT>\n";
 		echo "<INPUT name=\"mkname\" type=\"text\" size=\"15\">";
 		echo "<INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btncreate"];
