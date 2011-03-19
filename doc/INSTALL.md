@@ -12,8 +12,10 @@ This document guides you to the installation of quixplorer on your webserver.
 4. Copy the file _\_config/conf.php.template to _\_config/conf.php_,
 5. Set _home_dir_ in _conf.php_ to your desired home folder (e.g. /home/you/htdocs). Don't use "/" as home_dir since it will not work properly at is very unsafe.
 6. and set _home_url_ to the corresponding URL. (e.g. http://yoursite)
-7. ** Change the admin passwort immediatly **
-8. Have Fun...
+7. If you want, enable uploadify as upload interface by adding this line to your conf.php:
+	$GLOBALS["use_uploadify"] = true;
+8. ** Change the admin passwort immediatly **
+9. Have Fun...
 
 ### Troubleshooting
 

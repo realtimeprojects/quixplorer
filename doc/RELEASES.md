@@ -1,13 +1,19 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
-### Version 2.4.4
+### Version 2.5.0ALPHA
 
 - Renamed '.config' and '.include' to '_config' and '_include'
   
   If you are upgrading from a previous installation, you have to
   manu copy your .config/conf.php to _config/conf.php and
   delete the old directories.
+
+- Integrated uploadify and edit_area (thanks to LaurenceHR for
+  this contribution!). Uploadify needs to be turned on in the
+  conf.php by adding this line:
+
+	$GLOBALS["use_uploadify"] = true;
 
 ### Version 2.4.3 2010-09-05
 
