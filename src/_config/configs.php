@@ -3,8 +3,19 @@ $GLOBALS["amung"]="7hamtjlsy593"; //Users Online
 $GLOBALS["ownermessage"] = "modified by laurenceHR";
 
 $GLOBALS["langs"] = array(
-	"spanish" => array("es","_img/smallicons/es.png","Español"),
 	"english" => array("en","_img/smallicons/us.png","English"),
+	"spanish" => array("es","_img/smallicons/es.png","Español"),
+	"german" => array("de","_img/smallicons/de.png","Deutsch"),
+	"french" => array("fr","_img/smallicons/fr.png","Français"),
+	"italian" => array("it","_img/smallicons/it.png","Italiano"),
+	"nl" => array("nl","_img/smallicons/nl.png","Nederlands"),
+	"polsk" => array("pl","_img/smallicons/pl.png","Polski"),
+	"ptbr" => array("ptbr","_img/smallicons/ptbr.png","Português - Brasil"),
+	"romana" => array("ro","_img/smallicons/ro.png","Românã"),
+	"ru" => array("ru","_img/smallicons/ru.png","Russian"),
+	"bg" => array("bg","_img/smallicons/bg.png","Bulgarian"),
+	"cs" => array("cs","_img/smallicons/cs.png","Czech"),
+	"da" => array("da","_img/smallicons/da.png","Dansk"),
 );
 
 $GLOBALS["baricons"] = array(
