@@ -4,7 +4,7 @@
 
 $GLOBALS["charset"] = "iso-8859-1";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
-$GLOBALS["date_fmt"] = "Y/m/d H:i";
+$GLOBALS["date_fmt"] = "Y-m-d H:i";
 $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "ERROR(S)",
