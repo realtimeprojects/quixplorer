@@ -17,7 +17,6 @@ $GLOBALS["error_msg"] = array(
 	
 	// exist
 	"direxist"		=> "Deze map bestaat niet.",
-	//"filedoesexist"	=> "Dit bestand bestaat al.",
 	"fileexist"		=> "Dit bestand bestaat niet.",
 	"itemdoesexist"		=> "Dit item bestaat al.",
 	"itemexist"		=> "Dit item bestaat niet.",

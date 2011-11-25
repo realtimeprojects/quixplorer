@@ -1,6 +1,6 @@
 <?php
 
-// German Language Module for v2.3 (translated by the QuiX project)
+// German Language Module
 
 $GLOBALS["charset"] = "iso-8859-1";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
@@ -17,7 +17,6 @@ $GLOBALS["error_msg"] = array(
 	
 	// exist
 	"direxist"		=> "Dieses Verzeichnis existiert nicht.",
-	//"filedoesexist"	=> "Diese Datei existiert bereits.",
 	"fileexist"		=> "Diese Datei existiert nicht.",
 	"itemdoesexist"		=> "Dieses Objekt existiert bereits.",
 	"itemexist"		=> "Dieses Objekt existiert nicht.",

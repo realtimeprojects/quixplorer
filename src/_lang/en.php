@@ -17,7 +17,6 @@ $GLOBALS["error_msg"] = array(
 	
 	// exist
 	"direxist"		=> "This directory doesn't exist.",
-	//"filedoesexist"	=> "This file already exists.",
 	"fileexist"		=> "This file doesn't exist.",
 	"itemdoesexist"		=> "This item already exists.",
 	"itemexist"		=> "This item doesn't exist.",

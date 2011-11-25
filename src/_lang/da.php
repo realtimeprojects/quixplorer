@@ -17,7 +17,6 @@ $GLOBALS["error_msg"] = array(
 	
 	// exist
 	"direxist"		=> "Mappen findes ikke.",
-	//"filedoesexist"	=> "Filen findes allerede.",
 	"fileexist"		=> "Filen findes ikke.",
 	"itemdoesexist"	=> "Emnet findes allerede.",
 	"itemexist"		=> "Emnet findes ikke.",

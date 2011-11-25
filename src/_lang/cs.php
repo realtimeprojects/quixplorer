@@ -17,7 +17,6 @@ $GLOBALS["error_msg"] = array(
 	
 	// exist
 	"direxist"		=> "Adresáø neexistuje.",
-	//"filedoesexist"	=> "Soubor existuje.",
 	"fileexist"		=> "Soubor neexistuje.",
 	"itemdoesexist"		=> "Tato položka existuje.",
 	"itemexist"		=> "Tato položka neexistuje.",
