@@ -57,8 +57,6 @@
 	// filenames not allowed to access: (uses PCRE regex syntax)
 	$GLOBALS["no_access"] = "^\.ht";
 	
-	// user permissions bitfield: (1=modify, 2=password, 4=admin, add the numbers)
-	$GLOBALS["permissions"] = 7;
 //------------------------------------------------------------------------------
 
 	// Adding values for each language to this array changes
