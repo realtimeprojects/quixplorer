@@ -11,21 +11,22 @@ function _idx ($what)
 	return $idx[$what];
 }
 
-//------------------------------------------------------------------------------
 /**
 	loads the user database for authenticating the users
+
+    @param $file    The name of the file containing the user database. Default is ./_config/.htusers.php
 */
 function user_load ($file = NULL)
 {
-	if (!isset($file))
-	{
-		require "./_config/.htusers.php";
-		return;
-	}
+    if (!isset($file))
+        $file = "./_config/.htusers.php";
+
+    if (! is_readable($file))
+        show_error("user database $file does not exist or is not readable.<p>See the installation manual for details");
 
 	require $file;
 }
-//------------------------------------------------------------------------------
+
 function _saveUsers ()
 {
 	$cnt=count($GLOBALS["users"]);
@@ -203,7 +204,7 @@ function user_remove ($user)
   if the user is not found in the user database, this function returns
   NULL, otherwise, it returns the permissions of the user.
 */
-function	user_get_permissions ($username)
+function user_get_permissions ($username)
 {
 	// try to find the user in the user database
 	$data = user_find($username, NULL);
