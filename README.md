@@ -8,6 +8,10 @@ quixplorer is a simple web based file management software. It allows you to:
 
 News
 ----
+#### 2011-11-28 v2.5.0 released
+
+This release mainly contains the changes from LaurenceHR.
+
 #### 2011-03-19 Uploadify, editarea, zip/unzip support for quixplorer
 
 Thanks to the contribution of LaurenceHR, quixplorer has some new features

@@ -1,7 +1,7 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
-### Version 2.5.0ALPHA
+### Version 2.5.0 2011-11-28
 
 - Renamed '.config' and '.include' to '_config' and '_include'
   
