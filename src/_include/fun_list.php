@@ -336,19 +336,12 @@ function list_dir($dir)
 	// print number of items & total filesize
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR><TR>\n<TD class=\"header\"></TD>";
 	echo "<TD class=\"header\">".$num_items." ".$GLOBALS["messages"]["miscitems"]." (";
-	if(function_exists("disk_free_space")) {
-		try{
-		$free=parse_file_size(disk_free_space(get_abs_dir($dir)));
-		}catch(Exception $e){echo "error on freespace";}
-	} elseif(function_exists("diskfreespace")) {
-		try{
-		$free=parse_file_size(diskfreespace(get_abs_dir($dir)));
-		}catch(Exception $e){echo "error on freespace";}
-	} else $free="?";
-	// echo "Total: ".parse_file_size(disk_total_space(get_abs_dir($dir))).", ";
+    $free=parse_file_size(diskfreespace(get_abs_dir($dir)));
 	echo $GLOBALS["messages"]["miscfree"].": ".$free.")</TD>\n";
 	echo "<TD class=\"header\">".parse_file_size($tot_file_size)."</TD>\n";
-	for($i=0;$i<4;++$i) echo"<TD class=\"header\"></TD>";
+
+    echo "<TD class=\"header\" colspan=4></TD>";
+
 	echo "</TR>\n<TR><TD colspan=\"7\"><HR></TD></TR></FORM></TABLE>\n";
 	
 ?><script language="JavaScript1.2" type="text/javascript">
