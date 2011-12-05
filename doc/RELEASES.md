@@ -1,6 +1,12 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.1 2011-12-05
+
+- Quixplorer prints out an error message if the config file was not found
+- Removed unnecessary try/catch in fun_list.php to ensure php4 compatibility
+- Some minor code optimizations
+
 ### Version 2.5.0 2011-11-28
 
 - Renamed '.config' and '.include' to '_config' and '_include'
