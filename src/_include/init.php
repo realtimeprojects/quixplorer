@@ -69,38 +69,6 @@ if (isset($prompt))
 	$GLOBALS["messages"]["actloginheader"] = $prompt;
 
 ob_end_clean(); // get rid of cached unwanted output
-//------------------------------------------------------------------------------
-do_login();
-//------------------------------------------------------------------------------
-$abs_dir=get_abs_dir($GLOBALS["dir"]);
-if(!@file_exists($GLOBALS["home_dir"])) {
-	if($GLOBALS["require_login"]) {
-		$extra="<A HREF=\"".make_link("logout",NULL,NULL)."\">".
-			$GLOBALS["messages"]["btnlogout"]."</A>";
-	} else $extra=NULL;
-	show_error($GLOBALS["error_msg"]["home"],$extra);
-}
-if(!down_home($abs_dir)) show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["abovehome"]);
-if(!is_dir($abs_dir)) show_error($GLOBALS["dir"]." : ".$GLOBALS["error_msg"]["direxist"]);
-//------------------------------------------------------------------------------
-/**
-  Do the login if required
-  */
-function do_login ()
-{
-	if ($GLOBALS["action"]=="logout")
-	{
-		logout();
-		return;
-	}
 
-	// if no login is required and the user does not explicitly call
-	// the login function, no login is required.
-	if ($GLOBALS["require_login"] == false 
-	&& $GLOBALS['action'] != "login"
-	&& !isset($GLOBALS['__SESSION']["s_user"])
-	&& !isset($GLOBALS['__POST']["p_user"]))
-		return;
-	login();
-}
+
 ?>
