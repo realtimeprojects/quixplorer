@@ -1,6 +1,4 @@
 <?php
-$GLOBALS["amung"]="7hamtjlsy593"; //Users Online
-$GLOBALS["ownermessage"] = "modified by laurenceHR";
 
 $GLOBALS["langs"] = array(
 	"english" => array("en","_img/smallicons/us.png","English"),
