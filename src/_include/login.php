@@ -1,15 +1,32 @@
 <?php
 
-require "./_include/user.php";
+require_once "./_include/user.php";
+
 user_load();
-//------------------------------------------------------------------------------
+
 session_start();
-if(isset($_SESSION)) 			$GLOBALS['__SESSION']=&$_SESSION;
-elseif(isset($HTTP_SESSION_VARS))	$GLOBALS['__SESSION']=&$HTTP_SESSION_VARS;
-else logout();
-//------------------------------------------------------------------------------
-function login() {
-	//print_r($GLOBALS['__SESSION']);	
+
+_check_login();
+
+function _check_login()
+{
+    global $require_login;
+
+    // if no login is required, there is nothing to do
+    if (!$require_login)
+        return;
+
+    // if the user is already authenticated, we're done
+	if (!isset($_SESSION["s_user"]))
+        return;
+
+    // login the user
+    login();
+}
+
+//FIXME update home_dir variable if user is logged in
+function login ()
+{
 	if(isset($GLOBALS['__SESSION']["s_user"])) {
 		if(!user_activate($GLOBALS['__SESSION']["s_user"],$GLOBALS['__SESSION']["s_pass"])) {
 			logout();
@@ -52,21 +69,11 @@ function login() {
 	}
 }
 
-//------------------------------------------------------------------------------
-function logout() {
+function logout ()
+{
 	$GLOBALS['__SESSION']=array();
 	session_destroy();
 	header("location: ".$GLOBALS["script_name"]);
 }
-//------------------------------------------------------------------------------
-/**
-  This function determines if a user has been authenticated or not.
-  */
-function login_ok ()
-{
-	if(!isset($GLOBALS['__SESSION']["s_user"]))
-		return false;
 
-	return user_activate($GLOBALS['__SESSION']["s_user"],$GLOBALS['__SESSION']["s_pass"]);
-}
 ?>
