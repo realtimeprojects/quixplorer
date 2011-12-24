@@ -1,0 +1,12 @@
+div.qx {
+    text-align:center;
+    font: verdana; sans-serif;
+    width:80%;
+    background:white;
+    align: center;
+    }
+
+.qx .title {
+    text-align:center;
+    font-size:1.3em;
+}
