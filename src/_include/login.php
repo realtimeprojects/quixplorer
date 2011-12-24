@@ -32,52 +32,19 @@ function _check_login()
     }
 
     // login the user
+    _debug("displaying login page");
     login();
 }
 
 //FIXME update home_dir variable if user is logged in
 function login ()
 {
-	if(isset($GLOBALS['__SESSION']["s_user"])) {
-		if(!user_activate($GLOBALS['__SESSION']["s_user"],$GLOBALS['__SESSION']["s_pass"])) {
-			logout();
-		}
-	} else {
-		if(isset($GLOBALS['__POST']["p_pass"])) $p_pass=$GLOBALS['__POST']["p_pass"];
-		else $p_pass="";
-		
-		if(isset($GLOBALS['__POST']["p_user"])) {
-			// Check Login
-			if(!user_activate(stripslashes($GLOBALS['__POST']["p_user"]), md5(stripslashes($p_pass)))) {
-				logout();
-			}
-			// authentication sucessfull
-			return;
-		} else {
 			// Ask for Login
-            require_once qx_var_template_dir() . "/header.php";
-			echo "<BR><TABLE width=\"300\"><TR><TD colspan=\"2\" class=\"header\" nowrap><B>";
-			echo $GLOBALS["messages"]["actloginheader"]."</B></TD></TR>\n<FORM name=\"login\" action=\"";
-			echo make_link("login",NULL,NULL)."\" method=\"post\">\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD><TD align=\"right\">";
-			echo "<INPUT name=\"p_user\" type=\"text\" size=\"25\"></TD></TR>\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["miscpassword"].":</TD><TD align=\"right\">";
-			echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["misclang"].":</TD><TD align=\"right\">";
-			echo "<SELECT name=\"lang\">\n";
-			@include "./_lang/_info.php";
-			echo "</SELECT></TD></TR>\n";
-			echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";
-			echo $GLOBALS["messages"]["btnlogin"]."\"></TD></TR>\n</FORM></TABLE><BR>\n";
-?><script language="JavaScript1.2" type="text/javascript">
-<!--
-	if(document.login) document.login.p_user.focus();
-// -->
-</script><?php
-            require_once qx_var_template_dir() . "/footer.php";
-			exit;
-		}
-	}
+            global $page;
+            $page = "login.php";
+            _debug("opening .. " . qx_var_template_dir() . "/page.php");
+            require_once qx_var_template_dir() . "/page.php";
+            exit;
 }
 
 function logout ()

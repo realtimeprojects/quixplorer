@@ -3,6 +3,8 @@
 require "./_include/error.php";
 require_once "qx_var.php";
 require_once "qx.php";
+require_once "qx_msg.php";
+require_once "qx_link.php";
 
 if(isset($_SERVER)) {
 	$GLOBALS['__GET']	=&$_GET;
@@ -59,16 +61,6 @@ require "./_lang/".$GLOBALS["language"].".php";
 require "./_lang/".$GLOBALS["language"]."_mimes.php";
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
-ob_start(); // prevent unwanted output
 require_once "./_include/login.php";
-ob_end_clean(); // get rid of cached unwanted output
-$prompt = isset($GLOBALS["login_prompt"][$GLOBALS["language"]])
-	? $GLOBALS["login_prompt"][$GLOBALS["language"]]
-	: $GLOBALS["login_prompt"]["en"];
-if (isset($prompt))
-	$GLOBALS["messages"]["actloginheader"] = $prompt;
-
-ob_end_clean(); // get rid of cached unwanted output
-
 
 ?>
