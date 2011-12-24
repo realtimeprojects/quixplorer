@@ -1,7 +1,7 @@
 <?php
 
 require_once "./_include/user.php";
-
+require_once "qx_var.php";
 user_load();
 
 session_start();
@@ -44,7 +44,7 @@ function login ()
 			return;
 		} else {
 			// Ask for Login
-			show_header($GLOBALS["messages"]["actlogin"]);
+            require_once qx_var_template_dir() . "/header.php";
 			echo "<BR><TABLE width=\"300\"><TR><TD colspan=\"2\" class=\"header\" nowrap><B>";
 			echo $GLOBALS["messages"]["actloginheader"]."</B></TD></TR>\n<FORM name=\"login\" action=\"";
 			echo make_link("login",NULL,NULL)."\" method=\"post\">\n";
@@ -63,7 +63,7 @@ function login ()
 	if(document.login) document.login.p_user.focus();
 // -->
 </script><?php
-			show_footer();
+            require_once qx_var_template_dir() . "/footer.php";
 			exit;
 		}
 	}
