@@ -73,6 +73,6 @@ default:
 	list_dir($GLOBALS["dir"]);
 }				// end switch-statement
 
-show_footer();
+require_once qx_var_template_dir() . "/footer.php";
 
 ?>
