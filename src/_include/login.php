@@ -20,12 +20,16 @@ function _check_login()
     _debug("login: $require_login");
     if (!$require_login)
     {
+        _debug("no login required");
         return;
     }
 
     // if the user is already authenticated, we're done
-	if (!isset($_SESSION["s_user"]))
+	if (isset($_SESSION["s_user"]))
+    {
+        _debug("user already authenticated");
         return;
+    }
 
     // login the user
     login();
