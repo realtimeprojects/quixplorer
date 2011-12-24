@@ -2,9 +2,13 @@
 
 require_once "./_include/user.php";
 require_once "qx_var.php";
+require_once "_include/debug.php";
+
 user_load();
 
 session_start();
+
+_debug("checking login..");
 
 _check_login();
 
@@ -13,8 +17,11 @@ function _check_login()
     global $require_login;
 
     // if no login is required, there is nothing to do
+    _debug("login: $require_login");
     if (!$require_login)
+    {
         return;
+    }
 
     // if the user is already authenticated, we're done
 	if (!isset($_SESSION["s_user"]))
