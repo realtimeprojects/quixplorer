@@ -57,8 +57,6 @@ require "./_lang/".$GLOBALS["language"].".php";
 require "./_lang/".$GLOBALS["language"]."_mimes.php";
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
-require_once "./_include/header.php";
-require "./_include/footer.php";
 ob_start(); // prevent unwanted output
 require_once "./_include/login.php";
 ob_end_clean(); // get rid of cached unwanted output
