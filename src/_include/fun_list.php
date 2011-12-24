@@ -3,8 +3,8 @@
 require_once("./_include/permissions.php");
 require_once("./_include/login.php");
 
-//------------------------------------------------------------------------------
 // HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
+
 function make_list($_list1, $_list2) {		// make list of files
 	$list = array();
 
@@ -30,7 +30,7 @@ function make_list($_list1, $_list2) {		// make list of files
 	
 	return $list;
 }
-//------------------------------------------------------------------------------
+
 function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items)
 {						// make table of files in dir
 	// make tables & place results in reference-variables passed to function
