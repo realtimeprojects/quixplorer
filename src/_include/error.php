@@ -1,6 +1,6 @@
 <?php
 
-require_once "./_include/header.php";
+require_once "qx_var.php";
 
 /**
     show error-message and terminate
@@ -11,7 +11,7 @@ function show_error($error,$extra=NULL)
     $errmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["error"] : "ERROR";
     $backmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["back"] : "BACK";
 
-	show_header($errmsg);
+    require_once qx_var_template_dir() . "/header.php";
     ?>
 	<center>
         <h2><?php echo $errmsg ?></h2>
@@ -20,6 +20,6 @@ function show_error($error,$extra=NULL)
         <?php if ($extra != NULL) echo " - " . $extra; ?>
     </center>
     <?php
-    show_footer(); exit; 
+    require_once qx_var_template_dir() . "/footer.php";
 }
 ?>
