@@ -240,7 +240,7 @@ function list_dir($dir)
 	_print_edit_buttons($dir);
 	
 	// ADMIN & LOGOUT
-	if(login_ok())
+	if(qx_var_authenticated())
 	{
 		echo "<TD>::</TD>";
 		// ADMIN
