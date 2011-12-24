@@ -5,7 +5,7 @@ function testprint($what)
 	echo "<h2>$what</h2>";
 }
 
-function debug ($data)
+function _debug ($data)
 {
 	$debug = 1;
 
@@ -13,7 +13,7 @@ function debug ($data)
 		return;
 
 	$fp = fopen("debug.log", "a");
-	fputs($fp, "DEBUG: $data\n");
+	fputs($fp, "quixplorer: " . date("Y-m-d H:i:s.u") . ": $data\n");
 	fclose($fp);
 }
 
