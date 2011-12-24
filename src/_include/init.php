@@ -1,6 +1,8 @@
 <?php
 
 require "./_include/error.php";
+require_once "qx_var.php";
+require_once "qx.php";
 
 if(isset($_SERVER)) {
 	$GLOBALS['__GET']	=&$_GET;
