@@ -2,6 +2,7 @@
 
 require_once("./_include/permissions.php");
 require_once("./_include/login.php");
+require_once "qx.php";
 
 // HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
 
@@ -198,7 +199,8 @@ function list_dir($dir)
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
 	
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
-	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
+//	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
+    require_once qx_var_template_dir() . "/header.php";
 	
 	// Javascript functions:
 	include "./_include/javascript.php";
