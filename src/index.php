@@ -1,6 +1,9 @@
 <?php
 umask(002); // Added to make created files/dirs group writable
+
 require "./_include/init.php";	// Init
+global $home_dir;
+
 //------------------------------------------------------------------------------
 switch($GLOBALS["action"]) {		// Execute action
 //------------------------------------------------------------------------------
