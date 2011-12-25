@@ -1,18 +1,11 @@
 <?php
 
-require_once "./_include/user.php";
-require_once "qx_var.php";
+require_once "_include/user.php";
 require_once "_include/debug.php";
 
-user_load();
-
-session_start();
-
-_debug("checking login..");
-
-_check_login();
-
-function _check_login()
+// checks if user login is required and displays login
+// form if required
+function login_check()
 {
     global $require_login;
 
@@ -33,25 +26,49 @@ function _check_login()
 
     // login the user
     _debug("displaying login page");
-    login();
+    login_form();
 }
 
 //FIXME update home_dir variable if user is logged in
-function login ()
+function login_form ()
 {
-			// Ask for Login
-            global $page;
-            $page = "login.php";
-            _debug("opening .. " . qx_var_template_dir() . "/page.php");
-            require_once qx_var_template_dir() . "/page.php";
-            exit;
+    // Ask for Login
+    global $page;
+    $page = "login.php";
+    _debug("opening .. " . qx_var_template_dir() . "/page.php");
+    require_once qx_var_template_dir() . "/page.php";
+    exit;
+}
+
+function login_post ()
+{
+    $loginname = $_POST["loginname"];
+    $password  = stripslashes($_POST["password"]);
+    _debug("checking authentication [$loginname]");
+
+    if (!isset($loginname) || !isset($password))
+    {
+        _debug("authentication failed, no username or password set");
+        logout();
+        login_form();
+    }
+
+    if (!user_activate($loginname, md5($password)))
+    {
+        _debug("authentication failed, password invalid");
+        logout();
+        login_form();
+    }
+
+
+    _debug("user successfully authenticated");
+    $_SESSION["s_user"] = $_POST["loginname"];
 }
 
 function logout ()
 {
-	$GLOBALS['__SESSION']=array();
+	$_SESSION = array();
 	session_destroy();
-	header("location: ".$GLOBALS["script_name"]);
 }
 
 ?>
