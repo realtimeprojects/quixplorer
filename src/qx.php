@@ -14,6 +14,7 @@ function qx_title()
 function qx_user()
 {
     //FIXME return real user
-    print "FIXME_USER";
+    $user = $_SESSION["s_user"];
+    return (isset($user) ? $user : "anonymous");
 }
 ?>
