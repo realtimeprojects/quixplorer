@@ -1,5 +1,5 @@
 <br>
-<form name="login_form" action="<?php echo qx_link("login"); ?>" method="post" >
+<form name="login_form" action="<?php echo qx_link("authenticate"); ?>" method="post" >
 <table id="qx_login">
     <thead>
     <tr>
