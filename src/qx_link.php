@@ -1,12 +1,11 @@
 <?php
-
 function qx_link($what)
 {
     switch ($what)
     {
-        case "login": return "_include/login.php";
+        case "login":        return "?action=login";
+        case "authenticate": return "?action=authenticate";
     }
-    return "_include/unknown.php";
+    return "?action=unknown";
 }
-
 ?> 
