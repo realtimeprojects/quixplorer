@@ -1,7 +1,5 @@
 <?php
 
-require_once "qx_var.php";
-
 /**
     show error-message and terminate
  */
@@ -22,4 +20,5 @@ function show_error($error,$extra=NULL)
     <?php
     require_once qx_var_template_dir() . "/footer.php";
 }
+
 ?>
