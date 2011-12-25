@@ -22,7 +22,8 @@ function user_load ($file = NULL)
         $file = "./_config/.htusers.php";
 
     if (! is_readable($file))
-        show_error("user database $file does not exist or is not readable.<p>See the installation manual for details");
+        show_error( "user database $file does not exist or is not readable",
+                    "See the installation manual for details");
 
 	require $file;
 }
@@ -81,7 +82,7 @@ function user_get_index ($user)
 	return -1;
 	
 }
-//------------------------------------------------------------------------------
+
 /**
 	try to find the user with the username $user and the password $pass
 	in the user table.
@@ -135,7 +136,7 @@ function user_find ($user, $pass = NULL)
 function user_activate($user, $pass) 
 {
 	// try to find and authenticate the user.
-	$data = user_find($user,$pass);
+	$data = user_find($user, $pass);
 
 	// if the user could not be authenticated, return false.
 	if (!isset($data))
@@ -216,4 +217,7 @@ function user_get_permissions ($username)
 	// return the user permissions
 	return $data[_idx('permissions')];
 }
+
+user_load();
+
 ?>
