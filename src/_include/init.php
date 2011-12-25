@@ -1,10 +1,14 @@
 <?php
 
-require "./_include/error.php";
 require_once "qx_var.php";
 require_once "qx.php";
 require_once "qx_msg.php";
 require_once "qx_link.php";
+require_once "_include/debug.php";
+require_once "_include/error.php";
+require_once "_include/login.php";
+
+session_start();
 
 if(isset($_SERVER)) {
 	$GLOBALS['__GET']	=&$_GET;
@@ -22,20 +26,23 @@ if(isset($_SERVER)) {
 }
 //------------------------------------------------------------------------------
 // Get Action
-if(isset($GLOBALS['__GET']["action"])) $GLOBALS["action"]=$GLOBALS['__GET']["action"];
-else $GLOBALS["action"]="list";
-if($GLOBALS["action"]=="post" && isset($GLOBALS['__POST']["do_action"])) {
-	$GLOBALS["action"]=$GLOBALS['__POST']["do_action"];
-}
-if($GLOBALS["action"]=="") $GLOBALS["action"]="list";
-$GLOBALS["action"]=stripslashes($GLOBALS["action"]);
+global $action;
+$action=$_GET["action"];
+_debug("action is $action");
+
+if ($action == "")
+    $action = "list";
+
 // Default Dir
-if(isset($GLOBALS['__GET']["dir"])) $GLOBALS["dir"]=stripslashes($GLOBALS['__GET']["dir"]);
-else $GLOBALS["dir"]="";
-if($GLOBALS["dir"]==".") $GLOBALS["dir"]=="";
+global $dir;
+$dir=$_GET["dir"];
+_debug("dir is $dir");
+
 // Get Item
-if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=stripslashes($GLOBALS['__GET']["item"]);
-else $GLOBALS["item"]="";
+global $item;
+$item=$_GET["item"];
+_debug("item is $item");
+
 // Get Sort
 if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
 else $GLOBALS["order"]="name";
@@ -47,9 +54,6 @@ if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 // Get Language
 if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=$GLOBALS['__GET']["lang"];
 elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["lang"];
-//------------------------------------------------------------------------------
-// Necessary files
-ob_start(); // prevent unwanted output
 
 if (!is_readable("./_config/conf.php"))
     show_error("./_config/conf.php not found.. please see installation instructions");
@@ -61,6 +65,7 @@ require "./_lang/".$GLOBALS["language"].".php";
 require "./_lang/".$GLOBALS["language"]."_mimes.php";
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
-require_once "./_include/login.php";
+
+login_check();
 
 ?>
