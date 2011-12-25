@@ -1,8 +1,6 @@
 <?php
 
 require_once("./_include/permissions.php");
-require_once("./_include/login.php");
-require_once "qx.php";
 
 // HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
 
