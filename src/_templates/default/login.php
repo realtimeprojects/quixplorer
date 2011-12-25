@@ -15,7 +15,7 @@
    </tr>
    <tr>
         <td><?php qx_msg("password") ?></td>
-        <td align="right"><input name="password" type="text" size="20%"></input></td>
+        <td align="right"><input name="password" type="password" size="20%"></input></td>
     </tr>
     <tr>
         <td><?php qx_msg("language") ?></td>
