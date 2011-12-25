@@ -1,10 +1,19 @@
 <?php
 umask(002); // Added to make created files/dirs group writable
 
-require "./_include/init.php";	// Init
-global $home_dir;
+require "_include/init.php";	// Init
 
-switch($GLOBALS["action"]) {		// Execute action
+global $home_dir;
+global $action;
+
+switch ($action)
+{
+    case "login":           login_form(); break;
+    case "authenticate":    login_post(); // nobreak 
+    case "list":
+    default:                require "./_include/fun_list.php";
+                            list_dir($GLOBALS["dir"]);
+                            break;
 // EDIT FILE
 case "edit":
 	require "./_include/fun_edit_editarea.php";
@@ -66,13 +75,6 @@ case "admin":
 	require "./_include/fun_admin.php";
 	show_admin($GLOBALS["dir"]);
 break;
-// DEFAULT: LIST FILES & DIRS
-case "list":
-default:
-	require "./_include/fun_list.php";
-	list_dir($GLOBALS["dir"]);
 }				// end switch-statement
-
-require_once qx_var_template_dir() . "/footer.php";
 
 ?>
