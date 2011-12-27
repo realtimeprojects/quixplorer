@@ -7,21 +7,23 @@ $buttons = array();
 $buttons[] = array ("buttons/home.png",   qx_link("list", "?dir="),                      qx_msg_s("homelink"));
 $buttons[] = array ("buttons/reload.png", "javascript:location.reload();",               qx_msg_s("reloadlink"));
 $buttons[] = array ("buttons/search.png", qx_link("search"),                             qx_msg_s("searchlink"));
-$buttons[] = array ("buttons/copy.png", "javascript:Copy();",                             qx_msg_s("copylink"),      permissions_grant_all($dir, NULL, array("create", "read")));  
-$buttons[] = array ("buttons/move.png", "javascript:Move();",                             qx_msg_s("movelink"),      permissions_grant($dir, NULL, "change"));
-$buttons[] = array ("buttons/delete.png", "javascript:Delete();",                         qx_msg_s("dellink"),       permissions_grant($dir, NULL, "delete"));
-$buttons[] = array ("buttons/upload.png", qx_link("upload", "?dir=" . qx_directory()),   qx_msg_s("uploadlink"),    permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"));
-
-$buttons[] = array ("buttons/archive.png", "javascript:Archive();",                      qx_msg_s("comprlink"),     permissions_grant_all($dir, NULL, array("create", "read")));
+$buttons[] = array ("buttons/copy.png", "javascript:Copy();",                             qx_msg_s("copylink"));  
+$buttons[] = array ("buttons/move.png", "javascript:Move();",                             qx_msg_s("movelink"));
+$buttons[] = array ("buttons/delete.png", "javascript:Delete();",                         qx_msg_s("dellink"));
+$buttons[] = array ("buttons/upload.png", qx_link("upload", "?dir=" . qx_directory()),   qx_msg_s("uploadlink"));
+$buttons[] = array ("buttons/archive.png", "javascript:Archive();",                      qx_msg_s("comprlink"));
 ?>
 
 <tr>
     <?php foreach ($buttons as $btnname => $btnprops) { ?>
-        <td><a href="<?php echo $btnprops[1]?>">
-            <img src="<?php echo qx_var_template_dir() . "/" . $btnprops[0] ?>"
-                 title="<?php echo $btnprops[2] ?>"
-                 alt="<?php echo $btnprops[2] ?>" />
-            </a>
+        <td>
+            <?php if (qx_grant($btnprops[1])) echo "<a href=\"" . $btnprops[1]. "\" >" ?>
+                    <img src="<?php echo qx_var_template_dir() . "/" . $btnprops[0] ?>"
+                         class="<?php echo qx_grant($btnprops[1]) ? "enabled" : "disabled" ?>"
+                         title="<?php echo $btnprops[2] ?>"
+                         alt="<?php echo $btnprops[2] ?>"
+                     />
+            <?php if (qx_grant($btnprops[1])) echo "</a>" ?>
         </td>
     <?php } // foreach ?> 
     <?php /** 

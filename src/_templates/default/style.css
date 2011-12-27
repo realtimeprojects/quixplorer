@@ -10,3 +10,8 @@ div.qx {
     text-align:center;
     font-size:1.3em;
 }
+
+.qx img.disabled
+{
+    opacity:0.3
+}
