@@ -51,7 +51,10 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
         $fattributes["name"] = $cfile;
         $fattributes["size"] = filesize(get_abs_dir($cfile));
         if (get_is_dir($dir, $cfile))
+        {
             $fattributes["type"] = "directory";
+            $fattributes["link"] = qx_link("list", "?dir=$dir/$cfile");
+        }
         $qx_files[$cfile] = $fattributes;
 		$abs_cfile = get_abs_item($dir, $cfile);
 		

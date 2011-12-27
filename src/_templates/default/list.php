@@ -39,7 +39,10 @@
         <?php foreach ($qx_files as $filename => $fattributes) { ?> 
         <tr>
             <td><?php //FIXME checkbox ?>&nbsp;</td>
-            <td><?php echo $fattributes["name"] ?></td>
+            <td>
+                <?php if (isset($fattributes["link"])) echo "<a href=\"" . $fattributes["link"] . "\">"; ?>
+                 <?php echo $fattributes["name"] ?></td>
+                <?php if (isset($fattributes["link"])) echo "</a>"; ?>
             <td><?php echo $fattributes["size"] ?></td>
             <td><?php echo $fattributes["type"] ?></td>
         </tr>
