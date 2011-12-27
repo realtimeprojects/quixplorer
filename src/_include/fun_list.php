@@ -41,8 +41,15 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 	$handle = @opendir(get_abs_dir($dir));
 	if($handle===false) show_error($dir.": ".$GLOBALS["error_msg"]["opendir"]);
 	
+
+    global $qx_files;
 	// Read directory
 	while(($new_item = readdir($handle))!==false) {
+        $fattributes = array();
+        $fattributes["type"] = "unknown";
+        $fattributes["name"] = $new_item;
+        $fattributes["size"] = filesize(get_abs_dir($new_item));
+        $qx_files[$new_item] = $fattributes;
 		$abs_new_item = get_abs_item($dir, $new_item);
 		
 		if(!@file_exists($abs_new_item)) show_error($dir.": ".$GLOBALS["error_msg"]["readdir"]);
@@ -52,7 +59,9 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 		$tot_file_size += $new_file_size;
 		$num_items++;
 		
-		if(get_is_dir($dir, $new_item)) {
+        $new_item;
+		if(get_is_dir($dir, $new_item))
+        {
 			if($GLOBALS["order"]=="mod") {
 				$dir_list[$new_item] =
 					@filemtime($abs_new_item);
@@ -188,6 +197,9 @@ function print_table($dir, $list)
 // MAIN FUNCTION
 function list_dir($dir)
 {
+	// make file & dir tables, & get total filesize & number of items
+	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
+	
     // Ask for Login
     global $page;
     $page = "list.php";
@@ -196,9 +208,6 @@ function list_dir($dir)
     exit;
     
 	if(!get_show_item($dir_up,basename($dir))) show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
-	
-	// make file & dir tables, & get total filesize & number of items
-	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
 	
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
 //	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
@@ -372,30 +381,6 @@ function _print_edit_buttons ($dir)
 
   if $allow is set, make this button active and work, otherwise print
   an inactive button.
-*/
-function _print_link ($function, $allow, $dir, $item)
-{
-	// the list of all available button and the coresponding data
-	$functions = array(
-			"copy" => array("jfunction" => "javascript:Copy();",
-					"image" => $GLOBALS["baricons"]["copy"],
-					"imagedisabled" => $GLOBALS["baricons"]["notcopy"],
-					"message" => $GLOBALS["messages"]["copylink"]),
-			"move" => array("jfunction" => "javascript:Move();",
-					"image" => $GLOBALS["baricons"]["move"],
-					"imagedisabled" => $GLOBALS["baricons"]["notmove"],
-					"message" => $GLOBALS["messages"]["movelink"]),
-			"delete" => array("jfunction" => "javascript:Delete();",
-					"image" => $GLOBALS["baricons"]["delete"],
-					"imagedisabled" => $GLOBALS["baricons"]["notdelete"],
-					"message" => $GLOBALS["messages"]["dellink"]),
-			"upload" => array("jfunction" => make_link("upload", $dir, NULL),
-					"image" => $GLOBALS["baricons"]["upload"],
-					"imagedisabled" => $GLOBALS["baricons"]["notupload"],
-					"message" => $GLOBALS["messages"]["uploadlink"]),
-			"archive" => array("jfunction" => "javascript:Archive();",
-					"image" => $GLOBALS["baricons"]["archive"],
-					"message" => $GLOBALS["messages"]["comprlink"]),
 			"admin" => array("jfunction" => make_link("admin", $dir, NULL),
 					"image" => $GLOBALS["baricons"]["admin"],
 					"message" => $GLOBALS["messages"]["adminlink"]),
@@ -436,8 +421,7 @@ function _print_link ($function, $allow, $dir, $item)
 	echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
 	echo "src=\"" . $values["imagedisabled"] . "\" ALT=\"" . $values["message"] . "\" TITLE=\"";
 	echo $values["message"] . "\"></TD>\n";
-
-}
+*/
 
 ?>
 
