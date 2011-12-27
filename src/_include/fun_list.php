@@ -44,41 +44,44 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 
     global $qx_files;
 	// Read directory
-	while(($new_item = readdir($handle))!==false) {
+	while(($cfile = readdir($handle))!==false) {
+		$cfile_f = get_abs_item($dir, $cfile);
         $fattributes = array();
-        $fattributes["type"] = "unknown";
-        $fattributes["name"] = $new_item;
-        $fattributes["size"] = filesize(get_abs_dir($new_item));
-        $qx_files[$new_item] = $fattributes;
-		$abs_new_item = get_abs_item($dir, $new_item);
+        $fattributes["type"] = "file";
+        $fattributes["name"] = $cfile;
+        $fattributes["size"] = filesize(get_abs_dir($cfile));
+        if (get_is_dir($dir, $cfile))
+            $fattributes["type"] = "directory";
+        $qx_files[$cfile] = $fattributes;
+		$abs_cfile = get_abs_item($dir, $cfile);
 		
-		if(!@file_exists($abs_new_item)) show_error($dir.": ".$GLOBALS["error_msg"]["readdir"]);
-		if(!get_show_item($dir, $new_item)) continue;
+		if(!@file_exists($abs_cfile)) show_error($dir.": ".$GLOBALS["error_msg"]["readdir"]);
+		if(!get_show_item($dir, $cfile)) continue;
 		
-		$new_file_size = filesize($abs_new_item);
+		$new_file_size = filesize($abs_cfile);
 		$tot_file_size += $new_file_size;
 		$num_items++;
 		
-        $new_item;
-		if(get_is_dir($dir, $new_item))
+        $cfile;
+		if(get_is_dir($dir, $cfile))
         {
 			if($GLOBALS["order"]=="mod") {
-				$dir_list[$new_item] =
-					@filemtime($abs_new_item);
+				$dir_list[$cfile] =
+					@filemtime($abs_cfile);
 			} else {	// order == "size", "type" or "name"
-				$dir_list[$new_item] = $new_item;
+				$dir_list[$cfile] = $new_item;
 			}
 		} else {
 			if($GLOBALS["order"]=="size") {
-				$file_list[$new_item] = $new_file_size;
+				$file_list[$cfile] = $new_file_size;
 			} elseif($GLOBALS["order"]=="mod") {
-				$file_list[$new_item] =
-					@filemtime($abs_new_item);
+				$file_list[$cfile] =
+					@filemtime($abs_cfile);
 			} elseif($GLOBALS["order"]=="type") {
-				$file_list[$new_item] =
-					get_mime_type($dir, $new_item, "type");
+				$file_list[$cfile] =
+					get_mime_type($dir, $cfile, "type");
 			} else {	// order == "name"
-				$file_list[$new_item] = $new_item;
+				$file_list[$cfile] = $new_item;
 			}
 		}
 	}
