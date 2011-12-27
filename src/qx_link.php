@@ -1,11 +1,9 @@
 <?php
-function qx_link($what)
+function qx_link($what, $flags)
 {
-    switch ($what)
-    {
-        case "login":        return "?action=login";
-        case "authenticate": return "?action=authenticate";
-    }
+    if ($ret = preg_replace("/^(login|list|authenticate)$/", "?action=$1" . $flags, $what))
+        return $ret;
+
     return "?action=unknown";
 }
 ?> 

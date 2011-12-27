@@ -188,9 +188,13 @@ function print_table($dir, $list)
 // MAIN FUNCTION
 function list_dir($dir)
 {
-	$dir_up = dirname($dir);
-	if($dir_up==".") $dir_up = "";
-	
+    // Ask for Login
+    global $page;
+    $page = "list.php";
+    _debug("opening .. " . qx_var_template_dir() . "/page.php");
+    require_once qx_var_template_dir() . "/page.php";
+    exit;
+    
 	if(!get_show_item($dir_up,basename($dir))) show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
 	
 	// make file & dir tables, & get total filesize & number of items
@@ -198,7 +202,6 @@ function list_dir($dir)
 	
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
 //	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
-    require_once qx_var_template_dir() . "/header.php";
 	
 	// Javascript functions:
 	include "./_include/javascript.php";
@@ -362,14 +365,6 @@ function list_dir($dir)
 function _print_edit_buttons ($dir)
 {
 	// for the copy button the user must have create and read rights
-	_print_link("copy", permissions_grant_all($dir, NULL, array("create", "read")), $dir, NULL);
-	_print_link("move", permissions_grant($dir, NULL, "change"), $dir, NULL);
-	_print_link("delete", permissions_grant($dir, NULL, "delete"), $dir, NULL);
-	_print_link("upload", permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"), $dir, NULL);
-	_print_link("archive", 
-		permissions_grant_all($dir, NULL, array("create", "read"))
-			&& ($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]),
-		$dir, NULL);
 }
 
 /**
