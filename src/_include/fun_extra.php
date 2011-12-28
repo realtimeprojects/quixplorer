@@ -32,7 +32,8 @@ function path_f ($path)
     $abs_dir = $home_dir;
 	if ($path != "") 
        $abs_dir .= "/$path";
-	return realpath($abs_dir);
+	$abs_dir = realpath($abs_dir);
+    return $abs_dir;
 }
 
 function path_r ($path)

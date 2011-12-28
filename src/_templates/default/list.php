@@ -45,6 +45,8 @@
                 <?php if (isset($fattributes["link"])) echo "</a>"; ?>
             <td><?php echo $fattributes["size"] ?></td>
             <td><?php echo $fattributes["type"] ?></td>
+            <td><?php echo $fattributes["modified_s"] ?></td>
+            <td><?php echo $fattributes["permissions_s"] ?></td>
         </tr>
         <?php } ?>
     </tbody>

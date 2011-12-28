@@ -35,9 +35,10 @@ function make_list($_list1, $_list2) {		// make list of files
 // also 'return' total filesize & total number of items
 function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items)
 {							$tot_file_size = $num_items = 0;
-	
 	// Open directory
     $dir_f = path_f($dir);
+    if (!down_home($dir_f))
+        show_error(qx_msg_s("errors.opendir") . ": $dir_f");
 	$handle = @opendir($dir_f);
     _debug("listing directory '$dir_f");
 
@@ -55,7 +56,10 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
         $fattributes = array();
         $fattributes["type"] = "file";
         $fattributes["name"] = $cfile;
-        $fattributes["size"] = filesize(get_abs_dir($cfile));
+        $fattributes["size"] = filesize($cfile_f);
+	    $fattributes["modified"] = @filemtime($cfile_f);
+	    $fattributes["modified_s"] = parse_file_date(@filemtime($cfile_f));
+        $fattributes["permissions_s"] = parse_file_perms(get_file_perms($dir,$item));
         if (get_is_dir($dir, $cfile))
         {
             $fattributes["type"] = "directory";
@@ -71,7 +75,6 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 		$tot_file_size += $new_file_size;
 		$num_items++;
 		
-        $cfile;
 		if(get_is_dir($dir, $cfile))
         {
 			if($GLOBALS["order"]=="mod") {
@@ -218,8 +221,6 @@ function list_dir($dir)
     require_once qx_var_template_dir() . "/page.php";
     exit;
     
-	if(!get_show_item($dir_up,basename($dir))) show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
-	
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
 //	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
 	
