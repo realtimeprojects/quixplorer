@@ -37,7 +37,6 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 {							$tot_file_size = $num_items = 0;
 	
 	// Open directory
-    _debug("listing directory $dir");
     $dir_f = path_f($dir);
 	$handle = @opendir($dir_f);
     _debug("listing directory '$dir_f");
@@ -49,6 +48,9 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 	// Read directory
 	while(($cfile = readdir($handle))!==false)
     {
+        if ($cfile === ".")
+            continue;
+
 		$cfile_f = get_abs_item($dir, $cfile);
         $fattributes = array();
         $fattributes["type"] = "file";
