@@ -30,21 +30,25 @@ function make_list($_list1, $_list2) {		// make list of files
 	return $list;
 }
 
+// make table of files in dir
+// make tables & place results in reference-variables passed to function
+// also 'return' total filesize & total number of items
 function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items)
-{						// make table of files in dir
-	// make tables & place results in reference-variables passed to function
-	// also 'return' total filesize & total number of items
-	
-	$tot_file_size = $num_items = 0;
+{							$tot_file_size = $num_items = 0;
 	
 	// Open directory
-	$handle = @opendir(get_abs_dir($dir));
-	if($handle===false) show_error($dir.": ".$GLOBALS["error_msg"]["opendir"]);
-	
+    _debug("listing directory $dir");
+    $dir_f = path_f($dir);
+	$handle = @opendir($dir_f);
+    _debug("listing directory '$dir_f");
+
+	if ($handle === false)
+        show_error(qx_msg_s("errors.opendir") . ": $dir_f");
 
     global $qx_files;
 	// Read directory
-	while(($cfile = readdir($handle))!==false) {
+	while(($cfile = readdir($handle))!==false)
+    {
 		$cfile_f = get_abs_item($dir, $cfile);
         $fattributes = array();
         $fattributes["type"] = "file";
@@ -53,7 +57,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
         if (get_is_dir($dir, $cfile))
         {
             $fattributes["type"] = "directory";
-            $fattributes["link"] = qx_link("list", "?dir=$dir/$cfile");
+            $fattributes["link"] = qx_link("list", "&dir=" . path_r("$dir_f/$cfile"));
         }
         $qx_files[$cfile] = $fattributes;
 		$abs_cfile = get_abs_item($dir, $cfile);
@@ -199,8 +203,7 @@ function print_table($dir, $list)
 		echo "</TABLE>\n</TD></TR>\n";
 	}
 }
-//------------------------------------------------------------------------------
-// MAIN FUNCTION
+
 function list_dir($dir)
 {
 	// make file & dir tables, & get total filesize & number of items
@@ -209,7 +212,7 @@ function list_dir($dir)
     // Ask for Login
     global $page;
     $page = "list.php";
-    _debug("opening .. " . qx_var_template_dir() . "/page.php");
+    _debug("opening .. " . qx_var_template_dir() . "/page.php" . " width $page");
     require_once qx_var_template_dir() . "/page.php";
     exit;
     

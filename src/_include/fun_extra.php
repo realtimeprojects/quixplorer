@@ -20,13 +20,29 @@ function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NUL
 	
 	return $link;
 }
-//------------------------------------------------------------------------------
-function get_abs_dir($dir) {			// get absolute path
-	$abs_dir=$GLOBALS["home_dir"];
-	if($dir!="") $abs_dir.="/".$dir;
-	return $abs_dir;
+
+function get_abs_dir($path)
+{
+    return path_f($path);
 }
-//------------------------------------------------------------------------------
+
+function path_f ($path)
+{
+    global $home_dir;
+    $abs_dir = $home_dir;
+	if ($path != "") 
+       $abs_dir .= "/$path";
+	return realpath($abs_dir);
+}
+
+function path_r ($path)
+{
+    global $home_dir;
+    $base = realpath($home_dir);
+    $ret = preg_replace("#^$base#", "", $path);
+    return $ret;
+}
+
 function get_abs_item($dir, $item) {		// get absolute file+path
 	return get_abs_dir($dir)."/".$item;
 }
