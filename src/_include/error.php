@@ -19,6 +19,7 @@ function show_error($error,$extra=NULL)
     </center>
     <?php
     require_once qx_var_template_dir() . "/footer.php";
+    exit;
 }
 
 ?>
