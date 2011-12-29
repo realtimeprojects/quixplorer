@@ -46,7 +46,7 @@
             <td><?php echo $fattributes["size"] ?></td>
             <td><?php echo $fattributes["type"] ?></td>
             <td><?php echo $fattributes["modified_s"] ?></td>
-            <td><?php echo $fattributes["permissions_s"] ?></td>
+            <td><?php echo $fattributes["permissions_l"] ?></td>
         </tr>
         <?php } ?>
     </tbody>

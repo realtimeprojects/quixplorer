@@ -4,6 +4,7 @@ require_once "qx_var.php";
 require_once "qx.php";
 require_once "qx_msg.php";
 require_once "qx_link.php";
+require_once "html.php";
 require_once "_include/debug.php";
 require_once "_include/error.php";
 require_once "_include/login.php";
