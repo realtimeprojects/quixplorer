@@ -47,6 +47,7 @@
             <td><?php echo $fattributes["type"] ?></td>
             <td><?php echo $fattributes["modified_s"] ?></td>
             <td><?php echo $fattributes["permissions_l"] ?></td>
+            <td><a href="<?php echo $fattributes["download_l"] ?>"><?php qx_msg("download") ?></a></td>
         </tr>
         <?php } ?>
     </tbody>

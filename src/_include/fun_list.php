@@ -62,6 +62,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 	    $fattributes["modified_s"] = parse_file_date(@filemtime($cfile_f));
         $fattributes["permissions_s"] = parse_file_perms(get_file_perms($dir,$item)); 
         $fattributes["permissions_l"] = $fattributes["permissions_s"]; 
+        $fattributes["download_l"] = qx_link("download", "&file=$cfile");
 		if (!permissions_grant($dir, NULL, "change"))
             $fattributes["permissions_l"] = html_link(
                 qx_link("chmod", "&file=$cfile_f"),
