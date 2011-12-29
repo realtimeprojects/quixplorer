@@ -33,11 +33,7 @@ function login_check()
 function login_form ()
 {
     // Ask for Login
-    global $page;
-    $page = "login.php";
-    _debug("opening .. " . qx_var_template_dir() . "/page.php");
-    require_once qx_var_template_dir() . "/page.php";
-    exit;
+    qx_page("login");
 }
 
 function login_post ()

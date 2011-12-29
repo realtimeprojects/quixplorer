@@ -222,11 +222,7 @@ function list_dir($dir)
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
 	
     // Ask for Login
-    global $page;
-    $page = "list.php";
-    _debug("opening .. " . qx_var_template_dir() . "/page.php" . " width $page");
-    require_once qx_var_template_dir() . "/page.php";
-    exit;
+    qx_page("list");
     
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
 //	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
