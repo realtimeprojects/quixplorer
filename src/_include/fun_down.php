@@ -1,6 +1,14 @@
 <?php
 require_once("./_include/permissions.php");
 
+function download_action()
+{
+    $file = $_GET["file"];
+    if (!isset($file))
+        show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
+    $file_f = path_f($file);
+    qx_page("download");
+}
 //------------------------------------------------------------------------------
 // download file
 function download_item($dir, $item)

@@ -48,4 +48,15 @@ function qx_grant($link)
 
     return false;
 }
+
+function qx_page($pagename)
+{
+    $pagefile = qx_var_template_dir() . "/$pagename.php";
+    if (!file_exists($pagefile))
+        show_error(qx_msg_s("error.qxmissingpage"), $pagefile);
+    require_once qx_var_template_dir() . "/header.php";
+    require_once qx_var_template_dir() . "/$pagefile";
+    require_once qx_var_template_dir() . "/footer.php";
+    exit;
+}
 ?>

@@ -34,7 +34,7 @@ case "download":
 	ob_start(); // prevent unwanted output
 	require "./_include/fun_down.php";
 	ob_end_clean(); // get rid of cached unwanted output
-	download_item($GLOBALS["dir"], $GLOBALS["item"]);
+	download_action();
 	ob_start(false); // prevent unwanted output
 	exit;
 break;
