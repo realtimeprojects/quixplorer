@@ -6,12 +6,20 @@ require "_include/init.php";	// Init
 global $home_dir;
 global $action;
 
+function load_action ($action_to_load)
+{
+    $action_script_name = "_include/actions/$action_to_load.php";
+    if (!file_exists($action_script_name))
+        show_error(qx_msg_s("errors.action_not_found"), $action_script_name);
+    require_once $action_script_name;
+}
+
 switch ($action)
 {
     case "login":           login_form(); break;
     case "authenticate":    login_post(); // nobreak 
-    case "download":        require "_include/fun_down.php";
-                            download_action();
+    case "download":        load_action("download");
+                            do_download_action($_GET["file"]);
     case "list":
     default:                require "./_include/fun_list.php";
                             list_dir($GLOBALS["dir"]);

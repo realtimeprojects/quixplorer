@@ -2,9 +2,11 @@
 
 require_once("./_include/permissions.php");
 
-function download_action()
+/**
+    activates the browser download of the file $file.
+ */
+function download_action ($file)
 {
-    $file = $_GET["file"];
     if (!isset($file))
         show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
     $file_f = path_f($file);
@@ -28,7 +30,7 @@ function download_action()
     header('Cache-Control: no-cache, must-revalidate');
     header('Pragma: no-cache');
 	
-	@readfile($cfile_f);
+	@readfile($file_f);
 	exit;
 }
 
