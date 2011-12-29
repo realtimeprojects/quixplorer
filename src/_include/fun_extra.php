@@ -130,7 +130,7 @@ function get_is_unzipable($dir, $item) {		// is this file editable?
 	foreach($GLOBALS["unzipable_ext"] as $pat) if(@eregi($pat,$item)) return true;
 	return false;
 }
-//-----------------------------------------------------------------------------
+
 function get_mime_type($dir, $item, $query) {	// get file's mimetype
 	if(get_is_dir($dir, $item)) {			// directory
 		$mime_type	= $GLOBALS["super_mimes"]["dir"][0];

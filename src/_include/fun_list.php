@@ -55,6 +55,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 		$cfile_f = get_abs_item($dir, $cfile);
         $fattributes = array();
         $fattributes["type"] = "file";
+		$fattributes["type"] = get_mime_type($dir, $cfile, "type");
         $fattributes["name"] = $cfile;
         $fattributes["size"] = filesize($cfile_f);
 	    $fattributes["modified"] = @filemtime($cfile_f);
