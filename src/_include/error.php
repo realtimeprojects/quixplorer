@@ -13,9 +13,9 @@ function show_error($error,$extra=NULL)
     ?>
 	<center>
         <h2><?php echo $errmsg ?></h2>
-        <?php echo $error ?>
-        <h3> <a href="javascript:window.history.back()"><?php echo $backmsg ?></a><h3>
-        <?php if ($extra != NULL) echo " - " . $extra; ?>
+        <p><?php echo $error ?></p>
+        <p><?php if ($extra != NULL) echo $extra; ?></p> 
+        <h3> <a href="javascript:window.history.back()"><?php echo $backmsg ?></a></h3>
     </center>
     <?php
     require_once qx_var_template_dir() . "/footer.php";
