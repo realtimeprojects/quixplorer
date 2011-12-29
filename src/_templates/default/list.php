@@ -38,7 +38,7 @@
         <?php global $qx_files; ?>
         <?php foreach ($qx_files as $filename => $fattributes) { ?> 
         <tr>
-            <td><?php //FIXME checkbox ?>&nbsp;</td>
+            <td><input type="checkbox" name="selected_files" value="<?php echo htmlspecialchars($filename) ?>" onclick="javascript:Toggle(this)"></td>
             <td>
                 <?php if (isset($fattributes["link"])) echo "<a href=\"" . $fattributes["link"] . "\">"; ?>
                  <?php echo $fattributes["name"] ?></td>
