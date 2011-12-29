@@ -10,6 +10,8 @@ switch ($action)
 {
     case "login":           login_form(); break;
     case "authenticate":    login_post(); // nobreak 
+    case "download":        require "_include/fun_down.php";
+                            download_action();
     case "list":
     default:                require "./_include/fun_list.php";
                             list_dir($GLOBALS["dir"]);
@@ -30,13 +32,6 @@ case "copy":	case "move":
 	copy_move_items($GLOBALS["dir"]);
 break;
 // DOWNLOAD FILE
-case "download":
-	ob_start(); // prevent unwanted output
-	require "./_include/fun_down.php";
-	ob_end_clean(); // get rid of cached unwanted output
-	download_action();
-	ob_start(false); // prevent unwanted output
-	exit;
 break;
 // UPLOAD FILE(S)
 case "upload":

@@ -1,4 +1,5 @@
 <?php
+
 require_once("./_include/permissions.php");
 
 function download_action()
@@ -7,40 +8,28 @@ function download_action()
     if (!isset($file))
         show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
     $file_f = path_f($file);
-    qx_page("download");
-}
-//------------------------------------------------------------------------------
-// download file
-function download_item($dir, $item)
-{
-	// Security Fix:
-	$item=basename($item);
 
 	if (!permissions_grant($dir, $item, "read"))
-		show_error(qx_msg("error.access"));
+		show_error(qx_msg_s("error.access"));
+
+    $file_f = path_f($file);
+
+	if (!permissions_grant(NULL, $file_f, "read"))
+		show_error(qx_msg_s("error.access"));
 	
-	if (!get_is_file($dir,$item)) show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
-	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
+	if (!file_exists($file_f))
+        show_error(qx_msg_s("error.filenotexists", $file_f));
 	
-	$abs_item = get_abs_item($dir,$item);
-	$browser=id_browser();
-	header('Content-Type: '.(($browser=='IE' || $browser=='OPERA')?
-		'application/octetstream':'application/octet-stream'));
-	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
+	header('Content-Type: application/octet-stream');
+	header('Expires: '. gmdate('D, d M Y H:i:s') . ' GMT');
 	header('Content-Transfer-Encoding: binary');
-	header('Content-Length: '.filesize($abs_item));
-	if($browser=='IE') {
-		header('Content-Disposition: attachment; filename="'.$item.'"');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Pragma: public');
-	} else {
-		header('Content-Disposition: attachment; filename="'.$item.'"');
-		header('Cache-Control: no-cache, must-revalidate');
-		header('Pragma: no-cache');
-	}
+	header('Content-Length: ' . filesize($file_f));
+    header('Content-Disposition: attachment; filename="' . basename($file_f) . '"');
+    header('Cache-Control: no-cache, must-revalidate');
+    header('Pragma: no-cache');
 	
-	@readfile($abs_item);
+	@readfile($cfile_f);
 	exit;
 }
-//------------------------------------------------------------------------------
+
 ?>

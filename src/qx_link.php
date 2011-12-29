@@ -1,4 +1,5 @@
 <?php
+
 function qx_link($what, $flags)
 {
     // check for valid commands
@@ -9,4 +10,5 @@ function qx_link($what, $flags)
     _debug("qx_link(): made link to $ret");
     return $ret;
 }
-?> 
+
+?>
