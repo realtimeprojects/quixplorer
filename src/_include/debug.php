@@ -29,7 +29,7 @@ function _error ($data)
 		return;
 
 	$fp = fopen("error.log", "a");
-	fputs($fp, "quixplorer: ERROR: " . date("Y-m-d H:i:s.u") . ": $data\n");
+	fputs($fp, "quixplorer: " . date("Y-m-d H:i:s") . ": ERROR: $data\n");
 	fclose($fp);
 }
 ?>
