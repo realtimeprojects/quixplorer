@@ -118,13 +118,13 @@ function get_is_image($dir, $item) {		// is this file an image?
 	if(!get_is_file($dir, $item)) return false;
 	return @eregi($GLOBALS["images_ext"], $item);
 }
-//-----------------------------------------------------------------------------
+
 function get_is_editable($dir, $item) {		// is this file editable?
 	if(!get_is_file($dir, $item)) return false;
 	foreach($GLOBALS["editable_ext"] as $pat) if(@eregi($pat,$item)) return true;
 	return false;
 }
-//-----------------------------------------------------------------------------
+
 function get_is_unzipable($dir, $item) {		// is this file editable?
 	if(!get_is_file($dir, $item)) return false;
 	foreach($GLOBALS["unzipable_ext"] as $pat) if(@eregi($pat,$item)) return true;
