@@ -1,7 +1,8 @@
+#qx_page { width:95%; }
+
 div.qx {
     text-align:center;
     font-family: verdana; sans-serif;
-    width:95%;
     background:white;
     align: center;
     }
@@ -17,7 +18,7 @@ div.qx {
 }
 .qx table { font-size:0.8em; }
 
-.qx table.directorylist { padding-top: 1em; }
+.qx table.directorylist { padding-top: 1em; width:100%;}
 
 .qx table.directorylist thead { font-weight:bold; }
 .qx table.directorylist thead th { text-align:left; border-bottom:solid 1px black;}

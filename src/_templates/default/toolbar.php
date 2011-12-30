@@ -17,13 +17,7 @@ $buttons[] = array ("buttons/archive.png", "javascript:Archive();",             
 <tr>
     <?php foreach ($buttons as $btnname => $btnprops) { ?>
         <td>
-            <?php if (qx_grant($btnprops[1])) echo "<a href=\"" . $btnprops[1]. "\" >" ?>
-                    <img src="<?php echo qx_var_template_dir() . "/" . $btnprops[0] ?>"
-                         class="<?php echo qx_grant($btnprops[1]) ? "enabled" : "disabled" ?>"
-                         title="<?php echo $btnprops[2] ?>"
-                         alt="<?php echo $btnprops[2] ?>"
-                     />
-            <?php if (qx_grant($btnprops[1])) echo "</a>" ?>
+            <?php if (qx_grant($btnprops[1])) echo "<a href=\"" . $btnprops[1]. "\" >" ?> <img src="<?php echo qx_var_template_dir() . "/" . $btnprops[0] ?>" class="<?php echo qx_grant($btnprops[1]) ? "enabled" : "disabled" ?>" title="<?php echo $btnprops[2] ?>" alt="<?php echo $btnprops[2] ?>" /> <?php if (qx_grant($btnprops[1])) echo "</a>" ?>
         </td>
     <?php } // foreach ?> 
     <?php /** 
@@ -91,3 +85,4 @@ $buttons[] = array ("buttons/archive.png", "javascript:Archive();",             
 ?>	
     </tr>
 </table>
+</div> <!-- toolbar div -->

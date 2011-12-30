@@ -6,7 +6,7 @@
 
 </head>
 <body>
-<div class="qx">
+<div class="qx" id="qx_page">
     <div class="title">
     <?php echo qx_user() . " - " . qx_title() ?>
     </div>
