@@ -1,6 +1,6 @@
 <?php
 
-function qx_link($what, $flags)
+function qx_link($what, $flags = "")
 {
     // check for valid commands
     $ret = preg_replace("/^(login|list|authenticate|chmod|download)$/", "?action=$1" . $flags, $what);

@@ -43,7 +43,7 @@ function qx_grant($link)
         case "javascript:location.reload();": return true;
     }
 
-    if (preg_match("/?action=upload/", $link)) return permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads");
+    if (preg_match("/\?action=upload/", $link)) return permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads");
     if (preg_match("/\?action=list/", $link)) return true;
 
     return false;
