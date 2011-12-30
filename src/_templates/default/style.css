@@ -1,6 +1,6 @@
 div.qx {
     text-align:center;
-    font: verdana; sans-serif;
+    font-family: verdana; sans-serif;
     width:95%;
     background:white;
     align: center;
@@ -15,6 +15,7 @@ div.qx {
 {
     opacity:0.3
 }
+.qx table { font-size:0.8em; }
 
 .qx table.directorylist { padding-top: 1em; }
 
@@ -23,3 +24,4 @@ div.qx {
 .qx table.directorylist tfoot th { text-align:left; border-top:solid 1px black;}
 .qx table.directorylist th { padding:0.3em; }
 .qx table.directorylist td { padding:0.3em; }
+.qx .footer * { font-size: 0.8em; }
