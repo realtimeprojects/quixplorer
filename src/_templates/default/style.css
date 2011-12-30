@@ -15,3 +15,8 @@ div.qx {
 {
     opacity:0.3
 }
+
+.qx table.directorylist { padding-top: 1em; }
+
+.qx table.directorylist thead { font-weight:bold; border-bottom:solid 1px black; }
+.qx table.directorylist th { text-align:left; border-bottom:solid 1px black;}

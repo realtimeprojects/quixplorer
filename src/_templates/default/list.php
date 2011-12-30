@@ -13,24 +13,21 @@
 	
 <?php require qx_var_template_dir() . "/toolbar.php" ?>
 
-<table>
+<table class="directorylist">
 <form name="control_form" method="post" action="<?php qx_link("post") ?>" >
 <input type="hidden" name="do_action" />
 <input type="hidden" name="first" value="y" />
 	<thead>
-	    <tr>
-         <td colspan="7">&nbsp;</td>
-         </tr>
          <tr>
-             <td width="2%" class="header">
+             <th width="2%" class="header">
                 <input type="checkbox" name="toggleallc" onclick="javascript:toggleall(this);">
-            </td>
-	        <td width="44%" class="header"><?php qx_msg("namehader")?></td>
-        	<td width="10%" class="header"><?php qx_msg("sizeheader")?></td>
-	        <td width="16%" class="header"><?php qx_msg("typeheader")?></td>
-	        <td width="16%" class="header"><?php qx_msg("modifheader")?></td>
-	        <td width="16%" class="header"><?php qx_msg("permheader")?></td>
-	        <td width="16%" class="header"><?php qx_msg("actionheader")?></td>
+            </th>
+	        <th width="44%" class="header"><?php qx_msg("namehader")?></th>
+        	<th width="10%" class="header"><?php qx_msg("sizeheader")?></th>
+	        <th width="16%" class="header"><?php qx_msg("typeheader")?></th>
+	        <th width="16%" class="header"><?php qx_msg("modifheader")?></th>
+	        <th width="16%" class="header"><?php qx_msg("permheader")?></th>
+	        <th width="16%" class="header"><?php qx_msg("actionheader")?></th>
         </tr>
     </thead>
     <tbody>
