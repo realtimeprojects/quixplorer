@@ -7,8 +7,8 @@ function qx_language()
 
 function qx_title()
 {
-    global $title;
-    print $title;
+    global $site_name;
+    print $site_name;
 }
 
 function qx_img($image, $msg)
@@ -16,7 +16,9 @@ function qx_img($image, $msg)
     ?><img class="button" src="_img/$image" alt="$msg" title="$msg" /><?php
 }
 
-function qx_user()
+function qx_user() { echo qx_user_s(); }
+
+function qx_user_s()
 {
     //FIXME return real user
     $user = $_SESSION["s_user"];

@@ -7,6 +7,4 @@
 </head>
 <body>
 <div class="qx" id="qx_page">
-    <div class="title">
-    <?php echo qx_user() . " - " . qx_title() ?>
-    </div>
+    <div class="title"> <?php qx_user() ?> - <?php qx_title() ?> </div>
