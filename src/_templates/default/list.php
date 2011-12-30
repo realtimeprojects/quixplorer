@@ -22,12 +22,12 @@
              <th width="2%" class="header">
                 <input type="checkbox" name="toggleallc" onclick="javascript:toggleall(this);">
             </th>
-	        <th width="44%" class="header"><?php qx_msg("namehader")?></th>
-        	<th width="10%" class="header"><?php qx_msg("sizeheader")?></th>
-	        <th width="16%" class="header"><?php qx_msg("typeheader")?></th>
-	        <th width="16%" class="header"><?php qx_msg("modifheader")?></th>
-	        <th width="16%" class="header"><?php qx_msg("permheader")?></th>
-	        <th width="16%" class="header"><?php qx_msg("actionheader")?></th>
+	        <th width="44%" class="header"><?php qx_msg("words.file_name")?></th>
+        	<th width="10%" class="header"><?php qx_msg("words.file_size")?></th>
+	        <th width="16%" class="header"><?php qx_msg("words.file_type")?></th>
+	        <th width="16%" class="header"><?php qx_msg("words.last_modified")?></th>
+	        <th width="16%" class="header"><?php qx_msg("words.permissions")?></th>
+	        <th width="16%" class="header"><?php qx_msg("words.actions")?></th>
         </tr>
     </thead>
     <tbody>
@@ -44,7 +44,7 @@
             <td><?php echo $fattributes["type"] ?></td>
             <td><?php echo $fattributes["modified_s"] ?></td>
             <td><?php echo $fattributes["permissions_l"] ?></td>
-            <td><a href="<?php echo $fattributes["download_l"] ?>"><?php qx_msg("download") ?></a></td>
+            <td><a href="<?php echo $fattributes["download_l"] ?>"><?php qx_msg("words.download") ?></a></td>
         </tr>
         <?php } ?>
     </tbody>

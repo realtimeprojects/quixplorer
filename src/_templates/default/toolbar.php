@@ -4,14 +4,14 @@
 
 global $buttons;
 $buttons = array();
-$buttons[] = array ("buttons/home.png",   qx_link("list", "&dir="),                      qx_msg_s("homelink"));
-$buttons[] = array ("buttons/reload.png", "javascript:location.reload();",               qx_msg_s("reloadlink"));
-$buttons[] = array ("buttons/search.png", qx_link("search"),                             qx_msg_s("searchlink"));
-$buttons[] = array ("buttons/copy.png", "javascript:Copy();",                             qx_msg_s("copylink"));  
-$buttons[] = array ("buttons/move.png", "javascript:Move();",                             qx_msg_s("movelink"));
-$buttons[] = array ("buttons/delete.png", "javascript:Delete();",                         qx_msg_s("dellink"));
-$buttons[] = array ("buttons/upload.png", qx_link("upload", "&dir=" . qx_directory()),   qx_msg_s("uploadlink"));
-$buttons[] = array ("buttons/archive.png", "javascript:Archive();",                      qx_msg_s("comprlink"));
+$buttons[] = array ("buttons/home.png",   qx_link("list", "&dir="),                      qx_msg_s("words.home"));
+$buttons[] = array ("buttons/reload.png", "javascript:location.reload();",               qx_msg_s("words.reload"));
+$buttons[] = array ("buttons/search.png", qx_link("search"),                             qx_msg_s("words.search"));
+$buttons[] = array ("buttons/copy.png", "javascript:Copy();",                             qx_msg_s("words.copy"));  
+$buttons[] = array ("buttons/move.png", "javascript:Move();",                             qx_msg_s("words.move"));
+$buttons[] = array ("buttons/delete.png", "javascript:Delete();",                         qx_msg_s("words.delete"));
+$buttons[] = array ("buttons/upload.png", qx_link("upload", "&dir=" . qx_directory()),   qx_msg_s("words.upload"));
+$buttons[] = array ("buttons/archive.png", "javascript:Archive();",                      qx_msg_s("words.archive"));
 ?>
 
 <tr>

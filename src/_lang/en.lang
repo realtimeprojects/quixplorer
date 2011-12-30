@@ -1,0 +1,18 @@
+[words]
+file_name=file name
+file_size=file size
+file_type=file type
+last_modified=modified
+permissions=permissions
+actions=actions
+download=download
+
+home=home
+reload=reload
+search=search
+move=move
+delete=delete
+compress=compress
+archive=archive
+copy=copy
+upload=upload
