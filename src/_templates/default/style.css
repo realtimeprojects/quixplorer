@@ -1,7 +1,7 @@
 div.qx {
     text-align:center;
     font: verdana; sans-serif;
-    width:80%;
+    width:95%;
     background:white;
     align: center;
     }
@@ -18,5 +18,8 @@ div.qx {
 
 .qx table.directorylist { padding-top: 1em; }
 
-.qx table.directorylist thead { font-weight:bold; border-bottom:solid 1px black; }
-.qx table.directorylist th { text-align:left; border-bottom:solid 1px black;}
+.qx table.directorylist thead { font-weight:bold; }
+.qx table.directorylist thead th { text-align:left; border-bottom:solid 1px black;}
+.qx table.directorylist tfoot th { text-align:left; border-top:solid 1px black;}
+.qx table.directorylist th { padding:0.3em; }
+.qx table.directorylist td { padding:0.3em; }

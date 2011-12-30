@@ -22,17 +22,18 @@
              <th width="2%" class="header">
                 <input type="checkbox" name="toggleallc" onclick="javascript:toggleall(this);">
             </th>
-	        <th width="44%" class="header"><?php qx_msg("words.file_name")?></th>
-        	<th width="10%" class="header"><?php qx_msg("words.file_size")?></th>
-	        <th width="16%" class="header"><?php qx_msg("words.file_type")?></th>
-	        <th width="16%" class="header"><?php qx_msg("words.last_modified")?></th>
-	        <th width="16%" class="header"><?php qx_msg("words.permissions")?></th>
-	        <th width="16%" class="header"><?php qx_msg("words.actions")?></th>
+	        <th width="60%" class="header"><?php qx_msg("words.file_name")?></th>
+        	<th class="header"><?php qx_msg("words.file_size")?></th>
+	        <th class="header"><?php qx_msg("words.file_type")?></th>
+	        <th class="header"><?php qx_msg("words.last_modified")?></th>
+	        <th class="header"><?php qx_msg("words.permissions")?></th>
+	        <th lass="header"><?php qx_msg("words.actions")?></th>
         </tr>
     </thead>
     <tbody>
 		
         <?php global $qx_files; ?>
+        <?php global $qx_totals; ?>
         <?php foreach ($qx_files as $filename => $fattributes) { ?> 
         <tr>
             <td><input type="checkbox" name="selected_files" value="<?php echo htmlspecialchars($filename) ?>" onclick="javascript:Toggle(this)"></td>
@@ -48,6 +49,21 @@
         </tr>
         <?php } ?>
     </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th>
+                <?php echo $qx_totals["files.count"]?> <?php qx_msg("words.files") ?>,
+                <?php echo $qx_totals["directories.count"]?> <?php qx_msg("words.directories") ?>;
+                <?php echo $qx_totals["all.count"]?> <?php qx_msg("words.total") ?>
+                </th>
+            <th><?php echo $qx_totals["files.disk_usage"] ?></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
         <?php
         /**

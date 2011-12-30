@@ -6,6 +6,11 @@ last_modified=modified
 permissions=permissions
 actions=actions
 download=download
+files=files
+directories=directories
+directory=directory
+file=file
+total=total
 
 home=home
 reload=reload
@@ -16,3 +21,6 @@ compress=compress
 archive=archive
 copy=copy
 upload=upload
+
+[messages]
+files_total=%d files, %d directories, %d total

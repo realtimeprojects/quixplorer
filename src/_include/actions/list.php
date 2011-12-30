@@ -15,11 +15,19 @@ function do_list_action($dir)
         show_error(qx_msg_s("errors.opendir") . ": $dir_f");
 
     global $qx_files;
+    global $qx_totals;
+    $qx_totals["files.disk_usage"] = 0;
+    $qx_totals["files.count"] = 0;
+    $qx_totals["directories.count"] = 0;
+    $qx_totals["all.count"] = 0;
+
 	// Read directory
 	while (($cfile = readdir($handle)) !== false)
     {
         if ($cfile === ".")
             continue;
+
+        $qx_totals["all.count"]++;
 
 		$cfile_f = get_abs_item($dir, $cfile);
         $fattributes = array();
@@ -41,6 +49,12 @@ function do_list_action($dir)
         {
             $fattributes["type"] = "directory";
             $fattributes["link"] = qx_link("list", "&dir=" . path_r("$dir_f/$cfile"));
+            $qx_totals["directories.count"]++;
+        }
+        else
+        {
+            $qx_totals["files.disk_usage"] += filesize($cfile_f);
+            $qx_totals["files.count"]++;
         }
         $qx_files[$cfile] = $fattributes;
 	}
