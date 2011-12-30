@@ -21,8 +21,8 @@ switch ($action)
     case "download":        load_action("download");
                             do_download_action($_GET["file"]);
     case "list":
-    default:                require "./_include/fun_list.php";
-                            list_dir($GLOBALS["dir"]);
+    default:                load_action("list");
+                            do_list_action($_GET["dir"]);
                             break;
 // EDIT FILE
 case "edit":
