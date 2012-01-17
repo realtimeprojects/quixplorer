@@ -1,4 +1,4 @@
-<OPTION selected value="en">English</OPTION>
+<OPTION selected="selected" value="en">English</OPTION>
 <OPTION value="de">Deutsch</OPTION>
 <OPTION value="es">Español</OPTION>
 <OPTION value="fr">Français</OPTION>

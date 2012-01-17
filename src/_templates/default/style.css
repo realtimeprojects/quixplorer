@@ -17,6 +17,8 @@ div.qx {
     opacity:0.3
 }
 .qx table { font-size:0.8em; }
+.qx table td { text-align:left; }
+.qx table#qx_login { border:1px solid black; }
 
 .qx table.directorylist { padding-top: 1em; width:100%;}
 
