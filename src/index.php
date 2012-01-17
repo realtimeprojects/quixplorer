@@ -17,9 +17,9 @@ function load_action ($action_to_load)
 switch ($action)
 {
     case "login":           login_form(); break;
-    case "authenticate":    login_post(); // nobreak 
     case "download":        load_action("download");
                             do_download_action($_GET["file"]);
+    case "authenticate":    login_post(); // nobreak 
     case "list":
     default:                load_action("list");
                             do_list_action($_GET["dir"]);
