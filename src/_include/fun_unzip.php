@@ -37,7 +37,7 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
+require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 // File Clone of fun_copy_move.php
 //------------------------------------------------------------------------------
@@ -257,9 +257,9 @@ function unzip_item($dir)
 			if ($res === TRUE) {
 				$zip->extractTo($dir_extract);
 				$zip->close();
-				//echo ‘ok’;
+				//echo ï¿½okï¿½;
 			} else {
-				// echo ‘failed’;
+				// echo ï¿½failedï¿½;
 			}
 			
 		//} //else {
