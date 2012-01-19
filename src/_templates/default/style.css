@@ -4,7 +4,6 @@ div.qx {
     text-align:center;
     font-family: verdana; sans-serif;
     background:white;
-    align: center;
     }
 
 .qx .title {
@@ -31,4 +30,9 @@ div.qx {
 .qx table.directorylist tfoot th { text-align:left; border-top:solid 1px black;}
 .qx table.directorylist th { padding:0.3em; }
 .qx table.directorylist td { padding:0.3em; }
+
+.qx div.toolbar { text-align:left; }
+.qx div.toolbar table { margin-top:0.5em; text-align:left; width:auto; margin:0px; }
+.qx div.toolbar table td { padding:0.3em; }
+
 .qx .footer * { font-size: 0.8em; }
