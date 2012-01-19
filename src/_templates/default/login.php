@@ -21,12 +21,8 @@
 	        <select name="language"><?php @include "./_lang/_info.php" ?></select>
         </td>
     </tr>
-    <tr>
-        <td colspan="2" align="right">
-            <input type="submit" value="<?php qx_msg("button.login"); ?>">
-        </td>
-    </tr>
 </table>
+<input type="submit" value="<?php qx_msg("button.login"); ?>">
 </form>
 <script type="text/javascript">
 	if(document.forms[0])
