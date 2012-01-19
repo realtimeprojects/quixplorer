@@ -16,9 +16,13 @@ div.qx {
 {
     opacity:0.3
 }
+.qx table { margin:auto; }
 .qx table { font-size:0.8em; }
 .qx table td { text-align:left; }
-.qx table#qx_login { border:1px solid black; }
+.qx table#qx_login { font-size:1.2em; }
+.qx table#qx_login td { padding:0.3em; }
+.qx table#qx_login input { font-size:1.0em; border-top:0px; border-left:0px; border-right:0px;}
+.qx table#qx_login select { font-size:1.5em; }
 
 .qx table.directorylist { padding-top: 1em; width:100%;}
 
