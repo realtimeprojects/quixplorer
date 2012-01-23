@@ -1,13 +1,11 @@
 <br>
-<form action="<?php echo qx_link("authenticate"); ?>" method="post" >
+<form id="login_form" action="<?php echo qx_link("authenticate"); ?>" method="post" >
+<div id="login_header">
+  <?php qx_msg("messages.login"); ?>
+</div>
 <table id="qx_login">
     <tr>
-        <th colspan="2">
-              <?php qx_msg("login.prompt"); ?>
-        </th>
-    </tr>
-    <tr>
-        <td><?php qx_msg("user.username") ?></td>
+        <td><?php qx_msg("username") ?></td>
         <td align="right"><input name="loginname" type="text" size="20%"></td>
    </tr>
    <tr>
@@ -22,7 +20,7 @@
         </td>
     </tr>
 </table>
-<input type="submit" value="<?php qx_msg("button.login"); ?>">
+<input id="login_button" type="submit" value="<?php qx_msg("buttons.login"); ?>">
 </form>
 <script type="text/javascript">
 	if(document.forms[0])

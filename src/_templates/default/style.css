@@ -22,6 +22,9 @@ div.qx {
 .qx table#qx_login td { padding:0.3em; }
 .qx table#qx_login input { font-size:1.0em; border-top:0px; border-left:0px; border-right:0px;}
 .qx table#qx_login select { font-size:1.5em; }
+.qx #login_header { font-size:1.2em;  font-weight:bold; margin-bottom:1.2em;  margin-top: 1.2em; }
+.qx #login_form { margin-bottom:1.2em; }
+.qx input#login_button { font-size:1.4em;  font-weight:bold; height:2em; }
 
 .qx table.directorylist { padding-top: 1em; width:100%;}
 

@@ -1,4 +1,3 @@
-[words]
 file_name=file name
 file_size=file size
 file_type=file type
@@ -21,6 +20,15 @@ compress=compress
 archive=archive
 copy=copy
 upload=upload
+password=password
+username=user name
+language=language
+
+[buttons]
+login=login
 
 [messages]
 files_total=%d files, %d directories, %d total
+login=please login to this server
+
+[user]
