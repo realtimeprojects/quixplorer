@@ -22,12 +22,12 @@
              <th width="2%" class="header">
                 <input type="checkbox" name="toggleallc" onclick="javascript:toggleall(this);">
             </th>
-	        <th width="60%" class="header"><?php qx_msg("words.file_name")?></th>
-        	<th class="header"><?php qx_msg("words.file_size")?></th>
-	        <th class="header"><?php qx_msg("words.file_type")?></th>
-	        <th class="header"><?php qx_msg("words.last_modified")?></th>
-	        <th class="header"><?php qx_msg("words.permissions")?></th>
-	        <th lass="header"><?php qx_msg("words.actions")?></th>
+	        <th width="60%" class="header"><?php qx_msg("file_name")?></th>
+        	<th class="header"><?php qx_msg("file_size")?></th>
+	        <th class="header"><?php qx_msg("file_type")?></th>
+	        <th class="header"><?php qx_msg("last_modified")?></th>
+	        <th class="header"><?php qx_msg("permissions")?></th>
+	        <th lass="header"><?php qx_msg("actions")?></th>
         </tr>
     </thead>
     <tbody>
@@ -45,7 +45,7 @@
             <td><?php echo $fattributes["type"] ?></td>
             <td><?php echo $fattributes["modified_s"] ?></td>
             <td><?php echo $fattributes["permissions_l"] ?></td>
-            <td><a href="<?php echo $fattributes["download_l"] ?>"><?php qx_msg("words.download") ?></a></td>
+            <td><a href="<?php echo $fattributes["download_l"] ?>"><?php qx_msg("download") ?></a></td>
         </tr>
         <?php } ?>
     </tbody>
@@ -53,9 +53,9 @@
         <tr>
             <th></th>
             <th>
-                <?php echo $qx_totals["files.count"]?> <?php qx_msg("words.files") ?>,
-                <?php echo $qx_totals["directories.count"]?> <?php qx_msg("words.directories") ?>;
-                <?php echo $qx_totals["all.count"]?> <?php qx_msg("words.total") ?>
+                <?php echo $qx_totals["files.count"]?> <?php qx_msg("files") ?>,
+                <?php echo $qx_totals["directories.count"]?> <?php qx_msg("directories") ?>;
+                <?php echo $qx_totals["all.count"]?> <?php qx_msg("total") ?>
                 </th>
             <th><?php echo $qx_totals["files.disk_usage"] ?></th>
             <th></th>
