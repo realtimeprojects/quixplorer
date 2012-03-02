@@ -1,19 +1,20 @@
-<?php
+ï»¿<?php
 
 $GLOBALS["langs"] = array(
 	"english" => array("en","_img/smallicons/us.png","English"),
-	"spanish" => array("es","_img/smallicons/es.png","Español"),
+	"spanish" => array("es","_img/smallicons/es.png","EspaÅ„ol"),
 	"german" => array("de","_img/smallicons/de.png","Deutsch"),
-	"french" => array("fr","_img/smallicons/fr.png","Français"),
+	"french" => array("fr","_img/smallicons/fr.png","FranÃ§ais"),
 	"italian" => array("it","_img/smallicons/it.png","Italiano"),
 	"nl" => array("nl","_img/smallicons/nl.png","Nederlands"),
 	"polsk" => array("pl","_img/smallicons/pl.png","Polski"),
-	"ptbr" => array("ptbr","_img/smallicons/ptbr.png","Português - Brasil"),
-	"romana" => array("ro","_img/smallicons/ro.png","Românã"),
+	"ptbr" => array("ptbr","_img/smallicons/ptbr.png","PortuguÄ™s - Brasil"),
+	"romana" => array("ro","_img/smallicons/ro.png","RomÃ¢nÄƒ"),
 	"ru" => array("ru","_img/smallicons/ru.png","Russian"),
 	"bg" => array("bg","_img/smallicons/bg.png","Bulgarian"),
 	"cs" => array("cs","_img/smallicons/cs.png","Czech"),
 	"da" => array("da","_img/smallicons/da.png","Dansk"),
+	"sl" => array("sl","_img/smallicons/sl.png","SlovenÅ¡Äina"),
 );
 
 $GLOBALS["baricons"] = array(
