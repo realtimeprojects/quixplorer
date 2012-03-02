@@ -221,8 +221,8 @@ function unzip_item($dir)
 
         //----------------------------------          print_r($GLOBALS);
                         
-    $dir_extract[0]='/';
-    $dir_extract = '.'. $dir_extract;
+    //$dir_extract[0]='/';
+    //$dir_extract = '.'. $dir_extract;
     //------------------------------------------------------echo $zip_name.' aa'.$dir_extract.'aa';
     $exx = pathinfo($zip_name, PATHINFO_EXTENSION);
 
