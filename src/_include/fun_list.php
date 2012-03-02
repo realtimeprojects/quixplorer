@@ -139,7 +139,7 @@ function print_table($dir, $list)
 			echo "</A>";
 		echo "</TD>\n";	// ...$extra...
 	// Size
-		echo "<TD>".parse_file_size(get_file_size($dir,$item))."</TD>\n";
+		echo '<TD>'.parse_file_size(get_file_size($dir,$item)) .sprintf("%10s","&nbsp;")."</TD>\n";
 	// Type
 		echo "<TD>".get_mime_type($dir, $item, "type")."</TD>\n";
 	// Modified
@@ -336,7 +336,7 @@ function list_dir($dir)
 	// print number of items & total filesize
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR><TR>\n<TD class=\"header\"></TD>";
 	echo "<TD class=\"header\">".$num_items." ".$GLOBALS["messages"]["miscitems"]." (";
-    $free=parse_file_size(diskfreespace(get_abs_dir($dir)));
+    $free=parse_file_size(diskfreespace("/"));
 	echo $GLOBALS["messages"]["miscfree"].": ".$free.")</TD>\n";
 	echo "<TD class=\"header\">".parse_file_size($tot_file_size)."</TD>\n";
 
@@ -424,7 +424,7 @@ function _print_link ($function, $allow, $dir, $item)
 	
 	// determine the functio nof this button and it's data
 	$values = $functions[$function];	
-
+    
 	// make an active link if the access is allowed
 	if ($allow)
 	{
