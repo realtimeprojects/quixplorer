@@ -78,11 +78,11 @@ function get_file_size($dir, $item) {		// file size
 //------------------------------------------------------------------------------
 function parse_file_size($size) {		// parsed file size
 	if($size >= 1073741824) {
-		$size = round($size / 1073741824 * 100) / 100 . " GB";
+		$size = round($size / 1073741824 * 100) / 100 . " GiB";
 	} elseif($size >= 1048576) {
-		$size = round($size / 1048576 * 100) / 100 . " MB";
+		$size = round($size / 1048576 * 100) / 100 . " MiB";
 	} elseif($size >= 1024) {
-		$size = round($size / 1024 * 100) / 100 . " KB";
+		$size = round($size / 1024 * 100) / 100 . " KiB";
 	} else $size = $size . " Bytes";
 	if($size==0) $size="-";
 
