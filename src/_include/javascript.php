@@ -128,6 +128,14 @@
 		document.selform.do_action.value = "arch";
 		document.selform.submit();
 	}
+        function Unzip() {
+		if(NumChecked()==0) {
+			alert("<?php echo $GLOBALS["error_msg"]["miscselitems"]; ?>");
+			return;
+		}
+		document.selform.do_action.value = "unzip";
+		document.selform.submit();
+	}
 	
 
 // -->
