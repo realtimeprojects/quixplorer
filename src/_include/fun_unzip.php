@@ -37,13 +37,13 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
+require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 // File Clone of fun_copy_move.php
 //------------------------------------------------------------------------------
 function dir_list($dir) {			// make list of directories
 	// this list is used to copy/move items to a specific location
-	
+	$dir_list = array();
 	$handle = @opendir(get_abs_dir($dir));
 	if($handle===false) return;		// unable to open dir
 	
@@ -85,37 +85,17 @@ function dir_print($dir_list, $new_dir) {	// print list of directories
 function unzip_item($dir)
 {
 	// copy and move are only allowed if the user may read and change files
-	/*if ($GLOBALS["action"] == "copy"
-	&& !permissions_grant_all($dir, NULL, array("read", "create")))
-		show_error($GLOBALS["error_msg"]["accessfunc"]);
-	if ($GLOBALS["action"] == "move"
-	&& !permissions_grant($dir, NULL, "change"))
-		show_error($GLOBALS["error_msg"]["accessfunc"]);
-	*/
-	if(!permissions_grant_all($dir, NULL, array("read", "create"))){show_error($GLOBALS["error_msg"]["accessfunc"]);}
+	if ( !permissions_grant_all( $dir, NULL, array( "read", "create" ) ) )
+    { 
+        show_error($GLOBALS["error_msg"]["accessfunc"]);
+    }
 	
 	// Vars
-	/*
-	$first = $GLOBALS['__POST']["first"];
-	if($first=="y") 
-	$new_dir=$dir;
-	else $new_dir = stripslashes($GLOBALS['__POST']["new_dir"]);
-	*/
 
-	$new_dir = stripslashes($GLOBALS['__POST']["new_dir"]);
+	$new_dir = ( isset($GLOBALS['__POST']["new_dir"]) ) ? stripslashes($GLOBALS['__POST']["new_dir"]) : $dir;
 	
-	//if($new_dir==".") $new_dir="";
-	
-	//$cnt=count($GLOBALS['__POST']["selitems"]);
 
 	// Copy or Move?
-	/*
-	if($GLOBALS["action"]!="move") {
-		$_img="_img/__copy.gif";
-	} else {
-		$_img="_img/__cut.gif";
-	}
-	*/
 	
 	$_img = $GLOBALS["baricons"]["unzip"];
 	
@@ -154,9 +134,6 @@ function unzip_item($dir)
 		echo "<!-- dirextr = ".$dir_extract." -->\n";
 		echo "<!-- zipname = ".$zip_name." -->\n";
 		echo "<BR><IMG SRC=\"".$_img."\" align=\"ABSMIDDLE\" ALT=\"\">&nbsp;";
-		//echo sprintf(($GLOBALS["action"]!="move"?$GLOBALS["messages"]["actcopyfrom"]:
-		//	$GLOBALS["messages"]["actmovefrom"]),$s_dir, $s_ndir);
-		echo sprintf($GLOBALS["messages"]["actunzipto"],$s_ndir);
 		echo "<IMG SRC=\"".$GLOBALS["baricons"]["unzipto"]."\" align=\"ABSMIDDLE\" ALT=\"\">\n";
 		
 		// Form for Target Directory & New Names
@@ -172,21 +149,6 @@ function unzip_item($dir)
 		echo "</TABLE><BR><TABLE>\n";
 		
 		// Print Text Inputs to change Names
-		/*for($i=0;$i<$cnt;++$i) {
-			$selitem=stripslashes($GLOBALS['__POST']["selitems"][$i]);
-			if(isset($GLOBALS['__POST']["newitems"][$i])) {
-				$newitem=stripslashes($GLOBALS['__POST']["newitems"][$i]);
-				if($first=="y") $newitem=$selitem;
-			} else {$newitem=$selitem;}
-			$s_item=$selitem;	if(strlen($s_item)>50) $s_item=substr($s_item,0,47)."...";
-			echo "<TR><TD><IMG SRC=\"".$GLOBALS["baricons"]["info"]."\" align=\"ABSMIDDLE\" ALT=\"\">";
-			// Old Name
-			echo "<INPUT type=\"hidden\" name=\"selitems[]\" value=\"";
-			echo $selitem."\">&nbsp;".$s_item."&nbsp;";
-			// New Name
-			echo "</TD><TD><INPUT type=\"text\" size=\"25\" name=\"newitems[]\" value=\"";
-			echo $newitem."\"></TD></TR>\n";
-		}*/
 		
 		echo "<TR><TD><IMG SRC=\"".$GLOBALS["baricons"]["zip"]."\" align=\"ABSMIDDLE\" ALT=\"\">";
 		echo "<INPUT type=\"hidden\" name=\"item\" value=\"".$s_item."\">&nbsp;".$s_item."&nbsp;";
@@ -194,7 +156,6 @@ function unzip_item($dir)
 		// Submit & Cancel
 		echo "</TABLE><BR><TABLE><TR>\n<TD>";
 		echo "<INPUT type=\"submit\" value=\"";
-//		echo ($GLOBALS["action"]!="move"?$GLOBALS["messages"]["btncopy"]:$GLOBALS["messages"]["btnmove"]);
 		echo $GLOBALS["messages"]["btnunzip"];
 		echo "\" onclick=\"javascript:Execute();\"></TD>\n<TD>";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btncancel"];
@@ -250,42 +211,57 @@ function unzip_item($dir)
 				$ok=copy_dir($abs_item,$abs_new_item);
 			}
 		*/
-			$zip = new ZipArchive;
-//			$zip_name = "../../".$GLOBALS["dir"].$s_item;
-//			$dir_extract = "../../".$new_dir."/";
-			$res = $zip->open($zip_name);
-			if ($res === TRUE) {
-				$zip->extractTo($dir_extract);
-				$zip->close();
-				//echo ‘ok’;
-			} else {
-				// echo ‘failed’;
-			}
+        //----------------------------------          print_r($GLOBALS);
+                        
+    $dir_extract[0]='/';
+    $dir_extract = '.'. $dir_extract;
+    //------------------------------------------------------echo $zip_name.' aa'.$dir_extract.'aa';
+    $exx = pathinfo($zip_name, PATHINFO_EXTENSION);
+
+    if ($exx == 'zip')
+    {
+        $zip = new ZipArchive;
+        $res = $zip->open($zip_name);
+        if ($res === TRUE)
+        {
+            $zip->extractTo($dir_extract);
+            $zip->close();
+        } else
+        {
+        }
+    }
+    else
+    {
+        // gz, tar, bz2, ....
+        include_once './_lib/archive.php';
+        extArchive::extract($zip_name,$dir_extract);
+    }
+
+    if ( !isset($res) )
+        $res = TRUE;
+                         
 			
-		//} //else {
-		//	$ok=@rename($abs_item,$abs_new_item);
-		//}
+            // FIXME $i is not set anymore.. remove code?
+    if ( !isset($i) )
+        $i=0;
+    if( $res == false )
+    {
+        $error[$i]=$GLOBALS["error_msg"]["unzip"];
+        $err=true;	continue;
+    }
 		
-		if($ok===false || $res == false) {
-			//$error[$i]=($GLOBALS["action"]=="copy"?
-			//	$GLOBALS["error_msg"]["copyitem"]:
-			//	$GLOBALS["error_msg"]["moveitem"]
-			//);
-			$error[$i]=$GLOBALS["error_msg"]["unzip"];
-			$err=true;	continue;
-		}
-		
-		$error[$i]=NULL;
-	//}
+    $error[$i]=NULL;
 	
-	if($err) {			// there were errors
-		$err_msg="";
-		for($i=0;$i<$cnt;++$i) {
-			if($error[$i]==NULL) continue;
-			
-			$err_msg .= $items[$i]." : ".$error[$i]."<BR>\n";
-		}
-		show_error($err_msg);
+	if($err)
+    {			// there were errors
+        $err_msg="";
+        for($i=0;$i<$cnt;++$i)
+        {
+            if($error[$i]==NULL) continue;
+
+            $err_msg .= $items[$i]." : ".$error[$i]."<BR>\n";
+        }
+        show_error($err_msg);
 	}
 	
 	header("Location: ".make_link("list",$dir,NULL));
