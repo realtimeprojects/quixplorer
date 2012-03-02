@@ -110,6 +110,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Ajouter",
 	"btnedit"		=> "Éditer",
 	"btnremove"		=> "Supprimer",
+"btnunzip"		=> "Unzip",
 	
 	// actions
 	"actdir"		=> "Répertoire",
@@ -126,6 +127,7 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Changer le mot de passe",
 	"actusers"		=> "Usagers",
 	"actarchive"		=> "Archiver le(s) item(s)",
+"actunzipitem"		=> "Unzipping",
 	"actupload"		=> "Envoyer le(s) fichier(s)",
 	
 	// misc

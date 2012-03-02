@@ -126,6 +126,7 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Cambia password",
 	"actusers"		=> "Utenti",
 	"actarchive"		=> "Archivia oggetto/i",
+"actunzipitem"		=> "Unzipping",
 	"actupload"		=> "Carica file",
 	
 	// misc
