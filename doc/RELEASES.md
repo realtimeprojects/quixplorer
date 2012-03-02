@@ -1,6 +1,19 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.2 2012-03-2 (thanks to Mk111)
+
+This release is mainly triggered by the contributions of Mk111.
+Many thanks!
+
+   - sl localization(partial)
+   - ereg fix
+   - unzip fix (partial)
+   - many warnings/notices fix
+   - IEC 60027 fix
+   - resending headers fix 
+   - added tar/gz/bz2 support(partitial)
+
 ### Version 2.5.1 2011-12-05
 
 - Quixplorer prints out an error message if the config file was not found
