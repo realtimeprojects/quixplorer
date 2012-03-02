@@ -84,6 +84,8 @@ function dir_print($dir_list, $new_dir) {	// print list of directories
 	// copy/move file/dir
 function unzip_item($dir)
 {
+    global $home_dir;
+
 	// copy and move are only allowed if the user may read and change files
 	if ( !permissions_grant_all( $dir, NULL, array( "read", "create" ) ) )
     { 
@@ -95,8 +97,6 @@ function unzip_item($dir)
 	$new_dir = ( isset($GLOBALS['__POST']["new_dir"]) ) ? stripslashes($GLOBALS['__POST']["new_dir"]) : $dir;
 	
 
-	// Copy or Move?
-	
 	$_img = $GLOBALS["baricons"]["unzip"];
 	
 	// Get Selected Item
@@ -106,11 +106,18 @@ function unzip_item($dir)
 		$s_item = $GLOBALS['__POST']["item"];
 	}
 	
-	$dir_extract = $GLOBALS["home_dir"].$new_dir; if($new_dir!=""){$dir_extract.="/";}
-	$zip_name = $GLOBALS["home_dir"].$GLOBALS["dir"]."/".$s_item;
+	$dir_extract = $home_dir . $new_dir;
+
+    if( $new_dir != "")
+    {
+        $dir_extract .= "/";
+    }
+
+	$zip_name = $home_dir . $GLOBALS["dir"] . "/$s_item";
 	
 	// Get New Location & Names
-	if(!isset($GLOBALS['__POST']["confirm"]) || $GLOBALS['__POST']["confirm"]!="true") {
+	if ( ! isset( $GLOBALS['__POST']["confirm"] ) || $GLOBALS['__POST']["confirm"] != "true")
+    {
 		show_header($GLOBALS["messages"]["actunzipitem"]);
 		
 		// JavaScript for Form:
