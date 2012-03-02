@@ -47,7 +47,7 @@ function download_item($dir, $item)
 	$item=basename($item);
 
 	if (!permissions_grant($dir, $item, "read"))
-		show_error($GLOBALS["error_msg"]["accessfunc"];
+		show_error($GLOBALS["error_msg"]["accessfunc"]);
 	
 	if(!get_is_file($dir,$item)) show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
 	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
