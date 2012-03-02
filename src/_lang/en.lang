@@ -28,7 +28,9 @@ language=language
 login=login
 
 [messages]
-files_total=%d files, %d directories, %d total
 login=please login to this server
+
+[errors]
+opendir="Cannot open directory"
 
 [user]
