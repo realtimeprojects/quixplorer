@@ -39,6 +39,14 @@ Comment:
 umask(002); // Added to make created files/dirs group writable
 //------------------------------------------------------------------------------
 require "./_include/init.php";	// Init
+
+global $dir;
+
+if ( ! isset($dir) || $dir == "" )
+{
+    show_error("internal error, \$dir is not set after login");
+}
+
 //------------------------------------------------------------------------------
 switch($GLOBALS["action"]) {		// Execute action
 //------------------------------------------------------------------------------
