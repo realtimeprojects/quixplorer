@@ -168,8 +168,10 @@ function get_show_item($dir, $item) {		// show this file?
 function copy_dir($source,$dest) {		// copy dir
 	$ok = true;
 	
-	if(!@mkdir($dest,0777)) return false;
-	if(($handle=@opendir($source))===false) show_error(basename($source).": ".$GLOBALS["error_msg"]["opendir"]);
+	if ( !@mkdir($dest,0777) )
+        return false;
+	if ( ($handle = @opendir( $source ) ) === false)
+        show_error(basename($source).": ".$GLOBALS["error_msg"]["opendir"]);
 	
 	while(($file=readdir($handle))!==false) {
 		if(($file==".." || $file==".")) continue;
@@ -185,8 +187,12 @@ function copy_dir($source,$dest) {		// copy dir
 	closedir($handle);
 	return $ok;
 }
-//------------------------------------------------------------------------------
-function remove($item) {			// remove file / dir
+
+/**
+    remove file / dir
+ */
+function remove ( $item )
+{
 	$ok = true;
 	if(@is_link($item) || @is_file($item)) $ok=@unlink($item);
 	elseif(@is_dir($item)) {

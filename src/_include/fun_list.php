@@ -30,17 +30,19 @@ function make_list($_list1, $_list2) {		// make list of files
 	
 	return $list;
 }
-//------------------------------------------------------------------------------
+/**
+ make table of files in dir
+ make tables & place results in reference-variables passed to function
+ also 'return' total filesize & total number of items
+*/
 function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items)
-{						// make table of files in dir
-	// make tables & place results in reference-variables passed to function
-	// also 'return' total filesize & total number of items
-	
+{	
 	$tot_file_size = $num_items = 0;
 	
 	// Open directory
-	$handle = @opendir(get_abs_dir($dir));
-	if($handle===false) show_error($dir.": ".$GLOBALS["error_msg"]["opendir"]);
+	$handle = @opendir (get_abs_dir($dir) );
+	if ( $handle===false )
+        show_error( $dir . ": " . $GLOBALS["error_msg"]["opendir"] );
 	
 	// Read directory
 	while(($new_item = readdir($handle))!==false) {
@@ -185,14 +187,18 @@ function print_table($dir, $list)
 		echo "</TABLE>\n</TD></TR>\n";
 	}
 }
-//------------------------------------------------------------------------------
-// MAIN FUNCTION
-function list_dir($dir)
+
+/**
+ MAIN FUNCTION
+ */
+function list_dir ( $dir )
 {
 	$dir_up = dirname($dir);
-	if($dir_up==".") $dir_up = "";
+	if ( $dir_up == "." )
+        $dir_up = "";
 	
-	if(!get_show_item($dir_up,basename($dir))) show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
+	if ( ! get_show_item( $dir_up, basename($dir) ) )
+       show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
 	
 	// make file & dir tables, & get total filesize & number of items
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
