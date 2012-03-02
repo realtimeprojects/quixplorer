@@ -70,6 +70,7 @@ function tgz_items($dir,$name) {
 //------------------------------------------------------------------------------
 function archive_items($dir)
 {
+        include_once "./_include/permissions.php";
 	// archive is only allowed if user may change files
 	if (!permissions_grant($dir, NULL, "change"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);

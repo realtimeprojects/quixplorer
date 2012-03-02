@@ -41,7 +41,7 @@ require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 function dir_list($dir) {			// make list of directories
 	// this list is used to copy/move items to a specific location
-	
+	$dir_list=array();
 	$handle = @opendir(get_abs_dir($dir));
 	if($handle===false) return;		// unable to open dir
 	
