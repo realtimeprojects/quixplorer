@@ -9,6 +9,14 @@ quixplorer is a simple web based file management software. It allows you to:
 News
 ----
 
+#### 2012-03-02 Mk111 contributed fixes preparing v2.5.2
+
+Thanks to Mk111 who contributed some fixes of warnings and unzipping.
+While thoses changes are not fully done, i published the developing branch
+for the next v2.5.2 release on GitHub.
+
+As soon as the changes for unzipping, .. are stable, the v2.5.2 will be released.
+
 #### 2011-11-28 v2.5.0 released
 
 This release mainly contains the changes from LaurenceHR.
