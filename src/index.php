@@ -5,6 +5,7 @@ require "_include/init.php";	// Init
 
 global $home_dir;
 global $action;
+global $dir;
 
 function load_action ($action_to_load)
 {
@@ -22,7 +23,7 @@ switch ($action)
     case "authenticate":    login_post(); // nobreak 
     case "list":
     default:                load_action("list");
-                            do_list_action($_GET["dir"]);
+                            do_list_action($dir);
                             break;
 // EDIT FILE
 case "edit":
