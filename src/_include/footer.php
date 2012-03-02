@@ -22,7 +22,7 @@ function show_footer()
   */
 function show_login ()
 {
-	if (login_ok())
+	if (login_is_user_logged_in())
 		return;
 	echo '<small> - <a href="' . make_link("login", NULL) . '">' . $GLOBALS['messages']['btnlogin'] . "</a></small>";
 }

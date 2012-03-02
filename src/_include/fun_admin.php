@@ -322,7 +322,7 @@ function show_admin($dir)
 {
 	$admin = permissions_grant(NULL, NULL, "admin");
 	
-	if (!login_ok())
+	if (!login_is_user_logged_in())
 		show_error($GLOBALS["error_msg"]["miscnofunc"]);
 	if (!$admin && !permissions_grant(NULL, NULL, "password"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);

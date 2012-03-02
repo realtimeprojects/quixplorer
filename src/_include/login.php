@@ -7,9 +7,7 @@ user_load();
 
 session_start();
 
-_check_login();
-
-function _check_login()
+function login_check ()
 {
     _debug("checking login");
     global $require_login;
@@ -22,34 +20,38 @@ function _check_login()
     }
 
     // if the user is already authenticated, we're done
-	if (!isset($_SESSION["s_user"]))
-    {
-        _debug("user already authenticated");
-        return;
-    }
-
-    // login the user
-    _debug("login required, displaying login form");
+    _debug("login required, checking login");
     login();
 }
 
 //FIXME update home_dir variable if user is logged in
 function login ()
 {
-	if(isset($GLOBALS['__SESSION']["s_user"])) {
-		if(!user_activate($GLOBALS['__SESSION']["s_user"],$GLOBALS['__SESSION']["s_pass"])) {
+	if ( isset( $_SESSION["s_user"] ) )
+    {
+		if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
+        {
+            _debug("Failed to activate user " . $_SESSION['s_user']);
 			logout();
 		}
-	} else {
-		if(isset($GLOBALS['__POST']["p_pass"])) $p_pass=$GLOBALS['__POST']["p_pass"];
-		else $p_pass="";
+	}
+    else
+    {
+		if ( isset( $_POST["p_pass"] ) )
+            $p_pass= $_POST["p_pass"];
+		else
+            $p_pass="";
 		
-		if(isset($GLOBALS['__POST']["p_user"])) {
+		if ( isset( $_POST["p_user"] ) )
+        {
 			// Check Login
-			if(!user_activate(stripslashes($GLOBALS['__POST']["p_user"]), md5(stripslashes($p_pass)))) {
+			if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
+            {
+                _error( "failed to authenticate user " . $_POST["p_user"] );
 				logout();
 			}
 			// authentication sucessfull
+            _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
 			return;
 		} else {
 			// Ask for Login
@@ -78,9 +80,17 @@ function login ()
 	}
 }
 
+function login_is_user_logged_in()
+{
+    return isset( $_SESSION["s_user"] );
+}
+
 function logout ()
 {
-	$GLOBALS['__SESSION']=array();
+    global $_SESSION;
+
+    _debug("logging out user " . $_SESSION["s_user"]);
+	$_SESSION = array();
 	session_destroy();
 	header("location: ".$GLOBALS["script_name"]);
 }

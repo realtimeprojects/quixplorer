@@ -22,8 +22,12 @@ function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NUL
 }
 //------------------------------------------------------------------------------
 function get_abs_dir($dir) {			// get absolute path
-	$abs_dir=$GLOBALS["home_dir"];
-	if($dir!="") $abs_dir.="/".$dir;
+    global $home_dir;
+	$abs_dir = $home_dir;
+
+	if ( $dir != "" && $dir != ".")
+       $abs_dir .= "/" . $dir;
+    _debug("get_abs_dir: returning $abs_dir");
 	return $abs_dir;
 }
 //------------------------------------------------------------------------------
@@ -150,20 +154,42 @@ function get_mime_type($dir, $item, $query) {	// get file's mimetype
 	if($query=="img") return $image;
 	else return $mime_type;
 }
-//------------------------------------------------------------------------------
-function get_show_item($dir, $item) {		// show this file?
-	if($item == "." || $item == ".." ||
-		(substr($item,0,1)=="." && $GLOBALS["show_hidden"]==false)) return false;
+
+/**
+    Check if user is allowed to access $file in $directory
+
+ */
+function get_show_item ($directory, $file)
+{
+    if ( preg_match( "/\.\./", $directory ) )
+        return false;
+
+    if ( isset($file) && preg_match( "/\.\./", $file ) )
+        return false;
+
+    // dont display own directory
+    if ( $file == "." )
+        return false;
+
+    if ( substr( $file, 0, 1) == "." && $GLOBALS["show_hidden"] == false )
+        return false;
 		
-	if($GLOBALS["no_access"]!="" && @eregi($GLOBALS["no_access"],$item)) return false;
+	if ( $GLOBALS["no_access"] != "" && preg_match( $GLOBALS["no_access"], $file ) )
+        return false;
 	
-	if($GLOBALS["show_hidden"]==false) {
-		$dirs=explode("/",$dir);
-		foreach($dirs as $i) if(substr($i,0,1)==".") return false;
+	if ( $GLOBALS["show_hidden"] == false )
+    {
+		$directory_parts = explode( "/", $directory );
+		foreach ($directory_parts as $directory_part )
+        {
+            if ( substr ( $directory_part, 0, 1) == "." )
+               return false;
+        }
 	}
 	
 	return true;
 }
+
 //------------------------------------------------------------------------------
 function copy_dir($source,$dest) {		// copy dir
 	$ok = true;
