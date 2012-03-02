@@ -142,8 +142,8 @@ function user_activate($user, $pass)
 		return false;
 	
 	// store the user data in the globals variable
-	$GLOBALS['__SESSION']["s_user"]	= $data[0];
-	$GLOBALS['__SESSION']["s_pass"]	= $data[1];
+	$_SESSION["s_user"]	= $data[0];
+	$_SESSION["s_pass"]	= $data[1];
 	$GLOBALS["home_dir"]	= $data[2];
 	$GLOBALS["home_url"]	= $data[3];
 	$GLOBALS["show_hidden"]	= $data[4];

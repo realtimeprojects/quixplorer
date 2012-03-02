@@ -25,10 +25,7 @@ if($GLOBALS["action"]=="post" && isset($GLOBALS['__POST']["do_action"])) {
 }
 if($GLOBALS["action"]=="") $GLOBALS["action"]="list";
 $GLOBALS["action"]=stripslashes($GLOBALS["action"]);
-// Default Dir
-if(isset($GLOBALS['__GET']["dir"])) $GLOBALS["dir"]=stripslashes($GLOBALS['__GET']["dir"]);
-else $GLOBALS["dir"]="";
-if($GLOBALS["dir"]==".") $GLOBALS["dir"]=="";
+
 // Get Item
 if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=stripslashes($GLOBALS['__GET']["item"]);
 else $GLOBALS["item"]="";
@@ -61,6 +58,7 @@ require_once "./_include/header.php";
 require "./_include/footer.php";
 ob_start(); // prevent unwanted output
 require_once "./_include/login.php";
+login_check();
 ob_end_clean(); // get rid of cached unwanted output
 $prompt = isset($GLOBALS["login_prompt"][$GLOBALS["language"]])
 	? $GLOBALS["login_prompt"][$GLOBALS["language"]]
@@ -69,6 +67,21 @@ if (isset($prompt))
 	$GLOBALS["messages"]["actloginheader"] = $prompt;
 
 ob_end_clean(); // get rid of cached unwanted output
+
+// Manage display directory
+global $dir;
+global $home_dir;
+
+_debug( "checking post " . $_GET[ "dir" ] );
+if ( isset( $_GET[ "dir" ] ) )
+{
+    $dir = stripslashes( $_GET["dir"] );
+}
+else
+{
+    _debug(" no directory in _GET, using home directory '$home_dir'" );
+    $dir = $home_dir;
+}
 
 
 ?>

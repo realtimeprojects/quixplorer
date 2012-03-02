@@ -41,9 +41,14 @@ umask(002); // Added to make created files/dirs group writable
 require "./_include/init.php";	// Init
 
 global $dir;
+global $action;
 
-if ( ! isset($dir) || $dir == "" )
+_debug( "index.php: checking action $action" );
+
+if ( ! isset( $dir ) || $dir == "" )
 {
+    require_once( "./_include/login.php" );
+    logout();
     show_error("internal error, \$dir is not set after login");
 }
 
@@ -121,12 +126,15 @@ case "admin":
 	require "./_include/fun_admin.php";
 	show_admin($GLOBALS["dir"]);
 break;
-//------------------------------------------------------------------------------
+case "logout":
+    _debug("doing logout");
+    logout();
+
 // DEFAULT: LIST FILES & DIRS
 case "list":
 default:
 	require "./_include/fun_list.php";
-	list_dir($GLOBALS["dir"]);
+	list_dir($dir);
 //------------------------------------------------------------------------------
 }				// end switch-statement
 //------------------------------------------------------------------------------

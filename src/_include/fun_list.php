@@ -193,12 +193,10 @@ function print_table($dir, $list)
  */
 function list_dir ( $dir )
 {
-	$dir_up = dirname($dir);
-	if ( $dir_up == "." )
-        $dir_up = "";
-	
-	if ( ! get_show_item( $dir_up, basename($dir) ) )
-       show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
+    _debug("list_dir: displaying directory $dir");
+
+	if ( ! get_show_item( $dir, NULL ) )
+       show_error($GLOBALS["error_msg"]["accessdir"] . " : '$dir'");
 	
 	// make file & dir tables, & get total filesize & number of items
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
@@ -221,6 +219,7 @@ function list_dir ( $dir )
 	echo "<BR><TABLE width=\"95%\"><TR><TD><TABLE><TR>\n";
 	
 	// PARENT DIR
+    $dir_up = dirname($dir);
 	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
 	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["uplink"]."\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></A></TD>\n";
@@ -244,7 +243,7 @@ function list_dir ( $dir )
 	_print_edit_buttons($dir);
 	
 	// ADMIN & LOGOUT
-	if(login_ok())
+	if (login_is_user_logged_in())
 	{
 		echo "<TD>::</TD>";
 		// ADMIN
