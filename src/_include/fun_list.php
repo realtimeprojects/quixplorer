@@ -450,4 +450,3 @@ function _print_link ($function, $allow, $dir, $item)
 }
 
 ?>
-
