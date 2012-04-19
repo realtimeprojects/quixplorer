@@ -42,6 +42,7 @@ require_once("./_include/permissions.php");
 // upload file
 function upload_items($dir)
 {
+    _debug( "upload_items($dir)" );
 	if (!permissions_grant($dir, NULL, "create"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
 	
@@ -52,13 +53,15 @@ function upload_items($dir)
 		$err_avaliable=isset($GLOBALS['__FILES']['userfile']['error']);
 	
 		// upload files & check for errors
-		for($i=0;$i<$cnt;$i++) {
+		for( $i=0; $i < $cnt; $i++ )
+        {
+            _debug("uploading file '$items[$i]'");
 			$errors[$i]=NULL;
 			$tmp = $GLOBALS['__FILES']['userfile']['tmp_name'][$i];
 			$items[$i] = stripslashes($GLOBALS['__FILES']['userfile']['name'][$i]);
 			if($err_avaliable) $up_err = $GLOBALS['__FILES']['userfile']['error'][$i];
 			else $up_err=(file_exists($tmp)?0:4);
-			$abs = get_abs_item($dir,$items[$i]);
+			$abs = get_abs_item( $dir, $items[$i]);
 		
 			if($items[$i]=="" || $up_err==4) continue;
 			if($up_err==1 || $up_err==2) {
@@ -112,10 +115,10 @@ function upload_items($dir)
 <script type="text/javascript"> 
 $(document).ready(function() {
   $('#file_upload').uploadify({
-    'uploader'  : '/apps/uploadify/uploadify.swf',
-'script'    : '/apps/uploadify/uploadify.php',
-'cancelImg' : '/apps/uploadify/cancel.png',
-'folder'    : '<?php echo $GLOBALS["home_dir"].$GLOBALS["dir"];?>',
+    'uploader'  : '_lib/uploadify/uploadify.swf',
+'script'    : '_lib/uploadify/uploadify.php',
+'cancelImg' : '_lib/uploadify/cancel.png',
+'folder'    : '<?php global $home_dir; echo "$home_dir/$dir";?>',
 'auto'      : true,
 'multi'     : true,
 'removeCompleted' : true,
