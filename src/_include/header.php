@@ -42,6 +42,8 @@ Comment:
 **/
 function show_header($title)
 {
+    global $site_name;
+
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	header("Cache-Control: no-cache, must-revalidate");
@@ -52,7 +54,7 @@ function show_header($title)
 	//echo "\"http://www.w3.org/TR/REC-html40/loose.dtd\">\n";
 	echo "<HTML lang=\"".$GLOBALS["language"]."\" dir=\"".$GLOBALS["text_dir"]."\">\n";
 	echo "<HEAD>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$GLOBALS["charset"]."\">\n";
-	echo "<title>" . $GLOBALS["site_name"] ." || ". $GLOBALS["xplorer_name"] ."</title>\n";
+	echo "<title>$site_name</title>\n";
 	echo "<LINK href=\"_style/style.css\" rel=\"stylesheet\" type=\"text/css\">\n";
 	
 	echo "<link href=\"_lib/uploadify/uploadify.css\" type=\"text/css\" rel=\"stylesheet\" />\n";
