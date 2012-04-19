@@ -1,18 +1,20 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
-### Version 2.5.2 2012-03-2 (thanks to Mk111)
+### Version 2.5.2 2012-04-19
 
-This release is mainly triggered by the contributions of Mk111.
-Many thanks!
+This release mainly contains some bugfixes.
+
+Thanks to Mk11 for his contributions!
 
    - sl localization(partial)
    - ereg fix
    - unzip fix (partial)
-   - many warnings/notices fix
+   - many errors/warnings/notices fix
    - IEC 60027 fix
    - resending headers fix 
    - added tar/gz/bz2 support(partitial)
+   - uploads with uploadify work now.
 
 ### Version 2.5.1 2011-12-05
 
