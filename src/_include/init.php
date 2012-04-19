@@ -72,9 +72,9 @@ ob_end_clean(); // get rid of cached unwanted output
 global $dir;
 global $home_dir;
 
-_debug( "checking post " . $_GET[ "dir" ] );
 if ( isset( $_GET[ "dir" ] ) )
 {
+    _debug( "init.php(): updating \$dir($dir) to " . $_GET[ "dir" ] );
     $dir = stripslashes( $_GET["dir"] );
 }
 else
