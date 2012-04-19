@@ -38,6 +38,7 @@ Comment:
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
+require_once("./_include/debug.php");
 //------------------------------------------------------------------------------
 // File Clone of fun_copy_move.php
 //------------------------------------------------------------------------------
@@ -84,6 +85,8 @@ function dir_print($dir_list, $new_dir) {	// print list of directories
 	// copy/move file/dir
 function unzip_item($dir)
 {
+    _debug("unzip_item($dir)");
+
     global $home_dir;
 
 	// copy and move are only allowed if the user may read and change files
@@ -106,14 +109,14 @@ function unzip_item($dir)
 		$s_item = $GLOBALS['__POST']["item"];
 	}
 	
-	$dir_extract = $home_dir . $new_dir;
+	$dir_extract = "$home_dir/$new_dir";
 
     if( $new_dir != "")
     {
         $dir_extract .= "/";
     }
 
-	$zip_name = $home_dir . $GLOBALS["dir"] . "/$s_item";
+	$zip_name = "$home_dir/$dir/$s_item";
 	
 	// Get New Location & Names
 	if ( ! isset( $GLOBALS['__POST']["confirm"] ) || $GLOBALS['__POST']["confirm"] != "true")
@@ -221,6 +224,8 @@ function unzip_item($dir)
 
         //----------------------------------          print_r($GLOBALS);
                         
+    _debug("unzip_item(): Extracting $zip_name to $dir_extract");
+
     //$dir_extract[0]='/';
     //$dir_extract = '.'. $dir_extract;
     //------------------------------------------------------echo $zip_name.' aa'.$dir_extract.'aa';
@@ -245,10 +250,7 @@ function unzip_item($dir)
         extArchive::extract($zip_name,$dir_extract);
     }
 
-    if ( !isset($res) )
-        $res = TRUE;
-                         
-            // FIXME $i is not set anymore.. remove code?
+    // FIXME $i is not set anymore.. remove code?
     if ( !isset($i) )
         $i=0;
     if( $res == false )
