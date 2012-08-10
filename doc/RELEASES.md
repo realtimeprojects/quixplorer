@@ -1,6 +1,11 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.3 2012-08-10
+
+This release fixes the home directory handling which
+issued "unreadable directories".
+
 ### Version 2.5.2 2012-04-19
 
 This release mainly contains some bugfixes.
@@ -114,7 +119,7 @@ the permissions of each user.
 
 - Bugs regarding the file download link solved
 - Implemented "Download only" permissions
-- Português - Brasil Language Support by Diego Dmitruk Maturana (Thanks!)
+- Portugu?s - Brasil Language Support by Diego Dmitruk Maturana (Thanks!)
 - Polish Language Support by ADAM SWIERCZ
 - Romanian Language Module (translated by Radmilo Felix)
 - Italian Language Module (translated by Maurizio Pinotti)
