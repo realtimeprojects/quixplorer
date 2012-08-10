@@ -1,4 +1,5 @@
 <?php
+
 //------------------------------------------------------------------------------
 // THESE ARE NUMEROUS HELPER FUNCTIONS FOR THE OTHER INCLUDE FILES
 //------------------------------------------------------------------------------
@@ -10,27 +11,40 @@ function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NUL
 	if($_order==NULL) $_order=$GLOBALS["order"];
 	if($_srt==NULL) $_srt=$GLOBALS["srt"];
 	if($_lang==NULL) $_lang=(isset($GLOBALS["lang"])?$GLOBALS["lang"]:NULL);
-	
+
 	$link=$GLOBALS["script_name"]."?action=".$_action;
 	if($_dir!=NULL) $link.="&dir=".urlencode($_dir);
 	if($_item!=NULL) $link.="&item=".urlencode($_item);
 	if($_order!=NULL) $link.="&order=".$_order;
 	if($_srt!=NULL) $link.="&srt=".$_srt;
 	if($_lang!=NULL) $link.="&lang=".$_lang;
-	
+
 	return $link;
 }
-//------------------------------------------------------------------------------
-function get_abs_dir($dir) {			// get absolute path
-    global $home_dir;
-	$abs_dir = $home_dir;
 
-	if ( $dir != "" && $dir != ".")
-       $abs_dir .= "/" . $dir;
-    _debug("get_abs_dir: returning $abs_dir");
-	return $abs_dir;
+function get_abs_dir($path)
+{
+    return path_f($path);
 }
-//------------------------------------------------------------------------------
+
+function path_f ($path)
+{
+    global $home_dir;
+    $abs_dir = $home_dir;
+	if ($path != "")
+       $abs_dir .= "/$path";
+	$abs_dir = realpath($abs_dir);
+    return $abs_dir;
+}
+
+function path_r ($path)
+{
+    global $home_dir;
+    $base = realpath($home_dir);
+    $ret = preg_replace("#^$base#", "", $path);
+    return $ret;
+}
+
 function get_abs_item($dir, $item) {		// get absolute file+path
 	return get_abs_dir($dir)."/".$item;
 }
@@ -122,7 +136,7 @@ function get_mime_type($dir, $item, $query) {	// get file's mimetype
 	if(get_is_dir($dir, $item)) {			// directory
 		$mime_type	= $GLOBALS["super_mimes"]["dir"][0];
 		$image		= $GLOBALS["super_mimes"]["dir"][1];
-		
+
 		if($query=="img") return $image;
 		else return $mime_type;
 	}
@@ -135,14 +149,14 @@ function get_mime_type($dir, $item, $query) {	// get file's mimetype
 			if($query=="img"){ return $image;}
 			else if($query=="ext"){ return $type;}
 			else return $mime_type;
-			
-			
+
+
 		}
 	}
-	
+
 	if((function_exists("is_executable") &&
 		@is_executable(get_abs_item($dir,$item))) ||
-		@eregi($GLOBALS["super_mimes"]["exe"][2],$item))		
+		@eregi($GLOBALS["super_mimes"]["exe"][2],$item))
 	{						// executable
 		$mime_type	= $GLOBALS["super_mimes"]["exe"][0];
 		$image		= $GLOBALS["super_mimes"]["exe"][1];
@@ -150,7 +164,7 @@ function get_mime_type($dir, $item, $query) {	// get file's mimetype
 		$mime_type	= $GLOBALS["super_mimes"]["file"][0];
 		$image		= $GLOBALS["super_mimes"]["file"][1];
 	}
-	
+
 	if($query=="img") return $image;
 	else return $mime_type;
 }
@@ -173,10 +187,10 @@ function get_show_item ($directory, $file)
 
     if ( substr( $file, 0, 1) == "." && $GLOBALS["show_hidden"] == false )
         return false;
-		
+
 	if ( $GLOBALS["no_access"] != "" && preg_match( $GLOBALS["no_access"], $file ) )
         return false;
-	
+
 	if ( $GLOBALS["show_hidden"] == false )
     {
 		$directory_parts = explode( "/", $directory );
@@ -186,22 +200,22 @@ function get_show_item ($directory, $file)
                return false;
         }
 	}
-	
+
 	return true;
 }
 
 //------------------------------------------------------------------------------
 function copy_dir($source,$dest) {		// copy dir
 	$ok = true;
-	
+
 	if ( !@mkdir($dest,0777) )
         return false;
 	if ( ($handle = @opendir( $source ) ) === false)
-        show_error(basename($source).": ".$GLOBALS["error_msg"]["opendir"]);
-	
+        show_error($source."xx:".basename($source)."xx : ".$GLOBALS["error_msg"]["opendir"]);
+
 	while(($file=readdir($handle))!==false) {
 		if(($file==".." || $file==".")) continue;
-		
+
 		$new_source = $source."/".$file;
 		$new_dest = $dest."/".$file;
 		if(@is_dir($new_source)) {
@@ -221,23 +235,25 @@ function remove ( $item )
 {
 	$ok = true;
 	if(@is_link($item) || @is_file($item)) $ok=@unlink($item);
-	elseif(@is_dir($item)) {
-		if(($handle=@opendir($item))===false) show_error(basename($item).": ".$GLOBALS["error_msg"]["opendir"]);
+	elseif(@is_dir($item))
+    {
+		if(($handle=@opendir($item))===false)
+            show_error($item.":".basename($item).": ".$GLOBALS["error_msg"]["opendir"]);
 
 		while(($file=readdir($handle))!==false) {
 			if(($file==".." || $file==".")) continue;
-			
+
 			$new_item = $item."/".$file;
 			if(!@file_exists($new_item)) show_error(basename($item).": ".$GLOBALS["error_msg"]["readdir"]);
 			//if(!get_show_item($item, $new_item)) continue;
-			
+
 			if(@is_dir($new_item)) {
 				$ok=remove($new_item);
 			} else {
 				$ok=@unlink($new_item);
 			}
 		}
-		
+
 		closedir($handle);
 		$ok=@rmdir($item);
 	}
@@ -256,14 +272,14 @@ function get_max_file_size() {			// get php max_upload_file_size
 		$max = substr($max,0,-1);
 		$max = round($max*1024);
 	}
-	
+
 	return $max;
 }
 //------------------------------------------------------------------------------
 function down_home($abs_dir) {			// dir deeper than home?
 	$real_home = @realpath($GLOBALS["home_dir"]);
 	$real_dir = @realpath($abs_dir);
-	
+
 	if($real_home===false || $real_dir===false) {
 		if(@eregi("\\.\\.",$abs_dir)) return false;
 	} else if(strcmp($real_home,@substr($real_dir,0,strlen($real_home)))) {
@@ -274,7 +290,7 @@ function down_home($abs_dir) {			// dir deeper than home?
 //------------------------------------------------------------------------------
 function id_browser() {
 	$browser=$GLOBALS['__SERVER']['HTTP_USER_AGENT'];
-	
+
 	if(preg_match('#Opera(/| )([0-9].[0-9]{1,2})#', $browser)) {
 		return 'OPERA';
 	} else if(preg_match('/MSIE ([0-9].[0-9]{1,2})/', $browser)) {

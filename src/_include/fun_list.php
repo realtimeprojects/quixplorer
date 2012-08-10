@@ -15,19 +15,19 @@ function make_list($_list1, $_list2) {		// make list of files
 		$list1 = $_list2;
 		$list2 = $_list1;
 	}
-	
+
 	if(is_array($list1)) {
 		while (list($key, $val) = each($list1)) {
 			$list[$key] = $val;
 		}
 	}
-	
+
 	if(is_array($list2)) {
 		while (list($key, $val) = each($list2)) {
 			$list[$key] = $val;
 		}
 	}
-	
+
 	return $list;
 }
 /**
@@ -36,25 +36,27 @@ function make_list($_list1, $_list2) {		// make list of files
  also 'return' total filesize & total number of items
 */
 function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items)
-{	
+{
 	$tot_file_size = $num_items = 0;
-	
+
 	// Open directory
 	$handle = @opendir (get_abs_dir($dir) );
 	if ( $handle===false )
         show_error( $dir . ": " . $GLOBALS["error_msg"]["opendir"] );
-	
+
 	// Read directory
-	while(($new_item = readdir($handle))!==false) {
+	while(($new_item = readdir($handle))!==false)
+    {
 		$abs_new_item = get_abs_item($dir, $new_item);
-		
-		if(!@file_exists($abs_new_item)) show_error($dir.": ".$GLOBALS["error_msg"]["readdir"]);
+
+		if(!@file_exists($abs_new_item))
+            show_error($dir.":[fun_list.php/make_tables()] ".$GLOBALS["error_msg"]["readdir"]);
 		if(!get_show_item($dir, $new_item)) continue;
-		
+
 		$new_file_size = filesize($abs_new_item);
 		$tot_file_size += $new_file_size;
 		$num_items++;
-		
+
 		if(get_is_dir($dir, $new_item)) {
 			if($GLOBALS["order"]=="mod") {
 				$dir_list[$new_item] =
@@ -77,8 +79,8 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 		}
 	}
 	closedir($handle);
-	
-	
+
+
 	// sort
 	if(is_array($dir_list)) {
 		if($GLOBALS["order"]=="mod") {
@@ -89,7 +91,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 			else krsort($dir_list);
 		}
 	}
-	
+
 	// sort
 	if(is_array($file_list)) {
 		if($GLOBALS["order"]=="mod") {
@@ -109,7 +111,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 function print_table($dir, $list)
 {
 	if(!is_array($list)) return;
-	
+
 	while(list($item,) = each($list)){
 		// link to dir / file
 		$abs_item=get_abs_item($dir,$item);
@@ -125,7 +127,7 @@ function print_table($dir, $list)
 			$link = make_link("download", $dir, $item);
 			$target = "_blank";
 		} //else $link = "";
-		
+
 		echo "<TR class=\"rowdata\"><TD><INPUT TYPE=\"checkbox\" name=\"selitems[]\" value=\"";
 		echo htmlspecialchars($item)."\" onclick=\"javascript:Toggle(this);\"></TD>\n";
 	// Icon + Link
@@ -171,11 +173,11 @@ function print_table($dir, $list)
 			}else{
 				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
 				echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
-			}			
+			}
 		}
-		
-		
-		
+
+
+
 		// DOWNLOAD
 		if(get_is_file($dir,$item))
 		{
@@ -197,16 +199,16 @@ function list_dir ( $dir )
 
 	if ( ! get_show_item( $dir, NULL ) )
        show_error($GLOBALS["error_msg"]["accessdir"] . " : '$dir'");
-	
+
 	// make file & dir tables, & get total filesize & number of items
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
-	
+
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
 	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
-	
+
 	// Javascript functions:
 	include "./_include/javascript.php";
-	
+
 	// Sorting of items
 	$_img = "&nbsp;<IMG width=\"10\" height=\"10\" border=\"0\" align=\"ABSMIDDLE\" src=\"_img/";
 	if($GLOBALS["srt"]=="yes") {
@@ -214,10 +216,10 @@ function list_dir ( $dir )
 	} else {
 		$_srt = "yes";	$_img .= "_arrowdown.gif\" ALT=\"v\">";
 	}
-	
+
 	// Toolbar
 	echo "<BR><TABLE width=\"95%\"><TR><TD><TABLE><TR>\n";
-	
+
 	// PARENT DIR
     $dir_up = dirname($dir);
 	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
@@ -236,33 +238,33 @@ function list_dir ( $dir )
 	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["search"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["searchlink"]."\" TITLE=\"".$GLOBALS["messages"]["searchlink"];
 	echo "\"></A></TD>\n";
-	
+
 	echo "<TD>::</TD>";
 
 	// print the edit buttons
 	_print_edit_buttons($dir);
-	
+
 	// ADMIN & LOGOUT
 	if (login_is_user_logged_in())
 	{
 		echo "<TD>::</TD>";
 		// ADMIN
-		_print_link("admin", 
+		_print_link("admin",
 				permissions_grant(NULL, NULL, "admin")
 				|| permissions_grant(NULL, NULL, "password"),
 				$dir, NULL);
 		// LOGOUT
 		_print_link("logout", true, $dir, NULL);
 	}
-	
+
 	echo "<TD>::</TD>";
 	//Languages
-	
-	
+
+
 	foreach($GLOBALS["langs"] as $langs) {
-		
+
 		echo "<TD><A HREF=\"".make_link("list",$dir,NULL,NULL,NULL,$langs[0])."\">";
-	
+
 		if (!file_exists($langs[1]))
 		{
 			echo "&nbsp;$langs[0] ";
@@ -281,15 +283,15 @@ function list_dir ( $dir )
 			if($query=="img"){ return $image;}
 			else if($query=="ext"){ return $type;}
 			else return $mime_type;
-		*/	
-			
+		*/
+
 		}
-	
-	
+
+
 	//
-	
+
 	echo "</TR></TABLE></TD>\n";
-	
+
 	// Create File / Dir
 	if (permissions_grant($dir, NULL, "create"))
 	{
@@ -302,16 +304,16 @@ function list_dir ( $dir )
 		echo "<INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btncreate"];
 		echo "\"></TD></TR></FORM></TABLE></TD>\n";
 	}
-	
+
 	echo "</TR></TABLE>\n";
-	
+
 	// End Toolbar
-	
-	
+
+
 	// Begin Table + Form for checkboxes
 	echo"<TABLE WIDTH=\"95%\"><FORM name=\"selform\" method=\"POST\" action=\"".make_link("post",$dir,NULL)."\">\n";
 	echo "<INPUT type=\"hidden\" name=\"do_action\"><INPUT type=\"hidden\" name=\"first\" value=\"y\">\n";
-	
+
 	// Table Header
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR><TR><TD WIDTH=\"2%\" class=\"header\">\n";
 	echo "<INPUT TYPE=\"checkbox\" name=\"toggleAllC\" onclick=\"javascript:ToggleAll(this);\"></TD>\n";
@@ -334,7 +336,7 @@ function list_dir ( $dir )
 	echo "</A></B></TD><TD WIDTH=\"8%\" class=\"header\"><B>".$GLOBALS["messages"]["permheader"]."</B>\n";
 	echo "</TD><TD WIDTH=\"6%\" class=\"header\"><B>".$GLOBALS["messages"]["actionheader"]."</B></TD></TR>\n";
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR>\n";
-		
+
 	// make & print Table using lists
 	print_table($dir, make_list($dir_list, $file_list));
 
@@ -348,7 +350,7 @@ function list_dir ( $dir )
     echo "<TD class=\"header\" colspan=4></TD>";
 
 	echo "</TR>\n<TR><TD colspan=\"7\"><HR></TD></TR></FORM></TABLE>\n";
-	
+
 ?><script language="JavaScript1.2" type="text/javascript">
 <!--
 	// Uncheck all items (to avoid problems with new items)
@@ -371,7 +373,7 @@ function _print_edit_buttons ($dir)
 	_print_link("move", permissions_grant($dir, NULL, "change"), $dir, NULL);
 	_print_link("delete", permissions_grant($dir, NULL, "delete"), $dir, NULL);
 	_print_link("upload", permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"), $dir, NULL);
-	_print_link("archive", 
+	_print_link("archive",
 		permissions_grant_all($dir, NULL, array("create", "read"))
 			&& ($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]),
 		$dir, NULL);
@@ -426,10 +428,10 @@ function _print_link ($function, $allow, $dir, $item)
 					"imagedisabled" => $GLOBALS["baricons"]["notdownload"],
 					"message" => $GLOBALS["messages"]["downlink"]),
 			);
-	
+
 	// determine the functio nof this button and it's data
-	$values = $functions[$function];	
-    
+	$values = $functions[$function];
+
 	// make an active link if the access is allowed
 	if ($allow)
 	{

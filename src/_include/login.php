@@ -27,57 +27,57 @@ function login_check ()
 //FIXME update home_dir variable if user is logged in
 function login ()
 {
-	if ( isset( $_SESSION["s_user"] ) )
+    if ( isset( $_SESSION["s_user"] ) )
     {
-		if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
+        if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
         {
             _debug("Failed to activate user " . $_SESSION['s_user']);
-			logout();
-		}
-	}
+            logout();
+        }
+    }
     else
     {
-		if ( isset( $_POST["p_pass"] ) )
+        if ( isset( $_POST["p_pass"] ) )
             $p_pass= $_POST["p_pass"];
-		else
+        else
             $p_pass="";
-		
-		if ( isset( $_POST["p_user"] ) )
+
+        if ( isset( $_POST["p_user"] ) )
         {
-			// Check Login
-			if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
+            // Check Login
+            if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
             {
                 _error( "failed to authenticate user " . $_POST["p_user"] );
-				logout();
-			}
-			// authentication sucessfull
+                logout();
+            }
+            // authentication sucessfull
             _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
-			return;
-		} else {
-			// Ask for Login
-			show_header($GLOBALS["messages"]["actlogin"]);
-			echo "<BR><TABLE width=\"300\"><TR><TD colspan=\"2\" class=\"header\" nowrap><B>";
-			echo $GLOBALS["messages"]["actloginheader"]."</B></TD></TR>\n<FORM name=\"login\" action=\"";
-			echo make_link("login",NULL,NULL)."\" method=\"post\">\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD><TD align=\"right\">";
-			echo "<INPUT name=\"p_user\" type=\"text\" size=\"25\"></TD></TR>\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["miscpassword"].":</TD><TD align=\"right\">";
-			echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["misclang"].":</TD><TD align=\"right\">";
-			echo "<SELECT name=\"lang\">\n";
-			@include "./_lang/_info.php";
-			echo "</SELECT></TD></TR>\n";
-			echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";
-			echo $GLOBALS["messages"]["btnlogin"]."\"></TD></TR>\n</FORM></TABLE><BR>\n";
-?><script language="JavaScript1.2" type="text/javascript">
-<!--
-	if(document.login) document.login.p_user.focus();
-// -->
-</script><?php
-			show_footer();
-			exit;
-		}
-	}
+            return;
+        } else {
+            // Ask for Login
+            show_header($GLOBALS["messages"]["actlogin"]);
+            echo "<BR><TABLE width=\"300\"><TR><TD colspan=\"2\" class=\"header\" nowrap><B>";
+            echo $GLOBALS["messages"]["actloginheader"]."</B></TD></TR>\n<FORM name=\"login\" action=\"";
+            echo make_link("login",NULL,NULL)."\" method=\"post\">\n";
+            echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD><TD align=\"right\">";
+            echo "<INPUT name=\"p_user\" type=\"text\" size=\"25\"></TD></TR>\n";
+            echo "<TR><TD>".$GLOBALS["messages"]["miscpassword"].":</TD><TD align=\"right\">";
+            echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
+            echo "<TR><TD>".$GLOBALS["messages"]["misclang"].":</TD><TD align=\"right\">";
+            echo "<SELECT name=\"lang\">\n";
+            @include "./_lang/_info.php";
+            echo "</SELECT></TD></TR>\n";
+            echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";
+            echo $GLOBALS["messages"]["btnlogin"]."\"></TD></TR>\n</FORM></TABLE><BR>\n";
+            ?><script language="JavaScript1.2" type="text/javascript">
+                <!--
+                if(document.login) document.login.p_user.focus();
+            // -->
+            </script><?php
+                show_footer();
+            exit;
+        }
+    }
 }
 
 function login_is_user_logged_in()

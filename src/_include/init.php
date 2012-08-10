@@ -67,21 +67,4 @@ if (isset($prompt))
 	$GLOBALS["messages"]["actloginheader"] = $prompt;
 
 ob_end_clean(); // get rid of cached unwanted output
-
-// Manage display directory
-global $dir;
-global $home_dir;
-
-if ( isset( $_GET[ "dir" ] ) )
-{
-    _debug( "init.php(): updating \$dir($dir) to " . $_GET[ "dir" ] );
-    $dir = stripslashes( $_GET["dir"] );
-}
-else
-{
-    _debug(" no directory in _GET, using home directory '$home_dir'" );
-    $dir = $home_dir;
-}
-
-
 ?>
