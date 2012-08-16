@@ -27,7 +27,7 @@ This document guides you to the installation of quixplorer on your webserver.
   Save as 'any file (*.*)' and remove the 'php' extension to get the proper name.
   (NOTE: for php-files, this extension is correct)
 * If you are unable to perform certain operations,
-  try using an FTP-chmod to set the directories to 755 and the files to 644.
+  try using a FTP-chmod to set the directories to 755 and the files to 644.
 * If you don\'t know the full name of a directory on your website,
   you can use a php-script containing '<?php echo getcwd(); ?>' to get it.
 * The Search Function uses PCRE regex syntax to search; though wildcards like * and ?
