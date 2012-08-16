@@ -37,10 +37,7 @@ if($GLOBALS["order"]=="") $GLOBALS["order"]=="name";
 if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET']["srt"]);
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
-// Get Language
-if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=$GLOBALS['__GET']["lang"];
-elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["lang"];
-//------------------------------------------------------------------------------
+
 // Necessary files
 ob_start(); // prevent unwanted output
 
@@ -49,16 +46,24 @@ if (!is_readable("./_config/conf.php"))
 
 require "./_config/conf.php";
 require "./_config/configs.php";
-if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
-require "./_lang/".$GLOBALS["language"].".php";
-require "./_lang/".$GLOBALS["language"]."_mimes.php";
+
+_load_language($GLOBALS['language']);
+
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
 require_once "./_include/header.php";
 require "./_include/footer.php";
 ob_start(); // prevent unwanted output
 require_once "./_include/login.php";
+
 login_check();
+
+// after login, language may have changed..
+if (isset($_SESSION["language"]))
+{
+    _load_language($_SESSION['language']);
+}
+
 ob_end_clean(); // get rid of cached unwanted output
 $prompt = isset($GLOBALS["login_prompt"][$GLOBALS["language"]])
 	? $GLOBALS["login_prompt"][$GLOBALS["language"]]
@@ -67,4 +72,12 @@ if (isset($prompt))
 	$GLOBALS["messages"]["actloginheader"] = $prompt;
 
 ob_end_clean(); // get rid of cached unwanted output
+
+function _load_language($lang)
+{
+    if (!isset($lang))
+        $lang = 'en';
+    require "./_lang/$lang.php";
+    require "./_lang/$lang" . "_mimes.php";
+}
 ?>

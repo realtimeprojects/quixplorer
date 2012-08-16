@@ -52,6 +52,9 @@ function login ()
             }
             // authentication sucessfull
             _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
+
+            // set language
+            $_SESSION['language'] = qx_request("lang", "en");
             return;
         } else {
             // Ask for Login

@@ -135,7 +135,7 @@ function user_find ($user, $pass = NULL)
 function user_activate($user, $pass) 
 {
 	// try to find and authenticate the user.
-	$data = user_find($user,$pass);
+	$data = user_find($user, $pass);
 
 	// if the user could not be authenticated, return false.
 	if (!isset($data))
