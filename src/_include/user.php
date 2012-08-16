@@ -32,7 +32,7 @@ function _saveUsers ()
 {
 	$cnt=count($GLOBALS["users"]);
 	if($cnt>0) sort($GLOBALS["users"]);
-	
+
 	// Make PHP-File
 	$content='<?php $GLOBALS["users"]=array(';
 	for($i=0;$i<$cnt;++$i) {
@@ -43,13 +43,13 @@ function _saveUsers ()
 			$GLOBALS["users"][$i][7].'),';
 	}
 	$content.="\r\n); ?>";
-	
+
 	// Write to File
 	$fp = @fopen("./_config/.htusers.php", "w");
 	if($fp===false) return false;	// Error
 	fputs($fp,$content);
 	fclose($fp);
-	
+
 	return true;
 }
 
@@ -77,10 +77,10 @@ function user_get_index ($user)
 		// return the index of the user
 		return $ii;
 	}
-	
+
 	// return -1 if the user has not been found
 	return -1;
-	
+
 }
 
 /**
@@ -103,7 +103,7 @@ function user_find ($user, $pass = NULL)
 	// the user
 	if ($pass == NULL)
 		return $GLOBALS["users"][$idx];
-		
+
 	// check if the password matches
 	if ($pass != $GLOBALS["users"][$idx][_idx('password')])
 		return;
@@ -116,7 +116,6 @@ function user_find ($user, $pass = NULL)
 	return $GLOBALS["users"][$idx];
 }
 
-//------------------------------------------------------------------------------
 /**
 	activate the user with the given user name and password.
 
@@ -133,7 +132,7 @@ function user_find ($user, $pass = NULL)
 	@param	$user	user name of the user to be authenticated
 	@param	$pass	password of the user to authenticate
 */
-function user_activate($user, $pass) 
+function user_activate($user, $pass)
 {
 	// try to find and authenticate the user.
 	$data = user_find($user, $pass);
@@ -141,7 +140,7 @@ function user_activate($user, $pass)
 	// if the user could not be authenticated, return false.
 	if (!isset($data))
 		return false;
-	
+
 	// store the user data in the globals variable
 	$GLOBALS['__SESSION']["s_user"]	= $data[0];
 	$GLOBALS['__SESSION']["s_pass"]	= $data[1];
@@ -149,11 +148,11 @@ function user_activate($user, $pass)
 	$GLOBALS["home_url"]	= $data[3];
 	$GLOBALS["show_hidden"]	= $data[4];
 	$GLOBALS["no_access"]	= $data[5];
-	
+
 	// return true on success.
 	return true;
 }
-//------------------------------------------------------------------------------
+
 /**
 	updates the user data for the given user.
 */
@@ -162,12 +161,12 @@ function user_update($user,$new_data)
 	$idx = user_get_index($user);
 	if ($idx < 0)
 		return;
-	
+
 	$data=$new_data;
 	$GLOBALS["users"][$idx] = $new_data;
 	return _saveUsers();
 }
-//------------------------------------------------------------------------------
+
 /**
 	adds a new user to the user database.
 */
@@ -175,11 +174,10 @@ function user_add($data)
 {
 	if (user_find($data[0],NULL))
 		return false;
-	
+
 	$GLOBALS["users"][] = $data;
 	return _saveUsers();
 }
-//------------------------------------------------------------------------------
 
 /**
   this function removes the user with the given user name from the
@@ -197,7 +195,7 @@ function user_remove ($user)
 	$GLOBALS["users"]=$save_users;
 	return _saveUsers();
 }
-//------------------------------------------------------------------------------
+
 /**
   this function returns the permission values of the user with the given
   user name.
