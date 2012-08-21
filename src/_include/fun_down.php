@@ -34,7 +34,7 @@ Author: The QuiX project
 Comment:
 	QuiXplorer Version 2.3
 	File-Download Functions
-	
+
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
@@ -48,10 +48,10 @@ function download_item($dir, $item)
 
 	if (!permissions_grant($dir, $item, "read"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
-	
+
 	if(!get_is_file($dir,$item)) show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
 	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
-	
+
 	$abs_item = get_abs_item($dir,$item);
 	$browser=id_browser();
 	header('Content-Type: '.(($browser=='IE' || $browser=='OPERA')?
@@ -68,7 +68,7 @@ function download_item($dir, $item)
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Pragma: no-cache');
 	}
-	
+
 	@readfile($abs_item);
 	exit;
 }
