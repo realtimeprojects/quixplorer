@@ -241,6 +241,9 @@ function list_dir ( $dir )
 
 	echo "<TD>::</TD>";
 
+    // print the download button
+	_print_link("download_selected", permissions_grant($dir, NULL, "read"), $dir, NULL);
+
 	// print the edit buttons
 	_print_edit_buttons($dir);
 
@@ -427,6 +430,10 @@ function _print_link ($function, $allow, $dir, $item)
 					"image" => $GLOBALS["baricons"]["download"],
 					"imagedisabled" => $GLOBALS["baricons"]["notdownload"],
 					"message" => $GLOBALS["messages"]["downlink"]),
+			"download_selected" => array("jfunction" => "javascript:DownloadSelected();",
+					"image" => $GLOBALS["baricons"]["download"],
+					"imagedisabled" => $GLOBALS["baricons"]["notdownload"],
+					"message" => $GLOBALS["messages"]["download_selected"]),
 			);
 
 	// determine the functio nof this button and it's data

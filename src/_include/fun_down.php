@@ -38,8 +38,21 @@ Comment:
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
+require_once("qxpage.php");
 
-//------------------------------------------------------------------------------
+/**
+ * download_selected
+ * @return void
+ **/
+function download_selected($dir)
+{
+    require_once("_include/fun_archive.php");
+    $items = qxpage_selected_items();
+    $tmpfile = tempnam(sys_get_temp_dir(), 'download_');
+    zip_selected_items($tmpfile, $dir, $items);
+    _download($tmpfile, "quixplorer_download.zip");
+}
+
 // download file
 function download_item($dir, $item)
 {
@@ -53,24 +66,29 @@ function download_item($dir, $item)
 	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
 
 	$abs_item = get_abs_item($dir,$item);
+    _download($abs_item, $item);
+}
+
+function _download($file, $localname)
+{
 	$browser=id_browser();
 	header('Content-Type: '.(($browser=='IE' || $browser=='OPERA')?
 		'application/octetstream':'application/octet-stream'));
 	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
 	header('Content-Transfer-Encoding: binary');
-	header('Content-Length: '.filesize($abs_item));
+	header('Content-Length: '.filesize($file));
 	if($browser=='IE') {
-		header('Content-Disposition: attachment; filename="'.$item.'"');
+		header('Content-Disposition: attachment; filename="'.$localname.'"');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Pragma: public');
 	} else {
-		header('Content-Disposition: attachment; filename="'.$item.'"');
+		header('Content-Disposition: attachment; filename="'.$localname.'"');
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Pragma: no-cache');
 	}
 
-	@readfile($abs_item);
+	@readfile($file);
 	exit;
 }
-//------------------------------------------------------------------------------
+
 ?>

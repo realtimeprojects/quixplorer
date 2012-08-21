@@ -72,6 +72,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "CHANGE PERMISSIONS",
 	"editlink"		=> "EDIT",
 	"downlink"		=> "DOWNLOAD",
+	"download_selected"		=> "DOWNLOAD SELECTED FILES",
 	"uplink"		=> "UP",
 	"homelink"		=> "HOME",
 	"reloadlink"		=> "RELOAD",

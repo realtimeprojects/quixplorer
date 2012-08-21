@@ -77,6 +77,14 @@ case "download":
 	ob_start(false); // prevent unwanted output
 	exit;
 break;
+case "download_selected":
+	ob_start(); // prevent unwanted output
+	require "./_include/fun_down.php";
+	ob_end_clean(); // get rid of cached unwanted output
+	download_selected($current_dir);
+	ob_start(false); // prevent unwanted output
+	exit;
+break;
 //------------------------------------------------------------------------------
 // UPLOAD FILE(S)
 case "upload":

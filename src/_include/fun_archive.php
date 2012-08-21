@@ -51,6 +51,11 @@ require_once("qxpage.php");
  **/
 function zip_selected_items($zipfilename, $directory, $items)
 {
+    if (! is_writable($zipfilename))
+    {
+        show_error("$zipfilename is not writable");
+    }
+
 	$zipfile=new ZipArchive();
     $zipfile->open($zipfilename, ZIPARCHIVE::CREATE);
     foreach ($items as $item)
@@ -58,12 +63,12 @@ function zip_selected_items($zipfilename, $directory, $items)
         $srcfile = $directory . DIRECTORY_SEPARATOR . $item;
         if (!$zipfile->addFile($srcfile, $item))
         {
-			show_error($srcfile. ": Failed adding item.");
+			show_error($srcfile . ": Failed adding item.");
 		}
 	}
     if (!$zipfile->close())
     {
-		show_error($file . ": Failed saving zipfile.");
+		show_error($zipfilename . ": Failed saving zipfile.");
 	}
 }
 
