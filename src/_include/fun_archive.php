@@ -38,7 +38,6 @@ Comment:
 	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
-if($GLOBALS["zip"]) include("./_lib/lib_zip.php");
 //if($GLOBALS["tar"]) include("./_lib/lib_tar.php");
 //if($GLOBALS["tgz"]) include("./_lib/lib_tgz.php");
 //
@@ -56,7 +55,7 @@ function zip_selected_items($zipfilename, $directory, $items)
         show_error("$zipfilename is not writable");
     }
 
-	$zipfile=new ZipArchive();
+    $zipfile=new ZipArchive();
     $zipfile->open($zipfilename, ZIPARCHIVE::CREATE);
     foreach ($items as $item)
     {
