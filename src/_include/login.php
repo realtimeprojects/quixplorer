@@ -18,10 +18,16 @@ function login_check()
     }
 
     // if the user is already authenticated, we're done
-	if (isset($_SESSION["s_user"]))
+    if (isset($_SESSION["s_user"]))
     {
         _debug("user already authenticated");
         return;
+    }
+
+    if ($_REQUEST['loginname']) 
+    {
+      login_post();
+      return;
     }
 
     // login the user
@@ -55,7 +61,6 @@ function login_post ()
         logout();
         login_form();
     }
-
 
     _debug("user successfully authenticated");
     $_SESSION["s_user"] = $_POST["loginname"];
