@@ -34,32 +34,50 @@ Author: The QuiX project
 Comment:
 	QuiXplorer Version 2.3
 	Zip, Tar & Gzip Functions
-	
+
 	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 if($GLOBALS["zip"]) include("./_lib/lib_zip.php");
 //if($GLOBALS["tar"]) include("./_lib/lib_tar.php");
 //if($GLOBALS["tgz"]) include("./_lib/lib_tgz.php");
-//------------------------------------------------------------------------------
-function zip_items($dir,$name) {
-	$cnt=count($GLOBALS['__POST']["selitems"]);
-	$abs_dir=get_abs_dir($dir);
-	
-	$zipfile=new ZipFile();
-	for($i=0;$i<$cnt;++$i) {
-		$selitem=stripslashes($GLOBALS['__POST']["selitems"][$i]);
-		if(!$zipfile->add($abs_dir,$selitem)) {
-			show_error($selitem.": Failed adding item.");
+//
+
+require_once("qxpage.php");
+
+/**
+ * _zip
+ * @return void
+ **/
+function zip_selected_items($zipfilename, $directory, $items)
+{
+	$zipfile=new ZipArchive();
+    $zipfile->open($zipfilename, ZIPARCHIVE::CREATE);
+    foreach ($items as $item)
+    {
+        $srcfile = $directory . DIRECTORY_SEPARATOR . $item;
+        if (!$zipfile->addFile($srcfile, $item))
+        {
+			show_error($srcfile. ": Failed adding item.");
 		}
 	}
-	if(!$zipfile->save(get_abs_item($dir,$name))) {
-		show_error($name.": Failed saving zipfile.");
+    if (!$zipfile->close())
+    {
+		show_error($file . ": Failed saving zipfile.");
 	}
-	
-	header("Location: ".make_link("list",$dir,NULL));
 }
-//------------------------------------------------------------------------------
+
+function zip_items($dir, $name)
+{
+    $items = qxpage_selected_items();
+    if (!preg_match("/\.zip$/", $name))
+    {
+        $name .= ".zip";
+    }
+    zip_selected_items(get_abs_item($dir, $name), $dir, $items);
+	header("Location: " . make_link("list",$dir,NULL));
+}
+
 function tar_items($dir,$name) {
 	// ...
 }
@@ -76,7 +94,7 @@ function archive_items($dir)
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
 
 	if(!$GLOBALS["zip"] && !$GLOBALS["tar"] && !$GLOBALS["tgz"]) show_error($GLOBALS["error_msg"]["miscnofunc"]);
-	
+
 	if(isset($GLOBALS['__POST']["name"])) {
 		$name=basename(stripslashes($GLOBALS['__POST']["name"]));
 		if($name=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
@@ -87,15 +105,15 @@ function archive_items($dir)
 		}
 		header("Location: ".make_link("list",$dir,NULL));
 	}
-	
+
 	show_header($GLOBALS["messages"]["actarchive"]);
 	echo "<BR><FORM name=\"archform\" method=\"post\" action=\"".make_link("arch",$dir,NULL)."\">\n";
-	
+
 	$cnt=count($GLOBALS['__POST']["selitems"]);
 	for($i=0;$i<$cnt;++$i) {
 		echo "<INPUT type=\"hidden\" name=\"selitems[]\" value=\"".stripslashes($GLOBALS['__POST']["selitems"][$i])."\">\n";
 	}
-	
+
 	echo "<TABLE width=\"300\"><TR><TD>".$GLOBALS["messages"]["nameheader"].":</TD><TD align=\"right\">";
 	echo "<INPUT type=\"text\" name=\"name\" size=\"25\"></TD></TR>\n";
 	echo "<TR><TD>".$GLOBALS["messages"]["typeheader"].":</TD><TD align=\"right\"><SELECT name=\"type\">\n";
