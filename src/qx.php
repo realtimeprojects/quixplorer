@@ -30,7 +30,7 @@ function qx_directory($rel = NULL)
 {
     global $dir;
     return $dir . "/" . $rel;
-}  
+}
 
 function qx_grant($link)
 {
@@ -38,9 +38,9 @@ function qx_grant($link)
 
     switch ($link)
     {
-        case "javascript:Move();": return permissions_grant($dir, NULL, "change"); 
+        case "javascript:Move();": return permissions_grant($dir, NULL, "change");
         case "javascript:Copy();": return permissions_grant_all($dir, NULL, array("create", "read"));
-        case "javascript:Delete();": return permissions_grant($dir, NULL, "delete"); 
+        case "javascript:Delete();": return permissions_grant($dir, NULL, "delete");
         case "javascript:Archive();": return true;
         case "javascript:location.reload();": return true;
     }
@@ -60,5 +60,10 @@ function qx_page($pagename)
     require_once "$pagefile";
     require_once qx_var_template_dir() . "/footer.php";
     exit;
+}
+
+function qx_request($var, $default)
+{
+  return isset($_REQUEST[$var]) ? $_REQUEST[$var] : $default;
 }
 ?>

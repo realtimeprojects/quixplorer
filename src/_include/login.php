@@ -24,7 +24,7 @@ function login_check()
         return;
     }
 
-    if ($_REQUEST['loginname']) 
+    if ($_REQUEST['loginname'])
     {
       login_post();
       return;

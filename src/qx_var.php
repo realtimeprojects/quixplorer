@@ -1,18 +1,18 @@
 <?php
 
+require_once("qx_cfg.php");
+
 /**
     @returns true, if a valid user has been authenticated
 */
 function qx_var_authenticated ()
 {
-    //FIXME check real authentication
-    return false;
+    return isset($_SESSION["s_user"]);
 }
 
 function qx_var_template_dir ()
 {
-    //FIXME read out configuration
-    return "_templates/default"; 
+    return qx_cfg("template_dir", "_templates/default");
 }
 
 ?>

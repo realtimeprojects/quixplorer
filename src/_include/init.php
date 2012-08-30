@@ -35,16 +35,6 @@ _debug("action is $action");
 if ($action == "")
     $action = "list";
 
-// Default Dir
-global $dir;
-$dir=$_GET["dir"];
-_debug("dir is $dir");
-
-// Get Item
-global $item;
-$item=$_GET["item"];
-_debug("item is $item");
-
 // Get Sort
 if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
 else $GLOBALS["order"]="name";
