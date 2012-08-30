@@ -49,9 +49,11 @@ function download_selected($dir)
     global $temp_dir;
     $archive_tmp_dir = isset($temp_dir) ? $temp_dir : sys_get_temp_dir();
     require_once("_include/fun_archive.php");
+    _debug("creating temporary archive in temporary directory $archive_tmp_dir");
     $items = qxpage_selected_items();
     $tmpfile = tempnam($archive_tmp_dir, 'download_');
     zip_selected_items($tmpfile, $dir, $items);
+    _debug("Archive file $tmpfile created");
     _download($tmpfile, "quixplorer_download.zip");
 }
 
