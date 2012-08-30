@@ -4,14 +4,13 @@
 */
 function session_get ($name)
 {
-	$user = $GLOBALS['__SESSION']["s_user"];
-	if (!isset($GLOBALS['__SESSION']))
+	if (!isset($__SESSION))
 		return;
 
-	if (!isset($GLOBALS['__SESSION'][$name]))
+	if (!isset($__SESSION[$name]))
 		return;
-	
-	return $GLOBALS['__SESSION'][$name];
+
+	return $__SESSION[$name];
 }
 
 ?>

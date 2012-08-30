@@ -30,7 +30,7 @@ function permissions_get ()
 
   @param $dir	Directory in which  the action should happen. If this parameter is
   		NULL the engine relys on the global permissions of the user.
-  		
+
   @param $file	File on which the action should happen, if this parameter is NULL
   		the permission engine relys on the permission of the directory.
 
@@ -38,7 +38,7 @@ function permissions_get ()
   		One ore more action of the action set (see permissions_get) which sould
   		be exectuted.
 		More actions are seperated by a &.
-		
+
 		Example:
 
 		"read&write&password" grants only if user has all three permissions
