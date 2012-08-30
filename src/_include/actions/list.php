@@ -4,15 +4,17 @@ require_once("./_include/permissions.php");
 
 function do_list_action($dir)
 {
+    _debug("do_list_action($dir)");
+
     $dir_f = path_f($dir);
     if (!down_home($dir_f))
-        show_error(qx_msg_s("errors.opendir") . ": $dir_f");
+        show_error(qx_msg_s("errors.opendir") . ": $dir_f [not under home]");
 
 	$handle = @opendir($dir_f);
     _debug("listing directory '$dir_f");
 
 	if ($handle === false)
-        show_error(qx_msg_s("errors.opendir") . ": $dir_f");
+        show_error(qx_msg_s("errors.opendir") . ": $dir_f [error opening directory]");
 
     global $qx_files;
     global $qx_totals;
