@@ -39,8 +39,8 @@ function do_list_action($dir)
         $fattributes["size"] = filesize($cfile_f);
 	    $fattributes["modified"] = @filemtime($cfile_f);
 	    $fattributes["modified_s"] = parse_file_date(@filemtime($cfile_f));
-        $fattributes["permissions_s"] = parse_file_perms(get_file_perms($dir,$item)); 
-        $fattributes["permissions_l"] = $fattributes["permissions_s"]; 
+        $fattributes["permissions_s"] = parse_file_perms(get_file_perms($dir, $cfile));
+        $fattributes["permissions_l"] = $fattributes["permissions_s"];
         $fattributes["download_l"] = qx_link("download", "&file=" . path_r($cfile_f));
 		if (!permissions_grant($dir, NULL, "change"))
             $fattributes["permissions_l"] = html_link(
