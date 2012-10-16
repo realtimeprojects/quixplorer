@@ -43,6 +43,7 @@ Comment:
 //
 
 require_once("qxpage.php");
+require_once("_lib/zipstream.php");
 
 /**
  * _zip
@@ -80,6 +81,22 @@ function zip_items($dir, $name)
     }
     zip_selected_items(get_abs_item($dir, $name), $dir, $items);
 	header("Location: " . make_link("list",$dir,NULL));
+}
+
+function zip_download($directory, $items)
+{
+    $zipfile = new ZipStream("downloadsxz.zip");
+    foreach ($items as $item)
+    {
+        $filename = $directory.DIRECTORY_SEPARATOR.$item;
+        if (!@file_exists($filename))
+        {
+            show_error($filename." does not exist");
+        }
+        _debug("adding item $filename");
+        $zipfile->add_file_from_path($item, $directory);
+	}
+    $zipfile->finish();
 }
 
 function tar_items($dir,$name) {

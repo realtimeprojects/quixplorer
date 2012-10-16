@@ -46,15 +46,10 @@ require_once("qxpage.php");
  **/
 function download_selected($dir)
 {
-    global $temp_dir;
-    $archive_tmp_dir = isset($temp_dir) ? $temp_dir : sys_get_temp_dir();
+    global $site_name;
     require_once("_include/fun_archive.php");
-    _debug("creating temporary archive in temporary directory $archive_tmp_dir");
-    $items = qxpage_selected_items();
-    $tmpfile = tempnam($archive_tmp_dir, 'download_');
-    zip_selected_items($tmpfile, $dir, $items);
-    _debug("Archive file $tmpfile created");
-    _download($tmpfile, "quixplorer_download.zip");
+//    _download_header("downloads.zip");
+    zip_download( $dir, qxpage_selected_items() );
 }
 
 // download file
@@ -73,24 +68,30 @@ function download_item($dir, $item)
     _download($abs_item, $item);
 }
 
-function _download($file, $localname)
+function _download_header($filename, $filesize = 0)
 {
 	$browser=id_browser();
 	header('Content-Type: '.(($browser=='IE' || $browser=='OPERA')?
 		'application/octetstream':'application/octet-stream'));
 	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
 	header('Content-Transfer-Encoding: binary');
-	header('Content-Length: '.filesize($file));
+    if ($filesize != 0)
+    {
+        header('Content-Length: '.$filesize);
+    }
+    header('Content-Disposition: attachment; filename="'.$filename.'"');
 	if($browser=='IE') {
-		header('Content-Disposition: attachment; filename="'.$localname.'"');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Pragma: public');
 	} else {
-		header('Content-Disposition: attachment; filename="'.$localname.'"');
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Pragma: no-cache');
 	}
+}
 
+function _download($file, $localname)
+{
+    _download_header($localname, @filesize($file));
 	@readfile($file);
 	exit;
 }

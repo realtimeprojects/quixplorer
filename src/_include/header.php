@@ -63,7 +63,7 @@ function show_header($title)
 	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/swfobject.js\"></script>\n";
 	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/jquery.uploadify.v2.1.4.min.js\"></script>\n";
 	
-	echo "<script type=\"text/javascript\" src=\"_lib/daxesapps/addtag.js\"></script>\n";
+//	echo "<script type=\"text/javascript\" src=\"_lib/daxesapps/addtag.js\"></script>\n";
 	echo "<script type=\"text/javascript\" src=\"_lib/edit_area/edit_area_full.js\"></script>\n";
 	
 	/*
