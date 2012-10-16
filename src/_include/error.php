@@ -9,7 +9,7 @@ function show_error($error,$extra=NULL)
     $errmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["error"] : "ERROR";
     $backmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["back"] : "BACK";
 
-    require_once qx_var_template_dir() . "/header.php";
+//    require_once qx_var_template_dir() . "/header.php";
     ?>
 	<center>
         <h2><?php echo $errmsg ?></h2>

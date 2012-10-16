@@ -24,7 +24,7 @@ function login_check()
         return;
     }
 
-    if ($_REQUEST['loginname'])
+    if (isset($_REQUEST['loginname']))
     {
       login_post();
       return;
@@ -33,13 +33,14 @@ function login_check()
     // login the user
     _debug("displaying login page");
     login_form();
+    exit();
 }
 
 //FIXME update home_dir variable if user is logged in
 function login_form ()
 {
-    // Ask for Login
-    qx_page("login");
+	global $smarty;
+	$smarty->display('login.tpl');
 }
 
 function login_post ()

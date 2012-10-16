@@ -9,6 +9,7 @@ require_once "html.php";
 require_once "_include/debug.php";
 require_once "_include/error.php";
 require_once "_include/login.php";
+require_once "_lib/smarty/Smarty.class.php";
 
 session_start();
 
@@ -26,15 +27,6 @@ if(isset($_SERVER)) {
 	die("<B>ERROR: Your PHP version is too old</B><BR>".
 	"You need at least PHP 4.0.0 to run QuiXplorer; preferably PHP 4.3.1 or higher.");
 }
-//------------------------------------------------------------------------------
-// Get Action
-global $action;
-$action=$_GET["action"];
-_debug("action is $action");
-
-if ($action == "")
-    $action = "list";
-
 // Get Sort
 if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
 else $GLOBALS["order"]="name";
@@ -58,6 +50,38 @@ require "./_lang/".$GLOBALS["language"]."_mimes.php";
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
 
+_init_smarty();
+
 login_check();
 
+function _init_smarty()
+{
+	global $smarty;
+
+	// Set up smarty
+	$smarty = new Smarty;
+
+    _debug("setting template dir to " . qx_cfg('template_dir'));
+
+	// Smarty directories
+	$smarty->template_dir = qx_cfg('template_dir') . DIRECTORY_SEPARATOR . qx_cfg('theme');
+	$smarty->compile_dir = qx_cfg('compile_dir');
+	$smarty->cache_dir = qx_cfg('cache_dir');
+	$smarty->config_dir = qx_cfg('config_dir');
+
+	// Assign the version number to smarty
+	$smarty->assign('version', qx_cfg('version'));
+
+	// Assign the homepage to smarty
+	$smarty->assign('homepage', qx_cfg('homepage'));
+	$smarty->assign('sitename', qx_cfg('sitename'));
+	global $lang;
+	$smarty->assign('lang', $lang);
+	$smarty->assign('messages', $GLOBALS['messages']);
+	$smarty->assign('themedir', $smarty->template_dir);
+	$smarty->assign('error_msg', $GLOBALS['error_msg']);
+	$smarty->assign('languages', $GLOBALS['langs']);
+	$smarty->assign('logon_user', qx_user());
+
+}
 ?>

@@ -4,6 +4,8 @@ umask(002); // Added to make created files/dirs group writable
 require "_include/init.php";	// Init
 
 global $action;
+$action=qx_request("action", "list");
+_debug("action is : $action");
 
 if (isset($_SESSION["home_dir"]))
     $home_dir = $_SESSION["home_dir"];

@@ -20,9 +20,9 @@ function qx_user() { echo qx_user_s(); }
 
 function qx_user_s()
 {
-    //FIXME return real user
-    $user = $_SESSION["s_user"];
-    return (isset($user) ? $user : "anonymous");
+    if (!isset($_SESSION["s_user"]))
+        return "anonymous";
+    return $_SESSION["s_user"];
 }
 
 // @returns the relative path $rel to the current directory displayed.

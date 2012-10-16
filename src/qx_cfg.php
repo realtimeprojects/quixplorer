@@ -4,7 +4,7 @@
  * @return void
  * @author John Doe
  **/
-function qx_cfg($name, $defualt_value)
+function qx_cfg($name, $default_value = NULL)
 {
     global $qx_configuration;
 
@@ -18,6 +18,6 @@ function qx_cfg($name, $defualt_value)
         return $qx_configuration[$name];
     }
 
-    return $defualt_value;
+    return $default_value;
 }
 ?>
