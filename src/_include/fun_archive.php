@@ -51,11 +51,6 @@ require_once("_lib/zipstream.php");
  **/
 function zip_selected_items($zipfilename, $directory, $items)
 {
-    if (! is_writable($zipfilename))
-    {
-        show_error("$zipfilename is not writable");
-    }
-
     $zipfile=new ZipArchive();
     $zipfile->open($zipfilename, ZIPARCHIVE::CREATE);
     foreach ($items as $item)
