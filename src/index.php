@@ -32,7 +32,7 @@ Authors: quix@free.fr, ck@realtime-projects.com
 Comment:
 	QuiXplorer Version 2.4.2
 	Main File
-	
+
 	Have Fun...
 ------------------------------------------------------------------------------*/
 
@@ -45,7 +45,7 @@ global $action;
 
 _debug( "index.php: checking action $action" );
 
-$current_dir = qx_request("dir", "");
+$current_dir = qx_request("dir", "./");
 
 switch($GLOBALS["action"])
 {		// Execute action

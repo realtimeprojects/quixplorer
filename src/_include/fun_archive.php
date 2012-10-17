@@ -89,7 +89,7 @@ function zip_download($directory, $items)
             show_error($filename." does not exist");
         }
         _debug("adding item $filename");
-        $zipfile->add_file_from_path($item, $directory);
+        $zipfile->add_file($filename, file_get_contents($filename));
 	}
     $zipfile->finish();
 }
