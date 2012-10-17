@@ -48,8 +48,15 @@ function download_selected($dir)
 {
     global $site_name;
     require_once("_include/fun_archive.php");
-//    _download_header("downloads.zip");
-    zip_download( $dir, qxpage_selected_items() );
+    $items = qxpage_selected_items();
+    if (count(items) == 1)
+    {
+        download_item($dir, $items[0]);
+    }
+    else
+    {
+        zip_download( $dir, $items );
+    }
 }
 
 // download file
@@ -61,8 +68,8 @@ function download_item($dir, $item)
 	if (!permissions_grant($dir, $item, "read"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
 
-	if(!get_is_file($dir,$item)) show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
-	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
+	if (!get_is_file($dir,$item))    show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
+	if (!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
 
 	$abs_item = get_abs_item($dir,$item);
     _download($abs_item, $item);
