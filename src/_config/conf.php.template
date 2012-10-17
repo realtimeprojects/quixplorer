@@ -30,10 +30,6 @@
 	// the filename of the QuiXplorer script: (you rarely need to change this)
 	$GLOBALS["script_name"] = "http://".$GLOBALS['__SERVER']['HTTP_HOST'].$GLOBALS['__SERVER']["PHP_SELF"];
 
-	// uncomment this line to set the temporary directory for files temporarely created by quixplorer, like
-    // archives prepared for download
-    $GLOBALS["temp_dir"] = "/tmp";
-
 	// allow Zip, Tar, TGz -> Only (experimental) Zip-support
 	$GLOBALS["zip"] = false;	//function_exists("gzcompress");
 	$GLOBALS["tar"] = false;
