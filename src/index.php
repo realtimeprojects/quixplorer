@@ -45,7 +45,7 @@ global $action;
 
 _debug( "index.php: checking action $action" );
 
-$current_dir = qx_request("dir", "./");
+$current_dir = qx_request("dir", "");
 
 switch($GLOBALS["action"])
 {		// Execute action
