@@ -46,6 +46,7 @@ require_once("qxpage.php");
  **/
 function download_selected($dir)
 {
+    $dir = get_abs_dir($dir);
     global $site_name;
     require_once("_include/fun_archive.php");
     $items = qxpage_selected_items();
