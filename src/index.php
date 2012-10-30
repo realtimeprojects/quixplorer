@@ -47,7 +47,7 @@ _debug( "index.php: checking action $action" );
 
 $current_dir = qx_request("dir", "");
 
-switch($GLOBALS["action"])
+switch($action)
 {		// Execute action
 
 // EDIT FILE
@@ -129,6 +129,12 @@ case "admin":
 	require "./_include/fun_admin.php";
 	show_admin($current_dir);
 break;
+case "login":
+    _debug("doing login");
+    login();
+    require "./_include/fun_list.php";
+    list_dir($current_dir);
+    break;
 case "logout":
     _debug("doing logout");
     logout();
