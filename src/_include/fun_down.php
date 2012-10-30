@@ -50,9 +50,9 @@ function download_selected($dir)
     global $site_name;
     require_once("_include/fun_archive.php");
     $items = qxpage_selected_items();
-    if (count($items) == 1)
+    if (count($items) == 1 && is_file($items[0]))
     {
-        download_item($dir, $items[0]);
+        download_item( $dir, $items[0] );
     }
     else
     {
