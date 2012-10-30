@@ -81,18 +81,43 @@ function zip_items($dir, $name)
 
 function zip_download($directory, $items)
 {
-    $zipfile = new ZipStream("downloadsxz.zip");
+    $zipfile = new ZipStream("downloads.zip");
     foreach ($items as $item)
     {
-        $filename = $directory.DIRECTORY_SEPARATOR.$item;
-        if (!@file_exists($filename))
-        {
-            show_error($filename." does not exist");
-        }
-        _debug("adding item $filename");
-        $zipfile->add_file($filename, file_get_contents($filename));
-	}
+        _zipstream_add_file($zipfile, $directory, $item);
+    }
     $zipfile->finish();
+}
+
+function _zipstream_add_file($zipfile, $directory, $file_to_add)
+{
+    $filename = $directory.DIRECTORY_SEPARATOR.$file_to_add;
+
+    if (!@file_exists($filename))
+    {
+        show_error($filename." does not exist");
+    }
+
+    if (is_file($filename))
+    {
+        _debug("adding file $filename");
+        return $zipfile->add_file($file_to_add, file_get_contents($filename));
+    }
+
+    if (is_dir($filename))
+    {
+        _debug("adding directory $filename");
+        $files = glob($filename.DIRECTORY_SEPARATOR."*");
+        foreach ($files as $file)
+        {
+            $file = str_replace($directory.DIRECTORY_SEPARATOR, "", $file);
+            _zipstream_add_file($zipfile, $directory, $file);
+        }
+        return True;
+    }
+
+    _error("don't know how to handle $file_to_add");
+    return False;
 }
 
 function tar_items($dir,$name) {
