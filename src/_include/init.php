@@ -2,6 +2,7 @@
 
 require "./_include/error.php";
 
+_debug("Initializing ---------------------------------------------------");
 if(isset($_SERVER)) {
 	$GLOBALS['__GET']	=&$_GET;
 	$GLOBALS['__POST']	=&$_POST;
