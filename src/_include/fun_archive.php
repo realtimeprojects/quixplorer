@@ -58,13 +58,14 @@ function zip_selected_items($zipfilename, $directory, $items)
         $srcfile = $directory . DIRECTORY_SEPARATOR . $item;
         if (!$zipfile->addFile($srcfile, $item))
         {
-			show_error($srcfile . ": Failed adding item.");
-		}
-	}
+            show_error($srcfile . ": Failed adding item.");
+        }
+    }
+
     if (!$zipfile->close())
     {
-		show_error($zipfilename . ": Failed saving zipfile.");
-	}
+      show_error($zipfilename . ": Failed saving zipfile.");
+    }
 }
 
 function zip_items($dir, $name)

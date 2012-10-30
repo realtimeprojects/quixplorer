@@ -31,9 +31,9 @@ function path_f ($path)
 {
     global $home_dir;
     $abs_dir = $home_dir;
-	if ($path != "")
-       $abs_dir .= "/$path";
-	$abs_dir = realpath($abs_dir);
+    if ($path != "")
+         $abs_dir .= "/$path";
+    $abs_dir = realpath($abs_dir);
     return $abs_dir;
 }
 
