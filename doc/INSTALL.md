@@ -10,12 +10,12 @@ This document guides you to the installation of quixplorer on your webserver.
    (you may want to protect this folder using .htaccess)
 3. Copy the file _\_config/\_htusers.php.template_ to _config/.htusers.php_,
 4. Copy the file _\_config/conf.php.template to _\_config/conf.php_,
-5. Set _home_dir_ in _conf.php_ to your desired home folder (e.g. /home/you/htdocs). Don't use "/" as home_dir since it will not work properly at is very unsafe.
-6. and set _home_url_ to the corresponding URL. (e.g. http://yoursite)
+5. Set _home_dir_ in _conf.php_ to your desired home folder (e.g. /home/you/htdocs).
+   Don't use "/" as home_dir since it will not work properly at is very unsafe.
+6. Set _home_url_ to the corresponding URL. (e.g. http://yoursite)
 7. If you want, enable uploadify as upload interface by adding this line to your conf.php:
 	$GLOBALS["use_uploadify"] = true;
-8. ** Change the admin passwort immediatly **
-9. Have Fun...
+8. ** Change the admin password immediatly ** 9. Have Fun...
 
 ### Troubleshooting
 
@@ -39,9 +39,7 @@ This document guides you to the installation of quixplorer on your webserver.
 
 * user-authentication is activated by default, set "require_login" to false to
   disable user-authentication in "_config/conf.php";
-  you should also set the path for the admin user in "\_config/.htusers.php".
-* You can easily manage users using the "admin" section of QuiXplorer.
-* Standard, there is only one user, "admin", with password "pwd_admin";
+  you should also set the path for the admin user in "\_config/.htusers.php".  * You can easily manage users using the "admin" section of QuiXplorer.  * Standard, there is only one user, "admin", with password "pwd_admin";
   you should change this password immediately.
 
 ### Languages:
