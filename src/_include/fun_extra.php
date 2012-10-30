@@ -188,20 +188,21 @@ function get_show_item ($directory, $file)
     if ( substr( $file, 0, 1) == "." && $GLOBALS["show_hidden"] == false )
         return false;
 
-	if ( $GLOBALS["no_access"] != "" && preg_match( $GLOBALS["no_access"], $file ) )
+    global $no_access;
+    if ( defined($no_access) && $no_access != "" && preg_match( "%$no_access%", $file ) )
         return false;
 
-	if ( $GLOBALS["show_hidden"] == false )
+    if ( $GLOBALS["show_hidden"] == false )
     {
-		$directory_parts = explode( "/", $directory );
-		foreach ($directory_parts as $directory_part )
-        {
-            if ( substr ( $directory_part, 0, 1) == "." )
-               return false;
-        }
-	}
+      $directory_parts = explode( "/", $directory );
+      foreach ($directory_parts as $directory_part )
+      {
+        if ( substr ( $directory_part, 0, 1) == "." )
+          return false;
+      }
+    }
 
-	return true;
+    return true;
 }
 
 //------------------------------------------------------------------------------
