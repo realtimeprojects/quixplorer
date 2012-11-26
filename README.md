@@ -13,3 +13,5 @@ Version 2.5.4 released
 
 This version contains several bugfixes introduced by previous versions,
 thanks to all the people assisted in debugging.
+
+Checkout the version from: https://github.com/realtimeprojects/quixplorer/tree/v2.5.4
