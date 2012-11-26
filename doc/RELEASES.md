@@ -1,6 +1,15 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.4 2012-11-26
+
+This release fixes several issues about
+displaying and downloading files introduced
+in previous versions.
+
+This version also supports downloading
+multiple files as a zip file correctly.
+
 ### Version 2.5.3 2012-08-10
 
 This release fixes the home directory handling which
