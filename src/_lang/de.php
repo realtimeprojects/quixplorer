@@ -2,18 +2,18 @@
 
 // German Language Module
 
-$GLOBALS["charset"] = "iso-8859-1";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d.m.Y H:i";
 $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "FEHLER",
-	"back"			=> "Zur?ck",
+    "back"			=> "Zurück",
 	
 	// root
 	"home"			=> "Das Home-Verzeichnis existiert nicht, kontrollieren sie ihre Einstellungen.",
-	"abovehome"		=> "Das aktuelle Verzeichnis darf nicht h?her liegen als das Home-Verzeichnis.",
-	"targetabovehome"	=> "Das Zielverzeichnis darf nicht h?her liegen als das Home-Verzeichnis.",
+	"abovehome"		=> "Das aktuelle Verzeichnis darf nicht höher liegen als das Home-Verzeichnis.",
+	"targetabovehome"	=> "Das Zielverzeichnis darf nicht höher liegen als das Home-Verzeichnis.",
 	
 	// exist
 	"direxist"		=> "Dieses Verzeichnis existiert nicht.",
@@ -24,7 +24,7 @@ $GLOBALS["error_msg"] = array(
 	"targetdoesexist"	=> "Das Zielobjekt existiert bereits.",
 	
 	// open
-	"opendir"		=> "Kann Verzeichnis nicht ?ffnen.",
+	"opendir"		=> "Kann Verzeichnis nicht öffnen.",
 	"readdir"		=> "Kann Verzeichnis nicht lesen",
 	
 	// access
@@ -36,49 +36,49 @@ $GLOBALS["error_msg"] = array(
 	
 	// actions
 	"permread"		=> "Rechte lesen fehlgeschlagen.",
-	"permchange"		=> "Rechte ?ndern fehlgeschlagen.",
-	"openfile"		=> "Datei ?ffnen fehlgeschlagen.",
+	"permchange"		=> "Rechte ändern fehlgeschlagen.",
+	"openfile"		=> "Datei öffnen fehlgeschlagen.",
 	"savefile"		=> "Datei speichern fehlgeschlagen.",
 	"createfile"		=> "Datei anlegen fehlgeschlagen.",
 	"createdir"		=> "Verzeichnis anlegen fehlgeschlagen.",
 	"uploadfile"		=> "Datei hochladen fehlgeschlagen.",
 	"copyitem"		=> "Kopieren fehlgeschlagen.",
 	"moveitem"		=> "Versetzen fehlgeschlagen.",
-	"delitem"		=> "L?schen fehlgeschlagen.",
-	"chpass"		=> "Passwort ?ndern fehlgeschlagen.",
-	"deluser"		=> "Benutzer l?schen fehlgeschlagen.",
-	"adduser"		=> "Benutzer hinzuf?gen fehlgeschlagen.",
+	"delitem"		=> "Löschen fehlgeschlagen.",
+	"chpass"		=> "Passwort ändern fehlgeschlagen.",
+	"deluser"		=> "Benutzer löschen fehlgeschlagen.",
+	"adduser"		=> "Benutzer hinzufögen fehlgeschlagen.",
 	"saveuser"		=> "Benutzer speichern fehlgeschlagen.",
-	"searchnothing"		=> "Sie m?ssen etwas zum suchen eintragen.",
+	"searchnothing"		=> "Sie müssen etwas zum suchen eintragen.",
 	
 	// misc
 	"miscnofunc"		=> "Funktion nicht vorhanden.",
-	"miscfilesize"		=> "Datei ist gr??er als die maximale Gr??e.",
+	"miscfilesize"		=> "Datei ist größer als die maximale Größe.",
 	"miscfilepart"		=> "Datei wurde nur zum Teil hochgeladen.",
-	"miscnoname"		=> "Sie m?ssen einen Namen eintragen",
-	"miscselitems"		=> "Sie haben keine Objekt(e) ausgew?hlt.",
-	"miscdelitems"		=> "Sollen die \"+num+\" markierten Objekt(e) gel?scht werden?",
-	"miscdeluser"		=> "Soll der Benutzer '\"+user+\"' gel?scht werden?",
+	"miscnoname"		=> "Sie müssen einen Namen eintragen",
+	"miscselitems"		=> "Sie haben keine Objekt(e) ausgewählt.",
+	"miscdelitems"		=> "Sollen die \"+num+\" markierten Objekt(e) gelöscht werden?",
+	"miscdeluser"		=> "Soll der Benutzer '\"+user+\"' gelöscht werden?",
 	"miscnopassdiff"	=> "Das neue und das heutige Passwort sind nicht verschieden.",
-	"miscnopassmatch"	=> "Passw?rter sind nicht gleich.",
-	"miscfieldmissed"	=> "Sie haben ein wichtiges Eingabefeld vergessen auszuf?llen",
+	"miscnopassmatch"	=> "Passwörter sind nicht gleich.",
+	"miscfieldmissed"	=> "Sie haben ein wichtiges Eingabefeld vergessen auszufüllen",
 	"miscnouserpass"	=> "Benutzer oder Passwort unbekannt.",
-	"miscselfremove"	=> "Sie k?nnen sich selbst nicht l?schen.",
+	"miscselfremove"	=> "Sie können sich selbst nicht löschen.",
 	"miscuserexist"		=> "Der Benutzer existiert bereits.",
 	"miscnofinduser"	=> "Kann Benutzer nicht finden.",
 );
 $GLOBALS["messages"] = array(
 	// links
-	"permlink"		=> "RECHTE ?NDERN",
+	"permlink"		=> "RECHTE ÄNDERN",
 	"editlink"		=> "BEARBEITEN",
 	"downlink"		=> "HERUNTERLADEN",
 	"download_selected"		=> "MARKIERTE DATEIEN HERUNTERLADEN",
-	"uplink"		=> "H?HER",
+	"uplink"		=> "HÖHER",
 	"homelink"		=> "HOME",
 	"reloadlink"		=> "ERNEUERN",
 	"copylink"		=> "KOPIEREN",
 	"movelink"		=> "VERSETZEN",
-	"dellink"		=> "L?SCHEN",
+	"dellink"		=> "LÖSCHEN",
 	"comprlink"		=> "ARCHIVIEREN",
 	"adminlink"		=> "ADMINISTRATION",
 	"logoutlink"		=> "ABMELDEN",
@@ -88,9 +88,9 @@ $GLOBALS["messages"] = array(
 	
 	// list
 	"nameheader"		=> "Name",
-	"sizeheader"		=> "Gr??e",
+	"sizeheader"		=> "Größe",
 	"typeheader"		=> "Typ",
-	"modifheader"		=> "Ge?ndert",
+	"modifheader"		=> "Geändert",
 	"permheader"		=> "Rechte",
 	"actionheader"		=> "Aktionen",
 	"pathheader"		=> "Pfad",
@@ -98,9 +98,9 @@ $GLOBALS["messages"] = array(
 	// buttons
 	"btncancel"		=> "Abbrechen",
 	"btnsave"		=> "Speichern",
-	"btnchange"		=> "?ndern",
-	"btnreset"		=> "Zur?cksetzen",
-	"btnclose"		=> "Schlie?en",
+	"btnchange"		=> "Ändern",
+	"btnreset"		=> "Zurücksetzen",
+	"btnclose"		=> "Schließen",
 	"btncreate"		=> "Anlegen",
 	"btnsearch"		=> "Suchen",
 	"btnupload"		=> "Hochladen",
@@ -108,14 +108,14 @@ $GLOBALS["messages"] = array(
 	"btnmove"		=> "Verschieben",
 	"btnlogin"		=> "Anmelden",
 	"btnlogout"		=> "Abmelden",
-	"btnadd"		=> "Hinzuf?gen",
-	"btnedit"		=> "?ndern",
-	"btnremove"		=> "L?schen",
-"btnunzip"		=> "Unzip",
+	"btnadd"		=> "Hinzufügen",
+	"btnedit"		=> "Ändern",
+	"btnremove"		=> "Löschen",
+    "btnunzip"		=> "Unzip",
 	
 	// actions
 	"actdir"		=> "Verzeichnis",
-	"actperms"		=> "Rechte ?ndern",
+	"actperms"		=> "Rechte ändern",
 	"actedit"		=> "Datei bearbeiten",
 	"actsearchresults"	=> "Suchergebnisse",
 	"actcopyitems"		=> "Objekt(e) kopieren",
@@ -125,7 +125,7 @@ $GLOBALS["messages"] = array(
 	"actlogin"		=> "Anmelden",
 	"actloginheader"	=> "Melden sie sich an um QuiXplorer zu benutzen",
 	"actadmin"		=> "Administration",
-	"actchpwd"		=> "Passwort ?ndern",
+	"actchpwd"		=> "Passwort ändern",
 	"actusers"		=> "Benutzer",
 	"actarchive"		=> "Objekt(e) archivieren",
 "actunzipitem"		=> "Unzipping",
@@ -138,25 +138,25 @@ $GLOBALS["messages"] = array(
 	"miscpassword"		=> "Passwort",
 	"miscoldpass"		=> "Altes Passwort",
 	"miscnewpass"		=> "Neues Passwort",
-	"miscconfpass"		=> "Best?tige Passwort",
-	"miscconfnewpass"	=> "Best?tige neues Passwort",
-	"miscchpass"		=> "?ndere Passwort",
+	"miscconfpass"		=> "Bestätige Passwort",
+	"miscconfnewpass"	=> "Bestätige neues Passwort",
+	"miscchpass"		=> "Ändere Passwort",
 	"mischomedir"		=> "Home-Verzeichnis",
 	"mischomeurl"		=> "Home URL",
 	"miscshowhidden"	=> "Versteckte Objekte anzeigen",
 	"mischidepattern"	=> "Versteck-Filter",
 	"miscperms"		=> "Rechte",
 	"miscuseritems"		=> "(Name, Home-Verzeichnis, versteckte Objekte anzeigen, Rechte, aktiviert)",
-	"miscadduser"		=> "Benutzer hinzuf?gen",
-	"miscedituser"		=> "Benutzer '%s' ?ndern",
+	"miscadduser"		=> "Benutzer hinzufügen",
+	"miscedituser"		=> "Benutzer '%s' ändern",
 	"miscactive"		=> "Aktiviert",
 	"misclang"		=> "Sprache",
 	"miscnoresult"		=> "Suche ergebnislos.",
 	"miscsubdirs"		=> "Suche in Unterverzeichnisse",
 	"miscpermnames"		=> array("Nur ansehen",
-						"?ndern",
-						"Passwort ?ndern",
-						"?ndern & Passwort ?ndern",
+						"Ändern",
+						"Passwort ändern",
+						"?ndern & Passwort ändern",
 						"Administrator",
 						"Nur Download"),
 	"miscyesno"		=> array("Ja","Nein","J","N"),
