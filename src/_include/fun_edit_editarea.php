@@ -34,7 +34,7 @@ Author: The QuiX project
 Comment:
 	QuiXplorer Version 2.3
 	File-Edit Functions
-	
+
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
@@ -57,9 +57,9 @@ function edit_file($dir, $item)
 
 	if(!get_is_file($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
 	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
-	
+
 	$fname = get_abs_item($dir, $item);
-	
+
 	if(isset($GLOBALS['__POST']["dosave"]) && $GLOBALS['__POST']["dosave"]=="yes") {
 		// Save / Save As
 		$item=basename(stripslashes($GLOBALS['__POST']["fname"]));
@@ -69,15 +69,15 @@ function edit_file($dir, $item)
 		savefile($fname2);
 		$fname=$fname2;
 	}
-	
+
 	// open file
 	$fp = @fopen($fname, "r");
 	if($fp===false) show_error($item.": ".$GLOBALS["error_msg"]["openfile"]);
-	
+
 	// header
 	$s_item=get_rel_item($dir,$item);	if(strlen($s_item)>50) $s_item="...".substr($s_item,-47);
 	show_header($GLOBALS["messages"]["actedit"].": /".$s_item);
-	
+
 	// Wordwrap (works only in IE)
 ?><script language="JavaScript1.2" type="text/javascript">
 <!--
@@ -94,7 +94,7 @@ function edit_file($dir, $item)
 <script language="Javascript" type="text/javascript">
 		// initialisation
 		editAreaLoader.init({
-			id: "txtedit"	// id of the textarea to transform		
+			id: "txtedit"	// id of the textarea to transform
 			,start_highlight: true	// if start with highlight
 			,allow_resize: "both"
 			//,min_width = 400
@@ -103,7 +103,7 @@ function edit_file($dir, $item)
 			,allow_toggle: true
 			,word_wrap: true
 			,language: "<?php echo $GLOBALS["language"];?>"
-			,syntax: "<?php echo get_mime_type($dir, $item, "ext");?>"	
+			,syntax: "<?php echo get_mime_type($dir, $item, "ext");?>"
 		});
 </script>
 
@@ -113,7 +113,7 @@ function edit_file($dir, $item)
 	echo "<BR><FORM name=\"editfrm\" method=\"post\" action=\"".make_link("edit",$dir,$item)."\">\n";
 	echo "<input type=\"hidden\" name=\"dosave\" value=\"yes\">\n";
 	echo "<TEXTAREA NAME=\"code\" ID=\"txtedit\" rows=\"25\" cols=\"120\" wrap=\"off\">";
-		
+
 	// Show File In TextArea
 	$buffer="";
 	while(!feof ($fp)) {
@@ -122,7 +122,7 @@ function edit_file($dir, $item)
 	@fclose($fp);
 	echo htmlspecialchars($buffer);
 	//echo $buffer;
-	
+
 	echo "</TEXTAREA><BR>\n<TABLE><TR><TD>Wordwrap: (IE only)</TD><TD><INPUT type=\"checkbox\" name=\"wrap\" ";
 	echo "onClick=\"javascript:chwrap();\" value=\"1\"></TD></TR></TABLE><BR>\n";
 	echo "<TABLE><TR><TD><INPUT type=\"text\" name=\"fname\" value=\"".$item."\"></TD>";
