@@ -36,7 +36,8 @@
 	$GLOBALS["tgz"] = false;
 
 	// set this to "true" if you want to use uploadify as upload interface
-	// this needs flash support
+	// this needs flash support but allows uploading multiple files in a 
+    // comfortable way.
 	$GLOBALS["use_uploadify"] = false;
 
 //------------------------------------------------------------------------------

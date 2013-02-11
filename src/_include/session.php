@@ -5,7 +5,7 @@
 function session_get ($name)
 {
 	$user = $_SESSION["s_user"];
-	if ( !isset ( $_SESSION ) )
+	if ( ! isset ( $_SESSION ) )
 		return;
 
 	if ( ! isset( $_SESSION[$name] ) )

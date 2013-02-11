@@ -1,6 +1,18 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.5 ?????
+
+- Updated to uploadify version 3.2. Now uploadify
+  works under Linux as well.
+- Found limitation that uploads with uploadify
+  do only work as long as the logged in user
+  has the same home directory as configured in
+  the \_config/conf.php.
+- Introduced a new uploader.php that allows you
+  to control where and when the files are
+  stored when uploaded with uploadify.
+
 ### Version 2.5.4 2012-11-26
 
 This release fixes several issues about
