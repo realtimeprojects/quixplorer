@@ -34,7 +34,7 @@ Author: The QuiX project
 Comment:
 	QuiXplorer Version 2.3
 	File-Upload Functions
-	
+
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
@@ -42,18 +42,23 @@ require_once("./_include/permissions.php");
 // upload file
 function upload_items($dir)
 {
-    _debug( "upload_items($dir)" );
+    _debug( "xupload_items($dir)" );
 	if (!permissions_grant($dir, NULL, "create"))
+    {
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
-	
+    }
+
 	// Execute
-	if(isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"]=="true") {	
-		$cnt=count($GLOBALS['__FILES']['userfile']['name']);
+	if (isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"] == "true")
+    {
+		$cnt = count($GLOBALS['__FILES']['userfile']['name']);
 		$err=false;
 		$err_avaliable=isset($GLOBALS['__FILES']['userfile']['error']);
-	
+
+        _debug("uploading $cnt file(s)");
+
 		// upload files & check for errors
-		for( $i=0; $i < $cnt; $i++ )
+		for( $i = 0; $i < $cnt; $i++ )
         {
             _debug("uploading file '$items[$i]'");
 			$errors[$i]=NULL;
@@ -62,7 +67,7 @@ function upload_items($dir)
 			if($err_avaliable) $up_err = $GLOBALS['__FILES']['userfile']['error'][$i];
 			else $up_err=(file_exists($tmp)?0:4);
 			$abs = get_abs_item( $dir, $items[$i]);
-		
+
 			if($items[$i]=="" || $up_err==4) continue;
 			if($up_err==1 || $up_err==2) {
 				$errors[$i]=$GLOBALS["error_msg"]["miscfilesize"];
@@ -80,7 +85,7 @@ function upload_items($dir)
 				$errors[$i]=$GLOBALS["error_msg"]["itemdoesexist"];
 				$err=true;	continue;
 			}
-			
+
 			// Upload
 			if(function_exists("move_uploaded_file")) {
 				$ok = @move_uploaded_file($tmp, $abs);
@@ -88,13 +93,13 @@ function upload_items($dir)
 				$ok = @copy($tmp, $abs);
 				@nlink($tmp);	// try to delete...
 			}
-			
+
 			if($ok===false) {
 				$errors[$i]=$GLOBALS["error_msg"]["uploadfile"];
 				$err=true;	continue;
 			}
 		}
-		
+
 		if($err) {			// there were errors
 			$err_msg="";
 			for($i=0;$i<$cnt;$i++) {
@@ -103,16 +108,17 @@ function upload_items($dir)
 			}
 			show_error($err_msg);
 		}
-		
+
 		header("Location: ".make_link("list",$dir,NULL));
 		return;
 	}
-	
+    _debug( "upload_items: showing header" );
+
 	show_header($GLOBALS["messages"]["actupload"]);
-	
+
 ?>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 $(document).ready(function() {
   $('#file_upload').uploadify({
     'uploader'  : '_lib/uploadify/uploadify.swf',
@@ -125,8 +131,8 @@ $(document).ready(function() {
 'auto' : false
   });
 });
-</script> 
-<?php	
+</script>
+<?php
 	// List
 	echo "<BR><FORM enctype=\"multipart/form-data\" action=\"".make_link("upload",$dir,NULL);
 	echo "\" method=\"post\">\n<INPUT type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"";
@@ -138,13 +144,13 @@ $(document).ready(function() {
 	echo "<input id=\"file_upload\" name=\"file_upload\" type=\"file\" />\n";
 
 	echo "</TABLE>\n<BR><TABLE><TR><TD><INPUT type=\"button\" onClick=\"javascript:$('#file_upload').uploadifyUpload()\" value=\"".$GLOBALS["messages"]["btnupload"];
-	
+
 	echo "\"></TD>\n<TD><INPUT type=\"button\" onClick=\"javascript:$('#file_upload').uploadifyClearQueue()\" value=\"Limpiar\"";
 	echo "\"></TD>\n<TD><INPUT type=\"submit\" value=\"Listo\"";
 	echo "\"></TD></TR></FORM></TABLE><BR>\n";
 //	echo "\"></TD>\n<TD><input type=\"button\" value=\"".$GLOBALS["messages"]["btncancel"];
 //	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL)."';\">\n</TD></TR></FORM></TABLE><BR>\n";
-	
+
 	return;
 }
 //------------------------------------------------------------------------------
