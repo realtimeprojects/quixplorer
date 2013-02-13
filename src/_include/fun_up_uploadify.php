@@ -59,40 +59,47 @@ function upload_items($dir)
 
 ?>
 
+<link rel="stylesheet" type="text/css" href="_lib/uploadify/uploadify.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="_lib/uploadify/jquery.uploadify.min.js"></script>
+
 <script type="text/javascript">
-$(document).ready(function() {
+$(function() {
   $('#file_upload').uploadify({
-    'uploader'  : '_lib/uploadify/uploadify.swf',
-'script'    : '_lib/uploadify/uploadify.php',
-'cancelImg' : '_lib/uploadify/cancel.png',
-'folder'    : '<?php global $home_dir; echo "$home_dir/$dir";?>',
-'auto'      : true,
-'multi'     : true,
-'removeCompleted' : true,
-'auto' : false
+    'swf'             : '_lib/uploadify/uploadify.swf',
+    'uploader'        : '_lib/uploadify/uploadify.php',
+    'folder'          : '<?php global $home_dir; echo "$home_dir/$dir";?>',
+    'auto'            : false,
+    'multi'           : true,
+    'removeCompleted' : true,
+    'debug' : true
   });
 });
 </script>
+<br><form enctype="multipart/form-data" action="<?php make_link("upload",$dir,NULL); ?>" method="post">
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo get_max_file_size();?>">
+        <input type="hidden" name="confirm" value="true">
+        <input type="file" name="file_upload" id="file_upload" />
+    <table>
+            <tr>
+                <td>
+                    <input type="button"
+                           onClick="javascript:$('#file_upload').uploadify('upload', '*')"
+                           value="<?php echo $GLOBALS["messages"]["btnupload"];?>" >
+                </td>
+                <td>
+                    <input type="button"
+                           onClick="javascript:$('#file_upload').uploadify('cancel', '*')"
+                           value="clear" >
+                </td>
+                <td>
+                    <input type="submit" value="back">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
 <?php
-	// List
-	echo "<BR><FORM enctype=\"multipart/form-data\" action=\"".make_link("upload",$dir,NULL);
-	echo "\" method=\"post\">\n<INPUT type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"";
-	echo get_max_file_size()."\"><INPUT type=\"hidden\" name=\"confirm\" value=\"true\"><TABLE>\n";
-	for($i=0;$i<0;$i++) {
-		echo "<TR><TD nowrap align=\"center\">";
-		echo "<INPUT name=\"userfile[]\" id=\"file_upload\" type=\"file\" size=\"40\"></TD></TR>\n";
-	}
-	echo "<input id=\"file_upload\" name=\"file_upload\" type=\"file\" />\n";
-
-	echo "</TABLE>\n<BR><TABLE><TR><TD><INPUT type=\"button\" onClick=\"javascript:$('#file_upload').uploadifyUpload()\" value=\"".$GLOBALS["messages"]["btnupload"];
-
-	echo "\"></TD>\n<TD><INPUT type=\"button\" onClick=\"javascript:$('#file_upload').uploadifyClearQueue()\" value=\"Limpiar\"";
-	echo "\"></TD>\n<TD><INPUT type=\"submit\" value=\"Listo\"";
-	echo "\"></TD></TR></FORM></TABLE><BR>\n";
-//	echo "\"></TD>\n<TD><input type=\"button\" value=\"".$GLOBALS["messages"]["btncancel"];
-//	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL)."';\">\n</TD></TR></FORM></TABLE><BR>\n";
-
 	return;
 }
-//------------------------------------------------------------------------------
 ?>
