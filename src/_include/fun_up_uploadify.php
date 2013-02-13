@@ -38,83 +38,24 @@ Comment:
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
-//------------------------------------------------------------------------------
+
 // upload file
 function upload_items($dir)
 {
     _debug( "xupload_items($dir)" );
-	if (!permissions_grant($dir, NULL, "create"))
+    if (!permissions_grant($dir, NULL, "create"))
     {
-		show_error($GLOBALS["error_msg"]["accessfunc"]);
+        show_error($GLOBALS["error_msg"]["accessfunc"]);
     }
 
-	// Execute
-	if (isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"] == "true")
+    if (isset($GLOBALS['__POST']["confirm"]) && $GLOBALS['__POST']["confirm"] == "true")
     {
-		$cnt = count($GLOBALS['__FILES']['userfile']['name']);
-		$err=false;
-		$err_avaliable=isset($GLOBALS['__FILES']['userfile']['error']);
-
-        _debug("uploading $cnt file(s)");
-
-		// upload files & check for errors
-		for( $i = 0; $i < $cnt; $i++ )
-        {
-            _debug("uploading file '$items[$i]'");
-			$errors[$i]=NULL;
-			$tmp = $GLOBALS['__FILES']['userfile']['tmp_name'][$i];
-			$items[$i] = stripslashes($GLOBALS['__FILES']['userfile']['name'][$i]);
-			if($err_avaliable) $up_err = $GLOBALS['__FILES']['userfile']['error'][$i];
-			else $up_err=(file_exists($tmp)?0:4);
-			$abs = get_abs_item( $dir, $items[$i]);
-
-			if($items[$i]=="" || $up_err==4) continue;
-			if($up_err==1 || $up_err==2) {
-				$errors[$i]=$GLOBALS["error_msg"]["miscfilesize"];
-				$err=true;	continue;
-			}
-			if($up_err==3) {
-				$errors[$i]=$GLOBALS["error_msg"]["miscfilepart"];
-				$err=true;	continue;
-			}
-			if(!@is_uploaded_file($tmp)) {
-				$errors[$i]=$GLOBALS["error_msg"]["uploadfile"];
-				$err=true;	continue;
-			}
-			if(@file_exists($abs)) {
-				$errors[$i]=$GLOBALS["error_msg"]["itemdoesexist"];
-				$err=true;	continue;
-			}
-
-			// Upload
-			if(function_exists("move_uploaded_file")) {
-				$ok = @move_uploaded_file($tmp, $abs);
-			} else {
-				$ok = @copy($tmp, $abs);
-				@nlink($tmp);	// try to delete...
-			}
-
-			if($ok===false) {
-				$errors[$i]=$GLOBALS["error_msg"]["uploadfile"];
-				$err=true;	continue;
-			}
-		}
-
-		if($err) {			// there were errors
-			$err_msg="";
-			for($i=0;$i<$cnt;$i++) {
-				if($errors[$i]==NULL) continue;
-				$err_msg .= $items[$i]." : ".$errors[$i]."<BR>\n";
-			}
-			show_error($err_msg);
-		}
-
-		header("Location: ".make_link("list",$dir,NULL));
-		return;
-	}
+        _debug( "linking to list($dir)" );
+        header("Location: ".make_link("list",$dir,NULL));
+        return;
+    }
     _debug( "upload_items: showing header" );
-
-	show_header($GLOBALS["messages"]["actupload"]);
+    show_header($GLOBALS["messages"]["actupload"]);
 
 ?>
 
