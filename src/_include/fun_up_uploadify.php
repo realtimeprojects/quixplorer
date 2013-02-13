@@ -32,7 +32,7 @@ $(function() {
   $('#file_upload').uploadify({
     'debug' : true,
     'swf'             : '_lib/uploadify/uploadify.swf',
-    'uploader'        : '_include/uploader.php',
+    'uploader'        : 'uploader.php',
     'auto'            : false,
     'multi'           : true,
     'removeCompleted' : true,
