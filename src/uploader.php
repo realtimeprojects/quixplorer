@@ -5,10 +5,12 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
-// Define a destination
-$targetFolder = $_POST['folder'];
-$verifyToken = md5('unique_salt' . $_POST['timestamp']);
-
+// setup the target upload directory folder with full path name
+// for security reasons.
+//
+// Note that the target directory folder must not be necessarely
+// be visible with the quixplorer interface.
+$targetFolder = "/var/local/download/data/incoming";
 
 if (empty($_FILES))
 {
@@ -17,8 +19,12 @@ if (empty($_FILES))
 }
 
 $tempFile = $_FILES['Filedata']['tmp_name'];
-$targetFile = rtrim($targetFolder,'/') . '/' . $_FILES['Filedata']['name'];
 
-move_uploaded_file($tempFile,$targetFile);
+// you may want to do some additional checks on the uploaded files
+// here.
+
+$targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
+
+move_uploaded_file($tempFile, $targetFile);
 echo '1';
 ?>
