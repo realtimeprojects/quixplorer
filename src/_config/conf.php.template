@@ -36,7 +36,8 @@
 	$GLOBALS["tgz"] = false;
 
 	// set this to "true" if you want to use uploadify as upload interface
-	// this needs flash support
+	// this needs flash support but allows uploading multiple files in a 
+    // comfortable way.
 	$GLOBALS["use_uploadify"] = false;
 
 //------------------------------------------------------------------------------
@@ -47,6 +48,17 @@
 	// not '\' or '\\', no trailing '/'
 	// don't use the root directory as home_dir!
 	$GLOBALS["home_dir"] = "/var/local/download/home";
+
+    // The directory for uploading files. Note that this
+    // does not have to be visible by quixplorer.
+    // If you want to manually review the uploaded files before
+    // you publish them on quixplorer, uncomment this
+    // setting and choose a directory not reachable
+    // by the quixplorer (not under 'home_dir').
+    //
+    // If this variable is not set, all uploads will be stored
+    // in the current directories the user has choosen.
+    // $GLOBALS["upload_directory"] = "/var/local/download/incoming" 
 
 	// the url corresponding with the home directory: (no trailing '/')
 	$GLOBALS["home_url"] = "http://<PutYourURLHere>";

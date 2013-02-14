@@ -1,16 +1,23 @@
 <?php
 /*
-Uploadify
-Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
+   Individual upload script for uploadify.
+
+   This script is invoked when a successful upload has been made
+   by uploadify to the temporary directory.
+
+   This script allows to check the incoming and refures unwanted
+   files.
+
+   The task of this script is to move the incoming files to
+   the correct target directory.
+   
+   Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
-// setup the target upload directory folder with full path name
-// for security reasons.
-//
-// Note that the target directory folder must not be necessarely
-// be visible with the quixplorer interface.
-$targetFolder = "/var/local/download/data/incoming";
+require "_config/conf.php";
+require "_include/user.php";
+require "_include/session.php";
+require "_include/debug.php";
 
 if (empty($_FILES))
 {
@@ -18,13 +25,60 @@ if (empty($_FILES))
     return 1;
 }
 
+// setup the target upload directory folder with full path name
+// for security reasons.
+//
+// If a global upload directory has been set in the configuration,
+// always use this directory for uploading files. Otherwise
+// upload the files directly to the current directory of the user.
+if (isset($GLOBALS['upload_directory']))
+{
+    $targetFolder = $GLOBALS['upload_directory'];
+}
+else
+{
+    // upload directory is not set, try to use home_dir with folder argument
+    if (!isset($_POST['folder']))
+    {
+        _error("unknown target folder in home directory!");
+        return 1;
+    }
+
+    $targetFolder = realpath($GLOBALS['home_dir'] . DIRECTORY_SEPARATOR . $_POST['folder']);
+
+    // check if target folder directory exists. It dos not exist
+    // if the user has configured a different home directory than given
+    // in the global configuration
+    if ( ! is_dir($targetFolder) )
+    {
+        _error("target folder $targetfolder does not exist");
+        return 1;
+    }
+
+    _debug("target folder is $targetFolder");
+}
+
 $tempFile = $_FILES['Filedata']['tmp_name'];
+$targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
 
 // you may want to do some additional checks on the uploaded files
 // here.
 
-$targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
-
 move_uploaded_file($tempFile, $targetFile);
 echo '1';
+
+/**
+TODO:
+    - currently, the implementation only works if the user has configured the same home
+      directory like given in the global configuration as "home_dir", since we have
+      no access to the session for authenticating the user.
+    
+Notes:
+    -  We don't want to pass the absolute directory to the home directory
+       by a post variable. This enables everybody to move a file
+       from a random location on the server to any other
+       location.
+    - The session seams not to be valid within this script.
+        -> We cannot determine the home directory of the user
+           correctly
 ?>

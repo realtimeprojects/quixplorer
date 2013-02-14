@@ -1,6 +1,6 @@
 <?php
 
-require "./_include/error.php";
+require_once "_include/error.php";
 
 _debug("Initializing ---------------------------------------------------");
 if(isset($_SERVER)) {

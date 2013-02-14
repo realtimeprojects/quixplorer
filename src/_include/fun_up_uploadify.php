@@ -6,7 +6,8 @@ require_once("_include/fun_extra.php");
 // upload file
 function upload_items($dir)
 {
-    _debug( "xupload_items($dir)" );
+    _debug( "fun_up_uploadify.upload_items($dir)" );
+
     if (!permissions_grant($dir, NULL, "create"))
     {
         show_error($GLOBALS["error_msg"]["accessfunc"]);
@@ -18,9 +19,8 @@ function upload_items($dir)
         header("Location: ".make_link("list",$dir,NULL));
         return;
     }
-    _debug( "upload_items: showing header" );
-    show_header($GLOBALS["messages"]["actupload"]);
 
+    show_header($GLOBALS["messages"]["actupload"]);
 ?>
 
 <link rel="stylesheet" type="text/css" href="_lib/uploadify/uploadify.css" />
@@ -36,7 +36,7 @@ $(function() {
     'auto'            : false,
     'multi'           : true,
     'removeCompleted' : true,
-    'formData'        : { 'folder' : '<?php echo get_abs_dir($dir);?>' }
+    'formData'        : { 'folder' : '<?php echo $dir;?>' }
   });
 });
 </script>
