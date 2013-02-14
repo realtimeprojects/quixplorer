@@ -30,7 +30,7 @@ function upload_items($dir)
 <script type="text/javascript">
 $(function() {
   $('#file_upload').uploadify({
-    'debug' : true,
+    'debug'           : false,
     'swf'             : '_lib/uploadify/uploadify.swf',
     'uploader'        : 'uploader.php',
     'auto'            : false,
