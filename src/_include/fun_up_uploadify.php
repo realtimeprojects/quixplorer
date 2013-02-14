@@ -61,6 +61,7 @@ $(function() {
                 </td>
             </tr>
         </table>
+        <p><?php echo($GLOBALS['messages']['note_upload_error']); ?></p>
     </form>
     <br>
 <?php

@@ -55,6 +55,11 @@ $targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
 
 // you may want to do some additional checks on the uploaded files
 // here.
+if (file_exists($targetFile))
+{
+    $_error("target file already exists!");
+    return 1;
+}
 
 move_uploaded_file($tempFile, $targetFile);
 echo '1';
