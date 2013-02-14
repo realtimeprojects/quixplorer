@@ -12,11 +12,11 @@ function log_error($msg, $extra)
     if (isset($extra))
         $msg .= ", " . $extra;
 
-    _syslog(LOG_ERR, $msg );
+    log_syslog(LOG_ERR, $msg );
 }
 
 function log_debug($msg)
 {
-    _syslog(LOG_DEBUG, $msg);
+    log_syslog(LOG_NOTICE, $msg);
 }
 ?>
