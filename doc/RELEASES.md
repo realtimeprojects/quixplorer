@@ -3,6 +3,7 @@ QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 
 ### Version 2.5.5 ?????
 
+- Bugfix: Global $no_access pattern was ignored while listing
 - Updated to uploadify version 3.2. Now uploadify
   works under Linux as well.
 - Found limitation that uploads with uploadify
@@ -12,6 +13,8 @@ QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 - Introduced a new uploader.php that allows you
   to control where and when the files are
   stored when uploaded with uploadify.
+- Uploadify prevents uploading files that matches
+  the global $no_access pattern in the _config/conf.php.
 
 ### Version 2.5.4 2012-11-26
 
