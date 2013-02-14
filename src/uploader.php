@@ -10,7 +10,7 @@
 
    The task of this script is to move the incoming files to
    the correct target directory.
-   
+
    Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
@@ -18,6 +18,12 @@ require "_config/conf.php";
 require "_include/user.php";
 require "_include/session.php";
 require "_include/debug.php";
+
+function __error($msg)
+{
+    _error($msg);
+    echo $msg;
+}
 
 if (empty($_FILES))
 {
@@ -32,7 +38,7 @@ if (empty($_FILES))
 // check if the subfolder has been passed to this script
 if (!isset($_POST['folder']))
 {
-    _error("unknown target folder in home directory!");
+    __error("unknown target folder in home directory!");
     return 1;
 }
 
@@ -44,7 +50,7 @@ $targetFolder = realpath($GLOBALS['home_dir'] . DIRECTORY_SEPARATOR . $_POST['fo
 // in the global configuration.
 if ( ! is_dir($targetFolder) )
 {
-    _error("target folder $targetfolder does not exist");
+    __error("target folder $targetfolder does not exist");
     return 1;
 }
 
@@ -57,7 +63,7 @@ $targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
 // here.
 if (file_exists($targetFile))
 {
-    $_error("target file already exists!");
+    __error("target file $targetFile already exists!");
     return 1;
 }
 
