@@ -3,6 +3,19 @@
 /**
     show error-message and terminate
  */
+function FATAL($error,$extra=NULL)
+{
+    log_error($error, $extra);
+    ?>
+	<center>
+        <h2><?php echo $error ?></h2>
+        <p><?php if ($extra != NULL) echo $extra; ?></p> 
+    </center>
+    <?php
+    exit;
+}
+
+// FIXME use smarty template engine
 function show_error($error,$extra=NULL)
 {
     // we do not know whether the language module was already loaded
