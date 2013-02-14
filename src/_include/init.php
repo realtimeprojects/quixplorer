@@ -82,6 +82,9 @@ function _init_smarty()
 	$smarty->assign('lang', $lang);
 	$smarty->assign('messages', $GLOBALS['messages']);
 	$smarty->assign('themedir', $smarty->template_dir);
+    $themeplugin_dir = $smarty->template_dir."/plugins";
+    if (is_dir($themeplugin_dir))
+        $smarty->addPluginsDir($themeplugin_dir);
 	$smarty->assign('error_msg', $GLOBALS['error_msg']);
 	$smarty->assign('languages', $GLOBALS['langs']);
 	$smarty->assign('logon_user', qx_user());
