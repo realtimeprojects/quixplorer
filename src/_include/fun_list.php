@@ -37,74 +37,75 @@ function make_list($_list1, $_list2) {		// make list of files
 */
 function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items)
 {
-	$tot_file_size = $num_items = 0;
+    $tot_file_size = $num_items = 0;
 
-	// Open directory
-	$handle = @opendir (get_abs_dir($dir) );
-	if ( $handle===false )
+    // Open directory
+    $handle = @opendir (get_abs_dir($dir) );
+    if ( $handle===false )
         show_error( $dir . ": " . $GLOBALS["error_msg"]["opendir"] );
 
-	// Read directory
-	while(($new_item = readdir($handle))!==false)
+    // Read directory
+    while (($new_item = readdir($handle)) !== false)
     {
-		$abs_new_item = get_abs_item($dir, $new_item);
+        $abs_new_item = get_abs_item($dir, $new_item);
 
-		if(!@file_exists($abs_new_item))
+        if (!@file_exists($abs_new_item))
             show_error($dir.":[fun_list.php/make_tables()] ".$GLOBALS["error_msg"]["readdir"]);
-		if(!get_show_item($dir, $new_item)) continue;
+        if (!get_show_item($dir, $new_item))
+            continue;
 
-		$new_file_size = filesize($abs_new_item);
-		$tot_file_size += $new_file_size;
-		$num_items++;
+        $new_file_size = filesize($abs_new_item);
+        $tot_file_size += $new_file_size;
+        $num_items++;
 
-		if(get_is_dir($dir, $new_item)) {
-			if($GLOBALS["order"]=="mod") {
-				$dir_list[$new_item] =
-					@filemtime($abs_new_item);
-			} else {	// order == "size", "type" or "name"
-				$dir_list[$new_item] = $new_item;
-			}
-		} else {
-			if($GLOBALS["order"]=="size") {
-				$file_list[$new_item] = $new_file_size;
-			} elseif($GLOBALS["order"]=="mod") {
-				$file_list[$new_item] =
-					@filemtime($abs_new_item);
-			} elseif($GLOBALS["order"]=="type") {
-				$file_list[$new_item] =
-					get_mime_type($dir, $new_item, "type");
-			} else {	// order == "name"
-				$file_list[$new_item] = $new_item;
-			}
-		}
-	}
-	closedir($handle);
+        if(get_is_dir($dir, $new_item)) {
+            if($GLOBALS["order"]=="mod") {
+                $dir_list[$new_item] =
+                    @filemtime($abs_new_item);
+            } else {	// order == "size", "type" or "name"
+                $dir_list[$new_item] = $new_item;
+            }
+        } else {
+            if($GLOBALS["order"]=="size") {
+                $file_list[$new_item] = $new_file_size;
+            } elseif($GLOBALS["order"]=="mod") {
+                $file_list[$new_item] =
+                    @filemtime($abs_new_item);
+            } elseif($GLOBALS["order"]=="type") {
+                $file_list[$new_item] =
+                    get_mime_type($dir, $new_item, "type");
+            } else {	// order == "name"
+                $file_list[$new_item] = $new_item;
+            }
+        }
+    }
+    closedir($handle);
 
 
-	// sort
-	if(is_array($dir_list)) {
-		if($GLOBALS["order"]=="mod") {
-			if($GLOBALS["srt"]=="yes") arsort($dir_list);
-			else asort($dir_list);
-		} else {	// order == "size", "type" or "name"
-			if($GLOBALS["srt"]=="yes") ksort($dir_list);
-			else krsort($dir_list);
-		}
-	}
+    // sort
+    if(is_array($dir_list)) {
+        if($GLOBALS["order"]=="mod") {
+            if($GLOBALS["srt"]=="yes") arsort($dir_list);
+            else asort($dir_list);
+        } else {	// order == "size", "type" or "name"
+            if($GLOBALS["srt"]=="yes") ksort($dir_list);
+            else krsort($dir_list);
+        }
+    }
 
-	// sort
-	if(is_array($file_list)) {
-		if($GLOBALS["order"]=="mod") {
-			if($GLOBALS["srt"]=="yes") arsort($file_list);
-			else asort($file_list);
-		} elseif($GLOBALS["order"]=="size" || $GLOBALS["order"]=="type") {
-			if($GLOBALS["srt"]=="yes") asort($file_list);
-			else arsort($file_list);
-		} else {	// order == "name"
-			if($GLOBALS["srt"]=="yes") ksort($file_list);
-			else krsort($file_list);
-		}
-	}
+    // sort
+    if(is_array($file_list)) {
+        if($GLOBALS["order"]=="mod") {
+            if($GLOBALS["srt"]=="yes") arsort($file_list);
+            else asort($file_list);
+        } elseif($GLOBALS["order"]=="size" || $GLOBALS["order"]=="type") {
+            if($GLOBALS["srt"]=="yes") asort($file_list);
+            else arsort($file_list);
+        } else {	// order == "name"
+            if($GLOBALS["srt"]=="yes") ksort($file_list);
+            else krsort($file_list);
+        }
+    }
 }
 //------------------------------------------------------------------------------
 // print table of files
