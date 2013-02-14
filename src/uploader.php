@@ -26,37 +26,29 @@ if (empty($_FILES))
 }
 
 // setup the target upload directory folder with full path name
-// for security reasons.
+// for security reasons in the _config/conf.php.
 //
-// If a global upload directory has been set in the configuration,
-// always use this directory for uploading files. Otherwise
-// upload the files directly to the current directory of the user.
-if (isset($GLOBALS['upload_directory']))
+
+// check if the subfolder has been passed to this script
+if (!isset($_POST['folder']))
 {
-    $targetFolder = $GLOBALS['upload_directory'];
+    _error("unknown target folder in home directory!");
+    return 1;
 }
-else
+
+// determine the target folder
+$targetFolder = realpath($GLOBALS['home_dir'] . DIRECTORY_SEPARATOR . $_POST['folder']);
+
+// check if target folder directory exists. It dos not exist
+// if the user has configured a different home directory than given
+// in the global configuration.
+if ( ! is_dir($targetFolder) )
 {
-    // upload directory is not set, try to use home_dir with folder argument
-    if (!isset($_POST['folder']))
-    {
-        _error("unknown target folder in home directory!");
-        return 1;
-    }
-
-    $targetFolder = realpath($GLOBALS['home_dir'] . DIRECTORY_SEPARATOR . $_POST['folder']);
-
-    // check if target folder directory exists. It dos not exist
-    // if the user has configured a different home directory than given
-    // in the global configuration
-    if ( ! is_dir($targetFolder) )
-    {
-        _error("target folder $targetfolder does not exist");
-        return 1;
-    }
-
-    _debug("target folder is $targetFolder");
+    _error("target folder $targetfolder does not exist");
+    return 1;
 }
+
+_debug("target folder is $targetFolder");
 
 $tempFile = $_FILES['Filedata']['tmp_name'];
 $targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
