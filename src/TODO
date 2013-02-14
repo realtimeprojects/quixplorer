@@ -1,0 +1,11 @@
+- rename show_error
+- fix display of list icons
+- display file size in human readable format
+- render error page correctly using smarty template engine
+- ensure smarty temporary directories exists (init.php)
+
+DONE:
+
+- get display of file list running again
+    -> runs when temporary directories exists
+- Fix log_debug

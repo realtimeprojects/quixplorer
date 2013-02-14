@@ -72,7 +72,7 @@ function do_list_show()
 	global $smarty;
 	$smarty->assign('files', $qx_files);
 	$smarty->assign('buttons', _get_buttons());
-	$smarty->display('list.tpl');
+	qx_page('list');
 }
 
 function _get_buttons ($dir_up)
@@ -165,7 +165,7 @@ function _get_buttons ($dir_up)
 			 	'id' => 'logout',
 				'link' => make_link("logout", $dir, NULL),
 				"alt" => $GLOBALS["messages"]["logoutlink"],
-				'enabled' => qx_var_authenticated(),
+				'enabled' => qx_var("is_authenticated"),
 			));
 
 	// Create File / Dir

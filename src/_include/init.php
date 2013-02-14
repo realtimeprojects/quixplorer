@@ -9,9 +9,12 @@ require_once "html.php";
 require_once "_include/debug.php";
 require_once "_include/error.php";
 require_once "_include/login.php";
+require_once "_include/log.php";
 require_once "_lib/smarty/Smarty.class.php";
 
 session_start();
+
+log_debug("initializing qx");
 
 if(isset($_SERVER)) {
 	$GLOBALS['__GET']	=&$_GET;
@@ -61,13 +64,13 @@ function _init_smarty()
 	// Set up smarty
 	$smarty = new Smarty;
 
-    _debug("setting template dir to " . qx_cfg('template_dir'));
+    log_debug("setting template dir to " . qx_var('template_dir'));
 
 	// Smarty directories
-	$smarty->template_dir = qx_cfg('template_dir') . DIRECTORY_SEPARATOR . qx_cfg('theme');
-	$smarty->compile_dir = qx_cfg('compile_dir');
-	$smarty->cache_dir = qx_cfg('cache_dir');
-	$smarty->config_dir = qx_cfg('config_dir');
+	$smarty->template_dir = qx_var('template_dir');
+    $smarty->compile_dir = qx_cfg('compile_dir', "tmp/smarty/compile");
+	$smarty->cache_dir = qx_cfg('cache_dir', "tmp/smarty/cache_dir");
+	$smarty->config_dir = qx_cfg('config_dir', "_config");
 
 	// Assign the version number to smarty
 	$smarty->assign('version', qx_cfg('version'));
