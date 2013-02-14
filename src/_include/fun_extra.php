@@ -189,7 +189,7 @@ function get_show_item ($directory, $file)
         return false;
 
     global $no_access;
-    if ( defined($no_access) && $no_access != "" && preg_match( "%$no_access%", $file ) )
+    if ( isset($no_access) && $no_access != "" && preg_match( "%$no_access%", $file ) )
         return false;
 
     if ( $GLOBALS["show_hidden"] == false )

@@ -1,8 +1,9 @@
-- fix ignored config values for filter files.
+- use $no_access for uploadify, too
 - publish to master branch.
 
 DONE:
 
+- fix ignored config values for filter files ($no_access).
 - uploadify: Use language files for buttons
 - uploadify: catch duplicate files create error
 
