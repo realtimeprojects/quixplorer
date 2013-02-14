@@ -1,0 +1,8 @@
+- fix ignored config values for filter files.
+- publish to master branch.
+
+DONE:
+
+- uploadify: Use language files for buttons
+- uploadify: catch duplicate files create error
+

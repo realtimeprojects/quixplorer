@@ -162,6 +162,7 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Ja","Nein","J","N"),
 	"miscchmod"		=> array("Besitzer", "Gruppe", "Publik"),
 
+    "select_file"   => "Dateien auswählen",
     "note_upload_error"=> "Falls die Datei im Zielverzeichnis bereits existiert, erscheint ein http error beim upload!",
 );
 ?>

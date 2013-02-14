@@ -36,6 +36,7 @@ $(function() {
     'auto'            : false,
     'multi'           : true,
     'removeCompleted' : true,
+    'buttonText'      : '<?php echo $GLOBALS['messages']['select_file'] ?>',
     'formData'        : { 'folder' : '<?php echo $dir;?>' }
   });
 });
@@ -54,10 +55,10 @@ $(function() {
                 <td>
                     <input type="button"
                            onClick="javascript:$('#file_upload').uploadify('cancel', '*')"
-                           value="clear" >
+                           value="<?php echo $GLOBALS["messages"]["btnreset"];?>" >
                 </td>
                 <td>
-                    <input type="submit" value="back">
+                    <input type="submit" value="<?php echo $GLOBALS["error_msg"]["back"];?>">
                 </td>
             </tr>
         </table>
