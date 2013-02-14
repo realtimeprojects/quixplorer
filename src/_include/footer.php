@@ -7,9 +7,9 @@ function show_footer()
 	?>
     <hr>
     <small>
-        <a class="title" href="https://github.com/realtimeprojects/quixplorer" target="_blank"> QuiXplorer Version 2.5.3 (BETA)</a>
+        <a class="title" href="https://github.com/realtimeprojects/quixplorer" target="_blank"> QuiXplorer Version 2.5.5 (PREVIEW)</a>
    </small>
-   <small>Many thanks to Mk111 for its contribution!</small>
+   <small>Thanks for usage!</small>
    <?php show_login(); ?>
    </center>
    </body>
