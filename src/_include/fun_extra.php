@@ -1,5 +1,7 @@
 <?php
 
+require_once "_include/session.php";
+
 //------------------------------------------------------------------------------
 // THESE ARE NUMEROUS HELPER FUNCTIONS FOR THE OTHER INCLUDE FILES
 //------------------------------------------------------------------------------
@@ -188,8 +190,7 @@ function get_show_item ($directory, $file)
     if ( substr( $file, 0, 1) == "." && $GLOBALS["show_hidden"] == false )
         return false;
 
-    global $no_access;
-    if ( isset($no_access) && $no_access != "" && preg_match( "%$no_access%", $file ) )
+    if (matches_noaccess_pattern($file))
         return false;
 
     if ( $GLOBALS["show_hidden"] == false )

@@ -67,6 +67,14 @@ if (file_exists($targetFile))
     return 1;
 }
 
+// We do not allow to upload files matching the
+// global $no_access pattern. See _config/conf.php for details.
+if (matches_noaccess_pattern($targetFile))
+{
+    __error("file $targetFile matches \$no_access pattern ($no_access)");
+    return 1;
+}
+
 move_uploaded_file($tempFile, $targetFile);
 echo '1';
 
@@ -75,7 +83,7 @@ TODO:
     - currently, the implementation only works if the user has configured the same home
       directory like given in the global configuration as "home_dir", since we have
       no access to the session for authenticating the user.
-    
+
 Notes:
     -  We don't want to pass the absolute directory to the home directory
        by a post variable. This enables everybody to move a file
