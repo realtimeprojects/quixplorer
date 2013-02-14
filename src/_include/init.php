@@ -64,10 +64,11 @@ function _init_smarty()
 	// Set up smarty
 	$smarty = new Smarty;
 
-    log_debug("setting template dir to " . qx_var('template_dir'));
+    $template_dir = qx_var('template_dir');
+    log_debug("setting template dir to " . $template_dir);
 
 	// Smarty directories
-	$smarty->template_dir = qx_var('template_dir');
+	$smarty->template_dir = $template_dir;
     $smarty->compile_dir = qx_cfg('compile_dir', "tmp/smarty/compile");
 	$smarty->cache_dir = qx_cfg('cache_dir', "tmp/smarty/cache_dir");
 	$smarty->config_dir = qx_cfg('config_dir', "_config");
@@ -81,10 +82,13 @@ function _init_smarty()
 	global $lang;
 	$smarty->assign('lang', $lang);
 	$smarty->assign('messages', $GLOBALS['messages']);
-	$smarty->assign('themedir', $smarty->template_dir);
-    $themeplugin_dir = $smarty->template_dir."/plugins";
+	$smarty->assign('themedir', $template_dir);
+    $themeplugin_dir = "$template_dir/plugins";
     if (is_dir($themeplugin_dir))
+    {
+        log_debug("adding $themeplugin_dir to smarty plugins dir");
         $smarty->addPluginsDir($themeplugin_dir);
+    }
 	$smarty->assign('error_msg', $GLOBALS['error_msg']);
 	$smarty->assign('languages', $GLOBALS['langs']);
 	$smarty->assign('logon_user', qx_user());
