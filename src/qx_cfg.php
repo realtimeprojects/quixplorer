@@ -1,4 +1,5 @@
 <?php
+
 /**
  * qx_cfg
  * @return void
@@ -10,6 +11,9 @@ function qx_cfg($name, $default_value = NULL)
 
     if (!isset($qx_configuration))
     {
+        if (! is_readable("_config/quixplorer.cfg"))
+            FATAL("could not read _config/qx.cfg");
+
         $qx_configuration = parse_ini_file("_config/quixplorer.cfg");
     }
 
