@@ -25,16 +25,16 @@
 	{foreach from=$files item=file}
 	{if $file.special == "directory"}
 	<tr class="rowdata" id="dirmarker">
-		<TD id='name' colspan=7 nowrap>
+		<td id='name' colspan=7 nowrap>
 		{$file.type}
 		{if $file.link != ''}
-			<A HREF="{$file.link}">
+			<a href="{$file.link}">
 		{/if}
 		{$file.name}
 		{if $file.link != ''}
 			</a>
 		{/if}
-		</TD>
+		</td>
 	</tr>
 	{else}
 	<TR class="rowdata">
@@ -45,7 +45,7 @@
 		{if $file.link != ''}
 			<A HREF="{$file.link}">
 		{/if}
-		<IMG class='fileicon' src='{$themedir}/images/{$file.icon}.gif' ALT="" />&nbsp;
+		<img class='fileicon' src='{qxt_icon_image themedir=$themedir type=$file.extension}' ALT="" />&nbsp;
 		{$file.name}
 		{if $file.link != ''}
 			</a>

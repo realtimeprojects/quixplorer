@@ -35,6 +35,7 @@ function do_list_action($dir)
         $fattributes = array();
         $fattributes["type"] = "file";
 		$fattributes["type"] = get_mime_type($dir, $cfile, "type");
+		$fattributes["extension"] = pathinfo($cfile_f, PATHINFO_EXTENSION);
         $fattributes["name"] = $cfile;
         $fattributes["size"] = filesize($cfile_f);
 	    $fattributes["modified"] = @filemtime($cfile_f);
@@ -49,7 +50,9 @@ function do_list_action($dir)
                 qx_msg_s("permlink"));
         if (get_is_dir($dir, $cfile))
         {
-            $fattributes["type"] = "directory";
+            // NOT NICE: type and extension management
+            $fattributes["type"] = "Directory";
+            $fattributes["extension"] = "dir";
             $fattributes["link"] = qx_link("list", "&dir=" . path_r("$dir_f/$cfile"));
             $qx_totals["directories.count"]++;
         }
