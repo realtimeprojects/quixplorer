@@ -1,27 +1,13 @@
 <BR>
 <div id="toolbar">
 <div id="search">
-	<input onchange="javascript:SearchData();" type="text" value="{$search}" name="search"></input>&nbsp;<input type="button" value="{$messages.btnsearch}" name="btnsearch"></input>
+	<input onchange="javascript:SearchData();" type="text" value="{$search}" name="search" />
+    <input type="button" value="{$messages.btnsearch}" name="btnsearch" />
 </div>
 <div id="buttons">
 	{foreach from=$buttons item=button}
 		{if $button.id != "separator"}
-		{if $button.enabled}
-			<A HREF="{$button.link}">
-			<IMG
-                class="enabled"
-				border="0"
-				src="{$themedir}/images/buttons/{$button.id}.png"
-			alt="{$button.alt}"
-			TITLE="{$button.alt}" /></A>
-		{else}
-			<IMG class='button'
-				border="0"
-                class="disabled"
-				src="{$themedir}/images/buttons/{$button.id}.png"
-			alt="{$button.alt}"
-			TITLE="{$button.alt}" />
-		{/if}
+            {button link=$button.link img="$themedir/images/buttons/{$button.id}.png" title=$button.alt enabled=$button.enabled }
 		{else}
 			::
 		{/if}

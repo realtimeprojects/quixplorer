@@ -89,6 +89,12 @@ function _init_smarty()
         log_debug("adding $themeplugin_dir to smarty plugins dir");
         $smarty->addPluginsDir($themeplugin_dir);
     }
+    $qx_plugin_dir = "_templates/plugins";
+    if (is_dir($qx_plugin_dir))
+    {
+        log_debug("adding $qx_plugin_dir to smarty plugins dir");
+        $smarty->addPluginsDir($qx_plugin_dir);
+    }
 	$smarty->assign('error_msg', $GLOBALS['error_msg']);
 	$smarty->assign('languages', $GLOBALS['langs']);
 	$smarty->assign('logon_user', qx_user());

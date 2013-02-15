@@ -20,6 +20,7 @@ body { font-family: Verdana; font-size:12px; }
 .button { margin-bottom:-8px; }
 #buttons { width:80%; text-align:left;}
 #toolbar { margin-left:30px; padding-bottom:5px; text-align:left;}
+img.button#disabled { opacity:0.3 }
 #search { float:right}
 #edit img { width:16px; height:16px; }
 td.errormessage * { color:red; }

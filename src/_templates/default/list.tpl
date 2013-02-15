@@ -1,6 +1,6 @@
-{include file=header.tpl}
+{include file="header.tpl"}
 <FORM name="selform" method="POST" action='.'>
-{include file=toolbar.tpl}
+{include file="toolbar.tpl"}
 <HR>
 <INPUT type="hidden" name="action">
 <INPUT type="hidden" name="first" value="y">
@@ -63,20 +63,8 @@
 		</TD>
 		<TD id='edit'>
 			{if $file.type != 'Directory'}
-				{if $file.editlink != ''}
-				<a href='{$file.editlink}'>
-				<img src='{$themedir}/images/buttons/enabled/edit.png' alt='edit' />
-				</a>
-				{else}
-				<img src='{$themedir}/images/buttons/disabled/edit.png' alt='edit' />
-				{/if}
-				{if $file.link != ''}
-				<a href='{$file.link}'>
-				<img src='{$themedir}/images/buttons/enabled/download.png' alt='download' />
-				</a>
-				{else}
-				<img src='{$themedir}/images/buttons/disabled/download.png' alt='download' />
-				{/if}
+                {button link=$file.editlink      img="$themedir/images/buttons/edit.png"     title='edit'     enabled=($file.editlink neq '')}
+                {button link=$file.download_link img="$themedir/images/buttons/download.png" title='download' enabled=($file.download_link neq '')} 
 			{/if}
 		</TD>
 	</TR>
@@ -88,5 +76,5 @@
 <div class='sum_info'>
 	{$info.files} {$messages.miscitems} {$info.total} ({$info.free} {$messages.miscfree})
 </div>
-{include file=footer.tpl}
+{include file="footer.tpl"}
 

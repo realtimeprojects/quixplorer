@@ -1,12 +1,14 @@
+- fix header information (header.tpl)
 - rename show_error
-- fix display of download icons
 - generate a template qx.cfg
 - render error page correctly using smarty template engine
 - ensure smarty temporary directories exists (init.php)
 - display file size in human readable format
+- fix summary line information
 
 DONE:
 
+- fix display of download icons
 - if file type has no icon file, display default icon
 - fix display of list icons
 - get display of file list running again

@@ -11,7 +11,7 @@ div.qx {
     font-size:1.3em;
 }
 
-.qx img.disabled
+.qx img.button #disabled
 {
     opacity:0.3
 }
