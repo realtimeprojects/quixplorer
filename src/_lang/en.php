@@ -165,6 +165,6 @@ $GLOBALS["messages"] = array(
 	"miscchmod"		=> array("Owner", "Group", "Public"),
 
     "select_file"   => "select file",
-    "note_upload_error"=> "You will get an http error if the uploaded file already exists in the destination folder!",
+    "uploading"     => "uploading",
 );
 ?>
