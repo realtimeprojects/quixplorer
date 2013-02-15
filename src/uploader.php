@@ -19,15 +19,15 @@ require "_include/user.php";
 require "_include/session.php";
 require "_include/debug.php";
 
-function __error($msg)
+function __status($msg)
 {
     _error($msg);
-    echo $msg;
+    echo "$msg\n";
 }
 
 if (empty($_FILES))
 {
-    echo 'no files!';
+    echo 'error: no files!';
     return 1;
 }
 
@@ -38,7 +38,7 @@ if (empty($_FILES))
 // check if the subfolder has been passed to this script
 if (!isset($_POST['folder']))
 {
-    __error("unknown target folder in home directory!");
+    __status("error: unknown target folder in home directory!");
     return 1;
 }
 
@@ -50,33 +50,41 @@ $targetFolder = realpath($GLOBALS['home_dir'] . DIRECTORY_SEPARATOR . $_POST['fo
 // in the global configuration.
 if ( ! is_dir($targetFolder) )
 {
-    __error("target folder $targetfolder does not exist");
+    __status("error: target folder $targetfolder does not exist");
     return 1;
 }
 
 _debug("target folder is $targetFolder");
+_debug(implode($_FILES['userfile']));
+_debug(json_encode(array( 'files' => $_FILES, 'post' => $_POST)));
+$userfile = $_FILES['userfile'];
 
-$tempFile = $_FILES['Filedata']['tmp_name'];
-$targetFile = rtrim($targetFolder,'/') . "/" . $_FILES['Filedata']['name'];
-
-// you may want to do some additional checks on the uploaded files
-// here.
-if (file_exists($targetFile))
+for ($ii = 0; $ii < count($userfile['tmp_name']); $ii++)
 {
-    __error("target file $targetFile already exists!");
-    return 1;
-}
+    $tempFile = $userfile['tmp_name'][$ii];
+    $targetFileName = $userfile['name'][$ii];
+    $targetFile = rtrim($targetFolder,'/') . "/" . $targetFileName;
 
-// We do not allow to upload files matching the
-// global $no_access pattern. See _config/conf.php for details.
-if (matches_noaccess_pattern($targetFile))
-{
-    __error("file $targetFile matches \$no_access pattern ($no_access)");
-    return 1;
-}
+    // you may want to do some additional checks on the uploaded files
+    // here.
+    if (file_exists($targetFile))
+    {
+        __status("$targetFileName: already exists, skipping!");
+        continue;
+    }
 
-move_uploaded_file($tempFile, $targetFile);
-echo '1';
+    // We do not allow to upload files matching the
+    // global $no_access pattern. See _config/conf.php for details.
+    if (matches_noaccess_pattern($targetFile))
+    {
+        __status("$targetFileName: matches \$no_access pattern");
+        continue;
+    }
+
+    _debug("moving $tempFile to $targetFile");
+    move_uploaded_file($tempFile, $targetFile);
+    __status("$targetFileName: Successfully uploaded");
+}
 
 /**
 TODO:
@@ -92,4 +100,5 @@ Notes:
     - The session seams not to be valid within this script.
         -> We cannot determine the home directory of the user
            correctly
+*/
 ?>
