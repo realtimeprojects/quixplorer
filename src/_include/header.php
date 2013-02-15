@@ -40,7 +40,7 @@ Comment:
 /**
  * header for html-page
 **/
-function show_header($title)
+function show_header($title, $additional_header_content)
 {
     global $site_name;
 
@@ -59,10 +59,6 @@ function show_header($title)
 	
 	echo "<link href=\"_lib/uploadify/uploadify.css\" type=\"text/css\" rel=\"stylesheet\" />\n";
 	
-	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/jquery-1.4.2.min.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/swfobject.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"_lib/uploadify/jquery.uploadify.v2.1.4.min.js\"></script>\n";
-	
 	echo "<script type=\"text/javascript\" src=\"_lib/edit_area/edit_area_full.js\"></script>\n";
 	
 	/*
@@ -75,9 +71,8 @@ function show_header($title)
 	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/jquery.plupload.queue.min.js\"></script>\n";
 	*/
 
-	
-	
-		
+    if (isset($additional_header_content))
+        echo $additional_header_content;
 	
 	echo "</HEAD>\n<BODY><center>\n<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\"><tbody>\n";
 	echo "<tr><td class=\"title\">";
