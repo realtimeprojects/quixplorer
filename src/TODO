@@ -1,4 +1,5 @@
 - fix header information (header.tpl)
+- fix file list header row (empty)
 - rename show_error
 - generate a template qx.cfg
 - render error page correctly using smarty template engine
