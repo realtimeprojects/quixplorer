@@ -35,10 +35,17 @@
 	$GLOBALS["tar"] = false;
 	$GLOBALS["tgz"] = false;
 
-	// set this to "true" if you want to use uploadify as upload interface
-	// this needs flash support but allows uploading multiple files in a 
-    // comfortable way.
-	$GLOBALS["use_uploadify"] = false;
+    // defines which uploader plugin is used for uploading files. you can choose
+    // between 3 different versions.
+    //
+    // default: Is a simple uploader which is however not capable of uploading
+    //          multiple files.
+    //
+    // uploadify: a flashed based uploader. However, this one makes some trouble
+    //            with https connections.
+    //
+    // ajaxupload: (recommended) a ajax based multiple-file uploader.
+	$GLOBALS["uploader"] = 'ajaxupload';
 
 //------------------------------------------------------------------------------
 // Global User Variables (used when $require_login==false)

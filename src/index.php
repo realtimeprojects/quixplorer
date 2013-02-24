@@ -85,14 +85,31 @@ case "download_selected":
 	ob_start(false); // prevent unwanted output
 	exit;
 break;
-//------------------------------------------------------------------------------
-// UPLOAD FILE(S)
+
+/**
+  The file upload function.
+
+  The user may choose between 3 uploader, the default (simple) one,
+  uploadify (which is flashed based and not https capable) and ajaxupload.
+  */
 case "upload":
-	$use_uploadify = isset($GLOBALS["use_uploadify"]) ? $GLOBALS["use_uploadify"] : false;
-	$upload_script = $use_uploadify ? "fun_up_uploadify.php" : "fun_up.php";
-	require "./_include/$upload_script";
+	$uploader = isset($GLOBALS["uploader"]) ? $GLOBALS["uploader"] : "default";
+    switch ($uploader)
+    {
+        case "uploadify":
+            require "./_include/fun_up_uploadify.php";
+            break;
+        case "ajaxupload":
+            require "./_include/fun_up_ajaxupload.php";
+            break;
+        case "default":
+        default:
+            require "./_include/fun_up.php";
+            break;
+    }
 	upload_items($current_dir);
-break;
+    break;
+
 //------------------------------------------------------------------------------
 // UNZIP ZIP FILE added by laurenceHR
 case "unzip":
