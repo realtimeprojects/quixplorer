@@ -15,6 +15,15 @@ QuiXplorer -- VERSION HISTORY & RELEASE NOTES
   stored when uploaded with uploadify.
 - Uploadify prevents uploading files that matches
   the global $no_access pattern in the _config/conf.php.
+- Added additional uploader "ajaxupload" which
+  also works under https connections.
+
+  YOU NEED TO UPDATE YOUR CONFIGURATION FILE!
+
+  The setting "use_uploadify" has been replaced
+  by the setting "uploader", which takes now
+  a string. See the configuration template file
+  _config/conf.php.template for any details.
 
 ### Version 2.5.4 2012-11-26
 
@@ -41,7 +50,7 @@ Thanks to Mk11 for his contributions!
    - unzip fix (partial)
    - many errors/warnings/notices fix
    - IEC 60027 fix
-   - resending headers fix 
+   - resending headers fix
    - added tar/gz/bz2 support(partitial)
    - uploads with uploadify work now.
 
@@ -54,7 +63,7 @@ Thanks to Mk11 for his contributions!
 ### Version 2.5.0 2011-11-28
 
 - Renamed '.config' and '.include' to '_config' and '_include'
-  
+
   If you are upgrading from a previous installation, you have to
   manu copy your .config/conf.php to _config/conf.php and
   delete the old directories.
@@ -90,7 +99,7 @@ Thanks to Mk11 for his contributions!
 
 	USAGE IS ALWAYS AT YOUR OWN RISK, THERE IS ABSOLUTELY NO WARRANTY
 	ON CORRECT FUNCTIONALITY OR SECURITY ISSUES.
-	
+
 	Features:
 
 	- Implemented combined anonymous access / registered access mode.
@@ -138,7 +147,7 @@ the permissions of each user.
 6. login to quixplorer using the admin user
 7. review the permissions of all users in your user database.
 8. have much fun!
-	    
+
 ### Version 2.3.2 - 2007-05-23:
 
 - Bugs regarding the file download link solved
