@@ -14,10 +14,9 @@
    Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
-require "_config/conf.php";
-require "_include/user.php";
-require "_include/session.php";
-require "_include/debug.php";
+require "../../_config/conf.php";
+require "../../_include/session.php";
+require "../../_include/debug.php";
 
 function __error($msg)
 {

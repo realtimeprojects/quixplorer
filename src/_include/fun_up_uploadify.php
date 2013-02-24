@@ -37,7 +37,7 @@ $(function() {
     'multi'           : true,
     'removeCompleted' : true,
     'buttonText'      : '<?php echo $GLOBALS['messages']['select_file'] ?>',
-    'formData'        : { 'folder' : '<?php echo $dir;?>' },
+    'formData'        : { 'folder' : './<?php echo $dir;?>' },
     'onUploadSuccess' : function(file, data, response)
                         {
                             if (data != "1")
