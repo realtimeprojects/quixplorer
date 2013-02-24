@@ -6,7 +6,7 @@ require_once("_include/fun_extra.php");
 // upload file
 function upload_items($dir)
 {
-    _debug( "fun_up_uploadify.upload_items($dir)" );
+    _debug( "fun_up_ajaxupload.upload_items($dir)" );
 
     if (!permissions_grant($dir, NULL, "create"))
     {
@@ -21,7 +21,7 @@ function upload_items($dir)
     }
 
     global $no_access;
-    $additional_header_information = file_get_contents("_include/upload.html");
+    $additional_header_information = file_get_contents("_lib/ajaxupload/upload.html");
     $additional_header_information = preg_replace("/@destination_folder@/", $dir, $additional_header_information);
     $additional_header_information = preg_replace("/@filter_pattern@/", "/$no_access/", $additional_header_information);
     show_header($GLOBALS["messages"]["actupload"], $additional_header_information);
