@@ -23,7 +23,8 @@ $GLOBALS["super_mimes"]=array(
 	// dir, exe, file
 	"dir"	=> array($GLOBALS["mimes"]["dir"],		"filetypes/folder_2.png",		"",													"dir"),
 	"exe"	=> array($GLOBALS["mimes"]["exe"],		"exe.gif",						"\.exe$|\.com$|\.bin$","",							"exe"),
-	"file"	=> array($GLOBALS["mimes"]["file"],		"filetypes/icon_generic.gif",	"",													"file") //unknow file
+	"file"	=> array($GLOBALS["mimes"]["file"],		"filetypes/icon_generic.gif",	"",													"file"),
+	"link"	=> array($GLOBALS["mimes"]["link"],		"filetypes/icon_generic.gif",	"",													"link")
 );
 $GLOBALS["used_mime_types"]=array(
 	// text

@@ -7,6 +7,7 @@ $GLOBALS["mimes"]=array(
 	"dir"	=> "Directory",
 	"exe"	=> "Executable File",
 	"file"	=> "File",
+	"link"	=> "Link",
 
 	// text
 	"text"	=> "Text File",

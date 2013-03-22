@@ -9,12 +9,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "FEHLER",
     "back"			=> "Zurück",
-	
+
 	// root
 	"home"			=> "Das Home-Verzeichnis existiert nicht, kontrollieren sie ihre Einstellungen.",
 	"abovehome"		=> "Das aktuelle Verzeichnis darf nicht höher liegen als das Home-Verzeichnis.",
 	"targetabovehome"	=> "Das Zielverzeichnis darf nicht höher liegen als das Home-Verzeichnis.",
-	
+
 	// exist
 	"direxist"		=> "Dieses Verzeichnis existiert nicht.",
 	"fileexist"		=> "Diese Datei existiert nicht.",
@@ -22,18 +22,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Dieses Objekt existiert nicht.",
 	"targetexist"		=> "Das Zielverzeichnis existiert nicht.",
 	"targetdoesexist"	=> "Das Zielobjekt existiert bereits.",
-	
+
 	// open
 	"opendir"		=> "Kann Verzeichnis nicht öffnen.",
 	"readdir"		=> "Kann Verzeichnis nicht lesen",
-	
+
 	// access
 	"accessdir"		=> "Zugriff auf dieses Verzeichnis verweigert.",
 	"accessfile"		=> "Zugriff auf diese Datei verweigert.",
 	"accessitem"		=> "Zugriff auf dieses Objekt verweigert.",
 	"accessfunc"		=> "Zugriff auf diese Funktion verweigert.",
 	"accesstarget"		=> "Zugriff auf das Zielverzeichnis verweigert.",
-	
+
 	// actions
 	"permread"		=> "Rechte lesen fehlgeschlagen.",
 	"permchange"		=> "Rechte ändern fehlgeschlagen.",
@@ -50,7 +50,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Benutzer hinzufögen fehlgeschlagen.",
 	"saveuser"		=> "Benutzer speichern fehlgeschlagen.",
 	"searchnothing"		=> "Sie müssen etwas zum suchen eintragen.",
-	
+
 	// misc
 	"miscnofunc"		=> "Funktion nicht vorhanden.",
 	"miscfilesize"		=> "Datei ist größer als die maximale Größe.",
@@ -85,7 +85,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "HOCHLADEN",
 	"searchlink"		=> "SUCHEN",
 	"unziplink"				=> "ENTPACKEN",
-	
+
 	// list
 	"nameheader"		=> "Name",
 	"sizeheader"		=> "Größe",
@@ -94,7 +94,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Rechte",
 	"actionheader"		=> "Aktionen",
 	"pathheader"		=> "Pfad",
-	
+
 	// buttons
 	"btncancel"		=> "Abbrechen",
 	"btnsave"		=> "Speichern",
@@ -112,7 +112,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Ändern",
 	"btnremove"		=> "Löschen",
     "btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Verzeichnis",
 	"actperms"		=> "Rechte ändern",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Objekt(e) archivieren",
 "actunzipitem"		=> "Unzipping",
 	"actupload"		=> "Datei(en) hochladen",
-	
+
 	// misc
 	"miscitems"		=> "Objekt(e)",
 	"miscfree"		=> "Freier Speicher",

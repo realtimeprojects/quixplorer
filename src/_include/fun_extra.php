@@ -48,7 +48,7 @@ function path_r ($path)
 }
 
 function get_abs_item($dir, $item) {		// get absolute file+path
-	return get_abs_dir($dir)."/".$item;
+	return get_abs_dir($dir).DIRECTORY_SEPARATOR.$item;
 }
 //------------------------------------------------------------------------------
 function get_rel_item($dir,$item) {		// get file relative from home
@@ -133,42 +133,59 @@ function get_is_unzipable($dir, $item) {		// is this file editable?
 	foreach($GLOBALS["unzipable_ext"] as $pat) if(@eregi($pat,$item)) return true;
 	return false;
 }
-//-----------------------------------------------------------------------------
-function get_mime_type($dir, $item, $query) {	// get file's mimetype
-	if(get_is_dir($dir, $item)) {			// directory
-		$mime_type	= $GLOBALS["super_mimes"]["dir"][0];
-		$image		= $GLOBALS["super_mimes"]["dir"][1];
 
-		if($query=="img") return $image;
-		else return $mime_type;
-	}
-				// mime_type
-	foreach($GLOBALS["used_mime_types"] as $mime) {
-		list($desc,$img,$ext,$type)	= $mime;
-		if(@eregi($ext,$item)) {
-			$mime_type	= $desc;
-			$image		= $img;
-			if($query=="img"){ return $image;}
-			else if($query=="ext"){ return $type;}
-			else return $mime_type;
+function _get_used_mime_info ($item)
+{
+    foreach ($GLOBALS["used_mime_types"] as $mime)
+    {
+        list($desc, $img, $ext, $type) = $mime;
+        if (@eregi($ext, $item))
+            return array($mime_type, $image, $type);
+    }
 
+    return array(NULL, NULL, NULL);
+}
 
-		}
-	}
+/**
+  determine the mime type of an item
+ */
+function get_mime_type ($dir, $item, $query)
+{
+    switch (filetype(get_abs_item($dir, $item)))
+    {
+        case "dir":
+            $mime_type	= $GLOBALS["super_mimes"]["dir"][0];
+            $image		= $GLOBALS["super_mimes"]["dir"][1];
+            break;
+        case "link":
+            $mime_type	= $GLOBALS["super_mimes"]["link"][0];
+            $image		= $GLOBALS["super_mimes"]["link"][1];
+            break;
+        default:
+            list($mime_type, $image, $type) = _get_used_mime_info($item);
+            if ($mime_type != NULL)
+                break;
 
-	if((function_exists("is_executable") &&
-		@is_executable(get_abs_item($dir,$item))) ||
-		@eregi($GLOBALS["super_mimes"]["exe"][2],$item))
-	{						// executable
-		$mime_type	= $GLOBALS["super_mimes"]["exe"][0];
-		$image		= $GLOBALS["super_mimes"]["exe"][1];
-	} else {					// unknown file
-		$mime_type	= $GLOBALS["super_mimes"]["file"][0];
-		$image		= $GLOBALS["super_mimes"]["file"][1];
-	}
+            if ((function_exists("is_executable") && @is_executable(get_abs_item($dir,$item)))
+            || @eregi($GLOBALS["super_mimes"]["exe"][2], $item))
+            {
+                $mime_type	= $GLOBALS["super_mimes"]["exe"][0];
+                $image		= $GLOBALS["super_mimes"]["exe"][1];
+            }
+            else
+            {
+                // unknown file
+                $mime_type	= $GLOBALS["super_mimes"]["file"][0];
+                $image		= $GLOBALS["super_mimes"]["file"][1];
+            }
+    }
 
-	if($query=="img") return $image;
-	else return $mime_type;
+    switch ($query)
+    {
+        case "img": return $image;
+        case "ext": return $type;
+        default:    return $mime_type;
+    }
 }
 
 /**

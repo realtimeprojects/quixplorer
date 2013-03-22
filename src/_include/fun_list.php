@@ -40,17 +40,15 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
     $tot_file_size = $num_items = 0;
 
     // Open directory
-    $handle = @opendir (get_abs_dir($dir) );
-    if ( $handle===false )
-        show_error( $dir . ": " . $GLOBALS["error_msg"]["opendir"] );
+    $handle = @opendir(get_abs_dir($dir));
+    if ($handle === false)
+        show_error($dir . ": " . $GLOBALS["error_msg"]["opendir"]);
 
     // Read directory
     while (($new_item = readdir($handle)) !== false)
     {
         $abs_new_item = get_abs_item($dir, $new_item);
 
-        if (!@file_exists($abs_new_item))
-            show_error($dir.":[fun_list.php/make_tables()] ".$GLOBALS["error_msg"]["readdir"]);
         if (!get_show_item($dir, $new_item))
             continue;
 
@@ -58,76 +56,102 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
         $tot_file_size += $new_file_size;
         $num_items++;
 
-        if(get_is_dir($dir, $new_item)) {
-            if($GLOBALS["order"]=="mod") {
-                $dir_list[$new_item] =
-                    @filemtime($abs_new_item);
-            } else {	// order == "size", "type" or "name"
+        if (is_dir($dir.DIRECTORY_SEPARATOR.$new_item))
+        {
+            if ($GLOBALS["order"] == "mod")
+            {
+                $dir_list[$new_item] = @filemtime($abs_new_item);
+            } else
+            {
+                // order == "size", "type" or "name"
                 $dir_list[$new_item] = $new_item;
             }
         } else {
-            if($GLOBALS["order"]=="size") {
+            if ($GLOBALS["order"] == "size")
+            {
                 $file_list[$new_item] = $new_file_size;
-            } elseif($GLOBALS["order"]=="mod") {
-                $file_list[$new_item] =
-                    @filemtime($abs_new_item);
-            } elseif($GLOBALS["order"]=="type") {
-                $file_list[$new_item] =
-                    get_mime_type($dir, $new_item, "type");
-            } else {	// order == "name"
+            }
+            elseif ($GLOBALS["order"] == "mod")
+            {
+                $file_list[$new_item] = @filemtime($abs_new_item);
+            }
+            elseif ($GLOBALS["order"] == "type")
+            {
+                $file_list[$new_item] = get_mime_type($dir, $new_item, "type");
+            }
+            else
+            {
+                // order == "name"
                 $file_list[$new_item] = $new_item;
             }
         }
     }
     closedir($handle);
 
-
     // sort
-    if(is_array($dir_list)) {
-        if($GLOBALS["order"]=="mod") {
-            if($GLOBALS["srt"]=="yes") arsort($dir_list);
-            else asort($dir_list);
-        } else {	// order == "size", "type" or "name"
-            if($GLOBALS["srt"]=="yes") ksort($dir_list);
-            else krsort($dir_list);
+    if (is_array($dir_list))
+    {
+        if ($GLOBALS["order"]=="mod")
+        {
+            if ($GLOBALS["srt"] == "yes")
+                arsort($dir_list);
+            else
+                asort($dir_list);
+        } else
+        {
+            // order == "size", "type" or "name"
+            if ($GLOBALS["srt"] == "yes")
+                ksort($dir_list);
+            else
+                krsort($dir_list);
         }
     }
 
     // sort
-    if(is_array($file_list)) {
-        if($GLOBALS["order"]=="mod") {
-            if($GLOBALS["srt"]=="yes") arsort($file_list);
-            else asort($file_list);
-        } elseif($GLOBALS["order"]=="size" || $GLOBALS["order"]=="type") {
-            if($GLOBALS["srt"]=="yes") asort($file_list);
-            else arsort($file_list);
-        } else {	// order == "name"
-            if($GLOBALS["srt"]=="yes") ksort($file_list);
-            else krsort($file_list);
+    if (is_array($file_list))
+    {
+        if ($GLOBALS["order"] == "mod")
+        {
+            if ($GLOBALS["srt"] == "yes")
+                arsort($file_list);
+            else
+                asort($file_list);
+        } elseif ($GLOBALS["order"] == "size" || $GLOBALS["order"]=="type")
+        {
+            if ($GLOBALS["srt"] == "yes")
+                asort($file_list);
+            else
+                arsort($file_list);
+        } else {
+            // order == "name"
+            if ($GLOBALS["srt"] == "yes")
+                ksort($file_list);
+            else
+                krsort($file_list);
         }
     }
 }
-//------------------------------------------------------------------------------
-// print table of files
-function print_table($dir, $list)
-{
-	if(!is_array($list)) return;
 
-	while(list($item,) = each($list)){
+/**
+  print table of files
+ */
+function print_table ($dir, $list)
+{
+	if (!is_array($list))
+        return;
+
+	while (list($item) = each($list))
+    {
 		// link to dir / file
-		$abs_item=get_abs_item($dir,$item);
+		$abs_item = get_abs_item($dir,$item);
 		$target="";
-		//$extra="";
-		//if(is_link($abs_item)) $extra=" -> ".@readlink($abs_item);
-		if(is_dir($abs_item)) {
-			$link = make_link("list",get_rel_item($dir, $item),NULL);
-		} else { //if(get_is_editable($dir,$item) || get_is_image($dir,$item)) {
-//?? CK Hier wird kuenftig immer mit dem download-Link gearbeitet, damit
-//?? CK die Leute links klicken koennen
-//?? CK			$link = $GLOBALS["home_url"]."/".get_rel_item($dir, $item);
+		if (is_dir($abs_item))
+        {
+			$link = make_link("list", get_rel_item($dir, $item), NULL);
+		} else {
 			$link = make_link("download", $dir, $item);
 			$target = "_blank";
-		} //else $link = "";
+		}
 
 		echo "<TR class=\"rowdata\"><TD><INPUT TYPE=\"checkbox\" name=\"selitems[]\" value=\"";
 		echo htmlspecialchars($item)."\" onclick=\"javascript:Toggle(this);\"></TD>\n";
@@ -146,7 +170,7 @@ function print_table($dir, $list)
 	// Size
 		echo '<TD>'.parse_file_size(get_file_size($dir,$item)) .sprintf("%10s","&nbsp;")."</TD>\n";
 	// Type
-		echo "<TD>".get_mime_type($dir, $item, "type")."</TD>\n";
+		echo "<td>"._get_link_info($dir, $item, "type")."</td>\n";
 	// Modified
 		echo "<TD>".parse_file_date(get_file_date($dir,$item))."</TD>\n";
 	// Permissions
@@ -459,4 +483,14 @@ function _print_link ($function, $allow, $dir, $item)
 
 }
 
+function _get_link_info($dir, $item)
+{
+    $type = get_mime_type($dir, $item, "type");
+
+    if (! file_exists(get_abs_item($dir, $item)))
+    {
+        return '<span style="background:red;">'.$type.'</span>';
+    }
+    return $type;
+}
 ?>
