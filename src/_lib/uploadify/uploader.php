@@ -91,4 +91,5 @@ Notes:
     - The session seams not to be valid within this script.
         -> We cannot determine the home directory of the user
            correctly
+*/
 ?>
