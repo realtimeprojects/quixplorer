@@ -33,14 +33,14 @@ Author: The QuiX project
 
 Comment:
 	Header File
-	
+
 	Have Fun...
 -------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 /**
  * header for html-page
 **/
-function show_header($title, $additional_header_content)
+function show_header($title, $additional_header_content = null)
 {
     global $site_name;
 
@@ -49,32 +49,22 @@ function show_header($title, $additional_header_content)
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Pragma: no-cache");
 	header("Content-Type: text/html; charset=".$GLOBALS["charset"]);
-	
+
 	//echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\"";
 	//echo "\"http://www.w3.org/TR/REC-html40/loose.dtd\">\n";
-	echo "<HTML lang=\"".$GLOBALS["language"]."\" dir=\"".$GLOBALS["text_dir"]."\">\n";
-	echo "<HEAD>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$GLOBALS["charset"]."\">\n";
+	echo "<html lang=\"".$GLOBALS["language"]."\" dir=\"".$GLOBALS["text_dir"]."\">\n";
+	echo "<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$GLOBALS["charset"]."\">\n";
 	echo "<title>$site_name</title>\n";
-	echo "<LINK href=\"_style/style.css\" rel=\"stylesheet\" type=\"text/css\">\n";
-	
+	echo "<link href=\"_style/style.css\" rel=\"stylesheet\" type=\"text/css\">\n";
+
 	echo "<link href=\"_lib/uploadify/uploadify.css\" type=\"text/css\" rel=\"stylesheet\" />\n";
-	
+
 	echo "<script type=\"text/javascript\" src=\"_lib/edit_area/edit_area_full.js\"></script>\n";
-	
-	/*
-	echo "<!-- Thirdparty intialization scripts, needed for the Google Gears and BrowserPlus runtimes -->\n";
-	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/gears_init.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"http://bp.yahooapis.com/2.4.21/browserplus-min.js\"></script>\n";
 
-	echo "<!-- Load plupload and all it's runtimes and finally the jQuery queue widget -->\n";
-	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/plupload.full.min.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"_lib/plupload/js/jquery.plupload.queue.min.js\"></script>\n";
-	*/
-
-    if (isset($additional_header_content))
+    if ($additional_header_content != null)
         echo $additional_header_content;
-	
-	echo "</HEAD>\n<BODY><center>\n<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\"><tbody>\n";
+
+	echo "</head>\n<body><center>\n<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\"><tbody>\n";
 	echo "<tr><td class=\"title\">";
 	if($GLOBALS["require_login"] && isset($GLOBALS['__SESSION']["s_user"])) echo "[".$GLOBALS['__SESSION']["s_user"]."] - ";
 	echo $title."</td></tr></tbody></table>\n\n";

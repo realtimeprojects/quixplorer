@@ -34,7 +34,7 @@ Author: The QuiX project
 Comment:
 	QuiXplorer Version 2.3
 	File/Directory Copy & Move Functions
-	
+
 	Have Fun...
 ------------------------------------------------------------------------------*/
 require_once("./_include/permissions.php");
@@ -44,15 +44,15 @@ function dir_list($dir) {			// make list of directories
 	$dir_list=array();
 	$handle = @opendir(get_abs_dir($dir));
 	if($handle===false) return;		// unable to open dir
-	
+
 	while(($new_item=readdir($handle))!==false) {
 		//if(!@file_exists(get_abs_item($dir, $new_item))) continue;
-		
+
 		if(!get_show_item($dir, $new_item)) continue;
 		if(!get_is_dir($dir,$new_item)) continue;
 		$dir_list[$new_item] = $new_item;
 	}
-	
+
 	// sort
 	if(is_array($dir_list)) ksort($dir_list);
 	return $dir_list;
@@ -60,15 +60,15 @@ function dir_list($dir) {			// make list of directories
 //------------------------------------------------------------------------------
 function dir_print($dir_list, $new_dir) {	// print list of directories
 	// this list is used to copy/move items to a specific location
-	
+
 	// Link to Parent Directory
 	$dir_up = dirname($new_dir);
 	if($dir_up==".") $dir_up = "";
-	
+
 	echo "<TR><TD><A HREF=\"javascript:NewDir('".$dir_up;
 	echo "');\"><IMG border=\"0\" width=\"16\" height=\"16\"";
 	echo " align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ALT=\"\">&nbsp;..</A></TD></TR>\n";
-	
+
 	// Print List Of Target Directories
 	if(!is_array($dir_list)) return;
 	while(list($new_item,) = each($dir_list)) {
@@ -89,7 +89,7 @@ function copy_move_items ($dir)
 	if ($GLOBALS["action"] == "move"
 	&& !permissions_grant($dir, NULL, "change"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
-	
+
 	// Vars
 	$first = $GLOBALS['__POST']["first"];
 	if($first=="y") $new_dir=$dir;
@@ -103,14 +103,16 @@ function copy_move_items ($dir)
 	} else {
 		$_img="_img/__cut.gif";
 	}
-	
+
 	// Get New Location & Names
-	if(!isset($GLOBALS['__POST']["confirm"]) || $GLOBALS['__POST']["confirm"]!="true") {
-		show_header(($GLOBALS["action"]!="move"?
-			$GLOBALS["messages"]["actcopyitems"]:
-			$GLOBALS["messages"]["actmoveitems"]
-		));
-		
+	if (!isset($GLOBALS['__POST']["confirm"]) || $GLOBALS['__POST']["confirm"]!="true")
+    {
+        $msg = $GLOBALS["action"] != "move"
+            ?  $GLOBALS["messages"]["actcopyitems"]
+            : $GLOBALS["messages"]["actmoveitems"];
+
+		show_header($msg);
+
 		// JavaScript for Form:
 		// Select new target directory / execute action
 ?><script language="JavaScript1.2" type="text/javascript">
@@ -119,13 +121,13 @@ function copy_move_items ($dir)
 		document.selform.new_dir.value = newdir;
 		document.selform.submit();
 	}
-	
+
 	function Execute() {
 		document.selform.confirm.value = "true";
 	}
 //-->
 </script><?php
-		
+
 		// "Copy / Move from .. to .."
 		$s_dir=$dir;		if(strlen($s_dir)>40) $s_dir="...".substr($s_dir,-37);
 		$s_ndir=$new_dir;	if(strlen($s_ndir)>40) $s_ndir="...".substr($s_ndir,-37);
@@ -133,7 +135,7 @@ function copy_move_items ($dir)
 		echo sprintf(($GLOBALS["action"]!="move"?$GLOBALS["messages"]["actcopyfrom"]:
 			$GLOBALS["messages"]["actmovefrom"]),$s_dir, $s_ndir);
 		echo "<IMG SRC=\"_img/__paste.gif\" align=\"ABSMIDDLE\" ALT=\"\">\n";
-		
+
 		// Form for Target Directory & New Names
 		echo "<BR><BR><FORM name=\"selform\" method=\"post\" action=\"";
 		echo make_link("post",$dir,NULL)."\"><TABLE>\n";
@@ -141,11 +143,11 @@ function copy_move_items ($dir)
 		echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"false\">\n";
 		echo "<INPUT type=\"hidden\" name=\"first\" value=\"n\">\n";
 		echo "<INPUT type=\"hidden\" name=\"new_dir\" value=\"".$new_dir."\">\n";
-		
+
 		// List Directories to select Target
 		dir_print(dir_list($new_dir),$new_dir);
 		echo "</TABLE><BR><TABLE>\n";
-		
+
 		// Print Text Inputs to change Names
 		for($i=0;$i<$cnt;++$i) {
 			$selitem=stripslashes($GLOBALS['__POST']["selitems"][$i]);
@@ -162,7 +164,7 @@ function copy_move_items ($dir)
 			echo "</TD><TD><INPUT type=\"text\" size=\"25\" name=\"newitems[]\" value=\"";
 			echo $newitem."\"></TD></TR>\n";
 		}
-		
+
 		// Submit & Cancel
 		echo "</TABLE><BR><TABLE><TR>\n<TD>";
 		echo "<INPUT type=\"submit\" value=\"";
@@ -173,16 +175,16 @@ function copy_move_items ($dir)
 		echo "';\"></TD>\n</TR></FORM></TABLE><BR>\n";
 		return;
 	}
-	
-	
+
+
 	// DO COPY/MOVE
-	
+
 	// ALL OK?
 	if(!@file_exists(get_abs_dir($new_dir))) show_error($new_dir.": ".$GLOBALS["error_msg"]["targetexist"]);
 	if(!get_show_item($new_dir,"")) show_error($new_dir.": ".$GLOBALS["error_msg"]["accesstarget"]);
 	if(!down_home(get_abs_dir($new_dir))) show_error($new_dir.": ".$GLOBALS["error_msg"]["targetabovehome"]);
-	
-	
+
+
 	// copy / move files
 	$err=false;
 	for($i=0;$i<$cnt;++$i) {
@@ -191,7 +193,7 @@ function copy_move_items ($dir)
 		$abs_item = get_abs_item($dir,$tmp);
 		$abs_new_item = get_abs_item($new_dir,$new);
 		$items[$i] = $tmp;
-	
+
 		// Check
 		if($new=="") {
 			$error[$i]= $GLOBALS["error_msg"]["miscnoname"];
@@ -209,7 +211,7 @@ function copy_move_items ($dir)
 			$error[$i]= $GLOBALS["error_msg"]["targetdoesexist"];
 			$err=true;	continue;
 		}
-	
+
 		// Copy / Move
 		if($GLOBALS["action"]=="copy") {
 			if(@is_link($abs_item) || @is_file($abs_item)) {
@@ -221,7 +223,7 @@ function copy_move_items ($dir)
 		} else {
 			$ok=@rename($abs_item,$abs_new_item);
 		}
-		
+
 		if($ok===false) {
 			$error[$i]=($GLOBALS["action"]=="copy"?
 				$GLOBALS["error_msg"]["copyitem"]:
@@ -229,20 +231,20 @@ function copy_move_items ($dir)
 			);
 			$err=true;	continue;
 		}
-		
+
 		$error[$i]=NULL;
 	}
-	
+
 	if($err) {			// there were errors
 		$err_msg="";
 		for($i=0;$i<$cnt;++$i) {
 			if($error[$i]==NULL) continue;
-			
+
 			$err_msg .= $items[$i]." : ".$error[$i]."<BR>\n";
 		}
 		show_error($err_msg);
 	}
-	
+
 	header("Location: ".make_link("list",$dir,NULL));
 }
 //------------------------------------------------------------------------------
