@@ -5,6 +5,48 @@ require_once("./_include/login.php");
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
+
+// The breadcrumbs function will take the user's current path and build a breadcrumb 
+// (a list of links for each directory in the current path).  
+// Arguments.  
+// $curdir is a string containing what will usually be the users current directory.  
+// %displayseparator is optional and contains a string that will be displayed between each crumb.
+// Typical syntax: 
+// echo breadcrumbs($dir, ">>");
+// show_header($GLOBALS["messages"]["actdir"].":".breadcrumbs($dir));
+function breadcrumbs($curdir, $displayseparator = ' &raquo; ') {
+	//Directory separator to be used in the links.
+	$separator = '/';
+	//Get localized name for the Home directory
+	$homedir = $GLOBALS["messages"]["homelink"];
+    // Initialize first crumb and set it to the home directory.
+    $crumbdir = "";
+	$breadcrumbs[] = "<a href=\"".make_link("list",$crumbdir,NULL)."\">$homedir</a>";
+	// Take the current directory and split the string into an array at each '/'.
+	$patharray = explode('/', $curdir);
+    // Find out the index for the last value in our path array
+	 $lastx = array_keys($patharray);
+	 $last = end($lastx);
+    
+    // Build the rest of the breadcrumbs
+    foreach ($patharray AS $x => $crumb) {
+        // Add a new directory to the directory list so the link has the correct path to the current crumb.
+		$crumbdir = $crumbdir . $crumb;
+		if ($x != $last):
+			// If we are not on the last index, then create a link using $crumb as the text.
+			$breadcrumbs[] = "<a href=\"".make_link("list",$crumbdir,NULL)."\">$crumb</a>";
+			// Add a separator between our crumbs.
+			$crumbdir = $crumbdir . $separator;
+		else:
+			// Don't create a link for the final crumb.  Just display the crumb name.
+            $breadcrumbs[] = $crumb;
+		endif;
+    }
+	// Build temporary array into one string.
+    return implode($displayseparator, $breadcrumbs);
+}
+
+
 function make_list($_list1, $_list2) {		// make list of files
 	$list = array();
 
@@ -229,7 +271,8 @@ function list_dir ( $dir )
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
 
 	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
-	show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
+	show_header($GLOBALS["messages"]["actdir"].":".breadcrumbs($dir));
+	// show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
 
 	// Javascript functions:
 	include "./_include/javascript.php";
