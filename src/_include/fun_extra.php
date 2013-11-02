@@ -91,11 +91,15 @@ function parse_file_perms($mode) {		// parsed file permisions
 	}
 	return $parsed_mode;
 }
-//------------------------------------------------------------------------------
-function get_file_size($dir, $item) {		// file size
+
+/**
+  file size
+  */
+function get_file_size($dir, $item)
+{
 	return @filesize(get_abs_item($dir, $item));
 }
-//------------------------------------------------------------------------------
+
 function parse_file_size($size) {		// parsed file size
 	if($size >= 1073741824) {
 		$size = round($size / 1073741824 * 100) / 100 . " GiB";
