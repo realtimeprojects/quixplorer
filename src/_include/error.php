@@ -1,8 +1,8 @@
 <?php
 
-require_once "./_include/header.php";
+require_once "_include/header.php";
 
-require_once "./_include/debug.php";
+require_once "_include/debug.php";
 
 /**
     show error-message and terminate

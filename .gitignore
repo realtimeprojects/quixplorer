@@ -1,7 +1,5 @@
 *.swp
 Thumbs.db
-debug.log
-error.log
 tags
 src/_config/conf.php
 src/_config/.htusers.php
