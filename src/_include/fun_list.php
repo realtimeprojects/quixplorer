@@ -2,6 +2,7 @@
 
 require_once("./_include/permissions.php");
 require_once("./_include/login.php");
+require_once("./_include/qxpath.php");
 
 function make_list($_list1, $_list2) {		// make list of files
 	$list = array();
@@ -247,8 +248,7 @@ function list_dir ( $dir )
 	echo "<BR><TABLE width=\"95%\"><TR><TD><TABLE><TR>\n";
 
 	// PARENT DIR
-    $dir_up = dirname($dir);
-	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
+	echo "<TD><A HREF=\"".make_link("list", path_up($dir), NULL)."\">";
 	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["uplink"]."\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></A></TD>\n";
 	// HOME DIR

@@ -29,33 +29,17 @@ function get_abs_dir($path)
     return path_f($path);
 }
 
-function path_f ($path)
-{
-    global $home_dir;
-    $abs_dir = $home_dir;
-    if ($path != "")
-         $abs_dir .= "/$path";
-    $abs_dir = realpath($abs_dir);
-    return $abs_dir;
-}
-
-function path_r ($path)
-{
-    global $home_dir;
-    $base = realpath($home_dir);
-    $ret = preg_replace("#^$base#", "", $path);
-    return $ret;
-}
-
 function get_abs_item($dir, $item) {		// get absolute file+path
 	return get_abs_dir($dir).DIRECTORY_SEPARATOR.$item;
 }
-//------------------------------------------------------------------------------
-function get_rel_item($dir,$item) {		// get file relative from home
-	if($dir!="") return $dir."/".$item;
-	else return $item;
+/**
+  get file relative from home
+ */
+function get_rel_item($dir, $item)
+{
+    return $dir == "" ? $item : "$dir/$item";
 }
-//------------------------------------------------------------------------------
+
 function get_is_file($dir, $item) {		// can this file be edited?
 	return @is_file(get_abs_item($dir,$item));
 }
