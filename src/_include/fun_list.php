@@ -50,7 +50,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
         if (!get_show_item($dir, $new_item))
             continue;
 
-        $new_file_size = filesize($abs_new_item);
+        $new_file_size = is_link($abs_new_item) ? 0 : @filesize($abs_new_item);
         $tot_file_size += $new_file_size;
         $num_items++;
 
