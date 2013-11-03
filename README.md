@@ -17,7 +17,7 @@ found and fixed some minor bugs and added
 ### About radish BDD testing
 
 With version 2.5.5 we included some automated testing
-using the BDD test tool [radish](https://github.com/timofurrer/radish/README.md).
+using the BDD test tool [radish](https://github.com/timofurrer/radish/).
 
 Currently we only have some automated tests for the 'download multiple files' feature.
 
