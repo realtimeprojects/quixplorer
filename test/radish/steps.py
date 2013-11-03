@@ -103,12 +103,17 @@ def I_find_a_file_in_zip_content_of_zip_archive(step, a_file, zip_archive):
     assert exitcode == 0, "unzip failed: %d\n%s" % (exitcode, p.stderr.read())
     assert re.search(a_file, output)
 
+DATA_DIR = "src/tmp/data"
+
 @step(u'I have the reference configuration')
 def I_have_the_reference_configuration(step):
     try:
         shutil.copy("test/data/reference/conf.php", "src/_config/")
         shutil.copy("test/data/reference/.htusers.php", "src/_config/")
-        os.makedirs("src/tmp/data")
+        if os.path.isdir(DATA_DIR):
+            shutil.rmtree(DATA_DIR)
+        os.makedirs(DATA_DIR)
+        shutil.copytree("test/data/reference/download/data", DATA_DIR+"/download")
     except shutil.Error as err:
         assert False, "%s" % err
 

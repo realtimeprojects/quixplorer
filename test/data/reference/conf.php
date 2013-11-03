@@ -51,7 +51,7 @@
 	// use forward slashed to seperate directories ('/')
 	// not '\' or '\\', no trailing '/'
 	// don't use the root directory as home_dir!
-	$GLOBALS["home_dir"] = "tmp/data";
+	$GLOBALS["home_dir"] = "tmp/data/download";
 
 	// the url corresponding with the home directory: (no trailing '/')
 	$GLOBALS["home_url"] = "http://<PutYourURLHere>";
