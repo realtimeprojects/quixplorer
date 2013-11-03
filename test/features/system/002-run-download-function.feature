@@ -2,6 +2,9 @@ Feature: Download multiple files
     In order to download several files from quixplorer,
     i select the files and execute the 'download  multiple files' function
 
+    Scenario: Perparation
+        Given I have the reference configuration
+
     Scenario: Download without files
         When I run download function on quixplorer without args
         Then I expect an error "You haven't selected any item"
