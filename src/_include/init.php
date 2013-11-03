@@ -42,6 +42,9 @@ if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=$GLOBALS['__GET']["lang"];
 elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["lang"];
 
+// Necessary files
+ob_start(); // prevent unwanted output
+date_default_timezone_set ( "UTC" );
 if (!is_readable("./_config/conf.php"))
     show_error("./_config/conf.php not found.. please see installation instructions");
 
