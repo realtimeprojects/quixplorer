@@ -43,7 +43,10 @@ Will run all tests stored under features/system/ directory.
     test/data/reference/.htusers.php: reference .htusers.php
     test/data/reference/downloads:    contain reference test data in download directory
 
+## System Tests
 
-* test/data contains reference data required for testing
+The system tests are intended to do some high level tests of the quixplorer outer interfaces.
+They "simulate" a http request containing the test data (actions, files, etc.) and evaluate
+the results. See the tests itself for details.
 
 
