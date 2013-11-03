@@ -30,12 +30,19 @@ Will run all tests stored under features/system/ directory.
 
 ## Directory organization
 
-* test/radish contains radish-dependend stuff like the step files, etc.
-* test/features contains the BDD test scripts for quixplorer
+    test/radish:     contains radish-dependend stuff like the step files, etc.
+    test/radish/steps.py:     translates radish test scripts to test commands
 
-    ** system contains system_tests
+    test/features:   contains the BDD test scripts for quixplorer
+    test/features/system: contains system_tests
+    test/features/unit:   reserved
 
-    ** unit   reserved
+    test/data   data needed for automated testing (reference data)
+    test/data/reference "The" reference configuration
+    test/data/reference/conf.php reference conf.php
+    test/data/reference/.htusers.php reference .htusers.php
+    test/data/reference/downloads contain reference test data in download directory
+
 
 * test/data contains reference data required for testing
 
