@@ -32,7 +32,7 @@ function get_abs_dir($path)
 }
 
 function get_abs_item($dir, $item) {		// get absolute file+path
-	return realpath(get_abs_dir($dir).DIRECTORY_SEPARATOR.$item);
+	return get_abs_dir($dir).DIRECTORY_SEPARATOR.$item;
 }
 /**
   get file relative from home
