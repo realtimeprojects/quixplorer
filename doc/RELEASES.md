@@ -1,7 +1,7 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
-### Version 2.5.5 ?????
+### Version 2.5.5 2013-11-03
 
 - Bugfix: Global $no_access pattern was ignored while listing
 - Updated to uploadify version 3.2. Now uploadify
@@ -24,6 +24,15 @@ QuiXplorer -- VERSION HISTORY & RELEASE NOTES
   by the setting "uploader", which takes now
   a string. See the configuration template file
   _config/conf.php.template for any details.
+
+- Fixed vulneribility bug in download multiple
+  files feature
+- introduced radish testing
+- Added breadcrumbs navigation (thanks to petekl)
+
+Thanks to all other contributors !
+
+Be aware, this version is still only very rudementary tested.
 
 ### Version 2.5.4 2012-11-26
 
