@@ -2,51 +2,33 @@
 
 from radish import step, world
 from time import sleep
-import os
 from subprocess import Popen, PIPE
+import os
 import re
 import shutil
 
 from logger import Logger
 
-QX_PATH = "src/"
-QX_MAIN = "testframe.php"
+import quixplorer
+
+import loginsteps
+
 FILE_EXPR = '([^"]+)'
-
-class quixplorer:
-
-    def run(self, function = None, args = None):
-        cmd = [ 'php', QX_MAIN ]
-        actionstr = "";
-        if function != None:
-            actionstr += ( "action=%s" % function)
-        if args is not None:
-            for arg in args:
-                actionstr += "&%s" % arg
-        if actionstr is not "":
-            cmd.append(actionstr)
-        Logger.log("running %s" % " ".join(cmd))
-        p = Popen( cmd, stdout=PIPE, stderr=PIPE, stdin=PIPE, cwd=QX_PATH )
-        exitcode = p.wait()
-        output = p.stdout.read()
-        return ( exitcode, output, p.stderr.read() )
-
-qx = quixplorer()
 
 @step(r'I run (\w+) function on quixplorer with (\w+(?:\[\])?\=[^ ]+)')
 def run_quixplorer_with(step, function, arg):
     Logger.log("run_width")
-    (world.result, world.output, world.stderr ) = qx.run(function, [ arg ])
+    (world.result, world.output, world.stderr ) = quixplorer.run(function, [ arg ])
     assert world.result == 0, "run failed (%d):\n%s" %  (world.result, "".join(world.output))
 
 @step(r'I run (?:(\w+) function on )?quixplorer(?: without args)?')
 def run_quixplorer(step, function):
-    (world.result, world.output, world.stderr) = qx.run(function)
+    (world.result, world.output, world.stderr) = quixplorer.run(function)
     assert world.result == 0, "run failed:\n%s\n%s" % (world.output, world.stderr )
 
 @step(r'I execute module (\w+) from (\w+)')
 def execute_module(step, module, from_dir):
-    (world.result, world.output) = qx.run( "%s/%s.php" % ( from_dir, module ) )
+    (world.result, world.output) = quixplorer.run( "%s/%s.php" % ( from_dir, module ) )
 
 @step(r'I expect success and a binary result')
 def check_success_with_binary_result(step):
@@ -64,6 +46,8 @@ def check_success_with_result(step, expected_data):
 @step(r'I expect success$')
 def check_success(step):
     check_success_with_result(step, None);
+
+# ** error handling expressions {{{1
 
 @step(r'I (expect|reject) (?:an )error "([^"]+)"')
 def expect_error(step, expect_or_reject, error):
