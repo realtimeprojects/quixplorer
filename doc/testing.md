@@ -28,4 +28,12 @@ Assuming you current working directory is the root directory of this repository:
 
 Will run all tests stored under features/system/ directory.
 
+## Directory organization
+
+- test/radish contains radish-dependend stuff like the step files, etc.
+- test/features contains the BDD test scripts for quixplorer
+-- system contains system_tests
+-- unit   reserved
+- test/data contains reference data required for testing
+
 
