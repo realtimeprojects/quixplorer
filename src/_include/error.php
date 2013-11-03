@@ -24,6 +24,7 @@ function show_error($error,$extra=NULL)
         <?php if ($extra != NULL) echo " - " . $extra; ?>
     </center>
     <?php
-    show_footer(); exit; 
+    show_footer();
+    exit;
 }
 ?>

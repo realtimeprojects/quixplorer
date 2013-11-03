@@ -46,6 +46,7 @@ $GLOBALS["error_msg"] = array(
 	"moveitem"		=> "Moving failed.",
 	"delitem"		=> "Deleting failed.",
 	"chpass"		=> "Changing password failed.",
+	"login_failed"		=> "Login failed",
 	"deluser"		=> "Removing user failed.",
 	"adduser"		=> "Adding user failed.",
 	"saveuser"		=> "Saving user failed.",

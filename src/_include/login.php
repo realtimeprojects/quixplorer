@@ -29,6 +29,7 @@ function login ()
 {
     if ( isset( $_SESSION["s_user"] ) )
     {
+        _debug("login(): session detected");
         if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
         {
             _debug("Failed to activate user " . $_SESSION['s_user']);
@@ -44,11 +45,12 @@ function login ()
 
         if ( isset( $_POST["p_user"] ) )
         {
+            _debug("login(): login authentication");
             // Check Login
             if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
             {
-                _error( "failed to authenticate user " . $_POST["p_user"] );
-                logout();
+                global $error_msg;
+                show_error( $error_msg["login_failed"] . ": " . $_POST["p_user"] );
             }
             // authentication sucessfull
             _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
