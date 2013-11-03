@@ -28,4 +28,25 @@ Assuming you current working directory is the root directory of this repository:
 
 Will run all tests stored under features/system/ directory.
 
+## Directory organization
+
+    test/radish:                      contains radish-dependend stuff like the step files, etc.
+    test/radish/steps.py:             translates radish test scripts to test commands
+
+    test/features:                    contains the BDD test scripts for quixplorer
+    test/features/system:             contains system_tests
+    test/features/unit:               reserved
+
+    test/data:                        data needed for automated testing (reference data)
+    test/data/reference:              "The" reference configuration
+    test/data/reference/conf.php:     reference conf.php
+    test/data/reference/.htusers.php: reference .htusers.php
+    test/data/reference/downloads:    contain reference test data in download directory
+
+## System Tests
+
+The system tests are intended to do some high level tests of the quixplorer outer interfaces.
+They "simulate" a http request containing the test data (actions, files, etc.) and evaluate
+the results. See the tests itself for details.
+
 
