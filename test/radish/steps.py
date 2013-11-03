@@ -108,6 +108,7 @@ def I_have_the_reference_configuration(step):
     try:
         shutil.copy("test/data/reference/conf.php", "src/_config/")
         shutil.copy("test/data/reference/.htusers.php", "src/_config/")
+        os.makedirs("src/tmp/data")
     except shutil.Error as err:
         assert False, "%s" % err
 
