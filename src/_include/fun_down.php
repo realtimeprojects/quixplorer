@@ -50,13 +50,22 @@ function download_selected($dir)
     global $site_name;
     require_once("_include/fun_archive.php");
     $items = qxpage_selected_items();
-    if (count($items) == 1 && is_file($items[0]))
+
+    // check if user selected any items to download
+    switch (count($items))
     {
-        download_item( $dir, $items[0] );
-    }
-    else
-    {
-        zip_download( $dir, $items );
+        case 0:
+            show_error($GLOBALS["error_msg"]["miscselitems"]);
+        case 1:
+            if (is_file($items[0]))
+            {
+                download_item( $dir, $items[0] );
+                break;
+            }
+            // nobreak, downloading a directory is done
+            // with the zip file
+        default:
+            zip_download( $dir, $items );
     }
 }
 
@@ -69,8 +78,13 @@ function download_item($dir, $item)
 	if (!permissions_grant($dir, $item, "read"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
 
-	if (!get_is_file($dir,$item))    show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
-	if (!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
+	if (!get_is_file($dir,$item))
+    {
+        _debug("error download");
+        show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
+    }
+	if (!get_show_item($dir, $item))
+        show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
 
 	$abs_item = get_abs_item($dir,$item);
     _download($abs_item, $item);
