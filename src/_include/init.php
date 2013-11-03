@@ -17,15 +17,23 @@ if(isset($_SERVER)) {
 	die("<B>ERROR: Your PHP version is too old</B><BR>".
 	"You need at least PHP 4.0.0 to run QuiXplorer; preferably PHP 4.3.1 or higher.");
 }
-//------------------------------------------------------------------------------
-// Get Action
-if(isset($GLOBALS['__GET']["action"])) $GLOBALS["action"]=$GLOBALS['__GET']["action"];
-else $GLOBALS["action"]="list";
+
+_debug("xxx3 action: " . $GLOBALS['__GET']["action"] . "/" . $GLOBALS["__GET"]["do_action"] . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
+if (isset($GLOBALS['__GET']["action"]))
+{
+    $GLOBALS["action"]=$GLOBALS['__GET']["action"];
+}
+else
+{
+    $GLOBALS["action"]="list";
+}
 if($GLOBALS["action"]=="post" && isset($GLOBALS['__POST']["do_action"])) {
 	$GLOBALS["action"]=$GLOBALS['__POST']["do_action"];
 }
 if($GLOBALS["action"]=="") $GLOBALS["action"]="list";
 $GLOBALS["action"]=stripslashes($GLOBALS["action"]);
+_debug("xxx3 action: " . $GLOBALS['__GET']["action"] . "/" . $GLOBALS["__GET"]["do_action"] . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
+
 
 // Get Item
 if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=stripslashes($GLOBALS['__GET']["item"]);

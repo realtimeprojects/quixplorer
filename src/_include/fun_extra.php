@@ -1,6 +1,8 @@
 <?php
 
 require_once "_include/session.php";
+require_once "_include/qxpath.php";
+require_once "_include/str.php";
 
 //------------------------------------------------------------------------------
 // THESE ARE NUMEROUS HELPER FUNCTIONS FOR THE OTHER INCLUDE FILES
@@ -30,7 +32,7 @@ function get_abs_dir($path)
 }
 
 function get_abs_item($dir, $item) {		// get absolute file+path
-	return get_abs_dir($dir).DIRECTORY_SEPARATOR.$item;
+	return realpath(get_abs_dir($dir).DIRECTORY_SEPARATOR.$item);
 }
 /**
   get file relative from home
@@ -40,9 +42,15 @@ function get_rel_item($dir, $item)
     return $dir == "" ? $item : "$dir/$item";
 }
 
-function get_is_file($dir, $item) {		// can this file be edited?
-	return @is_file(get_abs_item($dir,$item));
+/**
+  can this file be edited?
+  */
+function get_is_file($dir, $item)
+{
+    $filename = get_abs_item($dir, $item);
+	return @is_file($filename);
 }
+
 //------------------------------------------------------------------------------
 function get_is_dir($dir, $item) {		// is this a directory?
 	return @is_dir(get_abs_item($dir,$item));
@@ -182,31 +190,45 @@ function get_mime_type ($dir, $item, $query)
  */
 function get_show_item ($directory, $file)
 {
+    // no relative paths are allowed in directories
     if ( preg_match( "/\.\./", $directory ) )
         return false;
 
-    if ( isset($file) && preg_match( "/\.\./", $file ) )
-        return false;
+    if ( isset($file) )
+    {
+        // file name must not contain any path separators
+        if ( preg_match( "/[\/\\\\]/", $file ) )
+            return false;
 
-    // dont display own directory
-    if ( $file == "." )
-        return false;
+        // dont display own and parent directory
+        if ( $file == "." || $file == ".." )
+            return false;
 
-    if ( substr( $file, 0, 1) == "." && $GLOBALS["show_hidden"] == false )
-        return false;
+        // determine full path to the file
+        $full_path = get_abs_item( $directory, $file );
+        _debug("full_path: $full_path");
+        if ( ! str_startswith( $full_path, path_f() ) )
+            return false;
+    }
+
+    // check if user is allowed to acces shidden files
+    global $show_hidden;
+    if ( ! $show_hidden )
+    {
+        if ( $file[0] == '.' )
+            return false;
+
+        // no part of the path may be hidden
+        $directory_parts = explode( "/", $directory );
+        foreach ( $directory_parts as $directory_part )
+        {
+            if ( $directory_part[0] == '.' )
+                return false;
+        }
+    }
 
     if (matches_noaccess_pattern($file))
         return false;
-
-    if ( $GLOBALS["show_hidden"] == false )
-    {
-      $directory_parts = explode( "/", $directory );
-      foreach ($directory_parts as $directory_part )
-      {
-        if ( substr ( $directory_part, 0, 1) == "." )
-          return false;
-      }
-    }
 
     return true;
 }

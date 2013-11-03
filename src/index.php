@@ -73,7 +73,11 @@ case "download":
 	ob_start(); // prevent unwanted output
 	require "./_include/fun_down.php";
 	ob_end_clean(); // get rid of cached unwanted output
-	download_item($current_dir, $GLOBALS["item"]);
+    global $item;
+    _debug("download item: $current_dir/$item");
+    if ($item == '' )
+        show_error($GLOBALS["error_msg"]["miscselitems"]);
+	download_item($current_dir, $item);
 	ob_start(false); // prevent unwanted output
 	exit;
 break;

@@ -14,7 +14,7 @@
   user, since he should only see relative pathes.
  
  */
-function path_f ($path)
+function path_f ($path = '')
 {
     global $home_dir;
     $abs_dir = $home_dir;
