@@ -106,7 +106,8 @@ def I_find_a_file_in_zip_content_of_zip_archive(step, a_file, zip_archive):
 @step(u'I have the reference configuration')
 def I_have_the_reference_configuration(step):
     try:
-        shutil.copyfile("test/data/reference/conf.php", "src/_config/conf.php")
+        shutil.copy("test/data/reference/conf.php", "src/_config/")
+        shutil.copy("test/data/reference/.htusers.php", "src/_config/")
     except shutil.Error as err:
         assert False, "%s" % err
 
