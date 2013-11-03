@@ -77,9 +77,6 @@ def expect_any_error(step, expect_or_reject):
     expect_error(step, expect_or_reject, None)
 
 def _has_error(output, error = None):
-    fp = open("debug.bin", "wb")
-    fp.write(output)
-    fp.close()
     if re.search(r'ERROR', output) is None:
         return False
 
