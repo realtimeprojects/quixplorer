@@ -53,13 +53,13 @@ def check_success_with_binary_result(step):
     assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
     assert ord(world.output[0]) == 80, "no binary result: %d" % ord(world.output[0])
 
-@step(r'I expect success and result containing "([^"]+)"')
+@step(r'I expect success and result containing "(.*)"')
 def check_success_with_result(step, expected_data):
     assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
     res = "".join(world.output)
     assert _has_error(res) == False, "found error in result %s" % res
     if expected_data is not None:
-        assert re.search(expected_data, res) != None, "result does not contain '%s':\n%s" % (expected_data, res)
+        assert re.search(expected_data, res) != None, "result does not contain '%s':\n'%s'" % (expected_data, res)
 
 @step(r'I expect success$')
 def check_success(step):
@@ -68,7 +68,7 @@ def check_success(step):
 @step(r'I (expect|reject) (?:an )error "([^"]+)"')
 def expect_error(step, expect_or_reject, error):
     expect_error = True if expect_or_reject == "expect" else False
-    assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
+    assert world.result == 0, "result was %d\n%s\n%s" % ( world.result, world.output, world.stderr )
     res = world.output
     assert _has_error(res, error) == expect_error, "no %s error %s found in result:\n%s" % (expect_or_reject, error, res)
 
@@ -77,7 +77,10 @@ def expect_any_error(step, expect_or_reject):
     expect_error(step, expect_or_reject, None)
 
 def _has_error(output, error = None):
-    if re.search("ERROR", output) is None:
+    fp = open("debug.bin", "wb")
+    fp.write(output)
+    fp.close()
+    if re.search(r'ERROR', output) is None:
         return False
 
     if error is None:
