@@ -8,10 +8,16 @@ quixplorer is a simple web based file management software. It allows you to:
 
 ## News
 
+### Testing extended
+
+Because of testing makes that much fun, we finally improved our tests,
+found and fixed some minor bugs and added
+[some tests for the login procedure](test/features/system/003-login.feature).
+
 ### About radish BDD testing
 
 With version 2.5.5 we included some automated testing
-using the BDD test tool [radish](https://github.com/timofurrer/radish/blob/master/README.md).
+using the BDD test tool [radish](https://github.com/timofurrer/radish/README.md).
 
 Currently we only have some automated tests for the 'download multiple files' feature.
 
