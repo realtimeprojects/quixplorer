@@ -41,7 +41,7 @@ if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 
 // Necessary files
 ob_start(); // prevent unwanted output
-
+date_default_timezone_set ( "UTC" );
 if (!is_readable("./_config/conf.php"))
     show_error("./_config/conf.php not found.. please see installation instructions");
 
