@@ -15,7 +15,7 @@ Feature: Download multiple files
         Then I reject an error "You are not allowed to access this item"
         Then I expect success and result containing "huhuhaha"
 
-    Scenario: Download 2 existing files, one not existing
+    Scenario: Download 2 files, one not existing
         When I run download_selected function on quixplorer with selitems[]=huhu.txt&selitems[]=non_existent.txt
         Then I expect an error "You are not allowed to access this item"
 
