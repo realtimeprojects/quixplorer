@@ -19,6 +19,8 @@ on your machine:
 - radish (see [radish documentation](https://github.com/timofurrer/radish/blob/master/README.md)
 on how to get radish installed on your system
 
+- php >5
+
 ## How do I run the tests
 
 Assuming you current working directory is the root directory of this repository:
