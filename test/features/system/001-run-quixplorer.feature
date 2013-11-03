@@ -3,5 +3,6 @@ Feature: Call quixplorer
     just call quixplorer
 
     Scenario: Execute default script
+        Given I have the reference configuration
         When I run quixplorer
         Then I expect success

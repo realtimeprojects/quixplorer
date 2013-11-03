@@ -5,6 +5,7 @@ from time import sleep
 import os
 from subprocess import Popen, PIPE
 import re
+import shutil
 
 from logger import Logger
 
@@ -102,4 +103,10 @@ def I_find_a_file_in_zip_content_of_zip_archive(step, a_file, zip_archive):
     assert exitcode == 0, "unzip failed: %d\n%s" % (exitcode, p.stderr.read())
     assert re.search(a_file, output)
 
+@step(u'I have the reference configuration')
+def I_have_the_reference_configuration(step):
+    try:
+        shutil.copyfile("test/data/reference/conf.php", "src/_config/conf.php")
+    except shutil.Error as err:
+        assert False, "%s" % err
 
