@@ -7,12 +7,7 @@ global $action;
 $action=qx_request("action", "list");
 _debug("action is : $action");
 
-if (isset($_SESSION["home_dir"]))
-    $home_dir = $_SESSION["home_dir"];
-else
-    $home_dir = qx_cfg("home_dir", ".");
-
-$dir = qx_request("dir", $home_dir);
+$dir = qx_request("dir", "");
 
 function load_action ($action_to_load)
 {
