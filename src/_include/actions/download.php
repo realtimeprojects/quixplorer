@@ -75,10 +75,11 @@ function _download_files ($dir, $files)
         _add_directory($archive_zip, get_abs_item($dir, $file));
     }
 
+    $name = count($files) == 1 ? basename($files[0]) : "downloads";
     if ($archive_zip->close() !== true)
         show_error(qx_msg_s("error.zip_close_failed"), $tmp_f);
     
-    _download_file($tmp_f, basename($file_f) . ".zip");
+    _download_file($tmp_f, $name . ".zip");
 }
 
 function _add_directory ($archive, $dir_f)
