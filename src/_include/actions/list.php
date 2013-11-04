@@ -74,7 +74,7 @@ function do_list_show()
     global $qx_totals;
 	global $smarty;
 	$smarty->assign('files', $qx_files);
-	$smarty->assign('buttons', _get_buttons());
+	$smarty->assign('buttons', _get_buttons(".."));
 	qx_page('list');
 }
 
