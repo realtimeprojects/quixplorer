@@ -130,43 +130,6 @@ function get_is_unzipable($dir, $item) {		// is this file editable?
 	return false;
 }
 
-function get_mime_type($dir, $item, $query) {	// get file's mimetype
-	if(get_is_dir($dir, $item)) {			// directory
-		$mime_type	= $GLOBALS["super_mimes"]["dir"][0];
-		$image		= $GLOBALS["super_mimes"]["dir"][1];
-
-		if($query=="img") return $image;
-		else return $mime_type;
-	}
-				// mime_type
-	foreach($GLOBALS["used_mime_types"] as $mime) {
-		list($desc,$img,$ext,$type)	= $mime;
-		if(@eregi($ext,$item)) {
-			$mime_type	= $desc;
-			$image		= $img;
-			if($query=="img"){ return $image;}
-			else if($query=="ext"){ return $type;}
-			else return $mime_type;
-
-
-		}
-	}
-
-	if((function_exists("is_executable") &&
-		@is_executable(get_abs_item($dir,$item))) ||
-		@eregi($GLOBALS["super_mimes"]["exe"][2],$item))
-	{						// executable
-		$mime_type	= $GLOBALS["super_mimes"]["exe"][0];
-		$image		= $GLOBALS["super_mimes"]["exe"][1];
-	} else {					// unknown file
-		$mime_type	= $GLOBALS["super_mimes"]["file"][0];
-		$image		= $GLOBALS["super_mimes"]["file"][1];
-	}
-
-	if($query=="img") return $image;
-	else return $mime_type;
-}
-//------------------------------------------------------------------------------
 function get_show_item($dir, $item) {		// show this file?
 	if($item == "." || $item == ".." ||
 		(substr($item,0,1)=="." && $GLOBALS["show_hidden"]==false)) return false;

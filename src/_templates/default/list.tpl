@@ -42,10 +42,10 @@
 			onclick="javascript:Toggle(this);">
 		</TD>
 		<TD id='name' nowrap>
+        <i class="icon-{$file.type}"/>
 		{if $file.link != ''}
 			<A HREF="{$file.link}">
 		{/if}
-		<img class='fileicon' src='{qxt_icon_image themedir=$themedir type=$file.extension}' ALT="" />&nbsp;
 		{$file.name}
 		{if $file.link != ''}
 			</a>
@@ -62,9 +62,9 @@
 		{/if}
 		</TD>
 		<TD id='edit'>
-			{if $file.type != 'Directory'}
-                {button link=$file.editlink      img="$themedir/images/buttons/edit.png"     title='edit'     enabled=($file.editlink neq '')}
-                {button link=$file.download_link img="$themedir/images/buttons/download.png" title='download' enabled=($file.download_link neq '')} 
+			{if $file.type != 'dir'}
+                {button link=$file.edit_link content="<i class=\"icon-edit\"/>" title='edit' enabled=($file.edit_link neq '')}
+                {button link=$file.download_link content="&nbsp;<i class=\"icon-download\"></i>&nbsp;" title='download' enabled=($file.download_link neq '')} 
 			{/if}
 		</TD>
 	</TR>

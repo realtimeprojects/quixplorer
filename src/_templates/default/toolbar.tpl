@@ -6,11 +6,7 @@
 </div>
 <div id="buttons">
 	{foreach from=$buttons item=button}
-		{if $button.id != "separator"}
-            {button link=$button.link img="$themedir/images/buttons/{$button.id}.png" title=$button.alt enabled=$button.enabled }
-		{else}
-			::
-		{/if}
+            <i class="icon-{$button.id}" style="{if $button.enabled != "1" }color:lightgrey{/if}"></i>
 	{/foreach}
 </div>
 </div>

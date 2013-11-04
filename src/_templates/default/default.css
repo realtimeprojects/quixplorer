@@ -19,10 +19,25 @@ body { font-family: Verdana; font-size:12px; }
 #dirmarker td  { border-bottom:1px solid grey; padding-top:9px; }
 .button { margin-bottom:-8px; }
 #buttons { width:80%; text-align:left;}
-#toolbar { margin-left:30px; padding-bottom:5px; text-align:left;}
+#toolbar { margin-left:30px; padding-bottom:5px; text-align:left; font-size:25px;}
 img.button#disabled { opacity:0.3 }
 #search { float:right}
 #edit img { width:16px; height:16px; }
 td.errormessage * { color:red; }
 
 table * {font-size:12px;}
+
+.icon-up:before { content: "\e79e"; }
+.icon-reload:before { content: "\e657"; }
+.icon-separator:before { content: "|"; }
+.icon-copy:before { content: "\e6b3"; }
+.icon-download:before { content: "\e6c1"; }
+.icon-move:before { content: "\e7a9"; }
+.icon-delete:before { content: "\e701"; }
+.icon-archive:before { content: "\e6da"; }
+.icon-admin:before { content: "\e70f"; }
+.icon-logout:before { content: "\e73c"; }
+.icon-edit:before { content: "\e776"; }
+
+.icon-dir:before { content: "\e6a3"; }
+.icon-file:before { content: "\e771"; }

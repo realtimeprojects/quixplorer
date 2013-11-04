@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html" >
 	<!-- charset="{$charset}" -->
 	<title>{$site_name}</title>
+	<LINK href="{$themedir}/ionicons.css" rel="stylesheet" type="text/css">
 	<LINK href="{$themedir}/default.css" rel="stylesheet" type="text/css">
 	{if $javascript != ''}
 	<script type="text/javascript" src="{$javascript}"></script>
