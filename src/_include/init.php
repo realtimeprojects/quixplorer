@@ -43,7 +43,6 @@ if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=$GLOBALS['__GET']["lang"];
 elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["lang"];
 
 // Necessary files
-ob_start(); // prevent unwanted output
 date_default_timezone_set ( "UTC" );
 if (!is_readable("./_config/conf.php"))
     show_error("./_config/conf.php not found.. please see installation instructions");
@@ -59,7 +58,6 @@ require "./_include/fun_extra.php";
 _init_smarty();
 
 login_check();
-
 function _init_smarty()
 {
 	global $smarty;
@@ -100,7 +98,6 @@ function _init_smarty()
     }
 	$smarty->assign('error_msg', $GLOBALS['error_msg']);
 	$smarty->assign('languages', $GLOBALS['langs']);
-	$smarty->assign('logon_user', qx_user());
-
+	$smarty->assign('logon_user', qx_user_s());
 }
 ?>
