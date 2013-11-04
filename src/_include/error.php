@@ -31,7 +31,7 @@ function show_error($error,$extra=NULL)
         <h3> <a href="javascript:window.history.back()"><?php echo $backmsg ?></a></h3>
     </center>
     <?php
-    require_once qx_var_template_dir() . "/footer.php";
+//    require_once qx_var_template_dir() . "/footer.php";
     exit;
 }
 
