@@ -38,6 +38,9 @@ def execute_module(step, module, from_dir):
 @step(r'I expect success and a binary result')
 def check_success_with_binary_result(step):
     assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
+    fp = open("src/result.html", "w")
+    fp.write(world.output)
+    fp.close()
     assert ord(world.output[0]) == 80, "no binary result: %d" % ord(world.output[0])
 
 @step(r'I expect success and result containing %(search)s' % { 'search':Expressions.search } )
