@@ -33,3 +33,8 @@ Feature: Download multiple files
     Scenario: Download existing inacessable file outside data directory
         When I run download function on quixplorer with selitems[]=huhu.txt&selitems[]=../inaccessable.txt
         Then I expect an error (You are not allowed to access this item)
+
+    Scenario: Download single directory
+        When I run download function on quixplorer with selitems[]=xx
+        Then I write the binary result to file test.zip
+        Then I find "xx/ddd" in zip content of file test.zip 
