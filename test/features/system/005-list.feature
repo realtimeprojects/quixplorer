@@ -11,6 +11,7 @@ Feature: List file contents
 
     Scenario: List contains files
         When I list
+        Then I expect success
         Then I find file xx in list
         Then I find file huhu.txt in list
         Then I find file haha.txt in list
