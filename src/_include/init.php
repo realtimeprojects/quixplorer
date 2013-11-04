@@ -79,7 +79,7 @@ function _init_smarty()
 
 	// Assign the homepage to smarty
 	$smarty->assign('homepage', qx_cfg('homepage'));
-	$smarty->assign('sitename', qx_cfg('sitename'));
+	$smarty->assign('site_name', qx_cfg('site_name'));
 	global $lang;
 	$smarty->assign('lang', $lang);
 	$smarty->assign('messages', $GLOBALS['messages']);

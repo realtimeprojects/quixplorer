@@ -15,7 +15,7 @@
 	<table border="0" width="100%" cellspacing="0" cellpadding="5">
 	<tbody>
 	<tr>
-		<td class="title">{$sitename} - [{$logon_user}] - {$status}</td>
+		<td class="title">{$site_name} - [{$logon_user}] - {$status}</td>
 	</tr>
 	</tbody>
 	</table>
