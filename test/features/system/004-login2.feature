@@ -21,6 +21,10 @@ Feature: Login to quixplorer
         When I authenticate to quixplorer with (loginname=nonexistent&password=invalid)
         Then I expect an error (username or password invalid)
 
-    Scenario: Authenticate without non existent user and password
+    Scenario: Authenticate without admin user and invalid password
         When I authenticate to quixplorer with (loginname=admin&password=invalid)
         Then I expect an error (username or password invalid)
+
+    Scenario: Authenticate without admin user user and correct password
+        When I authenticate to quixplorer with (loginname=admin&password=pwd_admin)
+        Then I expect success
