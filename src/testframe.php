@@ -1,7 +1,6 @@
 <?php
 
-parse_str($argv[1], $_GET);
-parse_str($argv[1], $_POST);
+parse_str($argv[1], $_REQUEST);
 
 require "index.php"
 ?>

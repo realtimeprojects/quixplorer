@@ -41,26 +41,25 @@ function login_form ()
 {
 	global $smarty;
 	$smarty->display('login.tpl');
+    exit(0);
 }
 
 function login_post ()
 {
-    $loginname = $_POST["loginname"];
-    $password  = stripslashes($_POST["password"]);
+    $loginname = qx_request("loginname", Null);
+    $password  = stripslashes(qx_request("password", Null));
     _debug("checking authentication [$loginname]");
 
-    if (!isset($loginname) || !isset($password))
+    if ($loginname == Null || $password == Null)
     {
         _debug("authentication failed, no username or password set");
-        logout();
-        login_form();
+        show_error(qx_msg_s("error.authenticate"), "username or password not set");
     }
 
     if (!user_activate($loginname, md5($password)))
     {
         _debug("authentication failed, password invalid");
-        logout();
-        login_form();
+        show_error(qx_msg_s("error.authenticate"), "username or password invalid");
     }
 
     _debug("user successfully authenticated");

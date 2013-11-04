@@ -1,4 +1,4 @@
-{include file=header.tpl}
+{include file="header.tpl"}
 
 <TABLE width="300">
 	<TR>
@@ -28,16 +28,6 @@
 		</TD>
 	</TR>
 	<TR>
-		<TD>{$messages.misclang}</TD>
-		<TD align="right">
-			<SELECT name="lang">
-			{foreach from=$languages key=id item=language}
-			<option value='{$language[0]}' {if $id == $lang}selected{/if}>{$language[2]}</option>
-			{/foreach}
-			</SELECT>
-		</TD>
-	</TR>
-	<TR>
 		<TD colspan="2" align="right">
 		<INPUT type="submit" value="{$messages.btnlogin}">
 		</TD>
@@ -51,4 +41,4 @@
 	document.login.p_user.focus();
 // -->
 </script>
-{include file=footer.tpl}
+{include file="footer.tpl"}
