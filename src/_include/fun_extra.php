@@ -39,7 +39,7 @@ function path_r ($path)
     global $home_dir;
     $base = realpath($home_dir);
     $path = preg_replace("#^\./#", "", $path);
-    $path = preg_replace("#^$base#", "", $path);
+    $path = preg_replace("#^$base/#", "", $path);
     return $path;
 }
 
