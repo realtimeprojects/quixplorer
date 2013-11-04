@@ -21,9 +21,11 @@ function qx_cfg($name, $default_value = NULL)
 
     if (isset($qx_configuration[$name]))
     {
+        _debug("returning '$qx_configuration[$name]' for entry '$name'");
         return $qx_configuration[$name];
     }
 
+    _debug("returning '$qx_configuration[$name]' for entry '$name' (default value)");
     return $default_value;
 }
 ?>
