@@ -7,17 +7,20 @@ Feature: Login to quixplorer
 
     Scenario: Login basic mask
         When I login to quixplorer
-        Then I expect success and result containing (Login)
+        Then I expect success and result containing (Login to use quixplorer)
 
-    Scenario: Login invalid user
-        When I login to quixplorer with (p_user=nonexistent_user&p_pass=invalid)
-        Then I expect an error (Login failed: nonexistent_user)
+    Scenario: Authenticate without username
+        When I authenticate to quixplorer
+        Then I expect an error (username or password not set)
 
-    Scenario: Login user with wrong password
-        When I login to quixplorer with (p_user=admin&p_pass=invalid)
-        Then I expect an error (Login failed: admin)
+    Scenario: Authenticate without username
+        When I authenticate to quixplorer with (loginname=admin)
+        Then I expect an error (username or password not set)
 
-    Scenario: Login user with correct password
-        When I login to quixplorer with (p_user=admin&p_pass=pwd_admin)
-        Then I expect success and result containing (action=logout)
+    Scenario: Authenticate without non existent user and password
+        When I authenticate to quixplorer with (loginname=nonexistent&password=invalid)
+        Then I expect an error (username or password invalid)
 
+    Scenario: Authenticate without non existent user and password
+        When I authenticate to quixplorer with (loginname=admin&password=invalid)
+        Then I expect an error (username or password invalid)
