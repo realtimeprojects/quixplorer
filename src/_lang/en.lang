@@ -34,3 +34,8 @@ login=please login to this server
 opendir="Cannot open directory"
 
 [user]
+
+[error]
+qxlink=Link
+filenotset="You haven't selected any item"
+

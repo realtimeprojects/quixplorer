@@ -12,16 +12,18 @@ function qx_msg_s($what)
 {
     global $qx_msgs;
 
-    $matches = array();
-    if (preg_match("#^(\w+)\.(\w+)$#", $what, $matches))
-        {
-            _debug("making msg of $what with $matches[1], $matches[2]");
-        $msg = $qx_msgs[$matches[1]][$matches[2]];
-        }
-    else
-        $msg = $qx_msgs[$what];
-
-    return isset($msg) ? $msg : $what;
+    $parts = split( "\.", $what );
+    _debug("count(".count($parts));
+    switch (count($parts))
+    {
+        case 0: return $what;
+        case 1: $msg = $qx_msgs[$what]; break;
+        case 2: $msg = $qx_msgs[$parts[0]][$parts[1]]; break;
+        default: return $what;
+    }
+    $msg = isset($msg) ? $msg : $what;
+    _debug("returning message '$msg' for item '$what'");
+    return $msg;
 }
 
 ?>
