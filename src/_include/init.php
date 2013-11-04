@@ -75,7 +75,7 @@ function _init_smarty()
 	$smarty->config_dir = qx_cfg('config_dir', "_config");
 
 	// Assign the version number to smarty
-	$smarty->assign('version', qx_cfg('version'));
+	$smarty->assign('version', array( "id" => "3.0 PRE", "revision" => "0000" ));
 
 	// Assign the homepage to smarty
 	$smarty->assign('homepage', qx_cfg('homepage'));
