@@ -53,7 +53,7 @@
 		</TD>
 		<TD id='size' >{$file.size}</TD>
 		<TD id='type' >{$file.type}</TD>
-		<TD id='modified' >{$file.modified}</td>
+		<TD id='modified' >{$file.modified_s}</td>
 		<TD id='permissions'>
 		{if $file.permissions.link != ''}
 			<A HREF="{$file.permissions.link}">{$file.permissions.text}</a>

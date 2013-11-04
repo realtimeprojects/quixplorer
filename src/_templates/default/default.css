@@ -35,10 +35,11 @@ table * {font-size:12px;}
 .icon-download:before { content: "\e6c1"; }
 .icon-move:before { content: "\e7a9"; }
 .icon-delete:before { content: "\e701"; }
-.icon-archive:before { content: "\e6da"; }
+.icon-archive:before { content: "\e6c1"; }
 .icon-admin:before { content: "\e70f"; }
 .icon-logout:before { content: "\e73c"; }
 .icon-edit:before { content: "\e776"; }
+.icon-upload:before { content: "\e6be"; }
 
 .icon-dir:before { content: "\e6a3"; }
 .icon-file:before { content: "\e771"; }
