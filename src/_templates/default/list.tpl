@@ -62,10 +62,8 @@
 		{/if}
 		</TD>
 		<TD id='edit'>
-			{if $file.type != 'dir'}
-                {button link=$file.edit_link content="<i class=\"icon-edit\"></i>" title='edit' enabled=($file.edit_link neq '')}
-                {button link=$file.download_link content="<i class=\"icon-download\"></i>&nbsp;" title='download' enabled=($file.download_link neq '')}
-			{/if}
+            {if $file.name neq ".."}{button link=$file.download_link content="<i class=\"icon-download\"></i>&nbsp;" title='download' enabled=($file.download_link neq '')}{/if}
+            {if $file.edit_link neq ''}{button link=$file.edit_link content="<i class=\"icon-edit\"></i>" title='edit' enabled=1}{/if}
 		</TD>
 	</TR>
 	{/if}
