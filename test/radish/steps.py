@@ -44,6 +44,9 @@ def check_success_with_binary_result(step):
 def check_success_with_result(step, expected_data):
     assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
     res = "".join(world.output)
+    fp = open("src/result.html", "w")
+    fp.write(res)
+    fp.close()
     assert _has_error(res) == False, "found error in result %s" % res
     if expected_data is not None:
         assert re.search(expected_data, res) != None, "result does not contain '%s':\n'%s'" % (expected_data, res)
