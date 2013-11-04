@@ -38,4 +38,5 @@ opendir="Cannot open directory"
 [error]
 qxlink=Link
 filenotset="You haven't selected any item"
+access="You are not allowed to access this item"
 

@@ -20,7 +20,7 @@ switch ($action)
 {
     case "login":           login_form(); break;
     case "download":        load_action("download");
-                            do_download_action($_GET["file"]);
+                            do_download_action();
     case "authenticate":    login_post(); // nobreak 
     case "list":
     default:                load_action("list");
