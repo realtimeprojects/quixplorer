@@ -1,4 +1,5 @@
 # QuiXplorer 
+
 ## Web based file management
 
 quixplorer is a simple web based file management software. It allows you to:
@@ -7,6 +8,18 @@ quixplorer is a simple web based file management software. It allows you to:
 - define multible users with different acces permissions (read,write,...)
 
 ## News
+
+### Version 2.5.6 released
+
+After releasing version 2.5.5 fixing a vulnerability issue (thanks to
+trustwave.com for finding it), i still found to bugs regarding the
+logon procedure and listing symbilic links which have been fixed in this 2.5.6
+version.
+
+As long as you don't complain, i would consider this version as
+quite "stable".
+
+Thanks again to all contributors.
 
 ### Testing extended
 

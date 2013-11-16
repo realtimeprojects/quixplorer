@@ -1,6 +1,12 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.6 2013-11-16
+
+- Bugfix: Logoff after wrong login failed
+- Bugfix: Quixplorer shows invalid symbilic links again
+- Introduced automatic testing
+
 ### Version 2.5.5 2013-11-03
 
 - Bugfix: Global $no_access pattern was ignored while listing
