@@ -5,7 +5,7 @@ QX_PATH = "src/"
 QX_MAIN = "testframe.php"
 
 def run(function = None, args = None):
-    cmd = [ 'php', QX_MAIN ]
+    cmd = [ 'php', QX_MAIN, "testsession" ]
     actionstr = "";
     if function != None:
         actionstr += ( "action=%s" % function)
