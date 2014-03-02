@@ -82,7 +82,7 @@ function _is_download_allowed( $dir, $items )
         if (!get_show_item($dir, $file))
             return false;
 
-        if (!file_exists(get_abs_item( $directory, $file )))
+        if (!file_exists(get_abs_item( $dir, $file )))
             return false;
     }
 
