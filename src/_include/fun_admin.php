@@ -113,16 +113,23 @@ function admin($admin, $dir)
 function changepwd ($dir)
 {
 	$pwd=md5(stripslashes($GLOBALS['__POST']["oldpwd"]));
-	if($GLOBALS['__POST']["newpwd1"]!=$GLOBALS['__POST']["newpwd2"]) show_error($GLOBALS["error_msg"]["miscnopassmatch"]);
+    $pw1 = $GLOBALS['__POST']["newpwd1"];
+    $pw2 = $GLOBALS['__POST']["newpwd2"];
+	if ($pw1 != $pw2)
+    {
+        show_error($GLOBALS["error_msg"]["miscnopassmatch"]);
+    }
 
-	$data=user_find($GLOBALS['__SESSION']["s_user"],$pwd);
-	if($data==NULL) show_error($GLOBALS["error_msg"]["miscnouserpass"]);
+	$data = user_find($_SESSION["s_user"], $pwd);
+    if($data == NULL)
+        show_error($GLOBALS["error_msg"]["miscnouserpass"]);
 
-	$data[1]=md5(stripslashes($GLOBALS['__POST']["newpwd1"]));
-	if(!user_update($data[0],$data)) show_error($data[0].": ".$GLOBALS["error_msg"]["chpass"]);
-	user_activate($data[0],NULL);
+	$data[1] = md5(stripslashes($pw1));
+    if (!user_update($data[0], $data))
+        show_error($data[0].": " . $GLOBALS["error_msg"]["chpass"]);
+	user_activate($data[0], NULL);
 
-	header("location: ".make_link("list",$dir,NULL));
+	header("location: ".make_link("list", $dir, NULL));
 }
 
 /**
@@ -138,7 +145,8 @@ function adduser ($dir)
 		}
 		if($GLOBALS['__POST']["pass1"]!=$GLOBALS['__POST']["pass2"]) show_error($GLOBALS["error_msg"]["miscnopassmatch"]);
 		$data=user_find($user,NULL);
-		if($data!=NULL) show_error($user.": ".$GLOBALS["error_msg"]["miscuserexist"]);
+        if ($data != NULL)
+            show_error($user.": ".$GLOBALS["error_msg"]["miscuserexist"]);
 
 		// determine the user permissions
 		$permissions = _eval_permissions();

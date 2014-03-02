@@ -104,8 +104,9 @@ function user_find ($user, $pass = NULL)
 		return $GLOBALS["users"][$idx];
 
 	// check if the password matches
-	if ($pass != $GLOBALS["users"][$idx][_idx('password')])
-		return;
+    $userpw = $GLOBALS["users"][$idx][_idx('password')];
+	if ($pass != $userpw)
+        return;
 
 	// check if the user is active
 	if (!$GLOBALS["users"][$idx][_idx('useractive')])
