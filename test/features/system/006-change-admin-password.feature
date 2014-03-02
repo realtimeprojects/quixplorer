@@ -16,7 +16,7 @@ Feature: Change admin password
     Scenario: Change password with incorrect admin password
         When I change password with original password "wrongpassword", first password "adm1" and second password "adm1"
         Then I expect an error "Username or password incorrect"
-        
+
     Scenario: Passwords differ
         When I change password with original password "pwd_admin", first password "adm1" and second password "adm2"
         Then I expect an error "Passwords don't match"
