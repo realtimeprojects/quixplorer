@@ -10,7 +10,7 @@ $GLOBALS["mimes"]=array(
 
 	// text
 	"text"	=> "Archivo de Texto",
-	
+
 	// programming
 	"php"	=> "Script PHP",
 	"sql"	=> "Archivo SQL",
@@ -27,32 +27,32 @@ $GLOBALS["mimes"]=array(
 	"javac"	=> "Archivo Java Class",
 	// Pascal
 	"pas"	=> "Archivo Pascal",
-	
+
 	// images
 	"gif"	=> "Imagen GIF",
 	"jpg"	=> "Imagen JPG",
 	"bmp"	=> "Imagen BMP",
 	"png"	=> "Imagen PNG",
-	
+
 	// compressed
 	"zip"	=> "Archivo ZIP",
 	"tar"	=> "Archivo TAR",
 	"gzip"	=> "Archivo GZIP",
 	"bzip2"	=> "Archivo BZIP2",
 	"rar"	=> "Archivo RAR",
-	
+
 	// music
 	"mp3"	=> "Archivo MP3 Audio",
 	"wav"	=> "Archivo WAV Audio",
 	"midi"	=> "Archivo MIDI Audio",
 	"real"	=> "Archivo RealAudio",
-	
+
 	// movie
 	"mpg"	=> "Archivo MPG Video",
 	"mov"	=> "Archivo Movie",
 	"avi"	=> "Archivo AVI Video",
 	"flash"	=> "Archivo Flash Movie",
-	
+
 	// Micosoft / Adobe
 	"word"	=> "Documento Word",
 	"excel"	=> "Documento Excel",
