@@ -2,14 +2,14 @@
 
 // Russian Language Module (translated by Mikhail M. Pigulsky - mikhail@mikhail.pp.ru)
 
-$GLOBALS["charset"] = "windows-1251";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
       // error
       "error"                  => "ОШИБКА(И)",
       "back"                  => "Вернуться",
-      
+
       // root
       "home"                  => "Домашняя директория не существует! Проверьте настройки.",
       "abovehome"            => "Текущая директория не может находится выше домашнего каталога.",
@@ -22,7 +22,7 @@ $GLOBALS["error_msg"] = array(
       "itemexist"            => "Такого объекта существует",
       "targetexist"            => "Назначенной директории не существует",
       "targetdoesexist"      => "Назначенного объекта не существует",
-      
+
       // open
       "opendir"            => "Невозможно открыть директорию",
       "readdir"            => "Невозможно прочитать директорию",
@@ -50,7 +50,7 @@ $GLOBALS["error_msg"] = array(
       "adduser"            => "Провал в удалении пользователя",
       "saveuser"            => "Провал в сохранении пользователя",
       "searchnothing"            => "Строка поиска не должна быть пустой",
-      
+
       // misc
       "miscnofunc"            => "Функция недоступна",
       "miscfilesize"            => "Файл превышает максимальный размер",
@@ -84,7 +84,7 @@ $GLOBALS["messages"] = array(
       "uploadlink"            => "ЗАКАЧАТЬ",
       "searchlink"            => "ПОИСК",
 	  "unziplink"			=> "UNZIP",
-      
+
       // list
       "nameheader"            => "Файл",
       "sizeheader"            => "Размер",
@@ -93,7 +93,7 @@ $GLOBALS["messages"] = array(
       "permheader"            => "Права",
       "actionheader"            => "Действия",
       "pathheader"            => "Путь",
-      
+
       // buttons
       "btncancel"            => "Отменя",
       "btnsave"            => "Сохранить",
@@ -110,7 +110,7 @@ $GLOBALS["messages"] = array(
       "btnadd"            => "Добавить",
       "btnedit"            => "Редактировать",
       "btnremove"            => "Удалить",
-      
+
       // actions
       "actdir"            => "Папка",
       "actperms"            => "Поменять права",
@@ -127,7 +127,7 @@ $GLOBALS["messages"] = array(
       "actusers"            => "Пользователи",
       "actarchive"            => "Заархивировать объект(ы)",
       "actupload"            => "Закачать файл(ы)",
-      
+
       // misc
       "miscitems"            => "Объект(а/ов)",
       "miscfree"            => "Свободно",

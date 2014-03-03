@@ -10,7 +10,7 @@ $GLOBALS["mimes"]=array(
 
 	// text
 	"text"	=> "Textový soubor",
-	
+
 	// programming
 	"php"	=> "PHP script",
 	"sql"	=> "SQL soubor",
@@ -27,32 +27,32 @@ $GLOBALS["mimes"]=array(
 	"javac"	=> "Java hlavní soubor",
 	// Pascal
 	"pas"	=> "Pascal",
-	
+
 	// images
 	"gif"	=> "GIF",
 	"jpg"	=> "JPG",
 	"bmp"	=> "BMP",
 	"png"	=> "PNG",
-	
+
 	// compressed
 	"zip"	=> "ZIP Archív",
 	"tar"	=> "TAR Archív",
 	"gzip"	=> "GZIP Archív",
 	"bzip2"	=> "BZIP2 Archív",
 	"rar"	=> "RAR Archív",
-	
+
 	// music
 	"mp3"	=> "MP3 audio soubor",
 	"wav"	=> "WAV audio soubor",
 	"midi"	=> "MIDI audio soubor",
 	"real"	=> "RealAudio soubor",
-	
+
 	// movie
 	"mpg"	=> "MPG video soubor",
 	"mov"	=> "MOV video soubor",
 	"avi"	=> "AVI video soubor",
 	"flash"	=> "Flash soubor",
-	
+
 	// Micosoft / Adobe
 	"word"	=> "Word dokument",
 	"excel"	=> "Excel dokument",

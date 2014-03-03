@@ -2,19 +2,19 @@
 
 // Polish Language Module for v2.3 (translated by the ADAM SWIERCZ & QuiX project)
 
-$GLOBALS["charset"] = "iso-8859-2";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "B£¡D(ÊDY)",
 	"back"			=> "Z Powrotem",
-	
+
 	// root
 	"home"			=> "Katalog domowy nie istnieje. Sprawd¼ swoje ustawienia.",
 	"abovehome"		=> "Obecny katalog nie mo¿e byæ powy¿ej katalogu domowego.",
 	"targetabovehome"	=> "Katalog docelowy nie mo¿e byæ powy¿ej katalogu domowego.",
-	
+
 	// exist
 	"direxist"		=> "Ten katalog nie istnieje.",
 	"fileexist"		=> "Ten plik nie istnieje.",
@@ -22,18 +22,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Ta pozycja nie istnieje.",
 	"targetexist"		=> "Katalog docelowy nie istnieje.",
 	"targetdoesexist"	=> "Pozycja docelowa ju¿ istnieje.",
-	
+
 	// open
 	"opendir"		=> "Nie mogê otworzyæ katalogu.",
 	"readdir"		=> "Nie mogê odczytaæ katalogu.",
-	
+
 	// access
 	"accessdir"		=> "Nie masz dostêpu do tego katalogu.",
 	"accessfile"		=> "Nie masz dostêpu do tego pliku.",
 	"accessitem"		=> "Nie masz dostêpu do tej pozycji.",
 	"accessfunc"		=> "Nie masz dostêpu do tej funkcji.",
 	"accesstarget"		=> "Nie masz dostêpu do katalogu docelowego.",
-	
+
 	// actions
 	"permread"		=> "Pobranie uprawnieñ nie uda³o siê.",
 	"permchange"		=> "Zmiana uprawnieñ siê nie powiod³a.",
@@ -50,7 +50,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Dodanie u¿ytkownika siê nie powiod³o.",
 	"saveuser"		=> "Zapis u¿ytkownika siê nie powiod³o.",
 	"searchnothing"		=> "Musisz dostarczyæ czego¶ do szukania.",
-	
+
 	// misc
 	"miscnofunc"		=> "Funkcja niedostêpna.",
 	"miscfilesize"		=> "Rozmiar pliku przekroczy³ maksymaln± warto¶æ.",
@@ -84,7 +84,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "WRZUÆ PLIK NA SERWER - UPLOAD",
 	"searchlink"		=> "SZUKAJ",
 	"unziplink"			=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Nazwa",
 	"sizeheader"		=> "Rozmiar",
@@ -93,7 +93,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Prawa dostêpu",
 	"actionheader"		=> "Akcje",
 	"pathheader"		=> "¦cie¿ka",
-	
+
 	// buttons
 	"btncancel"		=> "Zrezygnuj",
 	"btnsave"		=> "Zapisz",
@@ -110,7 +110,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Dodaj",
 	"btnedit"		=> "Edycja",
 	"btnremove"		=> "Usuñ",
-	
+
 	// actions
 	"actdir"		=> "Katalog",
 	"actperms"		=> "Zmiana uprawnieñ",
@@ -127,7 +127,7 @@ $GLOBALS["messages"] = array(
 	"actusers"		=> "U¿ytkownicy",
 	"actarchive"		=> "Pozycje zarchiwizowane",
 	"actupload"		=> "Wrzucanie na serwer- Upload",
-	
+
 	// misc
 	"miscitems"		=> " -Ilo¶c elementów",
 	"miscfree"		=> "Wolnego miejsca",

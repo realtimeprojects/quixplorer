@@ -2,19 +2,19 @@
 
 // Italian Language Module for v2.3 (translated by Maurizio Pinotti)
 
-$GLOBALS["charset"] = "iso-8859-1";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d/m/Y H:i";
 $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "ERRORE/I",
 	"back"			=> "Indietro",
-	
+
 	// root
 	"home"			=> "La cartella Home non esiste, controlla la configurazione.",
 	"abovehome"		=> "Non puoi accedere ad un livello fuori dalla Home.",
 	"targetabovehome"	=> "Non puoi accedere ad un livello fuori dalla Home.",
-	
+
 	// exist
 	"direxist"		=> "La cartella non esiste.",
 	"fileexist"		=> "Il file non esiste.",
@@ -22,18 +22,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Oggetto non esistente.",
 	"targetexist"		=> "Cartella di destinazione inesistente.",
 	"targetdoesexist"	=> "Oggetto di destinazione gi&agrave; esistente.",
-	
+
 	// open
 	"opendir"		=> "Impossibile aprire la cartella.",
 	"readdir"		=> "Impossibile leggere la cartella.",
-	
+
 	// access
 	"accessdir"		=> "Non hai i permessi necessari per accedere a questa cartella.",
 	"accessfile"		=> "Non hai i permessi necessari per accedere a questo file.",
 	"accessitem"		=> "Non hai i permessi necessari per accedere a questo oggetto.",
 	"accessfunc"		=> "Non hai i permessi necessari per utilizzare questa funzione.",
 	"accesstarget"		=> "Non hai i permessi necessari per accedere alla cartella di destinazione.",
-	
+
 	// actions
 	"permread"		=> "Permessi per il download insufficienti.",
 	"permchange"		=> "Permessi per il chmod insufficienti.",
@@ -50,7 +50,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Aggiunta nuovo utente fallita.",
 	"saveuser"		=> "Slavataggio dati utente fallito.",
 	"searchnothing"		=> "Devi inserire i parametri della ricerca.",
-	
+
 	// misc
 	"miscnofunc"		=> "Funzione non disponibile.",
 	"miscfilesize"		=> "Il file &egrave; troppo grande per essere inviato.",
@@ -84,7 +84,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "CARICA",
 	"searchlink"		=> "CERCA",
 	"unziplink"			=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Nome",
 	"sizeheader"		=> "Dimensioni",
@@ -93,7 +93,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Permessi",
 	"actionheader"		=> "Azioni",
 	"pathheader"		=> "Percorso",
-	
+
 	// buttons
 	"btncancel"		=> "Annulla",
 	"btnsave"		=> "Salva",
@@ -110,7 +110,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Aggiungi",
 	"btnedit"		=> "Modifica",
 	"btnremove"		=> "Elimina",
-	
+
 	// actions
 	"actdir"		=> "Cartella",
 	"actperms"		=> "Cambia permessi",
@@ -128,7 +128,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Archivia oggetto/i",
 "actunzipitem"		=> "Unzipping",
 	"actupload"		=> "Carica file",
-	
+
 	// misc
 	"miscitems"		=> "Oggetto/i",
 	"miscfree"		=> "Libero",

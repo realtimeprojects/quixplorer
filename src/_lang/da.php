@@ -2,19 +2,19 @@
 
 // Dansk sprog Module for v2.3 (translated by Marie Kroun, Denmark)
 
-$GLOBALS["charset"] = "iso-8859-1";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "Fejl",
 	"back"		=> "Tilbage",
-	
+
 	// root
 	"home"		=> "Hjem mappen findes ikke, check indstillinger.",
 	"abovehome"	=> "Aktuelle mappe kan ikke være over hjem mappen.",
 	"targetabovehome"	=> "Mål mappen kan ikke være over hjem mappen.",
-	
+
 	// exist
 	"direxist"		=> "Mappen findes ikke.",
 	"fileexist"		=> "Filen findes ikke.",
@@ -22,18 +22,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Emnet findes ikke.",
 	"targetexist"	=> "Målmappen findes ikke.",
 	"targetdoesexist"	=> "Mål emnet findes allerede.",
-	
+
 	// open
 	"opendir"		=> "Kan ikke åbne mappen.",
 	"readdir"		=> "Kan ikke læse mappen.",
-	
+
 	// access
 	"accessdir"		=> "Du har ikke adgang til denne mappe.",
 	"accessfile"	=> "Du har ikke adgang til denne fil.",
 	"accessitem"	=> "Du har ikke adgang til dette emne.",
 	"accessfunc"	=> "Du har ikke adgang til at bruge denne funktion.",
 	"accesstarget"	=> "Du har ikke adgang til mål mappen.",
-	
+
 	// actions
 	"permread"	=> "Tilladelse fejlede..",
 	"permchange"	=> "Ændring af tilladelse mislykkedes.",
@@ -50,7 +50,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Oprettelse af ny bruger mislykkedes.",
 	"saveuser"		=> "Bruger kunne ikke gemmes.",
 	"searchnothing"	=> "Du skal indtaste noget at søge efter.",
-	
+
 	// misc
 	"miscnofunc"	=> "Funktionen mangler.",
 	"miscfilesize"	=> "Filen overskrider maksimum størrelse.",
@@ -84,7 +84,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"	=> "TILFØJ",
 	"searchlink"	=> "SØG",
 	"unziplink"			=> "UNZIP",
-	
+
 	// list
 	"nameheader"	=> "Navn",
 	"sizeheader"	=> "Størrelse",
@@ -93,7 +93,7 @@ $GLOBALS["messages"] = array(
 	"permheader"	=> "Tillad",
 	"actionheader"	=> "Handlinger",
 	"pathheader"	=> "Sti",
-	
+
 	// buttons
 	"btncancel"	=> "Fortryd",
 	"btnsave"		=> "Gem",
@@ -110,7 +110,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Tilføj",
 	"btnedit"		=> "Ret",
 	"btnremove"	=> "Fjern",
-	
+
 	// actions
 	"actdir"		=> "Mappe",
 	"actperms"		=> "Ret tilladelser",
@@ -127,7 +127,7 @@ $GLOBALS["messages"] = array(
 	"actusers"		=> "Brugere",
 	"actarchive"	=> "Arkiver emne(r)",
 	"actupload"	=> "Tilføj fil(er)",
-	
+
 	// misc
 	"miscitems"	=> "Emner(r)",
 	"miscfree"		=> "Resterende plads",

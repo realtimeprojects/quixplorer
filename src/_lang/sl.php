@@ -2,19 +2,19 @@
 
 // English Language Module for v2.3 (translated by the QuiX project)
 
-$GLOBALS["charset"] = "utf8";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y-m-d H:i";
 $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "NAPAK(A/E)",
 	"back"			=> "Nazaj",
-	
+
 	// root
 	"home"			=> "The home directory doesn't exist, check your settings.",
 	"abovehome"		=> "The current directory may not be above the home directory.",
 	"targetabovehome"	=> "The target directory may not be above the home directory.",
-	
+
 	// exist
 	"direxist"		=> "Ta mapa ne obstaja.",
 	"fileexist"		=> "Ta datoteka ne obstaja.",
@@ -22,18 +22,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Ta element ne obstaja.",
 	"targetexist"		=> "Ciljna mapa ne obstaja.",
 	"targetdoesexist"	=> "Ciljni element že obstaja.",
-	
+
 	// open
 	"opendir"		=> "Ne morem odpreti mape.",
 	"readdir"		=> "Ne morem brati mape.",
-	
+
 	// access
 	"accessdir"		=> "You are not allowed to access this directory.",
 	"accessfile"		=> "You are not allowed to access this file.",
 	"accessitem"		=> "You are not allowed to access this item.",
 	"accessfunc"		=> "You are not allowed to use this function.",
 	"accesstarget"		=> "You are not allowed to access the target directory.",
-	
+
 	// actions
 	"permread"		=> "Getting permissions failed.",
 	"permchange"		=> "Permission-change failed.",
@@ -50,7 +50,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Adding user failed.",
 	"saveuser"		=> "Saving user failed.",
 	"searchnothing"		=> "Vnesti moraš nekaj, kar se da iskati...",
-	
+
 	// misc
 	"miscnofunc"		=> "Function unavailable.",
 	"miscfilesize"		=> "File exceeds maximum size.",
@@ -84,7 +84,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "NALOŽI",
 	"searchlink"		=> "IŠČI",
 	"unziplink"			=> "RAZPAKIRAJ",
-	
+
 	// list
 	"nameheader"		=> "Ime",
 	"sizeheader"		=> "Velikost",
@@ -93,7 +93,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Dovoljenja",
 	"actionheader"		=> "Akcije",
 	"pathheader"		=> "Pot",
-	
+
 	// buttons
 	"btncancel"		=> "Prekliči",
 	"btnsave"		=> "Shrani",
@@ -111,7 +111,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Uredi",
 	"btnremove"		=> "Odstrani",
 	"btnunzip"		=> "Razpakiraj",
-	
+
 	// actions
 	"actdir"		=> "Mapa",
 	"actperms"		=> "Spremeni dovoljenja",
@@ -129,7 +129,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Arhiviranje elementov",
 	"actunzipitem"		=> "Extracting : izberi ciljno mapo",
 	"actupload"		=> "Naloži datotek(o/e)",
-	
+
 	// misc
 	"miscitems"		=> "Element(ov)",
 	"miscfree"		=> "Prosto",
