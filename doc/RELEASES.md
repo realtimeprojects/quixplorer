@@ -1,6 +1,12 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.7 2014-02-03
+
+- Bugfix: is_download_allowed() evaluated a wrong variable
+- Converted all language files to utf-8
+- Fixed "password change" bug that disabled this function.
+
 ### Version 2.5.6 2013-11-16
 
 - Bugfix: Logoff after wrong login failed

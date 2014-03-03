@@ -9,6 +9,14 @@ quixplorer is a simple web based file management software. It allows you to:
 
 ## News
 
+### Version 2.5.7 released
+
+This version fixes a bug that disabled the "password change" function and a bug
+which evaluated the wrong directory variable when checking wether a download
+is allowed.
+
+Furthermore, all language files have been converted to utf-8.
+
 ### Version 2.5.6 released
 
 After releasing version 2.5.5 fixing a vulnerability issue (thanks to
