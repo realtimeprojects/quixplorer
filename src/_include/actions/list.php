@@ -1,6 +1,7 @@
 <?php
 
 require_once("./_include/permissions.php");
+require_once("./_include/Summary.php");
 
 function do_list_action($dir)
 {
@@ -63,6 +64,7 @@ function do_list_show()
     global $qx_totals;
 	global $smarty;
 	$smarty->assign('files', $qx_files);
+	$smarty->assign('totals', $qx_totals);
 	$smarty->assign('buttons', _get_buttons(".."));
 	qx_page('list');
 }

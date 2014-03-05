@@ -72,7 +72,7 @@
 </form>
 <hr>
 <div class='sum_info'>
-	{$info.files} {$messages.miscitems} {$info.total} ({$info.free} {$messages.miscfree})
+	{$totals->file_count} files, {$totals->directory_count} directories, disk usage: {$totals->file_space}
 </div>
 {include file="footer.tpl"}
 
