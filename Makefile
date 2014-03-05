@@ -5,4 +5,4 @@ tests:
 	$(RADISH) test/features/system/$(TESTS)
 
 unittests:
-	phpunit --verbose --include-path=src test/unit/Summary.php
+	phpunit --verbose --include-path=src test/unit/*
