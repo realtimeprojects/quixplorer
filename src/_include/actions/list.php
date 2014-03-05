@@ -18,10 +18,7 @@ function do_list_action($dir)
 
     global $qx_files;
     global $qx_totals;
-    $qx_totals["files.disk_usage"] = 0;
-    $qx_totals["files.count"] = 0;
-    $qx_totals["directories.count"] = 0;
-    $qx_totals["all.count"] = 0;
+    $qx_totals = new Summary();
 
 	// Read directory
 	while (($cfile = readdir($handle)) !== false)
@@ -29,9 +26,9 @@ function do_list_action($dir)
         if ($cfile === ".")
             continue;
 
-        $qx_totals["all.count"]++;
 
 		$cfile_f = get_abs_item($dir, $cfile);
+        $qx_totals->add($cfile_f);
         $fattributes = array();
 		$fattributes["type"] = @filetype($cfile_f);
 		$fattributes["extension"] = pathinfo($cfile_f, PATHINFO_EXTENSION);
@@ -52,12 +49,6 @@ function do_list_action($dir)
             // NOT NICE: type and extension management
             $fattributes["extension"] = "dir";
             $fattributes["link"] = qx_link("list", "&dir=" . path_r("$dir_f/$cfile"));
-            $qx_totals["directories.count"]++;
-        }
-        else
-        {
-            $qx_totals["files.disk_usage"] += filesize($cfile_f);
-            $qx_totals["files.count"]++;
         }
         $qx_files[$cfile] = $fattributes;
 	}
