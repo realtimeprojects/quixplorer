@@ -12,7 +12,8 @@ function log_error($msg, $extra)
     if (isset($extra))
         $msg .= ", " . $extra;
 
-    log_syslog(LOG_ERR, $msg );
+    log_syslog(LOG_ERR, $msg);
+    error_log($msg);
 }
 
 function log_debug($msg)

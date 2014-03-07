@@ -16,8 +16,9 @@ function FATAL($error,$extra=NULL)
 }
 
 // FIXME use smarty template engine
-function show_error($error,$extra=NULL)
+function show_error($error, $extra=NULL)
 {
+    log_error($error, $extra);
     // we do not know whether the language module was already loaded
     $errmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["error"] : "ERROR";
     $backmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["back"] : "BACK";

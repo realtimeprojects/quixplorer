@@ -1,5 +1,6 @@
 <?php
 
+require_once "_include/log.php";
 require_once "qx_var.php";
 require_once "qx.php";
 require_once "qx_msg.php";
@@ -9,7 +10,6 @@ require_once "html.php";
 require_once "_include/debug.php";
 require_once "_include/error.php";
 require_once "_include/login.php";
-require_once "_include/log.php";
 require_once "_lib/smarty/Smarty.class.php";
 
 session_start();
