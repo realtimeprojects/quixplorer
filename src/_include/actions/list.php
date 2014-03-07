@@ -2,14 +2,12 @@
 
 require_once("./_include/permissions.php");
 require_once("./_include/Summary.php");
-
+require_once "_include/QxDirectory.php";
 function do_list_action($dir)
 {
     _debug("do_list_action($dir)");
 
-    $dir_f = path_f($dir);
-    if (!down_home($dir_f))
-        show_error(qx_msg_s("errors.opendir") . ": dir='$dir_f' [not under home]");
+    $qxdir = new QxDirectory($dir);
 
 	$handle = @opendir($dir_f);
     _debug("listing directory '$dir_f");

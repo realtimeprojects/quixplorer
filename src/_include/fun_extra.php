@@ -21,19 +21,6 @@ function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NUL
 	return $link;
 }
 
-function get_abs_dir($path)
-{
-    return path_f($path);
-}
-
-function path_f ($path = "")
-{
-    $abs_dir = qx_cfg('home_dir');
-	if ($path != "")
-       $abs_dir .= "/$path";
-    return realpath($abs_dir);
-}
-
 function path_r ($path)
 {
     global $home_dir;
@@ -205,18 +192,6 @@ function get_max_file_size() {			// get php max_upload_file_size
 	}
 
 	return $max;
-}
-//------------------------------------------------------------------------------
-function down_home ($abs_dir)
-{
-    if ($abs_dir == "")
-        return false;
-
-    // dir deeper than home?
-	$real_home = path_f();
-    _debug("down_home[$real_home]($abs_dir)");
-	$real_dir = @realpath($abs_dir);
-    return substr($real_dir, 0, strlen($real_home)) == $real_home;
 }
 //------------------------------------------------------------------------------
 function id_browser() {
