@@ -23,47 +23,47 @@
 	{/foreach}
 	</tr>
 	{foreach from=$files item=file}
-	{if $file.special == "directory"}
+	{if $file->type == "dir"}
 	<tr class="rowdata" id="dirmarker">
 		<td id='name' colspan=7 nowrap>
-		{$file.type}
-		{if $file.link != ''}
-			<a href="{$file.link}">
+		{$file->type}
+		{if $file->link != ''}
+			<a href="{$file->link}">
 		{/if}
-		{$file.name}
-		{if $file.link != ''}
+		{$file->name}
+		{if $file->link != ''}
 			</a>
 		{/if}
 		</td>
 	</tr>
 	{else}
 	<TR class="rowdata">
-		<TD><INPUT TYPE="checkbox" name="selitems[]" value="{$file.name}"
+		<TD><INPUT TYPE="checkbox" name="selitems[]" value="{$file->name}"
 			onclick="javascript:Toggle(this);">
 		</TD>
 		<TD id='name' nowrap>
-        <i class="icon-{$file.type}"/>
-		{if $file.link != ''}
-			<A HREF="{$file.link}">
+        <i class="icon-{$file->type}"/>
+		{if $file->link != ''}
+			<A HREF="{$file->link}">
 		{/if}
-		{$file.name}
-		{if $file.link != ''}
+		{$file->name}
+		{if $file->link != ''}
 			</a>
 		{/if}
 		</TD>
-		<TD id='size' >{$file.size}</TD>
-		<TD id='type' >{$file.type}</TD>
-		<TD id='modified' >{$file.modified_s}</td>
+		<TD id='size' >{$file->size}</TD>
+		<TD id='type' >{$file->type}</TD>
+		<TD id='modified' >{$file->modified}</td>
 		<TD id='permissions'>
-		{if $file.permissions.link != ''}
-			<A HREF="{$file.permissions.link}">{$file.permissions.text}</a>
+		{if $file->permissions.link != ''}
+			<A HREF="{$file->permissions.link}">{$file->permissions.text}</a>
 		{else}
-			{$file.permissions.text}
+			{$file->permissions.text}
 		{/if}
 		</TD>
 		<TD id='edit'>
-            {if $file.name neq ".."}{button link=$file.download_link content="<i class=\"icon-download\"></i>&nbsp;" title='download' enabled=($file.download_link neq '')}{/if}
-            {if $file.edit_link neq ''}{button link=$file.edit_link content="<i class=\"icon-edit\"></i>" title='edit' enabled=1}{/if}
+            {if $file->name neq ".."}{button link=$file->download_link content="<i class=\"icon-download\"></i>&nbsp;" title='download' enabled=($file->download_link neq '')}{/if}
+            {if $file->edit_link neq ''}{button link=$file->edit_link content="<i class=\"icon-edit\"></i>" title='edit' enabled=1}{/if}
 		</TD>
 	</TR>
 	{/if}

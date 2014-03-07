@@ -1,10 +1,12 @@
 <?php
 
+require_once "_include/QxFile.php";
+
 class Path
 {
     public static function append($p1, $p2)
     {
-        return realpath($p1.DIRECTORY_SEPARATOR.$p2);
+        return $p1.DIRECTORY_SEPARATOR.$p2;
     }
 }
 
@@ -18,22 +20,23 @@ class QxPath
     public function absolute ()
     {
         $basedir = Config::get('base_directory');
-        return Path::append($basedir, $this->path);
+        return realpath(Path::append($basedir, $this->path));
     }
 
-    public function get()
+    public function get ()
     {
         return $this->path;
     }
 
 
-    public function __toString()
+    public function __toString ()
     {
         return $this->path;
     }
 
     private $path;
 }
+
 
 class Security
 {
@@ -64,10 +67,37 @@ class QxDirectory
         $path = new QxPath($relative_path);
         if (!Security::isPathOk($path))
             show_error(qx_msg_s("errors.opendir") . ": dir='$path' [not under home]");
-        $this->path = $relative_path;
+        $this->path = $path;
+    }
+
+    public function read()
+    {
+        $fullpath = $this->path->absolute();
+        log_debug("listing directory '$fullpath'");
+        $handle = @opendir($this->path->absolute());
+
+        if ($handle === false)
+            show_error(qx_msg_s("errors.opendir") . ": $dir_f [error opening directory]");
+
+        $files = Array();
+
+        // read directory
+        while (($cfile = readdir($handle)) !== false)
+        {
+            // skip local directory
+            if ($cfile === ".")
+                continue;
+
+            $file = new QxFile($this->path, $cfile);
+            $files[$cfile] = $file;
+        }
+
+        closedir($handle);
+        return $files;
     }
 
     private $path;
+
 }
 
 ?>

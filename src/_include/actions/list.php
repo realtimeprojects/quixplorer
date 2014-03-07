@@ -8,61 +8,19 @@ function do_list_action($dir)
     _debug("do_list_action($dir)");
 
     $qxdir = new QxDirectory($dir);
+    $files = $qxdir->read();
+    $totals = new Summary();
+    foreach ($files as $file)
+        $totals->add($file->fullpath);
 
-	$handle = @opendir($dir_f);
-    _debug("listing directory '$dir_f");
-
-	if ($handle === false)
-        show_error(qx_msg_s("errors.opendir") . ": $dir_f [error opening directory]");
-
-    global $qx_files;
-    global $qx_totals;
-    $qx_totals = new Summary();
-
-	// Read directory
-	while (($cfile = readdir($handle)) !== false)
-    {
-        if ($cfile === ".")
-            continue;
-
-
-		$cfile_f = get_abs_item($dir, $cfile);
-        $qx_totals->add($cfile_f);
-        $fattributes = array();
-		$fattributes["type"] = @filetype($cfile_f);
-		$fattributes["extension"] = pathinfo($cfile_f, PATHINFO_EXTENSION);
-        $fattributes["name"] = $cfile;
-        $fattributes["size"] = filesize($cfile_f);
-	    $fattributes["modified"] = @filemtime($cfile_f);
-	    $fattributes["modified_s"] = parse_file_date(@filemtime($cfile_f));
-        $fattributes["permissions"]["text"] = get_file_perms($dir, $cfile);
-        $fattributes["permissions_l"]["link"] = NULL;
-        $fattributes["download_link"] = qx_link("download", "&selitems[]=" . path_r($cfile_f));
-		if (!permissions_grant($dir, NULL, "change"))
-            $fattributes["permissions_l"] = html_link(
-                qx_link("chmod", "&file=$cfile_f"),
-                $fattributes["permissions_l"],
-                qx_msg_s("permlink"));
-        if (get_is_dir($dir, $cfile))
-        {
-            // NOT NICE: type and extension management
-            $fattributes["extension"] = "dir";
-            $fattributes["link"] = qx_link("list", "&dir=" . path_r("$dir_f/$cfile"));
-        }
-        $qx_files[$cfile] = $fattributes;
-	}
-	closedir($handle);
-
-    do_list_show();
+    do_list_show($files, $totals);
 }
 
-function do_list_show()
+function do_list_show($files, $totals)
 {
-    global $qx_files;
-    global $qx_totals;
 	global $smarty;
-	$smarty->assign('files', $qx_files);
-	$smarty->assign('totals', $qx_totals);
+	$smarty->assign('files', $files);
+	$smarty->assign('totals', $totals);
 	$smarty->assign('buttons', _get_buttons(".."));
 	qx_page('list');
 }
@@ -157,7 +115,8 @@ function _get_buttons ($dir_up)
 			 	'id' => 'logout',
 				'link' => make_link("logout", $dir, NULL),
 				"alt" => $GLOBALS["messages"]["logoutlink"],
-				'enabled' => qx_var("is_authenticated"),
+                // FIXME determine if user is logged in (session)
+				'enabled' => false,
 			));
 
 	// Create File / Dir

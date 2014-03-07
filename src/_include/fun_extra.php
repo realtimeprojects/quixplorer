@@ -54,9 +54,6 @@ function parse_file_type($dir,$item) {		// parsed file type (d / l / -)
 	return "-";
 }
 //------------------------------------------------------------------------------
-function get_file_perms($dir,$item) {		// file permissions
-	return @decoct(@fileperms(get_abs_item($dir,$item)) & 0777);
-}
 //------------------------------------------------------------------------------
 function parse_file_perms($mode) {		// parsed file permisions
 	if(strlen($mode)<3) return "????????";
