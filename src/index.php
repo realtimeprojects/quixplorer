@@ -1,7 +1,9 @@
 <?php
+
 umask(002); // Added to make created files/dirs group writable
 
 require "_include/init.php";	// Init
+
 
 $action = qx_request("action", "list");
 _debug("action is : $action");

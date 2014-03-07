@@ -1,0 +1,4 @@
+
+[global]
+language           = en
+template_directory = _templates/default
