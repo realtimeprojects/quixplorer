@@ -59,7 +59,7 @@ function permissions_grant ($dir, $file, $action)
 
 	// if no user is logged in, use the global permissions
 	if (!isset($user))
-		return permissions_global($dir, $file, $action);
+		return _permissions_global($dir, $file, $action);
 
 	// check if the user currently logged in has the given rights
 	return permissions_grant_user($user, $dir, $file, $action);
@@ -75,14 +75,14 @@ function permissions_grant ($dir, $file, $action)
   defined in the configuration variable 'global_permissions'
   in conf.php
   */
-function permissions_global ($dir, $file, $action)
+function _permissions_global ($dir, $file, $action)
 {
 	// check if login is required
 	if ($GLOBALS['require_login'] == true)
 		return false;
 
 	// if no login is required, get the global permissions
-	$permissions = $GLOBALS['global_permissions'];
+	$permissions = Config::get('permissions', 0x0000);
 
 	// if the global permissions are undefined, nothing
 	// is allowed

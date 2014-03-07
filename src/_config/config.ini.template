@@ -2,3 +2,11 @@
 [global]
 language           = en
 template_directory = _templates/default
+temp_directory     = tmp
+permissions        = 0x0001;
+
+[site]
+homepage = "my homepage"
+sitename = "blabla"
+
+[smarty]

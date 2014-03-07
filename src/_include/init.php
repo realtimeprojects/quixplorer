@@ -57,16 +57,16 @@ function _init_smarty()
 
 	// Smarty directories
 	$smarty->template_dir = $template_dir;
-    $smarty->compile_dir = qx_cfg('compile_dir', "tmp/smarty/compile");
-	$smarty->cache_dir = qx_cfg('cache_dir', "tmp/smarty/cache_dir");
-	$smarty->config_dir = qx_cfg('config_dir', "_config");
+    $smarty->compile_dir  = Config::get('compile_dir', Config::get('temp_directory')."/smarty/compile",   "smarty");
+	$smarty->cache_dir    = Config::get('cache_dir',   Config::get('temp_directory')."/smarty/cache_dir", "smarty");
+	$smarty->config_dir   = Config::get('config_dir', "_config",                                          "smarty");
 
 	// Assign the version number to smarty
 	$smarty->assign('version', array( "id" => "3.0 PRE", "revision" => "0000" ));
 
 	// Assign the homepage to smarty
-	$smarty->assign('homepage', qx_cfg('homepage'));
-	$smarty->assign('site_name', qx_cfg('site_name'));
+	$smarty->assign('homepage', Config::get('homepage', "Quixplorer", "site"));
+	$smarty->assign('site_name', Config::get('site_name', "Quixplorer Home", "site"));
 	global $lang;
 	$smarty->assign('lang', $lang);
 	$smarty->assign('messages', $GLOBALS['messages']);
