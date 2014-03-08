@@ -23,20 +23,6 @@
 	{/foreach}
 	</tr>
 	{foreach from=$files item=file}
-	{if $file->type == "dir"}
-	<tr class="rowdata" id="dirmarker">
-		<td id='name' colspan=7 nowrap>
-		{$file->type}
-		{if $file->link != ''}
-			<a href="{$file->link}">
-		{/if}
-		{$file->name}
-		{if $file->link != ''}
-			</a>
-		{/if}
-		</td>
-	</tr>
-	{else}
 	<TR class="rowdata">
 		<TD><INPUT TYPE="checkbox" name="selitems[]" value="{$file->name}"
 			onclick="javascript:Toggle(this);">
@@ -66,7 +52,6 @@
             {if $file->edit_link neq ''}{button link=$file->edit_link content="<i class=\"icon-edit\"></i>" title='edit' enabled=1}{/if}
 		</TD>
 	</TR>
-	{/if}
 	{/foreach}
 </table>
 </form>
