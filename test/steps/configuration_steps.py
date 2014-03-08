@@ -1,3 +1,9 @@
+from radish import step, world
+
+import os
+import shutil
+
+DATA_DIR = "src/tmp/data"
 
 @step(u'I have the reference configuration')
 def I_have_the_reference_configuration(step):

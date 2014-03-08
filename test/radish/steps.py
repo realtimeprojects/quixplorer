@@ -4,7 +4,6 @@ from time import sleep
 from subprocess import Popen, PIPE
 import os
 import re
-import shutil
 from radish import step, world
 from radish.hookregistry import after, before
 
@@ -15,8 +14,7 @@ from expressions import Expressions
 
 import sys
 sys.path.append('test/steps')
-import configuration_steps.py
-import steps.configuration_steps
+import configuration_steps
 
 # ** steps for running quixplorer
 
@@ -89,8 +87,6 @@ def I_find_a_file_in_zip_content_of_zip_archive(step, a_file, zip_archive):
     output = p.stdout.read()
     assert exitcode == 0, "unzip failed: %d\n%s" % (exitcode, p.stderr.read())
     assert re.search(a_file, output)
-
-DATA_DIR = "src/tmp/data"
 
 @step(r'I change password with original password "(.*)", first password "(.*)" and second password "(.*)"')
 def change_password(step, original_pw, first_pw, second_pw):
