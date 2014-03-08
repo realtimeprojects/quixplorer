@@ -13,7 +13,7 @@ require_once "_lib/smarty/Smarty.class.php";
 require_once "_include/Config.php";
 require_once "_include/Setting.php";
 
-if (Config::read("_config/config.ini") == false)
+if (Config::read("_config/quixplorer.ini") == false)
 {
     show_error("Config file _config/config.ini not found", "See installation manual for details");
 }
