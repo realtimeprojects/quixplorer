@@ -88,6 +88,20 @@ def I_find_a_file_in_zip_content_of_zip_archive(step, a_file, zip_archive):
 
 DATA_DIR = "src/tmp/data"
 
+@step(r'I change password with original password "(.*)", first password "(.*)" and second password "(.*)"')
+def change_password(step, original_pw, first_pw, second_pw):
+    Logger.log("change password")
+    (world.result, world.output, world.stderr ) = quixplorer.run("admin", [ "action2=chpwd", "oldpwd="+original_pw, "newpwd1="+first_pw, "newpwd2="+second_pw ])
+    assert world.result == 0, "run failed (%d):\n%s" %  (world.result, "".join(world.output))
+
+@step(r'I login to quixplorer as user "(.*)" with password "(.*)"')
+def login(step, user, passwd):
+    (world.result, world.output, world.stderr ) = quixplorer.run("login", [ "p_user="+user, "p_pass="+passwd ])
+
+@step(r'I logout')
+def logout(step):
+    (world.result, world.output, world.stderr ) = quixplorer.run("logout");
+
 @step(u'I have the reference configuration')
 def I_have_the_reference_configuration(step):
     try:

@@ -1,6 +1,7 @@
 RADISH=radish -b test
 TESTS=*
 
+default: test1
 .PHONY: tests
 tests:
 	$(RADISH) test/features/system/$(TESTS)
