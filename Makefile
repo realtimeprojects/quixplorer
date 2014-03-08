@@ -10,4 +10,4 @@ unittests:
 	phpunit --verbose --include-path=src test/unit/*
 
 test1:
-	make TESTS=001* tests
+	make TESTS=002* tests
