@@ -14,8 +14,9 @@ import specialsteps
 from expressions import Expressions
 
 import sys
-sys.path.append('test')
-import steps
+sys.path.append('test/steps')
+import configuration_steps.py
+import steps.configuration_steps
 
 # ** steps for running quixplorer
 
