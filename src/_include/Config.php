@@ -17,9 +17,9 @@ class Config
 
     public static function get($entry, $default_value = NULL, $section = "global")
     {
-        $value = self::$config[$section][$entry];
-        if (isset($value))
+        if (array_key_exists($entry, self::$config[$section]))
         {
+            $value = self::$config[$section][$entry];
             log_debug("returning '$value' for entry '$entry'");
             return $value;
         }
