@@ -12,8 +12,8 @@ function qx_msg_s($what)
 {
     global $qx_msgs;
 
-    $parts = split( "\.", $what );
-    _debug("count(".count($parts));
+    $parts = explode( ".", $what );
+    Log::debug2("count(".count($parts));
     switch (count($parts))
     {
         case 0: return $what;
@@ -22,7 +22,7 @@ function qx_msg_s($what)
         default: return $what;
     }
     $msg = isset($msg) ? $msg : $what;
-    _debug("returning message '$msg' for item '$what'");
+    Log::debug2("returning message '$msg' for item '$what'");
     return $msg;
 }
 

@@ -1,23 +1,30 @@
 <?php
 
-function log_syslog($level, $message)
+class Log
 {
-    openlog("quixplorer", LOG_PID | LOG_PERROR | LOG_LOCAL0, LOG_USER);
-    syslog($level, $message);
-    closelog();
-}
+    public static function debug2($msg)
+    {
+        self::_syslog(LOG_DEBUG, $msg);
+    }
+    public static function debug($msg)
+    {
+        self::_syslog(LOG_NOTICE, $msg);
+    }
 
-function log_error($msg, $extra)
-{
-    if (isset($extra))
-        $msg .= ", " . $extra;
+    private static function _syslog($level, $message)
+    {
+        openlog("quixplorer", LOG_PID | LOG_PERROR | LOG_LOCAL0, LOG_USER);
+        syslog($level, $message);
+        closelog();
+    }
 
-    log_syslog(LOG_ERR, $msg);
-    error_log($msg);
-}
+    public static function error($msg, $extra)
+    {
+        if (isset($extra))
+            $msg .= ", " . $extra;
 
-function log_debug($msg)
-{
-    log_syslog(LOG_NOTICE, $msg);
+        self::_syslog(LOG_ERR, $msg);
+        error_log("Quixplorer, fatal error: " . $msg);
+    }
 }
 ?>

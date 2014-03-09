@@ -38,32 +38,11 @@ class QxPath
 }
 
 
-class Security
-{
-    public static function isPathOk($path)
-    {
-        $basedir = realpath(Config::get('base_directory'));
-
-        // double security
-        if ($basedir == NULL)
-            return false;
-        if ($basedir == "")
-            return false;
-        if ($basedir == "/")
-            return false;
-
-        // check if path is below basedir
-        $abspath = $path->absolute();
-        log_debug("checking if path '".$path->get()."' is under home '$basedir'");
-        return substr($abspath, 0, strlen($basedir)) == $basedir;
-    }
-}
-
 class QxDirectory
 {
     public function __construct ($relative_path)
     {
-        log_debug("QxDirectory($relative_path)");
+        Log::debug("QxDirectory($relative_path)");
         $path = new QxPath($relative_path);
         if (!Security::isPathOk($path))
             show_error(qx_msg_s("errors.opendir") . ": dir='$path' [not under home]");
@@ -73,7 +52,7 @@ class QxDirectory
     public function read()
     {
         $fullpath = $this->path->absolute();
-        log_debug("listing directory '$fullpath'");
+        Log::debug("listing directory '$fullpath'");
         $handle = @opendir($this->path->absolute());
 
         if ($handle === false)
