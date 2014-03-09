@@ -16,6 +16,8 @@ class QxFile
         $this->permissions["text"] = decoct(@fileperms($fullfile));
         $this->permissions["link"] = NULL;
         $this->download_link = qx_link("download", "&selitems[]=" . Path::append($qxpath->get(), $filename));
+        $this->link = "";
+        $this->edit_link = "http://tobeimplemented";
         /** FIXME
         if (!permissions_grant($dir, NULL, "change"))
             $fattributes["permissions_l"] = html_link(
