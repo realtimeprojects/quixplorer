@@ -5,7 +5,7 @@
  */
 function FATAL($error,$extra=NULL)
 {
-    Log::error($error, $extra);
+    QxLog::error($error, $extra);
     ?>
 	<center>
         <h2><?php echo $error ?></h2>
@@ -18,7 +18,7 @@ function FATAL($error,$extra=NULL)
 // FIXME use smarty template engine
 function show_error($error, $extra=NULL)
 {
-    Log::error($error, $extra);
+    QxLog::error($error, $extra);
     // we do not know whether the language module was already loaded
     $errmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["error"] : "ERROR";
     $backmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["back"] : "BACK";

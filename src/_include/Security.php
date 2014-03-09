@@ -1,6 +1,7 @@
 <?php
 
 require_once "./_include/permissions.php";
+Qx::useModule("log");
 
 class Security
 {
@@ -18,7 +19,7 @@ class Security
 
         // check if path is below basedir
         $abspath = $path->absolute();
-        Log::debug("checking if path '".$path->get()."' is under home '$basedir'");
+        QxLog::debug("checking if path '".$path->get()."' is under home '$basedir'");
         return substr($abspath, 0, strlen($basedir)) == $basedir;
     }
 
@@ -48,9 +49,12 @@ class Security
 
     public static function request($var, $default)
     {
-      $ret = isset($_REQUEST[$var]) ? $_REQUEST[$var] : $default;
-      _debug("qx_request: returning '$ret' for $var");
-      return $ret;
+        $ret = isset($_REQUEST[$var]) ? $_REQUEST[$var] : $default;
+        if (is_array($ret))
+            QxLog::debug("qx_request: returning '".implode(",", $ret)."' for $var");
+        else
+            QxLog::debug("qx_request: returning '$ret' for $var");
+        return $ret;
     }
 }
 

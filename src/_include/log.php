@@ -1,6 +1,6 @@
 <?php
 
-class Log
+class QxLog
 {
     public static function debug2($msg)
     {

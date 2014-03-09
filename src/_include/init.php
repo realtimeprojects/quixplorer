@@ -21,7 +21,7 @@ if (Config::read("_config/quixplorer.ini") == false)
 session_start();
 
 
-Log::debug("initializing qx");
+QxLog::debug("initializing qx");
 
 // Get Sort
 if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
@@ -36,7 +36,7 @@ if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 date_default_timezone_set ( "UTC" );
 
 require "./_config/configs.php";
-Log::debug("boot strapped");
+QxLog::debug("boot strapped");
 require "./_lang/".Setting::get("language").".php";
 require "./_lang/".Setting::get("language")."_mimes.php";
 require "./_config/mimes.php";
@@ -53,7 +53,7 @@ function _init_smarty()
 	$smarty = new Smarty;
 
     $template_dir = Config::get('template_directory');
-    Log::debug("setting template dir to " . $template_dir);
+    QxLog::debug("setting template dir to " . $template_dir);
 
 	// Smarty directories
 	$smarty->template_dir = $template_dir;
@@ -74,13 +74,13 @@ function _init_smarty()
     $themeplugin_dir = "$template_dir/plugins";
     if (is_dir($themeplugin_dir))
     {
-        Log::debug("adding $themeplugin_dir to smarty plugins dir");
+        QxLog::debug("adding $themeplugin_dir to smarty plugins dir");
         $smarty->addPluginsDir($themeplugin_dir);
     }
     $qx_plugin_dir = "_templates/plugins";
     if (is_dir($qx_plugin_dir))
     {
-        Log::debug("adding $qx_plugin_dir to smarty plugins dir");
+        QxLog::debug("adding $qx_plugin_dir to smarty plugins dir");
         $smarty->addPluginsDir($qx_plugin_dir);
     }
 	$smarty->assign('error_msg', $GLOBALS['error_msg']);

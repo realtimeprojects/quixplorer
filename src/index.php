@@ -16,7 +16,7 @@ function load_action ($action_to_load)
 
 $action = Action::getCurrentAction();
 
-switch ($action)
+switch ($action->action)
 {
     case "login":           login_form(); break;
     case "download":        load_action("download");

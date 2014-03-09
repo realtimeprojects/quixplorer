@@ -4,7 +4,7 @@ class Config
 {
     public static function read($file)
     {
-        Log::debug("reading configuration from $file");
+        QxLog::debug("reading configuration from $file");
         if (! is_readable($file))
         {
             log_error("No configuration file found, using default configuration");
@@ -20,7 +20,7 @@ class Config
         if (array_key_exists($entry, self::$config[$section]))
         {
             $value = self::$config[$section][$entry];
-            Log::debug("returning '$value' for entry '$entry'");
+            QxLog::debug("returning '$value' for entry '$entry'");
             return $value;
         }
 
@@ -29,7 +29,7 @@ class Config
             show_error("no configuration entry found for '$entry'", "check configuration");
         }
 
-        Log::debug("returning '$default_value' for entry '$entry' in $section (default value)");
+        QxLog::debug("returning '$default_value' for entry '$entry' in $section (default value)");
         return $default_value;
     }
 

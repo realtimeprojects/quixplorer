@@ -30,12 +30,11 @@ function _download_items($dir, $items)
  */
 function do_download_action (Action $action)
 {
-    $files = qx_request("selitems", []);
-    $dir   = qx_request("dir", "");
+    $files = $action->getParameter("selitems", []);
 
     if (count($files) == 0)
         show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
-    _download_items($dir, $files);
+    _download_items($action->directory, $files);
 }	
 
 function _download_file ($file_f, $targetname = NULL)
