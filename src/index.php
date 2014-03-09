@@ -3,12 +3,8 @@
 umask(002); // Added to make created files/dirs group writable
 
 require "_include/init.php";	// Init
+require "_include/Action.php";
 
-
-$action = qx_request("action", "list");
-_debug("action is : $action");
-
-$dir = qx_request("dir", "");
 
 function load_action ($action_to_load)
 {
@@ -18,11 +14,13 @@ function load_action ($action_to_load)
     require_once $action_script_name;
 }
 
+$action = Action::getCurrentAction();
+
 switch ($action)
 {
     case "login":           login_form(); break;
     case "download":        load_action("download");
-                            do_download_action();
+                            do_download_action($action);
     case "authenticate":    login_post(); // nobreak 
     case "list":
     default:                load_action("list");

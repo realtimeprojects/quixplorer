@@ -1,4 +1,13 @@
 <?php
+
+class Qx
+{
+    public static function useModule($module)
+    {
+        require_once("_include/$module.php");
+    }
+}
+
 function qx_language()
 {
     global $language;
@@ -57,10 +66,4 @@ function qx_page($pagename)
     $smarty->display('list.tpl');
 }
 
-function qx_request($var, $default)
-{
-  $ret = isset($_REQUEST[$var]) ? $_REQUEST[$var] : $default;
-  _debug("qx_request: returning '$ret' for $var");
-  return $ret;
-}
 ?>

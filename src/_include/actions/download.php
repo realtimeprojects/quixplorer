@@ -1,13 +1,13 @@
 <?php
 
-require_once("./_include/permissions.php");
+require_once "./_include/Security.php";
 
 function _download_items($dir, $items)
 {
     // check if user has permissions to download
     // this file
-    if ( ! _is_download_allowed($dir, $items) )
-		show_error( qx_msg_s( "error.access" ));
+    if ( ! Security::isDownloadAllowed($dir, $items) )
+		show_error( qx_msg_s( "error.access" ), implode(",", $items));
 
     // if we have exactly one file and this is a real
     // file we directly download it
@@ -28,7 +28,7 @@ function _download_items($dir, $items)
 /**
     activates the browser download of the file $file.
  */
-function do_download_action ()
+function do_download_action (Action $action)
 {
     $files = qx_request("selitems", []);
     $dir   = qx_request("dir", "");
@@ -102,21 +102,4 @@ function _add_directory ($archive, $dir_f)
     }
 }
 
-function _is_download_allowed($dir, $items)
-{
-    foreach ($items as $file)
-    {
-        if (!permissions_grant($dir, $file, "read"))
-            return false;
-
-        if (!get_show_item($dir, $file))
-            return false;
-
-        $full_path = get_abs_item($dir, $file);
-        if (!file_exists($full_path))
-            return false;
-    }
-
-    return true;
-}
 ?>
