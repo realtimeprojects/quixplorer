@@ -42,7 +42,7 @@ class QxDirectory
 {
     public function __construct ($relative_path)
     {
-        Log::debug("QxDirectory($relative_path)");
+        QxLog::debug("QxDirectory($relative_path)");
         $path = new QxPath($relative_path);
         if (!Security::isPathOk($path))
             show_error(qx_msg_s("errors.opendir") . ": dir='$path' [not under home]");
@@ -52,7 +52,7 @@ class QxDirectory
     public function read()
     {
         $fullpath = $this->path->absolute();
-        Log::debug("listing directory '$fullpath'");
+        QxLog::debug("listing directory '$fullpath'");
         $handle = @opendir($this->path->absolute());
 
         if ($handle === false)

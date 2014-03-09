@@ -78,19 +78,18 @@ function permissions_grant ($dir, $file, $action)
 function _permissions_global ($dir, $file, $action)
 {
 	// check if login is required
-	if ($GLOBALS['require_login'] == true)
+    if (Config::get("login_required", true))
+    {
+        QxLog::debug("login required for downloading $file");
 		return false;
+    }
 
 	// if no login is required, get the global permissions
-	$permissions = Config::get('permissions', 0x0000);
-
-	// if the global permissions are undefined, nothing
-	// is allowed
-	if (! isset($permissions))
-		return false;
+	$permissions = intval(Config::get('permissions', "0x0000"), 16);
 
 	$permdefs = permissions_get();
 
+    QxLog::debug("checking $permissions against $permdefs[$action]");
 	// check if this action is allowed by the global permissions
 	return $permissions & $permdefs[$action];
 }

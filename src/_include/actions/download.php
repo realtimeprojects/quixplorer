@@ -9,6 +9,7 @@ function _download_items($dir, $items)
     if ( ! Security::isDownloadAllowed($dir, $items) )
 		show_error( qx_msg_s( "error.access" ), implode(",", $items));
 
+    QxLog::debug("starting download for: ".implode(",", $items));
     // if we have exactly one file and this is a real
     // file we directly download it
     if ( count($items) == 1 )
@@ -31,6 +32,10 @@ function _download_items($dir, $items)
 function do_download_action (Action $action)
 {
     $files = $action->getParameter("selitems", []);
+    if (is_array($files))
+        QxLog::debug("selitems[]: ".implode(",", $files));
+    else
+        QxLog::debug("selitems: $files");
 
     if (count($files) == 0)
         show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
@@ -39,6 +44,7 @@ function do_download_action (Action $action)
 
 function _download_file ($file_f, $targetname = NULL)
 {
+    QxLog::debug("downloading file: $file_f to target name $targetname");
     if (!isset($targetname))
         $targetname = basename($file_f);
 
@@ -61,6 +67,7 @@ function _download_file ($file_f, $targetname = NULL)
  */
 function _download_files ($dir, $files)
 {
+    QxLog::debug("downloading files: ".implode(",", $files));
     $archive_zip = new ZipArchive;
     $tmp_f = tempnam("", "download-archive-$file_f.zip");
 

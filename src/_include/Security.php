@@ -2,6 +2,7 @@
 
 require_once "./_include/permissions.php";
 Qx::useModule("log");
+Qx::useModule("QxDirectory");
 
 class Security
 {
@@ -33,16 +34,48 @@ class Security
     {
         foreach ($items as $file)
         {
+            QxLog::debug("checking permissions for: $file");
             if (!permissions_grant($dir, $file, "read"))
+            {
+                QxLog::debug("no permissions for reading: $file");
+                return false;
+            }
+
+            if (!self::isItemVisible($dir, $file))
                 return false;
 
-            if (!get_show_item($dir, $file))
+            $qxpath = new QxPath(Path::append($dir, $file));
+            if (!file_exists($qxpath->absolute()))
+            {
+                QxLog::debug("not found: full path: ".$qxpath->absolute());
                 return false;
-
-            $full_path = get_abs_item($dir, $file);
-            if (!file_exists($full_path))
-                return false;
+            }
         }
+
+        return true;
+    }
+
+    // show this file?
+    public static function isItemVisible($dir, $item)
+    {
+        if ($item == "." || $item == "..")
+            return false;
+
+        $show_hidden = Config::get("show_hidden", false);
+        if(! $show_hidden)
+        {
+            if (substr($item, 0, 1) == ".")
+                return false;
+
+            $dirs = explode("/",$dir);
+            foreach ($dirs as $ii)
+            {
+               if (substr($ii, 0, 1) == ".")
+                   return false;
+            }
+        }
+        if (Config::get("no_access", "") == "" && @eregi($GLOBALS["no_access"], $item))
+            return false;
 
         return true;
     }

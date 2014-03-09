@@ -114,19 +114,6 @@ function get_is_unzipable($dir, $item) {		// is this file editable?
 	return false;
 }
 
-function get_show_item($dir, $item) {		// show this file?
-	if($item == "." || $item == ".." ||
-		(substr($item,0,1)=="." && $GLOBALS["show_hidden"]==false)) return false;
-
-	if($GLOBALS["no_access"]!="" && @eregi($GLOBALS["no_access"],$item)) return false;
-
-	if($GLOBALS["show_hidden"]==false) {
-		$dirs=explode("/",$dir);
-		foreach($dirs as $i) if(substr($i,0,1)==".") return false;
-	}
-
-	return true;
-}
 //------------------------------------------------------------------------------
 function copy_dir($source,$dest) {		// copy dir
 	$ok = true;
