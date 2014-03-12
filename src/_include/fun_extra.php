@@ -30,23 +30,6 @@ function path_r ($path)
     return $path;
 }
 
-function get_abs_item($dir, $item) {		// get absolute file+path
-	return get_abs_dir($dir)."/".$item;
-}
-//------------------------------------------------------------------------------
-function get_rel_item($dir,$item) {		// get file relative from home
-	if($dir!="") return $dir."/".$item;
-	else return $item;
-}
-//------------------------------------------------------------------------------
-function get_is_file($dir, $item) {		// can this file be edited?
-	return @is_file(get_abs_item($dir,$item));
-}
-//------------------------------------------------------------------------------
-function get_is_dir($dir, $item) {		// is this a directory?
-	return @is_dir(get_abs_item($dir,$item));
-}
-//------------------------------------------------------------------------------
 function parse_file_type($dir,$item) {		// parsed file type (d / l / -)
 	$abs_item = get_abs_item($dir, $item);
 	if(@is_dir($abs_item)) return "d";

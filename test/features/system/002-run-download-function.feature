@@ -27,8 +27,8 @@ Feature: Download multiple files
         Then I reject an error (You are not allowed to access this item)
         Then I expect success and a binary result
         Then I write the binary result to file test.zip
-        Then I find "huhu.txt" in zip content of file test.zip 
-        Then I find "haha.txt" in zip content of file test.zip 
+        Then I find "huhu.txt" in zip content of file test.zip
+        Then I find "haha.txt" in zip content of file test.zip
 
     Scenario: Download existing inacessable file outside data directory
         When I run download function on quixplorer with selitems[]=huhu.txt&selitems[]=../inaccessable.txt
@@ -37,4 +37,4 @@ Feature: Download multiple files
     Scenario: Download single directory
         When I run download function on quixplorer with selitems[]=xx
         Then I write the binary result to file test.zip
-        Then I find "xx/ddd" in zip content of file test.zip 
+        Then I find "xx/ddd" in zip content of file test.zip

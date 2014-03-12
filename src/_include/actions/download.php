@@ -40,7 +40,7 @@ function do_download_action (Action $action)
     if (count($files) == 0)
         show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
     _download_items($action->directory, $files);
-}	
+}
 
 function _download_file ($file_f, $targetname = NULL)
 {
@@ -55,7 +55,7 @@ function _download_file ($file_f, $targetname = NULL)
     header("Content-Disposition: attachment; filename=\"$targetname\"");
     header('Cache-Control: no-cache, must-revalidate');
     header('Pragma: no-cache');
-	
+
 	@readfile($file_f);
 	exit;
 }
@@ -76,15 +76,16 @@ function _download_files ($dir, $files)
         show_error(qx_msg_s("error.zip_creation_failed"), $tmp_f);
 
     foreach ($files as $file)
-    { 
+    {
         _debug("dir: $dir");
-        _add_directory($archive_zip, get_abs_item($dir, $file));
+        $pt = new QxPath($dir, $file);
+        _add_directory($archive_zip, $pt->absolute());
     }
 
     $name = count($files) == 1 ? basename($files[0]) : "downloads";
     if ($archive_zip->close() !== true)
         show_error(qx_msg_s("error.zip_close_failed"), $tmp_f);
-    
+
     _download_file($tmp_f, $name . ".zip");
 }
 
