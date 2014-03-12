@@ -12,9 +12,11 @@ class Path
 
 class QxPath
 {
-    public function __construct ($relative_path)
+    public function __construct ($relative_path, $filename = null)
     {
         $this->path = $relative_path;
+        if ($filename != null)
+            $this->path = Path::append($this->path, $filename);
     }
 
     public function absolute ()
