@@ -11,3 +11,6 @@ unittests:
 
 test1:
 	make TESTS=002* tests
+
+testdebug:
+	make TESTS=debug* tests
