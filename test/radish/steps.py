@@ -22,24 +22,24 @@ import configuration_steps
 def run_quixplorer_with(step, function, arg):
     Logger.log("run_width")
     (world.result, world.output, world.stderr ) = quixplorer.run(function, [ arg ])
-    assert world.result == 0, "run failed (%d):\n%s" %  (world.result, "".join(world.output))
+    assert world.result == 0, "run failed (%d):\nout: %s\nerr:%s" %  (world.result, "".join(world.output), "".join(world.stderr))
 
 @step(r'I run (?:(\w+) function on )?quixplorer(?: without args)?')
 def run_quixplorer(step, function):
     (world.result, world.output, world.stderr) = quixplorer.run(function)
-    assert world.result == 0, "run failed:\n%s\n%s" % (world.output, world.stderr )
+    assert world.result == 0, "xrun failed:\nout: %s\nerr: %s" % (world.output, world.stderr )
 
 # ** steps for module execution
 
 @step(r'I execute module (\w+) from (\w+)')
 def execute_module(step, module, from_dir):
-    (world.result, world.output) = quixplorer.run( "%s/%s.php" % ( from_dir, module ) )
+    (world.result, world.output, world.stderr) = quixplorer.run( "%s/%s.php" % ( from_dir, module ) )
 
 # ** expect success result
 
 @step(r'I expect success and a binary result')
 def check_success_with_binary_result(step):
-    assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
+    assert world.result == 0, "result was %d\nout:%s\nerr:%s" % ( world.result, "".join(world.output), "".join(world.stderr) )
     fp = open("src/result.html", "w")
     fp.write(world.output)
     fp.close()
@@ -47,7 +47,7 @@ def check_success_with_binary_result(step):
 
 @step(r'I expect success and result containing %(search)s' % { 'search':Expressions.search } )
 def check_success_with_result(step, expected_data):
-    assert world.result == 0, "result was %d\n%s" % ( world.result, "".join(world.output) )
+    assert world.result == 0, "result was %d\n%s\nout: %s\nerr: %s" % ( world.result, "".join(world.output), "".join(world.stderr) )
     res = "".join(world.output)
     fp = open("src/result.html", "w")
     fp.write(res)
