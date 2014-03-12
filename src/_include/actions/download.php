@@ -9,15 +9,15 @@ function _download_items($dir, $items)
     if ( ! Security::isDownloadAllowed($dir, $items) )
 		show_error( qx_msg_s( "error.access" ), implode(",", $items));
 
-    QxLog::debug("starting download for: ".implode(",", $items));
+    QxLog::debug("starting download for: ".implode(",", $items)."/".count($items));
     // if we have exactly one file and this is a real
     // file we directly download it
     if ( count($items) == 1 )
     {
-        if (get_is_file( $dir, $items[0] ) )
+        $pt = new QxPath($dir, $items[0]);
+        if (is_file( $pt->absolute() ))
         {
-            $abs_item = get_abs_item($dir, $items[0]);
-            _download_file($abs_item, $items[0]);
+            _download_file($pt->absolute(), $items[0]);
         }
     }
 
