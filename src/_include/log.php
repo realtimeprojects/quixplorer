@@ -18,7 +18,7 @@ class QxLog
         closelog();
     }
 
-    public static function error($msg, $extra)
+    public static function error($msg, $extra = null) 
     {
         if (isset($extra))
             $msg .= ", " . $extra;

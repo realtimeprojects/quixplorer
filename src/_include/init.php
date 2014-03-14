@@ -42,9 +42,18 @@ require "./_lang/".Setting::get("language")."_mimes.php";
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
 
+_check_config();
 _init_smarty();
 
 login_check();
+
+function _check_config()
+{
+    $temp_dir = Config::get('temp_directory');
+    if (!is_writable($temp_dir))
+        show_error("Temp directory '$temp_dir' is not writable!");
+}
+
 function _init_smarty()
 {
 	global $smarty;
