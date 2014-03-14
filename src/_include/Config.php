@@ -7,7 +7,7 @@ class Config
         QxLog::debug("reading configuration from $file");
         if (! is_readable($file))
         {
-            log_error("No configuration file found, using default configuration");
+            QxLog::error("No configuration file found, using default configuration");
             return false;
         }
 
