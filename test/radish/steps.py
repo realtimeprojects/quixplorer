@@ -24,9 +24,14 @@ def run_quixplorer_with(step, function, arg):
     (world.result, world.output, world.stderr ) = quixplorer.run(function, [ arg ])
     assert world.result == 0, "run failed (%d):\nout: %s\nerr:%s" %  (world.result, "".join(world.output), "".join(world.stderr))
 
-@step(r'I run (?:(\w+) function on )?quixplorer(?: without args)?')
+@step(r'I run (?:(\w+) function on )?quixplorer without args')
 def run_quixplorer(step, function):
     (world.result, world.output, world.stderr) = quixplorer.run(function)
+    assert world.result == 0, "xrun failed:\nout: %s\nerr: %s" % (world.output, world.stderr )
+
+@step(r'I run quixplorer')
+def run_quixplorer(step):
+    (world.result, world.output, world.stderr) = quixplorer.run()
     assert world.result == 0, "xrun failed:\nout: %s\nerr: %s" % (world.output, world.stderr )
 
 # ** steps for module execution
