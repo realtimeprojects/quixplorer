@@ -3,11 +3,12 @@
 require_once("./_include/permissions.php");
 require_once("./_include/Summary.php");
 require_once "_include/QxDirectory.php";
-function do_list_action($dir)
-{
-    _debug("do_list_action($dir)");
 
-    $qxdir = new QxDirectory($dir);
+function do_list_action(Action $action)
+{
+    _debug("do_list_action($action->directory)");
+
+    $qxdir = new QxDirectory($action->directory);
     $files = $qxdir->read();
     $totals = new Summary();
     foreach ($files as $file)

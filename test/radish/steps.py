@@ -15,6 +15,7 @@ from expressions import Expressions
 import sys
 sys.path.append('test/steps')
 import configuration_steps
+import list_steps
 
 # ** steps for running quixplorer
 

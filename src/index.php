@@ -24,7 +24,7 @@ switch ($action->action)
     case "authenticate":    login_post(); // nobreak 
     case "list":
     default:                load_action("list");
-                            do_list_action($dir);
+                            do_list_action($action);
                             break;
 // EDIT FILE
 case "edit":
