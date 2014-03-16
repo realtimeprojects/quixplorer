@@ -1,6 +1,6 @@
 
 [global]
-base_directory     = . 
+base_directory     = .
 language           = en
 template_directory = _templates/default
 temp_directory     = tmp
