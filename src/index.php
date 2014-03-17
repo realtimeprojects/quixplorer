@@ -5,7 +5,6 @@ umask(002); // Added to make created files/dirs group writable
 require "_include/init.php";	// Init
 require "_include/Action.php";
 
-
 function load_action ($action_to_load)
 {
     $action_script_name = "_include/actions/$action_to_load.php";

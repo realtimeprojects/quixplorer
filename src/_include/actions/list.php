@@ -144,4 +144,3 @@ function _get_buttons ($dir_up)
 	return $buttons;
 }
 ?>
-

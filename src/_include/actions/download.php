@@ -7,7 +7,7 @@ function _download_items($dir, $items)
     // check if user has permissions to download
     // this file
     if ( ! Security::isDownloadAllowed($dir, $items) )
-		show_error( qx_msg_s( "error.access" ), implode(",", $items));
+		show_error( "@@error.access@@", implode(",", $items));
 
     QxLog::debug("starting download for: ".implode(",", $items)."/".count($items));
     // if we have exactly one file and this is a real
@@ -31,7 +31,7 @@ function _download_items($dir, $items)
  */
 function do_download_action (Action $action)
 {
-    $files = $action->getParameter("selitems", []);
+    $files = $action->getParameter("selitems", array());
     if (is_array($files))
         QxLog::debug("selitems[]: ".implode(",", $files));
     else
@@ -47,7 +47,6 @@ function _download_file ($file_f, $targetname = NULL)
     QxLog::debug("downloading file: $file_f to target name $targetname");
     if (!isset($targetname))
         $targetname = basename($file_f);
-
 	header('Content-Type: application/octet-stream');
 	header('Expires: '. gmdate('D, d M Y H:i:s') . ' GMT');
 	header('Content-Transfer-Encoding: binary');

@@ -2,7 +2,6 @@
 
 require_once "_include/log.php";
 require_once "qx.php";
-require_once "qx_msg.php";
 require_once "qx_link.php";
 require_once "qx_version.php";
 require_once "html.php";
@@ -19,7 +18,6 @@ if (Config::read("_config/quixplorer.ini") == false)
 }
 
 session_start();
-
 QxLog::debug("initializing qx");
 
 // Necessary files
@@ -27,8 +25,7 @@ date_default_timezone_set ( "UTC" );
 
 require "./_config/configs.php";
 QxLog::debug("boot strapped");
-require "./_lang/".Setting::get("language").".php";
-require "./_lang/".Setting::get("language")."_mimes.php";
+QxMsg::load(Setting::get("language"));
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
 
@@ -67,8 +64,6 @@ function _init_smarty()
 	$smarty->assign('homepage', Config::get('homepage', "Quixplorer", "site"));
 	$smarty->assign('site_name', Config::get('site_name', "Quixplorer Home", "site"));
 	global $lang;
-	$smarty->assign('lang', $lang);
-	$smarty->assign('messages', $GLOBALS['messages']);
 	$smarty->assign('themedir', $template_dir);
     $themeplugin_dir = "$template_dir/plugins";
     if (is_dir($themeplugin_dir))
@@ -82,8 +77,6 @@ function _init_smarty()
         QxLog::debug("adding $qx_plugin_dir to smarty plugins dir");
         $smarty->addPluginsDir($qx_plugin_dir);
     }
-	$smarty->assign('error_msg', $GLOBALS['error_msg']);
-	$smarty->assign('languages', $GLOBALS['langs']);
 	$smarty->assign('logon_user', qx_user_s());
 }
 ?>

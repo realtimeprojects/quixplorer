@@ -47,7 +47,7 @@ class QxDirectory
         QxLog::debug("QxDirectory($relative_path)");
         $path = new QxPath($relative_path);
         if (!Security::isPathOk($path))
-            show_error(qx_msg_s("errors.opendir") . ": dir='$path' [not under home]");
+            show_error("@@errors.opendir@@", "directory:'$path' [not under home]");
         $this->path = $path;
     }
 

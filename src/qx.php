@@ -1,5 +1,7 @@
 <?php
 
+require_once "_include/smartyoutputfilter.php";
+
 class Qx
 {
     public static function useModule($module)
@@ -63,6 +65,7 @@ function qx_grant($link)
 function qx_page($pagename)
 {
     global $smarty;
+    $smarty->registerFilter("output", smarty_outputfilter_lang);
     $smarty->display('list.tpl');
 }
 

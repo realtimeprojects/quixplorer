@@ -9,18 +9,15 @@
 <INPUT type="hidden" name="lang" value="{$lang}">
 <TABLE cellspacing=0 cellpadding=0 class='files' WIDTH="95%">
 	<tr>
-	<th WIDTH="2%" class="header">
-		<INPUT TYPE="checkbox" name="toggleAllC" onclick="ToggleAll(this);">
-	</th>
-	{foreach from=$columns item=column}
-	<th WIDTH="44%" class="header" id='{$column.id}'>
-	<A href="{$url}?action=list?dir={$dir}&order={$column.id}&srt={if $srt != 'yes'}yes{/if}">{$column.name}
-	{if $order == $column.id}
-		<img src='{$themedir}/images/sort_{if $srt == 'yes'}down{else}up{/if}.png' />
-	{/if}
-	</a>
-	</th>
-	{/foreach}
+        <th WIDTH="2%" class="header">
+            <INPUT TYPE="checkbox" name="toggleAllC" onclick="ToggleAll(this);">
+        </th>
+        <th>@@columns.filename@@</th>
+        <th>@@columns.size@@</th>
+        <th>@@columns.type@@</th>
+        <th>@@columns.type@@</th>
+        <th>@@columns.changed@@</th>
+        <th>@@columns.actions@@</th>
 	</tr>
 	{foreach from=$files item=file}
 	<TR class="rowdata">
@@ -57,7 +54,6 @@
 </form>
 <hr>
 <div class='sum_info'>
-	{$totals->file_count} files, {$totals->directory_count} directories, disk usage: {$totals->file_space}
+	{$totals->file_count} @@files@@, {$totals->directory_count} @@directories@@, @@disk_usage@@: {$totals->file_space}
 </div>
 {include file="footer.tpl"}
-
