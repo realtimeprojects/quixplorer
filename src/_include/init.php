@@ -20,17 +20,7 @@ if (Config::read("_config/quixplorer.ini") == false)
 
 session_start();
 
-
 QxLog::debug("initializing qx");
-
-// Get Sort
-if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
-else $GLOBALS["order"]="name";
-if($GLOBALS["order"]=="") $GLOBALS["order"]=="name";
-// Get Sortorder (yes==up)
-if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET']["srt"]);
-else $GLOBALS["srt"]="yes";
-if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 
 // Necessary files
 date_default_timezone_set ( "UTC" );
