@@ -58,7 +58,7 @@ class QxDirectory
         $handle = @opendir($this->path->absolute());
 
         if ($handle === false)
-            show_error(qx_msg_s("errors.opendir") . ": $dir_f [error opening directory]");
+            show_error("@@errors.opendir@@" . ": $dir_f [error opening directory]");
 
         $files = Array();
 

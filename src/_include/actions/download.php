@@ -7,7 +7,7 @@ function _download_items($dir, $items)
     // check if user has permissions to download
     // this file
     if ( ! Security::isDownloadAllowed($dir, $items) )
-		show_error( "@@error.access@@", implode(",", $items));
+		show_error( "@@errors.access@@", implode(",", $items));
 
     QxLog::debug("starting download for: ".implode(",", $items)."/".count($items));
     // if we have exactly one file and this is a real
@@ -38,7 +38,7 @@ function do_download_action (Action $action)
         QxLog::debug("selitems: $files");
 
     if (count($files) == 0)
-        show_error(qx_msg_s("error.qxlink"), qx_msg_s("error.filenotset"));
+        show_error("@@errors.no_file_selected@@", "@@download@@");
     _download_items($action->directory, $files);
 }
 
@@ -72,7 +72,7 @@ function _download_files ($dir, $files)
 
     _debug("creating tmp zip archive of directory $file_f into $tmp_f");
     if ($archive_zip->open($tmp_f) !== true)
-        show_error(qx_msg_s("error.zip_creation_failed"), $tmp_f);
+        show_error("@@errors.zip_creation_failed@@", $tmp_f);
 
     foreach ($files as $file)
     {
@@ -83,7 +83,7 @@ function _download_files ($dir, $files)
 
     $name = count($files) == 1 ? basename($files[0]) : "downloads";
     if ($archive_zip->close() !== true)
-        show_error(qx_msg_s("error.zip_close_failed"), $tmp_f);
+        show_error("@@errors.zip_creation_failed@@", $tmp_f);
 
     _download_file($tmp_f, $name . ".zip");
 }

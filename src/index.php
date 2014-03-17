@@ -9,7 +9,7 @@ function load_action ($action_to_load)
 {
     $action_script_name = "_include/actions/$action_to_load.php";
     if (!file_exists($action_script_name))
-        show_error(qx_msg_s("errors.action_not_found"), $action_script_name);
+        show_error("@@errors.action_not_found@@", $action_script_name);
     require_once $action_script_name;
 }
 

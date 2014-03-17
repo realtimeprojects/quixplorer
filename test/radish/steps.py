@@ -111,7 +111,7 @@ def logout(step):
 # ** local functions
 
 def _has_error(output, error = None):
-    if re.search(r'ERROR', output) is None:
+    if re.search(r'Error', output) is None:
         return False
 
     if error is None:

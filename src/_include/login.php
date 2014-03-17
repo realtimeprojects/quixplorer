@@ -53,13 +53,13 @@ function login_post ()
     if ($loginname == Null || $password == Null)
     {
         _debug("authentication failed, no username or password set");
-        show_error(qx_msg_s("error.authenticate"), "username or password not set");
+        show_error("@@errors.authenticate@@", "@@errors.wrong_user@@");
     }
 
     if (!user_activate($loginname, md5($password)))
     {
         _debug("authentication failed, password invalid");
-        show_error(qx_msg_s("error.authenticate"), "username or password invalid");
+        show_error("@@error.authenticate@@", "@@errors.wrong_user@@");
     }
 
     _debug("user successfully authenticated");
