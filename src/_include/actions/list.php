@@ -19,11 +19,10 @@ function do_list_action(Action $action)
 
 function do_list_show($files, $totals)
 {
-	global $smarty;
-	$smarty->assign('files', $files);
-	$smarty->assign('totals', $totals);
-	$smarty->assign('buttons', _get_buttons(".."));
-	qx_page('list');
+	QxSmarty::assign('files', $files);
+	QxSmarty::assign('totals', $totals);
+	QxSmarty::assign('buttons', _get_buttons(".."));
+    QxSmarty::display('list');
 }
 
 function _get_buttons ($dir_up)

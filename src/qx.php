@@ -62,11 +62,4 @@ function qx_grant($link)
     return false;
 }
 
-function qx_page($pagename)
-{
-    global $smarty;
-    $smarty->registerFilter("output", smarty_outputfilter_lang);
-    $smarty->display('list.tpl');
-}
-
 ?>
