@@ -58,7 +58,10 @@ function _get_buttons ($dir)
 			'enabled' => true,
 			'title' => "@@buttons.search@@"
 		),
-		array ( 'id' => "separator" ),
+		array ( 'id' => "separator",
+                    'title' => '',
+                    'link' => '',
+                    'enabled' => false ),
 		array
 		(
 			'id' => 'copy',
@@ -100,7 +103,10 @@ function _get_buttons ($dir)
 
 	// ADMIN & LOGOUT
 	array_push($buttons,
-			array ( 'id' => 'separator' ));
+			array ( 'id' => 'separator',
+                    'title' => '',
+                    'link' => '',
+                    'enabled' => false ));
 	array_push($buttons,
 			array
 			(
