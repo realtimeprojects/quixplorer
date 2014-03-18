@@ -1,7 +1,6 @@
 <?php
 
 require_once "qx.php";
-require_once "qx_link.php";
 require_once "qx_version.php";
 require_once "html.php";
 Qx::useModule("TypeHints");
@@ -9,6 +8,8 @@ Qx::useModule("log");
 Qx::useModule("debug");
 Qx::useModule("error");
 Qx::useModule("login");
+
+Qx::useModule("QxLink")
 Qx::useModule("Config");
 Qx::useModule("Settings");
 Qx::useModule("QxSmarty");
