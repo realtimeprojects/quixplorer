@@ -10,7 +10,7 @@ Qx::useModule("debug");
 Qx::useModule("error");
 Qx::useModule("login");
 Qx::useModule("Config");
-Qx::useModule("Setting");
+Qx::useModule("Settings");
 Qx::useModule("QxSmarty");
 
 if (Config::read("_config/quixplorer.ini") == false)
@@ -26,7 +26,7 @@ date_default_timezone_set ( "UTC" );
 
 require "./_config/configs.php";
 QxLog::debug("boot strapped");
-QxMsg::load(Setting::get("language"));
+QxMsg::load(Settings::get("language"));
 require "./_config/mimes.php";
 require "./_include/fun_extra.php";
 

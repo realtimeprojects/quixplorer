@@ -1,6 +1,6 @@
 <?php
 
-class Setting
+class Settings
 {
     public static function get($entry, $default_value = NULL)
     {
