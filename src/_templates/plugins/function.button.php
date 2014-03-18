@@ -2,9 +2,9 @@
 function smarty_function_button($params)
 {
     if ($params['enabled'])
-        echo sprintf('<a href="%s">', $params['link']);
+        echo sprintf('<a title="%s" href="%s">', $params['title'], $params['link']);
     else
-        echo '<span style="opacity:0.3">';
+        echo sprintf('<span title="%s" style="opacity:0.3">', $params['title']);
 
     echo sprintf('%s', $params['content']);
     if ($params['enabled'])

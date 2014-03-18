@@ -14,21 +14,26 @@ file          = file
 total         = total
 back          = back
 
-home=home
-reload=reload
-search=search
-move=move
-delete=delete
-compress=compress
-archive=archive
-copy=copy
-upload=upload
 password=password
 username=user name
 language=language
 
 [buttons]
 login=login
+logout=logout
+home=home
+reload=reload
+search=search
+move=move
+delete=delete
+zip=zip
+archive=archive
+copy=copy
+upload=upload
+up=upper directory
+admin=admin section
+create_dir=create directory
+create_file=create file
 
 [messages]
 login=please login to this server
@@ -53,3 +58,4 @@ size     = size
 type     = type
 changed  = last modified
 actions  = actions
+

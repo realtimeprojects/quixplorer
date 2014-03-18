@@ -14,85 +14,86 @@ function do_list_action(Action $action)
     foreach ($files as $file)
         $totals->add($file->fullpath);
 
-    do_list_show($files, $totals);
+    do_list_show($action->directory, $files, $totals);
 }
 
-function do_list_show($files, $totals)
+function do_list_show(string $directory, $files, $totals)
 {
 	QxSmarty::assign('files', $files);
 	QxSmarty::assign('totals', $totals);
-	QxSmarty::assign('buttons', _get_buttons(".."));
+	QxSmarty::assign('directory', $directory);
+	QxSmarty::assign('buttons', _get_buttons($directory));
     QxSmarty::display('list');
 }
 
-function _get_buttons ($dir_up)
+function _get_buttons ($dir)
 {
 	$buttons = array
 	(
 		array
 		(
 			'id' => 'up',
-			'link' => new QxLink("list", $dir_up),
+			'link' => new QxLink("list", Path::append($dir, "..")),
 			'enabled' => true,
-			'alt' => $GLOBALS["messages"]["uplink"]
+			'title' => "@@buttons.up@@"
 		),
 		array
 		(
 			'id' => 'home',
 			'link' => new QxLink("list"),
 			'enabled' => true,
-			'alt' => $GLOBALS["messages"]["homelink"]
+			'title' => "@@buttons.home@@"
 		),
 		array
 		(
 			'id' => 'reload',
 			'link' => 'javascript:location.reload()',
 			'enabled' => true,
-			'alt' => $GLOBALS["messages"]["reloadlink"]
+			'title' => "@@buttons.reload@@"
 		),
 		array
 		(
 			'id' => 'search',
 			'link' => new QxLink('search', $dir),
 			'enabled' => true,
-			'alt' => $GLOBALS["messages"]["searchlink"]
+			'title' => "@@buttons.search@@"
 		),
 		array ( 'id' => "separator" ),
 		array
 		(
 			'id' => 'copy',
 			"link" => "javascript:Copy();",
-			'alt' => $GLOBALS["messages"]["copylink"],
-			'enabled' => permissions_grant_all($dir, NULL, array("create", "read"))
+			'enabled' => permissions_grant_all($dir, NULL, array("create", "read")),
+			'title' => "@@buttons.copy@@"
 		),
 		array
 		(
 			'id' => 'move',
 		 	'enabled' => permissions_grant($dir, NULL, "change"),
 			'link' => "javascript:Move();",
-			'alt' => $GLOBALS["messages"]["movelink"]
+			'title' => "@@buttons.move@@"
 		),
 		array
 		(
 			'id' => 'delete',
 		 	'enabled' => permissions_grant($dir, NULL, "delete"),
 			'link' => 'javascript:Delete();',
-			'alt' => $GLOBALS["messages"]["dellink"],
+			'title' => "@@buttons.delete@@"
 		),
 		array
 		(
 			'id' => 'upload',
 		 	'enabled' => permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"),
 			'link' => new QxLink("upload", $dir),
-			"alt" => $GLOBALS["messages"]["uploadlink"],
+			"title" => "@@buttons.upload@@"
 		),
 		array
 		(
 			'id' => 'archive',
 			'link' => "javascript:Archive();",
-			'alt' => $GLOBALS["messages"]["comprlink"],
 			'enabled' => permissions_grant_all($dir, NULL, array("create", "read"))
-				&& ($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"])
+				&& ($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]),
+			'title' => "@@buttons.zip@@",
 		)
 	);
 
@@ -105,18 +106,18 @@ function _get_buttons ($dir_up)
 			(
 			 	'id' => 'admin',
 				'link' => new QxLink("admin", $dir),
-				"alt" => $GLOBALS["messages"]["adminlink"],
 				'enabled' => permissions_grant(NULL, NULL, "admin")
 						|| permissions_grant(NULL, NULL, "password"),
+				"title" => "@@buttons.admin@@"
 			));
 	array_push($buttons,
 			array
 			(
 			 	'id' => 'logout',
 				'link' => new QxLink("logout", $dir),
-				"alt" => $GLOBALS["messages"]["logoutlink"],
                 // FIXME determine if user is logged in (session)
 				'enabled' => false,
+				"title" => "@@buttons.logout@@",
 			));
 
 	// Create File / Dir
@@ -125,18 +126,18 @@ function _get_buttons ($dir_up)
 		array_push($buttons,
 				array
 				(
-				 	'id' => 'createdir',
+				 	'id' => 'create_dir',
 					'link' => new QxLink("mkitem", $dir),
-					"alt" => $GLOBALS["messages"]["createfile"],
 					'enabled' => true,
+					"title" => "@@buttons.createdir@@"
 				));
 		array_push($buttons,
 				array
 				(
-				 	'id' => 'createfile',
+				 	'id' => 'create_file',
 					'link' => new QxLink("mkitem", $dir),
-					"alt" => $GLOBALS["messages"]["createdir"],
 					'enabled' => true,
+					"title" => "@@buttons.createfile@@",
 				));
 	}
 

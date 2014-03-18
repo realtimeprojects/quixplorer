@@ -6,7 +6,7 @@
 </div>
 <div id="buttons">
 	{foreach from=$buttons item=button}
-            {button link=$button.link content="<i class=\"icon-{$button.id}\"></i>" title='$button.title' enabled={$button.enabled}}
+            {button link=$button.link content="<i class=\"icon-{$button.id}\"></i>" title=$button.title enabled={$button.enabled}}
 	{/foreach}
 </div>
 </div>

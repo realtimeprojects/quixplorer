@@ -4,7 +4,7 @@ require_once "_include/QxFile.php";
 
 class Path
 {
-    public static function append($p1, $p2)
+    public static function append(string $p1, string $p2)
     {
         return $p1.DIRECTORY_SEPARATOR.$p2;
     }
