@@ -2,24 +2,22 @@
 
 require_once "_include/smartyoutputfilter.php";
 
+class QxInfo { };
+
 class Qx
 {
     public static function useModule($module)
     {
         require_once("_include/$module.php");
     }
-}
 
-function qx_language()
-{
-    global $language;
-    print $language;
-}
-
-function qx_title()
-{
-    global $site_name;
-    print $site_name;
+    public static function getInfo()
+    {
+        $qxinfo = new QxInfo;
+        $qxinfo->version = "3.0 PREALPHA";
+        $qxinfo->URL = "https://github.com/realtimeprojects/quixplorer";
+        return $qxinfo;
+    }
 }
 
 function qx_img($image, $msg)

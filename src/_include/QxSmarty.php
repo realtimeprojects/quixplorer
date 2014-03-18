@@ -1,6 +1,7 @@
 <?php
 
 Qx::useModule("Config");
+Qx::useModule("Settings");
 require_once "_lib/smarty/Smarty.class.php";
 
 class QxSmarty
@@ -51,6 +52,8 @@ class QxSmarty
         $smarty = QxSmarty::$_smarty;
         $smarty->assign('homepage', Config::get('homepage', "Quixplorer", "site"));
         $smarty->assign('site_name', Config::get('site_name', "Quixplorer Home", "site"));
+        $smarty->assign('language', Settings::get('language', "en"));
+        $smarty->assign('qxinfo', Qx::getInfo());
         $smarty->display('list.tpl');
     }
 

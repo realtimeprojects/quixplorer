@@ -3,10 +3,8 @@
 {include file="toolbar.tpl"}
 <HR>
 <INPUT type="hidden" name="action">
-<INPUT type="hidden" name="first" value="y">
-<INPUT type="hidden" name="srt" value="{$srt}">
-<INPUT type="hidden" name="order" value="{$order}">
-<INPUT type="hidden" name="lang" value="{$lang}">
+<INPUT type="hidden" name="language" value="{$language}">
+
 <TABLE cellspacing=0 cellpadding=0 class='files' WIDTH="95%">
 	<tr>
         <th WIDTH="2%" class="header">
