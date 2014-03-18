@@ -1,16 +1,16 @@
 <?php
 
-require_once "_include/log.php";
 require_once "qx.php";
 require_once "qx_link.php";
 require_once "qx_version.php";
 require_once "html.php";
-require_once "_include/debug.php";
-require_once "_include/error.php";
-require_once "_include/login.php";
-require_once "_lib/smarty/Smarty.class.php";
-require_once "_include/Config.php";
-require_once "_include/Setting.php";
+Qx::useModule("TypeHints");
+Qx::useModule("log");
+Qx::useModule("debug");
+Qx::useModule("error");
+Qx::useModule("login");
+Qx::useModule("Config");
+Qx::useModule("Setting");
 
 if (Config::read("_config/quixplorer.ini") == false)
 {
