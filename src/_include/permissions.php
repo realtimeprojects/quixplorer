@@ -91,7 +91,7 @@ function _permissions_global ($dir, $file, $action)
 
     QxLog::debug("checking $permissions against $permdefs[$action]");
 	// check if this action is allowed by the global permissions
-	return $permissions & $permdefs[$action];
+	return ($permissions & $permdefs[$action]) != 0;
 }
 
 function permissions_grant_all ($dir, $file, $actions)

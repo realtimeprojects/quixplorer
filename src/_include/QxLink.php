@@ -11,6 +11,13 @@ class QxLink
         $this->_attributes = $attributes;
     }
 
+    public function __get($name)
+    {
+        if ($name == "string")
+            return $self->__toString();
+        return null;
+    }
+
     public function __toString()
     {
         $link = "?action=$this->_action";
@@ -32,7 +39,7 @@ class QxLink
 
     private function _isValidAction(string $action)
     {
-        return preg_match("/^(login|list|authenticate|chmod|download|search|upload|admin|logout)$/", $action) == 1;
+        return preg_match("/^(login|list|authenticate|chmod|download|search|upload|admin|logout|mkitem)$/", $action) == 1;
     }
 
     private $_action;
