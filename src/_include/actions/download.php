@@ -1,17 +1,18 @@
 <?php
 
-require_once "./_include/Security.php";
+Qx::useModule("Security");
 
 function _download_items($dir, $items)
 {
     // check if user has permissions to download
     // this file
-    if ( ! Security::isDownloadAllowed($dir, $items) )
-		show_error( "@@errors.access@@", implode(",", $items));
+    if (! Security::isDownloadAllowed($dir, $items))
+		show_error("@@errors.access@@", implode(",", $items));
 
-    QxLog::debug("starting download for: ".implode(",", $items)."/".count($items));
+
     // if we have exactly one file and this is a real
     // file we directly download it
+    QxLog::debug("starting download for: ".implode(",", $items)."/".count($items));
     if ( count($items) == 1 )
     {
         $pt = new QxPath($dir, $items[0]);
@@ -24,7 +25,6 @@ function _download_items($dir, $items)
     // otherwise we do the zip download
     _download_files( $dir, $items );
 }
-
 
 /**
     activates the browser download of the file $file.
