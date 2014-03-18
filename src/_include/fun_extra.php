@@ -1,26 +1,4 @@
 <?php
-//------------------------------------------------------------------------------
-// THESE ARE NUMEROUS HELPER FUNCTIONS FOR THE OTHER INCLUDE FILES
-//------------------------------------------------------------------------------
-function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NULL) {
-						// make link to next page
-	if($_action=="" || $_action==NULL) $_action="list";
-	if($_dir=="") $_dir=NULL;
-	if($_item=="") $_item=NULL;
-	if($_order==NULL) $_order=$GLOBALS["order"];
-	if($_srt==NULL) $_srt=$GLOBALS["srt"];
-	if($_lang==NULL) $_lang=(isset($GLOBALS["lang"])?$GLOBALS["lang"]:NULL);
-
-	$link=$GLOBALS["script_name"]."?action=".$_action;
-	if($_dir!=NULL) $link.="&dir=".urlencode($_dir);
-	if($_item!=NULL) $link.="&item=".urlencode($_item);
-	if($_order!=NULL) $link.="&order=".$_order;
-	if($_srt!=NULL) $link.="&srt=".$_srt;
-	if($_lang!=NULL) $link.="&lang=".$_lang;
-
-	return $link;
-}
-
 function path_r ($path)
 {
     global $home_dir;

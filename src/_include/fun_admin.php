@@ -52,7 +52,7 @@ function admin($admin, $dir)
 	// Change Password
 	echo "<BR><HR width=\"95%\"><TABLE width=\"350\"><TR><TD colspan=\"2\" class=\"header\"><B>";
 	echo $GLOBALS["messages"]["actchpwd"].":</B></TD></TR>\n";
-	echo "<FORM name=\"chpwd\" action=\"".make_link("admin",$dir,NULL)."\" method=\"post\">\n";
+	echo "<FORM name=\"chpwd\" action=\"".new QxLink("admin", $dir))."\" method=\"post\">\n";
 	echo "<INPUT type=\"hidden\" name=\"action2\" value=\"chpwd\">\n";
 	echo "<TR><TD>".$GLOBALS["messages"]["miscoldpass"].": </TD><TD align=\"right\">";
 	echo "<INPUT type=\"password\" name=\"oldpwd\" size=\"25\"></TD></TR>\n";
@@ -69,7 +69,7 @@ function admin($admin, $dir)
 		echo "<HR width=\"95%\"><TABLE width=\"350\"><TR><TD colspan=\"6\" class=\"header\" nowrap>";
 		echo "<B>".$GLOBALS["messages"]["actusers"].":</B></TD></TR>\n";
 		echo "<TR><TD colspan=\"5\">".$GLOBALS["messages"]["miscuseritems"]."</TD></TR>\n";
-		echo "<FORM name=\"userform\" action=\"".make_link("admin",$dir,NULL)."\" method=\"post\">\n";
+		echo "<FORM name=\"userform\" action=\"".new QxLink("admin", $dir))."\" method=\"post\">\n";
 		echo "<INPUT type=\"hidden\" name=\"action2\" value=\"edituser\">\n";
 		$cnt=count($GLOBALS["users"]);
 
@@ -90,7 +90,7 @@ function admin($admin, $dir)
 		}
 		echo "<TR><TD colspan=\"6\" align=\"right\">";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btnadd"];
-		echo "\" onClick=\"javascript:location='".make_link("admin",$dir,NULL)."&action2=adduser';\">\n";
+		echo "\" onClick=\"javascript:location='".new QxLink("admin", $dir))."&action2=adduser';\">\n";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btnedit"];
 		echo "\" onClick=\"javascript:Edit();\">\n";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btnremove"];
@@ -98,7 +98,7 @@ function admin($admin, $dir)
 	}
 	
 	echo "<HR width=\"95%\"><input type=\"button\" value=\"".$GLOBALS["messages"]["btnclose"];
-	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL)."';\"><BR><BR>\n";
+	echo "\" onClick=\"javascript:location='".new QxLink("list", $dir))."';\"><BR><BR>\n";
 ?><script language="JavaScript1.2" type="text/javascript">
 <!--
 	if(document.chpwd) document.chpwd.oldpwd.focus();
@@ -122,7 +122,7 @@ function changepwd ($dir)
 	if(!user_update($data[0],$data)) show_error($data[0].": ".$GLOBALS["error_msg"]["chpass"]);
 	user_activate($data[0],NULL);
 	
-	header("location: ".make_link("list",$dir,NULL));
+	header("location: ".new QxLink("list", $dir)));
 }
 
 /**
@@ -149,7 +149,7 @@ function adduser ($dir)
 			$permissions, $GLOBALS['__POST']["active"]);
 			
 		if(!user_add($data)) show_error($user.": ".$GLOBALS["error_msg"]["adduser"]);
-		header("location: ".make_link("admin",$dir,NULL));
+		header("location: ".new QxLink("admin", $dir)));
 		return;
 	}
 	
@@ -158,7 +158,7 @@ function adduser ($dir)
 	// Javascript functions:
 	include "./_include/js_admin2.php";
 	
-	echo "<FORM name=\"adduser\" action=\"".make_link("admin",$dir,NULL)."&action2=adduser\" method=\"post\">\n";
+	echo "<FORM name=\"adduser\" action=\"".new QxLink("admin", $dir))."&action2=adduser\" method=\"post\">\n";
 	echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"true\"><BR><TABLE width=\"450\">\n";
 	echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD>\n";
 		echo "<TD align=\"right\"><INPUT type=\"text\" name=\"user\" size=\"30\"></TD></TR>\n";
@@ -193,7 +193,7 @@ function adduser ($dir)
 	echo "<TR><TD colspan=\"2\" align=\"right\"><input type=\"submit\" value=\"".$GLOBALS["messages"]["btnadd"];
 		echo "\" onClick=\"return check_pwd();\">\n<input type=\"button\" value=\"";
 		echo $GLOBALS["messages"]["btncancel"]."\" onClick=\"javascript:location='";
-		echo make_link("admin",$dir,NULL)."';\"></TD></TR></FORM></TABLE><BR>\n";
+		echo new QxLink("admin", $dir))."';\"></TD></TR></FORM></TABLE><BR>\n";
 ?><script language="JavaScript1.2" type="text/javascript">
 <!--
 	if(document.adduser) document.adduser.user.focus();
@@ -251,7 +251,7 @@ function edituser($dir)
 		if ($self)
 			user_activate($nuser, NULL);
 		
-		header("location: ".make_link("admin",$dir,NULL));
+		header("location: ".new QxLink("admin", $dir)));
 		return;
 	}
 	
@@ -260,7 +260,7 @@ function edituser($dir)
 	// Javascript functions:
 	include "./_include/js_admin3.php";
 	
-	echo "<FORM name=\"edituser\" action=\"".make_link("admin",$dir,NULL)."&action2=edituser\" method=\"post\">\n";
+	echo "<FORM name=\"edituser\" action=\"".new QxLink("admin", $dir))."&action2=edituser\" method=\"post\">\n";
 	echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"true\"><INPUT type=\"hidden\" name=\"user\" value=\"".$data[0]."\">\n";
 	echo "<BR><TABLE width=\"450\">\n";
 	echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD>\n";
@@ -303,7 +303,7 @@ function edituser($dir)
 	echo "<TR><TD colspan=\"2\" align=\"right\"><input type=\"submit\" value=\"".$GLOBALS["messages"]["btnsave"];
 		echo "\" onClick=\"return check_pwd();\">\n<input type=\"button\" value=\"";
 		echo $GLOBALS["messages"]["btncancel"]."\" onClick=\"javascript:location='";
-		echo make_link("admin",$dir,NULL)."';\"></TD></TR></FORM></TABLE><BR>\n";
+		echo new QxLink("admin", $dir))."';\"></TD></TR></FORM></TABLE><BR>\n";
 }
 
 /**
@@ -315,7 +315,7 @@ function removeuser($dir)
 	if($user==$GLOBALS['__SESSION']["s_user"]) show_error($GLOBALS["error_msg"]["miscselfremove"]);
 	if(!user_remove($user)) show_error($user.": ".$GLOBALS["error_msg"]["deluser"]);
 	
-	header("location: ".make_link("admin",$dir,NULL));
+	header("location: ".new QxLink("admin", $dir)));
 }
 //------------------------------------------------------------------------------
 function show_admin($dir)

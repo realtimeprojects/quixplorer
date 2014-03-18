@@ -9,7 +9,7 @@ Qx::useModule("debug");
 Qx::useModule("error");
 Qx::useModule("login");
 
-Qx::useModule("QxLink")
+Qx::useModule("QxLink");
 Qx::useModule("Config");
 Qx::useModule("Settings");
 Qx::useModule("QxSmarty");

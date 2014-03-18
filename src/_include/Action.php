@@ -15,7 +15,7 @@ class Action
         $action = Security::request("action", "list");
         $activity = Security::request("activity", "default");
         $Action = new Action($action, $activity);
-        $Action->directory = Security::request("dir", "");
+        $Action->directory = Security::request("directory", "");
         return $Action;
     }
 

@@ -15,7 +15,7 @@ class QxFile
         $this->permissions = array();
         $this->permissions["text"] = decoct(@fileperms($fullfile));
         $this->permissions["link"] = NULL;
-        $this->download_link = qx_link("download", "&selitems[]=" . Path::append($qxpath->get(), $filename));
+        $this->download_link = new QxLink("download", null, array("selitems[]" => Path::append($qxpath->get(), $filename)));
         $this->link = "";
         $this->edit_link = "http://tobeimplemented";
         /** FIXME
@@ -29,7 +29,7 @@ class QxFile
         {
             // NOT NICE: type and extension management
             $this->extension = "dir";
-            $this->link = qx_link("list", "&dir=" . Path::append($qxpath->get(), $filename));
+            $this->link = new QxLink("list", Path::append($qxpath->get(), $filename));
         }
     }
 }

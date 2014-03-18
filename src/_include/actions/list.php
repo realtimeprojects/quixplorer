@@ -32,14 +32,14 @@ function _get_buttons ($dir_up)
 		array
 		(
 			'id' => 'up',
-			'link' => make_link("list", $dir_up, NULL),
+			'link' => new QxLink("list", $dir_up),
 			'enabled' => true,
 			'alt' => $GLOBALS["messages"]["uplink"]
 		),
 		array
 		(
 			'id' => 'home',
-			'link' => make_link("list", NULL, NULL),
+			'link' => new QxLink("list"),
 			'enabled' => true,
 			'alt' => $GLOBALS["messages"]["homelink"]
 		),
@@ -53,7 +53,7 @@ function _get_buttons ($dir_up)
 		array
 		(
 			'id' => 'search',
-			'link' => make_link('search', $dir, NULL),
+			'link' => new QxLink('search', $dir),
 			'enabled' => true,
 			'alt' => $GLOBALS["messages"]["searchlink"]
 		),
@@ -83,7 +83,7 @@ function _get_buttons ($dir_up)
 		(
 			'id' => 'upload',
 		 	'enabled' => permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"),
-			'link' => make_link("upload", $dir, NULL),
+			'link' => new QxLink("upload", $dir),
 			"alt" => $GLOBALS["messages"]["uploadlink"],
 		),
 		array
@@ -104,7 +104,7 @@ function _get_buttons ($dir_up)
 			array
 			(
 			 	'id' => 'admin',
-				'link' => make_link("admin", $dir, NULL),
+				'link' => new QxLink("admin", $dir),
 				"alt" => $GLOBALS["messages"]["adminlink"],
 				'enabled' => permissions_grant(NULL, NULL, "admin")
 						|| permissions_grant(NULL, NULL, "password"),
@@ -113,7 +113,7 @@ function _get_buttons ($dir_up)
 			array
 			(
 			 	'id' => 'logout',
-				'link' => make_link("logout", $dir, NULL),
+				'link' => new QxLink("logout", $dir),
 				"alt" => $GLOBALS["messages"]["logoutlink"],
                 // FIXME determine if user is logged in (session)
 				'enabled' => false,
@@ -126,7 +126,7 @@ function _get_buttons ($dir_up)
 				array
 				(
 				 	'id' => 'createdir',
-					'link' => make_link("mkitem", $dir, NULL),
+					'link' => new QxLink("mkitem", $dir),
 					"alt" => $GLOBALS["messages"]["createfile"],
 					'enabled' => true,
 				));
@@ -134,7 +134,7 @@ function _get_buttons ($dir_up)
 				array
 				(
 				 	'id' => 'createfile',
-					'link' => make_link("mkitem", $dir, NULL),
+					'link' => new QxLink("mkitem", $dir),
 					"alt" => $GLOBALS["messages"]["createdir"],
 					'enabled' => true,
 				));

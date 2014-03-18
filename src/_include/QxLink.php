@@ -1,14 +1,42 @@
 <?php
 
-function qx_link($what, $flags = "")
+class QxLink
 {
-    // check for valid commands
-    $ret = preg_replace("/^(login|list|authenticate|chmod|download)$/", "?action=$1" . $flags, $what);
+    public function __construct (string $action, string $directory = NULL, array $attributes = NULL)
+    {
+        if (! QxLink::_isValidAction($action))
+            show_error("QxLink: unknown action $action");
+        $this->_action     = $action;
+        $this->_directory  = $directory;
+        $this->_attributes = $attributes;
+    }
 
-    // check if a replacement took place, if not, we do not know the link and return unknown
-    $ret = (($ret == NULL || $ret == $what)) ? "?action=unknown" : $ret;
-    _debug("qx_link(): made link to $ret");
-    return $ret;
+    public function __toString()
+    {
+        $link = "?action=$this->_action";
+        if ($this->_directory != null)
+        {
+                $link .= "&directory=$this->_directory";
+        }
+
+        if ($this->_attributes != null)
+        {
+            foreach ($this->_attributes as $name => $value)
+            {
+                $link .= "&$name=$value";
+            }
+        }
+
+        return $link;
+    }
+
+    private function _isValidAction(string $action)
+    {
+        return preg_match("/^(login|list|authenticate|chmod|download|search|upload|admin|logout)$/", $action) == 1;
+    }
+
+    private $_action;
+    private $_directory;
 }
 
 ?>
