@@ -13,17 +13,23 @@ function load_action ($action_to_load)
     require_once $action_script_name;
 }
 
+function run_action($action)
+{
+    load_action($action->action);
+    $aclass = $action->action."Action";
+    $ac = new $aclass;
+    $ac->run($action);
+}
+
 $action = Action::getCurrentAction();
 
 switch ($action->action)
 {
     case "login":           login_form(); break;
-    case "download":        load_action("download");
-                            do_download_action($action);
-    case "authenticate":    login_post(); // nobreak 
+    case "authenticate":    login_post(); // nobreak
+    case "download":
     case "list":
-    default:                load_action("list");
-                            do_list_action($action);
+    default:                run_action($action);
                             break;
 // EDIT FILE
 case "edit":
