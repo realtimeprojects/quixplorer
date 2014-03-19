@@ -10,7 +10,7 @@ from expressions import Expressions
 def I_list(step, directory):
     args = []
     if directory is not None:
-        args.append("dir=%s" % directory);
+        args.append("directory=%s" % directory);
     (world.result, world.output, world.stderr ) = quixplorer.run('list', args)
     assert world.result == 0, "list failed: %d\n%s\n%s" % (world.result, world.output, world.stderr)
 
