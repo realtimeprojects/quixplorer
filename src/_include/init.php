@@ -35,7 +35,7 @@ _check_config();
 
 if (Authentication::isLoginRequired())
 {
-    Securty::overrideRequest("action", "login");
+    Security::overrideRequest("action", "login");
 }
 
 QxSmarty::init();

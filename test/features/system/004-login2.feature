@@ -5,26 +5,26 @@ Feature: Login to quixplorer
     Scenario: Perparation
         Given I have the reference configuration
 
-    Scenario: Login basic mask
-        When I login to quixplorer
-        Then I expect success and result containing (Login to use quixplorer)
+#   Scenario: Login basic mask
+#       When I login to quixplorer
+#       Then I expect success and result containing (login to this page)
 
     Scenario: Authenticate without username
-        When I authenticate to quixplorer
-        Then I expect an error (username or password not set)
+        When I login to quixplorer as user "" with password ""
+        Then I expect success and result containing (provide a valid user name)
 
     Scenario: Authenticate without username
-        When I authenticate to quixplorer with (loginname=admin)
-        Then I expect an error (username or password not set)
+        When I login to quixplorer as user "admin" with password ""
+        Then I expect success and result containing (provide a valid password)
 
     Scenario: Authenticate without non existent user and password
-        When I authenticate to quixplorer with (loginname=nonexistent&password=invalid)
-        Then I expect an error (username or password invalid)
+        When I login to quixplorer as user "nonexistent_user" with password "invalid"
+        Then I expect success and result containing (User name or password invalid)
 
     Scenario: Authenticate without admin user and invalid password
-        When I authenticate to quixplorer with (loginname=admin&password=invalid)
-        Then I expect an error (username or password invalid)
+        When I login to quixplorer as user "admin" with password "invalid"
+        Then I expect success and result containing (User name or password invalid)
 
     Scenario: Authenticate without admin user user and correct password
-        When I authenticate to quixplorer with (loginname=admin&password=pwd_admin)
+        When I login to quixplorer as user "admin" with password "pwd_admin"
         Then I expect success

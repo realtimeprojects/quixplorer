@@ -18,7 +18,7 @@ back          = back
 login                 = login to this page
 missing_username      = Please provide a valid user name
 missing_password      = Please provide a valid password
-authentication_failed = Username or password invalid
+authentication_failed = User name or password invalid
 
 password=password
 username=user name

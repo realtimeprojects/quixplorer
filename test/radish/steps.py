@@ -9,13 +9,13 @@ from radish.hookregistry import after, before
 
 from logger import Logger
 import quixplorer
-import specialsteps
 from expressions import Expressions
 
 import sys
 sys.path.append('test/steps')
 import configuration_steps
 import list_steps
+import login_steps
 
 # ** steps for running quixplorer
 
@@ -99,14 +99,6 @@ def change_password(step, original_pw, first_pw, second_pw):
     Logger.log("change password")
     (world.result, world.output, world.stderr ) = quixplorer.run("admin", [ "action2=chpwd", "oldpwd="+original_pw, "newpwd1="+first_pw, "newpwd2="+second_pw ])
     assert world.result == 0, "run failed (%d):\n%s" %  (world.result, "".join(world.output))
-
-@step(r'I login to quixplorer as user "(.*)" with password "(.*)"')
-def login(step, user, passwd):
-    (world.result, world.output, world.stderr ) = quixplorer.run("login", [ "p_user="+user, "p_pass="+passwd ])
-
-@step(r'I logout')
-def logout(step):
-    (world.result, world.output, world.stderr ) = quixplorer.run("logout");
 
 # ** local functions
 
