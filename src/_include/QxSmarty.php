@@ -54,6 +54,7 @@ class QxSmarty
         $smarty->assign('site_name', Config::get('site_name', "Quixplorer Home", "site"));
         $smarty->assign('language', Settings::get('language', "en"));
         $smarty->assign('qxinfo', Qx::getInfo());
+        $smarty->assign('login', new QxLink("login"));
         $smarty->display('list.tpl');
     }
 
