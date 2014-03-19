@@ -3,7 +3,7 @@
 <TABLE width="300">
 	<TR>
 		<TD colspan="2" class="header" nowrap>
-			<B>@@login@@</B>
+			<B>@@login.login@@</B>
 		</TD>
 	</TR>
 	{if $message != ''}
