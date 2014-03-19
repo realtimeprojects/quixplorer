@@ -15,10 +15,15 @@ class LoginAction
             case "login":
                 QxSmarty::display("login");
                 break;
+            case "logout":
+                $this->_logout();
+                break;
             case "authenticate":
                 $this->_authenticate($action);
+                break;
+            default:
+                show_error("login: Unknown activity $activity");
         }
-
     }
 
     private function _authenticate(Action $action)
@@ -43,23 +48,21 @@ class LoginAction
             $this->_handleError("@@login.authentication_failed@@");
         }
 
-        Security::overrideRequest("action", null);
-        ActionLoader::go();
-
+        Qx::loadPage();
     }
-
 
     private function _handleError($message)
     {
         QxSmarty::assign("message", $message);
         QxSmarty::display("login");
     }
-}
 
-function logout ()
-{
-	$_SESSION = array();
-	session_destroy();
+    function _logout ()
+    {
+        $_SESSION = array();
+        session_destroy();
+        Qx::loadPage();
+    }
 }
 
 ?>

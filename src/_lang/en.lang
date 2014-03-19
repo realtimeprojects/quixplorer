@@ -54,6 +54,7 @@ authenticate        = Login failed
 wrong_user          = Wrong user name or password
 action_not_found    = Invalid action
 zip_creation_failed = Could not create zip file
+unknown_action      = Action unknown
 
 [user]
 

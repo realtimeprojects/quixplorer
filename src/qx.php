@@ -18,6 +18,15 @@ class Qx
         $qxinfo->URL = "https://github.com/realtimeprojects/quixplorer";
         return $qxinfo;
     }
+
+    public static function loadPage(QxLink $link = null)
+    {
+        $location = "index.php";
+        if ($link != null)
+            $location .= $link->string;
+        header("Location: $location");
+        exit;
+    }
 }
 
 function qx_img($image, $msg)

@@ -16,7 +16,7 @@ class ActionLoader
                 ActionLoader::_run($action);
                 break;
             default:
-                show_error("@@errors.unknown_action@@");
+                show_error("@@errors.unknown_action@@: $action->action");
         }
     }
 

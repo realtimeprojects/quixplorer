@@ -55,9 +55,16 @@ class QxSmarty
         $smarty->assign('site_name', Config::get('site_name', "Quixplorer Home", "site"));
         $smarty->assign('language', Settings::get('language', "en"));
         $smarty->assign('qxinfo', Qx::getInfo());
-        $smarty->assign('login', new QxLink("login"));
+        $smarty->assign('login', QxSmarty::_getLoginLink());
         $smarty->display("$pagename.tpl");
         exit;
+    }
+
+    private function _getLoginLink()
+    {
+        if (Authentication::getCurrentUser() == ANONYMOUS_USER)
+            return new QxLink("login", NULL, array("activity" => "login"), "@@buttons.login@@");
+        return new QxLink("login", NULL, array("activity" => "logout"), "@@buttons.logout@@");
     }
 
     private static $_smarty;
