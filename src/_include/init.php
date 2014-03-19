@@ -1,18 +1,18 @@
 <?php
 
 require_once "qx.php";
-require_once "qx_version.php";
 require_once "html.php";
 Qx::useModule("TypeHints");
 Qx::useModule("log");
 Qx::useModule("debug");
 Qx::useModule("error");
-Qx::useModule("login");
 
-Qx::useModule("QxLink");
+Qx::useModule("Authentication");
 Qx::useModule("Config");
 Qx::useModule("Settings");
+Qx::useModule("Security");
 Qx::useModule("QxSmarty");
+Qx::useModule("QxLink");
 
 if (Config::read("_config/quixplorer.ini") == false)
 {
@@ -32,9 +32,13 @@ require "./_config/mimes.php";
 require "./_include/fun_extra.php";
 
 _check_config();
-QxSmarty::init();
 
-login_check();
+if (Authentication::isLoginRequired())
+{
+    Securty::overrideRequest("action", "login");
+}
+
+QxSmarty::init();
 
 function _check_config()
 {

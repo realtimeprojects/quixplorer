@@ -89,6 +89,11 @@ class Security
             QxLog::debug("qx_request: returning '$ret' for $var");
         return $ret;
     }
+
+    public static function overrideRequest($var, $value)
+    {
+        $_REQUEST[$var] = $value;
+    }
 }
 
 

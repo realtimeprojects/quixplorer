@@ -25,22 +25,6 @@ function qx_img($image, $msg)
     ?><img class="button" src="_img/$image" alt="$msg" title="$msg" /><?php
 }
 
-function qx_user() { echo qx_user_s(); }
-
-function qx_user_s()
-{
-    if (!isset($_SESSION["s_user"]))
-        return "anonymous";
-    return $_SESSION["s_user"];
-}
-
-// @returns the relative path $rel to the current directory displayed.
-function qx_directory($rel = NULL)
-{
-    global $dir;
-    return $dir . "/" . $rel;
-}
-
 function qx_grant($link)
 {
     global $dir;

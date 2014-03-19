@@ -1,47 +1,14 @@
 <?php
 
-require_once "_include/user.php";
-require_once "_include/debug.php";
+Qx::useModule("user");
+Qx::useModule("QxSmarty");
 
-// checks if user login is required and displays login
-// form if required
-function login_check()
+class LoginAction
 {
-    global $require_login;
-
-    // if no login is required, there is nothing to do
-    _debug("login: $require_login");
-    if (!$require_login)
+    public function run(Action $action)
     {
-        _debug("no login required");
-        return;
+        QxSmarty::display("login");
     }
-
-    // if the user is already authenticated, we're done
-    if (isset($_SESSION["s_user"]))
-    {
-        _debug("user already authenticated");
-        return;
-    }
-
-    if (isset($_REQUEST['loginname']))
-    {
-      login_post();
-      return;
-    }
-
-    // login the user
-    _debug("displaying login page");
-    login_form();
-    exit();
-}
-
-//FIXME update home_dir variable if user is logged in
-function login_form ()
-{
-	global $smarty;
-	$smarty->display('login.tpl');
-    exit(0);
 }
 
 function login_post ()

@@ -36,7 +36,7 @@ class QxSmarty
             QxLog::debug("adding $qx_plugin_dir to smarty plugins dir");
             $smarty->addPluginsDir($qx_plugin_dir);
         }
-        $smarty->assign('logon_user', qx_user_s());
+        $smarty->assign('logon_user', Authentication::getCurrentUser());
 
         // Register language translation filter
         $smarty->registerFilter("output", smarty_outputfilter_lang);
