@@ -39,7 +39,7 @@ class QxSmarty
         $smarty->assign('logon_user', Authentication::getCurrentUser());
 
         // Register language translation filter
-        $smarty->registerFilter("output", smarty_outputfilter_lang);
+        $smarty->registerFilter("output", "smarty_outputfilter_lang");
     }
 
     public function assign(string $variable, $value)
@@ -49,13 +49,15 @@ class QxSmarty
 
     public function display(string $pagename)
     {
+        QxLog::debug("displaying page '$pagename'");
         $smarty = QxSmarty::$_smarty;
         $smarty->assign('homepage', Config::get('homepage', "Quixplorer", "site"));
         $smarty->assign('site_name', Config::get('site_name', "Quixplorer Home", "site"));
         $smarty->assign('language', Settings::get('language', "en"));
         $smarty->assign('qxinfo', Qx::getInfo());
         $smarty->assign('login', new QxLink("login"));
-        $smarty->display('list.tpl');
+        $smarty->display("$pagename.tpl");
+        exit;
     }
 
     private static $_smarty;
