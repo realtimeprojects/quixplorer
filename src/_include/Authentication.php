@@ -1,6 +1,6 @@
 <?php
 
-define(ANONYMOUS_USER, "Anonymous");
+define("ANONYMOUS_USER", "Anonymous");
 
 class Authentication
 {
