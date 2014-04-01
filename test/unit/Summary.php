@@ -27,7 +27,7 @@ class Summary_test extends PHPUnit_Framework_TestCase
         $this->assertEquals($totals->file_count, 2);
         $this->assertEquals($totals->file_space, 23);
         $this->assertEquals($totals->directory_count, 2);
-}
+    }
 }
 
 ?>
