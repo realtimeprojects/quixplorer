@@ -4,7 +4,7 @@ require_once "qx.php";
 Qx::useModule("TypeHints");
 require_once "_include/QxUser.php";
 
-class user_test extends PHPUnit_Framework_TestCase
+class User_test extends PHPUnit_Framework_TestCase
 {
     public function testParse()
     {
@@ -15,6 +15,11 @@ class user_test extends PHPUnit_Framework_TestCase
         $this->assertEquals(".", $user->home);
         $this->assertTrue($user->permissions != null);
         $this->assertTrue($user->authenticate("pwd_admin"));
+    }
+
+    public function testRead()
+    {
+        QxUsers::read("src/_config/users");
     }
 }
 

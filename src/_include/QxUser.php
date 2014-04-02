@@ -20,6 +20,31 @@ class QxUser
     }
 }
 
+class QxUsers
+{
+    public static function read(string $filename)
+    {
+        $_users = array();
+        $users = file($filename);
+        foreach ($users as $user)
+        {
+            if ($user == "")
+                continue;
+
+            array_push($_users, new QxUser($user));
+        }
+    }
+
+
+    public static function count ()
+    {
+        return count($_users);
+    }
+
+
+    private static $_users;
+}
+
 ?>
 
 
