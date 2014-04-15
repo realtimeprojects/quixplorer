@@ -2,7 +2,8 @@
 
 require_once "qx.php";
 Qx::useModule("TypeHints");
-require_once "_include/QxUser.php";
+Qx::useModule("QxUser");
+Qx::useModule("QxPermissions");
 
 class User_test extends PHPUnit_Framework_TestCase
 {
@@ -21,7 +22,12 @@ class User_test extends PHPUnit_Framework_TestCase
     {
         QxUsers::read("src/_config/users.template");
         $this->assertEquals(1, QxUsers::count());
-
+        $this->assertEquals(null, QxUsers::get("admin2"));
+        $admin = QxUsers::get("admin");
+        $this->assertEquals("admin", $admin->id);
+        $this->assertEquals(".", $admin->home);
+        $this->assertTrue($admin->authenticate("pwd_admin"));
+        $this->assertFalse($admin->authenticate("pwd_admin2"));
     }
 
     public function testReadNonExistent()
@@ -35,6 +41,24 @@ class User_test extends PHPUnit_Framework_TestCase
             $this->assertEquals("could not open user file: $filename", $e->getMessage());
         }
     }
+
+    public function testPermissions()
+    {
+        $pe = new QxPermissions("");
+        $this->assertFalse($pe->isAllowed("read"));
+        $this->assertFalse($pe->isAllowed("write"));
+        $this->assertFalse($pe->isAllowed("create"));
+        $this->assertFalse($pe->isAllowed("delete"));
+        $this->assertFalse($pe->isAllowed("admin"));
+        $this->assertFalse($pe->isAllowed("access_hidden_files"));
+
+        $pe = new QxPermissions("read|create|change|delete|admin|access_hidden_files");
+        $this->assertTrue($pe->isAllowed("read"));
+        $this->assertTrue($pe->isAllowed("create"));
+        $this->assertTrue($pe->isAllowed("change"));
+        $this->assertTrue($pe->isAllowed("delete"));
+        $this->assertTrue($pe->isAllowed("admin"));
+        $this->assertTrue($pe->isAllowed("access_hidden_files")); }
 }
 
 ?>

@@ -40,6 +40,17 @@ class QxUsers
         }
     }
 
+    public static function get (string $id)
+    {
+        foreach(self::$_users as $user)
+        {
+            if ($user->id == $id)
+                return $user;
+        }
+
+        return null;
+    }
+
     public static function count ()
     {
         return count(self::$_users);
