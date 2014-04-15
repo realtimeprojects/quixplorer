@@ -7,6 +7,8 @@ class QxUser
     public function __construct (string $userdata)
     {
         $fields = explode(":", $userdata);
+        if (count($fields) < 4)
+            throw new Exception("invalid user line: $userdata");
         $this->id = $fields[0];
         $this->password = $fields[1];
         $this->home = $fields[2];
@@ -24,21 +26,23 @@ class QxUsers
 {
     public static function read(string $filename)
     {
-        $_users = array();
+        self::$_users = array();
         $users = file($filename);
+        if ($users == null)
+            throw new Exception("could not open user file: $filename");
+
         foreach ($users as $user)
         {
-            if ($user == "")
+            if (trim($user) == "")
                 continue;
 
-            array_push($_users, new QxUser($user));
+            array_push(self::$_users, new QxUser($user));
         }
     }
 
-
     public static function count ()
     {
-        return count($_users);
+        return count(self::$_users);
     }
 
 

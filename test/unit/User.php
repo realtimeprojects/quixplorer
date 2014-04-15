@@ -19,7 +19,21 @@ class User_test extends PHPUnit_Framework_TestCase
 
     public function testRead()
     {
-        QxUsers::read("src/_config/users");
+        QxUsers::read("src/_config/users.template");
+        $this->assertEquals(1, QxUsers::count());
+
+    }
+
+    public function testReadNonExistent()
+    {
+        $filename = "src/_config/nonexistent.template";
+        try
+        {
+            QxUsers::read($filename);
+        } catch (Exception $e)
+        {
+            $this->assertEquals("could not open user file: $filename", $e->getMessage());
+        }
     }
 }
 
