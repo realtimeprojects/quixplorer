@@ -21,13 +21,28 @@ class User_test extends PHPUnit_Framework_TestCase
     public function testRead()
     {
         QxUsers::read("src/_config/users.template");
-        $this->assertEquals(1, QxUsers::count());
+        $this->assertEquals(2, QxUsers::count());
         $this->assertEquals(null, QxUsers::get("admin2"));
+
         $admin = QxUsers::get("admin");
         $this->assertEquals("admin", $admin->id);
         $this->assertEquals(".", $admin->home);
         $this->assertTrue($admin->authenticate("pwd_admin"));
         $this->assertFalse($admin->authenticate("pwd_admin2"));
+
+        $guest= QxUsers::get("guest");
+        $this->assertEquals("guest", $guest->id);
+        $this->assertEquals(".", $guest->home);
+        $this->assertFalse($guest->authenticate(""));
+    }
+
+    public function testSave()
+    {
+        QxUsers::read("src/_config/users.template");
+        $this->assertEquals(2, QxUsers::count());
+        QxUsers::save("users.saved");
+        QxUsers::read("users.saved");
+        $this->assertEquals(2, QxUsers::count());
     }
 
     public function testReadNonExistent()

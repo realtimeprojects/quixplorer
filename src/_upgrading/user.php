@@ -1,5 +1,22 @@
 <?php
 
+/**
+	loads the user database for authenticating the users
+
+    @param $file    The name of the file containing the user database. Default is ./_config/.htusers.php
+*/
+function user_load ($file = NULL)
+{
+    if (!isset($file))
+        $file = "./_config/.htusers.php";
+
+    if (! is_readable($file))
+        show_error( "user database $file does not exist or is not readable",
+                    "See the installation manual for details");
+
+	require $file;
+}
+
 function _saveUsers ()
 {
 	$cnt=count($GLOBALS["users"]);

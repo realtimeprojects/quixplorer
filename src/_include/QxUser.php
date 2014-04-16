@@ -15,6 +15,11 @@ class QxUser
         $this->permissions = new QxPermissions($fields[3]);
     }
 
+    public function serialize ()
+    {
+        return "$this->id:$this->password:$this->home:".$this->permissions->serialize();
+    }
+
     public function authenticate (string $password)
     {
         // check if the password matches
@@ -38,6 +43,18 @@ class QxUsers
 
             array_push(self::$_users, new QxUser($user));
         }
+    }
+
+    public static function save(string $filename)
+    {
+        $fp = fopen($filename, "w");
+        if ($fp == null)
+            throw new Exception("could not open file: $filename");
+        foreach (self::$_users as $user)
+        {
+            fwrite($fp, $user->serialize());
+        }
+        fclose($fp);
     }
 
     public static function get (string $id)

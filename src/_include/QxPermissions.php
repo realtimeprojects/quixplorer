@@ -7,6 +7,11 @@ class QxPermissions
         $this->permissions = explode("|", $permissiondata);
     }
 
+    public function serialize ()
+    {
+        return implode("|", $this->permissions);
+    }
+
     public function isAllowed(string $what)
     {
         foreach ($this->permissions as $perm)
