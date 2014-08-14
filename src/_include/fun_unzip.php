@@ -37,13 +37,13 @@ Comment:
 	
 	Have Fun...
 ------------------------------------------------------------------------------*/
-require_once("./.include/permissions.php");
+require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 // File Clone of fun_copy_move.php
 //------------------------------------------------------------------------------
 function dir_list($dir) {			// make list of directories
 	// this list is used to copy/move items to a specific location
-	
+	$dir_list = array();
 	$handle = @opendir(get_abs_dir($dir));
 	if($handle===false) return;		// unable to open dir
 	
@@ -102,7 +102,7 @@ function unzip_item($dir)
 	else $new_dir = stripslashes($GLOBALS['__POST']["new_dir"]);
 	*/
 
-	$new_dir = stripslashes($GLOBALS['__POST']["new_dir"]);
+	@$new_dir = stripslashes($GLOBALS['__POST']["new_dir"]);
 	
 	//if($new_dir==".") $new_dir="";
 	
@@ -171,22 +171,7 @@ function unzip_item($dir)
 		dir_print(dir_list($new_dir),$new_dir);
 		echo "</TABLE><BR><TABLE>\n";
 		
-		// Print Text Inputs to change Names
-		/*for($i=0;$i<$cnt;++$i) {
-			$selitem=stripslashes($GLOBALS['__POST']["selitems"][$i]);
-			if(isset($GLOBALS['__POST']["newitems"][$i])) {
-				$newitem=stripslashes($GLOBALS['__POST']["newitems"][$i]);
-				if($first=="y") $newitem=$selitem;
-			} else {$newitem=$selitem;}
-			$s_item=$selitem;	if(strlen($s_item)>50) $s_item=substr($s_item,0,47)."...";
-			echo "<TR><TD><IMG SRC=\"".$GLOBALS["baricons"]["info"]."\" align=\"ABSMIDDLE\" ALT=\"\">";
-			// Old Name
-			echo "<INPUT type=\"hidden\" name=\"selitems[]\" value=\"";
-			echo $selitem."\">&nbsp;".$s_item."&nbsp;";
-			// New Name
-			echo "</TD><TD><INPUT type=\"text\" size=\"25\" name=\"newitems[]\" value=\"";
-			echo $newitem."\"></TD></TR>\n";
-		}*/
+		echo "<hr>";
 		
 		echo "<TR><TD><IMG SRC=\"".$GLOBALS["baricons"]["zip"]."\" align=\"ABSMIDDLE\" ALT=\"\">";
 		echo "<INPUT type=\"hidden\" name=\"item\" value=\"".$s_item."\">&nbsp;".$s_item."&nbsp;";

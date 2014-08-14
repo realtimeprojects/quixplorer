@@ -84,6 +84,7 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "SALIR",
 	"uploadlink"		=> "SUBIR",
 	"searchlink"		=> "BÚSQUEDA",
+	"unziplink"			=> "UNZIP",
 	
 	// list
 	"nameheader"		=> "Nombre",
@@ -110,6 +111,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Añadir",
 	"btnedit"		=> "Editar",
 	"btnremove"		=> "Remover",
+	"btnunzip"		=> "Descomprimir",
 	
 	// actions
 	"actdir"		=> "Directorio",
@@ -127,6 +129,8 @@ $GLOBALS["messages"] = array(
 	"actusers"		=> "Usuarios",
 	"actarchive"		=> "Archivar item(s)",
 	"actupload"		=> "Subir Archivo(s)",
+	"actunzipitem"  => "Descomprimir Archivo",
+	"actunzipto"  => "Descomprimir en... ",
 	
 	// misc
 	"miscitems"		=> "Artículo(s)",

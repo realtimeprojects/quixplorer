@@ -104,6 +104,8 @@ function edit_file($dir, $item)
 			,word_wrap: true
 			,language: "<?php echo $GLOBALS["language"];?>"
 			,syntax: "<?php echo get_mime_type($dir, $item, "ext");?>"	
+			,toolbar: "search, go_to_line,fullscreen, |, undo, redo, |, select_font, |, syntax_selection, |, change_smooth_selection, highlight, reset_highlight, word_wrap, |, help"
+
 		});
 </script>
 

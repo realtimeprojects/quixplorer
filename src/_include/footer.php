@@ -40,7 +40,10 @@ Comment:
 //------------------------------------------------------------------------------
 function show_footer() {			// footer for html-page
 	echo"\n<HR><SMALL><A class=\"title\" href=\"http://quixplorer.sourceforge.net\" target=\"_blank\">";
-	echo "QuiXplorer ".$GLOBALS["version"]."</A> - ";
+	echo "QuiXplorer Version 2.3</A>";
+	echo ' - ';
+	echo '<a href="https://github.com/laurenceHR" target="_blank">@laurenceHR Branch</a>';
+	echo ' - ';
 	echo "<A href=\"http://quix.tk\" target=\"_blank\">the QuiX project</A></SMALL>";
 	show_login();
 	echo "</center></BODY>\n</HTML>";

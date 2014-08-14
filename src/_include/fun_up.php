@@ -111,7 +111,9 @@ function upload_items($dir)
 	echo "<BR><FORM enctype=\"multipart/form-data\" action=\"".make_link("upload",$dir,NULL);
 	echo "\" method=\"post\">\n<INPUT type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"";
 	echo get_max_file_size()."\"><INPUT type=\"hidden\" name=\"confirm\" value=\"true\"><TABLE>\n";
-	for($i=0;$i<10;$i++) {
+	$filecount = 10;
+	for($ii = 0; $ii < $filecount; $ii++)
+	{
 		echo "<TR><TD nowrap align=\"center\">";
 		echo "<INPUT name=\"userfile[]\" type=\"file\" size=\"40\"></TD></TR>\n";
 	}

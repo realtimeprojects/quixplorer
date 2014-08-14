@@ -44,7 +44,7 @@ switch($GLOBALS["action"]) {		// Execute action
 //------------------------------------------------------------------------------
 // EDIT FILE
 case "edit":
-	require "./_include/fun_edit.php";
+	require "./_include/fun_edit_editarea.php";
 	edit_file($GLOBALS["dir"], $GLOBALS["item"]);
 break;
 //------------------------------------------------------------------------------
@@ -72,8 +72,16 @@ break;
 //------------------------------------------------------------------------------
 // UPLOAD FILE(S)
 case "upload":
-	require "./_include/fun_up.php";
+	$use_uploadify = isset($GLOBALS["use_uploadify"]) ? $GLOBALS["use_uploadify"] : false;
+	$upload_script = $use_uploadify ? "fun_up_uploadify.php" : "fun_up.php";
+	require "./_include/$upload_script";
 	upload_items($GLOBALS["dir"]);
+break;
+//------------------------------------------------------------------------------
+// UNZIP ZIP FILE added by laurenceHR
+case "unzip":
+	require "./_include/fun_unzip.php";
+	unzip_item($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
 // CREATE DIR/FILE

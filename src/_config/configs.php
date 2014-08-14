@@ -1,21 +1,22 @@
 <?php
 $GLOBALS["amung"]="7hamtjlsy593"; //Users Online
+$GLOBALS["xplorer_name"] = "quiXplore 2.3";
 $GLOBALS["ownermessage"] = "modified by laurenceHR";
-
+$GLOBALS["use_uploadify"] = true;
 $GLOBALS["langs"] = array(
-	"english" => array("en","_img/smallicons/us.png","English"),
-	"spanish" => array("es","_img/smallicons/es.png","Español"),
-	"german" => array("de","_img/smallicons/de.png","Deutsch"),
-	"french" => array("fr","_img/smallicons/fr.png","Français"),
-	"italian" => array("it","_img/smallicons/it.png","Italiano"),
-	"nl" => array("nl","_img/smallicons/nl.png","Nederlands"),
-	"polsk" => array("pl","_img/smallicons/pl.png","Polski"),
-	"ptbr" => array("ptbr","_img/smallicons/ptbr.png","Português - Brasil"),
-	"romana" => array("ro","_img/smallicons/ro.png","Românã"),
-	"ru" => array("ru","_img/smallicons/ru.png","Russian"),
-	"bg" => array("bg","_img/smallicons/bg.png","Bulgarian"),
-	"cs" => array("cs","_img/smallicons/cs.png","Czech"),
-	"da" => array("da","_img/smallicons/da.png","Dansk"),
+	"english" => array("en","_img/flags/us.png","English"),
+	"spanish" => array("es","_img/flags/es.png","Español"),
+	"german" => array("de","_img/flags/de.png","Deutsch"),
+	"french" => array("fr","_img/flags/fr.png","Français"),
+	"italian" => array("it","_img/flags/it.png","Italiano"),
+	"nl" => array("nl","_img/flags/nl.png","Nederlands"),
+	"polsk" => array("pl","_img/flags/pl.png","Polski"),
+	"ptbr" => array("ptbr","_img/flags/pt.png","Português - Brasil"),
+	"romana" => array("ro","_img/flags/ro.png","Românã"),
+	"ru" => array("ru","_img/flags/ru.png","Russian"),
+	"bg" => array("bg","_img/flags/bg.png","Bulgarian"),
+	"cs" => array("cs","_img/flags/cs.png","Czech"),
+	"da" => array("da","_img/flags/da.png","Dansk"),
 );
 
 $GLOBALS["baricons"] = array(

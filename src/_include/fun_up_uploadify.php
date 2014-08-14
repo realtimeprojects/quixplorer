@@ -112,14 +112,15 @@ function upload_items($dir)
 <script type="text/javascript"> 
 $(document).ready(function() {
   $('#file_upload').uploadify({
-    'uploader'  : '/apps/uploadify/uploadify.swf',
-'script'    : '/apps/uploadify/uploadify.php',
-'cancelImg' : '/apps/uploadify/cancel.png',
-'folder'    : '<?php echo $GLOBALS["home_dir"].$GLOBALS["dir"];?>',
-'auto'      : true,
-'multi'     : true,
-'removeCompleted' : true,
-'auto' : false
+    'uploader'  : './_lib/uploadify/uploadify.swf',
+	'script'    : './_lib/uploadify/uploadify.php',
+	'cancelImg' : './_lib/uploadify/cancel.png',
+	'folder'    : '<?php echo $GLOBALS["home_dir"].$GLOBALS["dir"];?>',
+	'auto'      : true,
+	'multi'     : true,
+	'removeCompleted' : true,
+	'width'		: 130,
+	'auto' : false
   });
 });
 </script> 

@@ -56,7 +56,10 @@ function _idx ($what)
 function user_load ($file = NULL)
 {
 	if (!isset($file))
+	{
 		require "./_config/.htusers.php";
+		return;
+	}
 
 	require $file;
 }
