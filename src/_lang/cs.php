@@ -84,7 +84,6 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "ODHLÁŠENÍ",
 	"uploadlink"		=> "NAHRÁT",
 	"searchlink"		=> "VYHLEDAT",
-	"unziplink"			=> "UNZIP",
 	
 	// list
 	"nameheader"		=> "Název",

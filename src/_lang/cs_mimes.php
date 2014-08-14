@@ -56,9 +56,5 @@ $GLOBALS["mimes"]=array(
 	// Micosoft / Adobe
 	"word"	=> "Word dokument",
 	"excel"	=> "Excel dokument",
-	"pdf"	=> "PDF soubor",
-	"xml"	=> "XML File",
-	"c"		=> "C File",
-	"psd"	=> "Photoshop File",
-	"point"	=> "PowerPoint Presentation"
+	"pdf"	=> "PDF soubor"
 ); ?>

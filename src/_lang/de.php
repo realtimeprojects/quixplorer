@@ -84,7 +84,6 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "ABMELDEN",
 	"uploadlink"		=> "HOCHLADEN",
 	"searchlink"		=> "SUCHEN",
-	"unziplink"				=> "ENTPACKEN",
 	
 	// list
 	"nameheader"		=> "Name",

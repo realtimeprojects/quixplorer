@@ -40,8 +40,7 @@ Comment:
 require_once("./_include/permissions.php");
 //------------------------------------------------------------------------------
 function savefile($file_name) {			// save edited file
-	//$code = stripslashes($GLOBALS['__POST']["code"]);
-	$code = $GLOBALS['__POST']["code"];
+	$code = stripslashes($GLOBALS['__POST']["code"]);
 	$fp = @fopen($file_name, "w");
 	if($fp===false) show_error(basename($file_name).": ".$GLOBALS["error_msg"]["savefile"]);
 	fputs($fp, $code);
@@ -101,8 +100,7 @@ function edit_file($dir, $item)
 		$buffer .= fgets($fp, 4096);
 	}
 	@fclose($fp);
-	//echo htmlspecialchars($buffer);
-	echo $buffer;
+	echo htmlspecialchars($buffer);
 	
 	echo "</TEXTAREA><BR>\n<TABLE><TR><TD>Wordwrap: (IE only)</TD><TD><INPUT type=\"checkbox\" name=\"wrap\" ";
 	echo "onClick=\"javascript:chwrap();\" value=\"1\"></TD></TR></TABLE><BR>\n";

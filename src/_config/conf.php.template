@@ -34,11 +34,9 @@
 	$GLOBALS["zip"] = false;	//function_exists("gzcompress");
 	$GLOBALS["tar"] = false;
 	$GLOBALS["tgz"] = false;
-
-	// set this to "true" if you want to use uploadify as upload interface
-	// this needs flash support
-	$GLOBALS["use_uploadify"] = false;
 	
+	// QuiXplorer version:
+	$GLOBALS["version"] = "2.4.0BETA";
 //------------------------------------------------------------------------------
 // Global User Variables (used when $require_login==false)
 	

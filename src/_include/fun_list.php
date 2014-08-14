@@ -199,25 +199,16 @@ function print_table($dir, $list)
 		{
 			_print_link("edit", permissions_grant($dir, $item, "change"), $dir, $item);
 		} else {
-			// UNZIP
-			if(get_is_unzipable($dir, $item))
-			{
-				_print_link("unzip", permissions_grant($dir, $item, "create"), $dir, $item);
-			}else{
-				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
-			}			
+			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
 		}
-		
-		
-		
 		// DOWNLOAD
 		if(get_is_file($dir,$item))
 		{
 			_print_link("download", permissions_grant($dir, $item, "read"), $dir, $item);
 		} else {
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
+			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
 		}
 		echo "</TABLE>\n</TD></TR>\n";
 	}
@@ -253,19 +244,19 @@ function list_dir($dir)
 	
 	// PARENT DIR
 	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_up.gif\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["uplink"]."\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></A></TD>\n";
 	// HOME DIR
 	echo "<TD><A HREF=\"".make_link("list",NULL,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["home"]."\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_home.gif\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["homelink"]."\" TITLE=\"".$GLOBALS["messages"]["homelink"]."\"></A></TD>\n";
 	// RELOAD
 	echo "<TD><A HREF=\"javascript:location.reload();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-	echo "align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["reload"]."\" ALT=\"".$GLOBALS["messages"]["reloadlink"];
+	echo "align=\"ABSMIDDLE\" src=\"_img/_refresh.gif\" ALT=\"".$GLOBALS["messages"]["reloadlink"];
 	echo "\" TITLE=\"".$GLOBALS["messages"]["reloadlink"]."\"></A></TD>\n";
 	// SEARCH
 	echo "<TD><A HREF=\"".make_link("search",$dir,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["search"]."\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_search.gif\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["searchlink"]."\" TITLE=\"".$GLOBALS["messages"]["searchlink"];
 	echo "\"></A></TD>\n";
 	
@@ -286,49 +277,13 @@ function list_dir($dir)
 		// LOGOUT
 		_print_link("logout", true, $dir, NULL);
 	}
-	
-	echo "<TD>::</TD>";
-	//Languages
-	
-	
-	foreach($GLOBALS["langs"] as $langs) {
-		
-		echo "<TD><A HREF=\"".make_link("list",$dir,NULL,NULL,NULL,$langs[0])."\">";
-	
-		if (!file_exists($langs[1]))
-		{
-			echo "&nbsp;$langs[0] ";
-		}
-		else
-		{
-			echo "<IMG border=\"0\" width=\"16\" height=\"11\" ";
-			echo "align=\"ABSMIDDLE\" src=\"".$langs[1]."\" ALT=\"".$langs[0];
-			echo "\" TITLE=\"".$langs[2]."\"/></A></TD>\n";
-		}
-
-		//list($slang,$img,$ext,$type)	= $mime;
-		/*if(@eregi($ext,$item)) {
-			$mime_type	= $desc;
-			$image		= $img;
-			if($query=="img"){ return $image;}
-			else if($query=="ext"){ return $type;}
-			else return $mime_type;
-		*/	
-			
-		}
-	
-	
-	//
-	
 	echo "</TR></TABLE></TD>\n";
 	
 	// Create File / Dir
 	if (permissions_grant($dir, NULL, "create"))
 	{
 		echo "<TD align=\"right\"><TABLE><FORM action=\"".make_link("mkitem",$dir,NULL)."\" method=\"post\">\n<TR><TD>";
-		echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["add"]."\" />";
-		echo "<SELECT name=\"mktype\">";
-		echo "<option value=\"file\">".$GLOBALS["mimes"]["file"]."</option>";
+		echo "<SELECT name=\"mktype\"><option value=\"file\">".$GLOBALS["mimes"]["file"]."</option>";
 		echo "<option value=\"dir\">".$GLOBALS["mimes"]["dir"]."</option></SELECT>\n";
 		echo "<INPUT name=\"mkname\" type=\"text\" size=\"15\">";
 		echo "<INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btncreate"];
@@ -374,13 +329,9 @@ function list_dir($dir)
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR><TR>\n<TD class=\"header\"></TD>";
 	echo "<TD class=\"header\">".$num_items." ".$GLOBALS["messages"]["miscitems"]." (";
 	if(function_exists("disk_free_space")) {
-		try{
 		$free=parse_file_size(disk_free_space(get_abs_dir($dir)));
-		}catch(Exception $e){echo "error on freespace";}
 	} elseif(function_exists("diskfreespace")) {
-		try{
 		$free=parse_file_size(diskfreespace(get_abs_dir($dir)));
-		}catch(Exception $e){echo "error on freespace";}
 	} else $free="?";
 	// echo "Total: ".parse_file_size(disk_total_space(get_abs_dir($dir))).", ";
 	echo $GLOBALS["messages"]["miscfree"].": ".$free.")</TD>\n";
@@ -427,42 +378,38 @@ function _print_link ($function, $allow, $dir, $item)
 	// the list of all available button and the coresponding data
 	$functions = array(
 			"copy" => array("jfunction" => "javascript:Copy();",
-					"image" => $GLOBALS["baricons"]["copy"],
-					"imagedisabled" => $GLOBALS["baricons"]["notcopy"],
+					"image" => "_img/_copy.gif",
+					"imagedisabled" => "_img/_copy_.gif",
 					"message" => $GLOBALS["messages"]["copylink"]),
 			"move" => array("jfunction" => "javascript:Move();",
-					"image" => $GLOBALS["baricons"]["move"],
-					"imagedisabled" => $GLOBALS["baricons"]["notmove"],
+					"image" => "_img/_move.gif",
+					"imagedisabled" => "_img/_move_.gif",
 					"message" => $GLOBALS["messages"]["movelink"]),
 			"delete" => array("jfunction" => "javascript:Delete();",
-					"image" => $GLOBALS["baricons"]["delete"],
-					"imagedisabled" => $GLOBALS["baricons"]["notdelete"],
+					"image" => "_img/_delete.gif",
+					"imagedisabled" => "_img/_delete_.gif",
 					"message" => $GLOBALS["messages"]["dellink"]),
 			"upload" => array("jfunction" => make_link("upload", $dir, NULL),
-					"image" => $GLOBALS["baricons"]["upload"],
-					"imagedisabled" => $GLOBALS["baricons"]["notupload"],
+					"image" => "_img/_upload.gif",
+					"imagedisabled" => "_img/_upload_.gif",
 					"message" => $GLOBALS["messages"]["uploadlink"]),
 			"archive" => array("jfunction" => "javascript:Archive();",
-					"image" => $GLOBALS["baricons"]["archive"],
+					"image" => "_img/_archive.gif",
 					"message" => $GLOBALS["messages"]["comprlink"]),
 			"admin" => array("jfunction" => make_link("admin", $dir, NULL),
-					"image" => $GLOBALS["baricons"]["admin"],
+					"image" => "_img/_admin.gif",
 					"message" => $GLOBALS["messages"]["adminlink"]),
 			"logout" => array("jfunction" => make_link("logout", NULL, NULL),
-					"image" => $GLOBALS["baricons"]["logout"],
+					"image" => "_img/_logout.gif",
 					"imagedisabled" => "_img/_logout_.gif",
 					"message" => $GLOBALS["messages"]["logoutlink"]),
 			"edit" => array("jfunction" => make_link("edit", $dir, $item),
-					"image" => $GLOBALS["baricons"]["edit"],
-					"imagedisabled" => $GLOBALS["baricons"]["notedit"],
+					"image" => "_img/_edit.gif",
+					"imagedisabled" => "_img/_edit_.gif",
 					"message" => $GLOBALS["messages"]["editlink"]),
-			"unzip" => array("jfunction" => make_link("unzip", $dir, $item),
-					"image" => $GLOBALS["baricons"]["unzip"],
-					"imagedisabled" => $GLOBALS["baricons"]["notunzip"],
-					"message" => $GLOBALS["messages"]["unziplink"]),
 			"download" => array("jfunction" => make_link("download", $dir, $item),
-					"image" => $GLOBALS["baricons"]["download"],
-					"imagedisabled" => $GLOBALS["baricons"]["notdownload"],
+					"image" => "_img/_download.gif",
+					"imagedisabled" => "_img/_download_.gif",
 					"message" => $GLOBALS["messages"]["downlink"]),
 			);
 	
