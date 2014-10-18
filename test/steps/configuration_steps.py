@@ -9,7 +9,7 @@ DATA_DIR = "src/tmp/data"
 def I_have_the_reference_configuration(step):
     try:
         shutil.copy("test/data/reference/quixplorer.ini", "src/_config/")
-        shutil.copy("test/data/reference/.htusers.php", "src/_config/")
+        shutil.copy("test/data/reference/users.ini", "src/_config/")
         if os.path.isdir(DATA_DIR):
             shutil.rmtree(DATA_DIR)
         os.makedirs(DATA_DIR)
