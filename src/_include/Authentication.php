@@ -4,19 +4,6 @@ define("ANONYMOUS_USER", "Anonymous");
 
 class Authentication
 {
-    // checks if user login is required and displays login
-    // form if required
-    public static function isRequired()
-    {
-        // if no login is required, there is nothing to do
-        QxLog::debug("login: $require_login");
-        if (!Config::get("login_required", true))
-        {
-            QxLog::debug("no login required");
-            return false;
-        }
-    }
-
     public static function isLoginRequired()
     {
         // check if the user has already been authenticated
