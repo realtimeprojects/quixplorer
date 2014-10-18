@@ -1,6 +1,9 @@
+.ropeproject
+
 *.swp
-src/_config/quixplorer.cfg
-src/_config/.htusers.php
+src/_config/quixplorer.ini
+src/_config/users.ini
+src/result.html
 src/data
 .DS_Store
 tmp/
