@@ -19,6 +19,7 @@ login                 = login to this page
 missing_username      = Please provide a valid user name
 missing_password      = Please provide a valid password
 authentication_failed = User name or password invalid
+unknown_user          = User unknown
 
 password=password
 username=user name
