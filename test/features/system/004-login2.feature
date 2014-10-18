@@ -19,7 +19,7 @@ Feature: Login to quixplorer
 
     Scenario: Authenticate without non existent user and password
         When I login to quixplorer as user "nonexistent_user" with password "invalid"
-        Then I expect success and result containing (User name or password invalid)
+        Then I expect success and result containing (User unknown)
 
     Scenario: Authenticate without admin user and invalid password
         When I login to quixplorer as user "admin" with password "invalid"
