@@ -13,11 +13,14 @@ Qx::useModule("Settings");
 Qx::useModule("Security");
 Qx::useModule("QxSmarty");
 Qx::useModule("QxLink");
+Qx::useModule("QxUser");
 
 if (Config::read("_config/quixplorer.ini") == false)
 {
     show_error("Config file _config/quixplorer.ini not found", "See installation manual for details");
 }
+
+QxUsers::read("_config/users.ini");
 
 session_start();
 QxLog::debug("initializing qx");
