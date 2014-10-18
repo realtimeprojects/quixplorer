@@ -1,6 +1,6 @@
 <?php
 
-Qx::useModule("user");
+Qx::useModule("QxUser");
 Qx::useModule("QxSmarty");
 Qx::useModule("Security");
 Qx::useModule("ActionLoader");
@@ -42,7 +42,13 @@ class LoginAction
             $this->_handleError("@@login.missing_password@@");
         }
 
-        if (!user_activate($loginname, md5($password)))
+        $user = QxUsers::get($loginname);
+        if ($user == null)
+        {
+            $this->_handleError("@@login.unknown_user@@");
+        }
+
+        if (!$user->authenticate(md5($password)))
         {
             QxLog::error("authentication failed for user $loginname, password invalid");
             $this->_handleError("@@login.authentication_failed@@");
