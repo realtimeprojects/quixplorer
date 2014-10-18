@@ -17,7 +17,7 @@ unittests:
 	done;
 
 test1:
-	make TESTS=002* tests
+	make TESTS=004* tests
 
 testdebug:
 	make TESTS=debug* tests
