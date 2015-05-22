@@ -145,8 +145,9 @@ function _get_used_mime_info ($item)
 /**
   determine the mime type of an item
  */
-function get_mime_type ($dir, $item, $query)
+function get_mime_type ($dir, $item, $query = 'type')
 {
+    _debug(_dump($dir, $item, $query));
     switch (filetype(get_abs_item($dir, $item)))
     {
         case "dir":
@@ -316,7 +317,7 @@ function down_home($abs_dir) {			// dir deeper than home?
 	}
 	return true;
 }
-//------------------------------------------------------------------------------
+
 function id_browser() {
 	$browser=$GLOBALS['__SERVER']['HTTP_USER_AGENT'];
 
@@ -334,5 +335,4 @@ function id_browser() {
 		return 'OTHER';
 	}
 }
-//------------------------------------------------------------------------------
 ?>
