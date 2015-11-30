@@ -136,7 +136,7 @@ function _get_used_mime_info ($item)
     {
         list($desc, $img, $ext, $type) = $mime;
         if (@eregi($ext, $item))
-            return array($mime_type, $image, $type);
+		return array($mime, $img, $type);
     }
 
     return array(NULL, NULL, NULL);
