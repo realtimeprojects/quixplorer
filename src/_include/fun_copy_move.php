@@ -65,7 +65,7 @@ function dir_print($dir_list, $new_dir) {    // print list of directories
     $dir_up = dirname($new_dir);
     if($dir_up==".") $dir_up = "";
 
-    echo "<TR><TD><A HREF=\"javascript:NewDir('".$dir_up;
+    echo "<TR><TD><A HREF=\"javascript:NewDir('".addslashes($dir_up);
     echo "');\"><IMG border=\"0\" width=\"16\" height=\"16\"";
     echo " align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ALT=\"\">&nbsp;..</A></TD></TR>\n";
 
@@ -73,9 +73,9 @@ function dir_print($dir_list, $new_dir) {    // print list of directories
     if(!is_array($dir_list)) return;
     while(list($new_item,) = each($dir_list)) {
         $s_item=$new_item;    if(strlen($s_item)>40) $s_item=substr($s_item,0,37)."...";
-        echo "<TR><TD><A HREF=\"javascript:NewDir('".get_rel_item($new_dir,$new_item).
+        echo "<TR><TD><A HREF=\"javascript:NewDir('".addslashes(get_rel_item($new_dir,$new_item)).
             "');\"><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ".
-            "src=\"_img/dir.gif\" ALT=\"\">&nbsp;".$s_item."</A></TD></TR>\n";
+            "src=\"_img/dir.gif\" ALT=\"\">&nbsp;".htmlspecialchars($s_item)."</A></TD></TR>\n";
     }
 }
 //------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ function copy_move_items ($dir)
     // Vars
     $first = $GLOBALS['__POST']["first"];
     if($first=="y") $new_dir=$dir;
-    else $new_dir = stripslashes($GLOBALS['__POST']["new_dir"]);
+    else $new_dir = $GLOBALS['__POST']["new_dir"];
     if($new_dir==".") $new_dir="";
     $cnt=count($GLOBALS['__POST']["selitems"]);
 
@@ -134,8 +134,8 @@ function copy_move_items ($dir)
         $s_dir=$dir;        if(strlen($s_dir)>40) $s_dir="...".substr($s_dir,-37);
         $s_ndir=$new_dir;    if(strlen($s_ndir)>40) $s_ndir="...".substr($s_ndir,-37);
         echo "<BR><IMG SRC=\"".$_img."\" align=\"ABSMIDDLE\" ALT=\"\">&nbsp;";
-        echo sprintf(($GLOBALS["action"]!="move"?$GLOBALS["messages"]["actcopyfrom"]:
-            $GLOBALS["messages"]["actmovefrom"]),$s_dir, $s_ndir);
+        echo htmlspecialchars(sprintf(($GLOBALS["action"]!="move"?$GLOBALS["messages"]["actcopyfrom"]:
+            $GLOBALS["messages"]["actmovefrom"]),$s_dir, $s_ndir));
         echo "<IMG SRC=\"_img/__paste.gif\" align=\"ABSMIDDLE\" ALT=\"\">\n";
 
         // Form for Target Directory & New Names
@@ -144,7 +144,7 @@ function copy_move_items ($dir)
         echo "<INPUT type=\"hidden\" name=\"do_action\" value=\"".$GLOBALS["action"]."\">\n";
         echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"false\">\n";
         echo "<INPUT type=\"hidden\" name=\"first\" value=\"n\">\n";
-        echo "<INPUT type=\"hidden\" name=\"new_dir\" value=\"".$new_dir."\">\n";
+        echo "<INPUT type=\"hidden\" name=\"new_dir\" value=\"".htmlspecialchars($new_dir)."\">\n";
 
         // List Directories to select Target
         dir_print(dir_list($new_dir),$new_dir);
@@ -152,19 +152,19 @@ function copy_move_items ($dir)
 
         // Print Text Inputs to change Names
         for($i=0;$i<$cnt;++$i) {
-            $selitem=stripslashes($GLOBALS['__POST']["selitems"][$i]);
+            $selitem=$GLOBALS['__POST']["selitems"][$i];
             if(isset($GLOBALS['__POST']["newitems"][$i])) {
-                $newitem=stripslashes($GLOBALS['__POST']["newitems"][$i]);
+                $newitem=$GLOBALS['__POST']["newitems"][$i];
                 if($first=="y") $newitem=$selitem;
             } else $newitem=$selitem;
             $s_item=$selitem;    if(strlen($s_item)>50) $s_item=substr($s_item,0,47)."...";
             echo "<TR><TD><IMG SRC=\"_img/_info.gif\" align=\"ABSMIDDLE\" ALT=\"\">";
             // Old Name
             echo "<INPUT type=\"hidden\" name=\"selitems[]\" value=\"";
-            echo $selitem."\">&nbsp;".$s_item."&nbsp;";
+            echo htmlspecialchars($selitem)."\">&nbsp;".htmlspecialchars($s_item)."&nbsp;";
             // New Name
             echo "</TD><TD><INPUT type=\"text\" size=\"25\" name=\"newitems[]\" value=\"";
-            echo $newitem."\"></TD></TR>\n";
+            echo htmlspecialchars($newitem)."\"></TD></TR>\n";
         }
 
         // Submit & Cancel
@@ -190,8 +190,8 @@ function copy_move_items ($dir)
     // copy / move files
     $err=false;
     for($i=0;$i<$cnt;++$i) {
-        $tmp = stripslashes($GLOBALS['__POST']["selitems"][$i]);
-        $new = basename(stripslashes($GLOBALS['__POST']["newitems"][$i]));
+        $tmp = $GLOBALS['__POST']["selitems"][$i];
+        $new = basename($GLOBALS['__POST']["newitems"][$i]);
         $abs_item = get_abs_item($dir,$tmp);
         $abs_new_item = get_abs_item($new_dir,$new);
         $items[$i] = $tmp;

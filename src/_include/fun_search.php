@@ -92,14 +92,14 @@ function print_table($list)
 		echo "align=\"ABSMIDDLE\" src=\"_img/" . $img . "\" ALT=\"\">&nbsp;";
 		/*if($link!="")*/ echo"<A HREF=\"".$link."\" TARGET=\"".$target."\">";
 		//else echo "<A>";
-		echo $s_item."</A></TD><TD><A HREF=\"" . make_link("list",$dir,NULL)."\"> /";
-		echo $s_dir."</A></TD></TR>\n";
+		echo htmlspecialchars($s_item)."</A></TD><TD><A HREF=\"" . make_link("list",$dir,NULL)."\"> /";
+		echo htmlspecialchars($s_dir)."</A></TD></TR>\n";
 	}
 }
 //------------------------------------------------------------------------------
 function search_items($dir) {			// search for item
 	if(isset($GLOBALS['__POST']["searchitem"])) {
-		$searchitem=stripslashes($GLOBALS['__POST']["searchitem"]);
+		$searchitem=$GLOBALS['__POST']["searchitem"];
 		$subdir=(isset($GLOBALS['__POST']["subdir"]) && $GLOBALS['__POST']["subdir"]=="y");
 		$list=make_list($dir,$searchitem,$subdir);
 	} else {
@@ -109,12 +109,12 @@ function search_items($dir) {			// search for item
 
 	$msg=$GLOBALS["messages"]["actsearchresults"];
 	if($searchitem!=NULL) $msg.=": (/" . get_rel_item($dir, $searchitem).")";
-	show_header($msg);
+	show_header(htmlspecialchars($msg));
 
 	// Search Box
 	echo "<BR><TABLE><FORM name=\"searchform\" action=\"".make_link("search",$dir,NULL);
 	echo "\" method=\"post\">\n<TR><TD><INPUT name=\"searchitem\" type=\"text\" size=\"25\" value=\"";
-	echo $searchitem."\"><INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btnsearch"];
+	echo htmlspecialchars($searchitem)."\"><INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btnsearch"];
 	echo "\">&nbsp;<input type=\"button\" value=\"".$GLOBALS["messages"]["btnclose"];
 	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL);
 	echo "';\"></TD></TR><TR><TD><INPUT type=\"checkbox\" name=\"subdir\" value=\"y\"";

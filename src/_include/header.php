@@ -54,7 +54,7 @@ function show_header($title, $additional_header_content = null)
 	//echo "\"http://www.w3.org/TR/REC-html40/loose.dtd\">\n";
 	echo "<html lang=\"".$GLOBALS["language"]."\" dir=\"".$GLOBALS["text_dir"]."\">\n";
 	echo "<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$GLOBALS["charset"]."\">\n";
-	echo "<title>$site_name</title>\n";
+	echo "<title>".htmlspecialchars($site_name)."</title>\n";
 	echo "<link href=\"_style/style.css\" rel=\"stylesheet\" type=\"text/css\">\n";
 
 	echo "<link href=\"_lib/uploadify/uploadify.css\" type=\"text/css\" rel=\"stylesheet\" />\n";
@@ -66,7 +66,7 @@ function show_header($title, $additional_header_content = null)
 
 	echo "</head>\n<body><center>\n<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\"><tbody>\n";
 	echo "<tr><td class=\"title\">";
-	if($GLOBALS["require_login"] && isset($GLOBALS['__SESSION']["s_user"])) echo "[".$GLOBALS['__SESSION']["s_user"]."] - ";
+	if($GLOBALS["require_login"] && isset($GLOBALS['__SESSION']["s_user"])) echo "[".htmlspecialchars($GLOBALS['__SESSION']["s_user"])."] - ";
 	echo $title."</td></tr></tbody></table>\n\n";
 }
 //------------------------------------------------------------------------------

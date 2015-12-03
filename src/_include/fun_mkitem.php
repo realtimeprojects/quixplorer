@@ -48,11 +48,11 @@ function make_item ($dir)
 	$mkname=$GLOBALS['__POST']["mkname"];
 	$mktype=$GLOBALS['__POST']["mktype"];
 	
-	$mkname=basename(stripslashes($mkname));
+	$mkname=basename($mkname);
 	if($mkname=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
 	
 	$new = get_abs_item($dir,$mkname);
-	if(@file_exists($new)) show_error($mkname.": ".$GLOBALS["error_msg"]["itemdoesexist"]);
+	if(@file_exists($new)) show_error(htmlspecialchars($mkname).": ".$GLOBALS["error_msg"]["itemdoesexist"]);
 	
 	if($mktype!="file") {
 		$ok=@mkdir($new, 0777);

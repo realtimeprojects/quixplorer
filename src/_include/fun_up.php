@@ -55,7 +55,7 @@ function upload_items($dir)
 		for($i=0;$i<$cnt;$i++) {
 			$errors[$i]=NULL;
 			$tmp = $GLOBALS['__FILES']['userfile']['tmp_name'][$i];
-			$items[$i] = stripslashes($GLOBALS['__FILES']['userfile']['name'][$i]);
+			$items[$i] = $GLOBALS['__FILES']['userfile']['name'][$i];
 			if($err_avaliable) $up_err = $GLOBALS['__FILES']['userfile']['error'][$i];
 			else $up_err=(file_exists($tmp)?0:4);
 			$abs = get_abs_item($dir,$items[$i]);

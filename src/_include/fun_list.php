@@ -537,13 +537,13 @@ function _breadcrumbs($curdir, $displayseparator = ' &raquo; ')
             // If we are not on the last index, then create a link using $crumb
             // as the text.
 
-			$breadcrumbs[] = "<a href=\"".make_link("list", $crumbdir, NULL)."\">$crumb</a>";
+			$breadcrumbs[] = "<a href=\"".make_link("list", $crumbdir, NULL)."\">".htmlspecialchars($crumb)."</a>";
 
 			// Add a separator between our crumbs.
 			$crumbdir = $crumbdir . DIRECTORY_SEPARATOR;
 		else:
 			// Don't create a link for the final crumb.  Just display the crumb name.
-            $breadcrumbs[] = $crumb;
+            $breadcrumbs[] = htmlspecialchars($crumb);
 		endif;
     }
 

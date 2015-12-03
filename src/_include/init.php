@@ -31,19 +31,19 @@ if($GLOBALS["action"]=="post" && isset($GLOBALS['__POST']["do_action"])) {
 	$GLOBALS["action"]=$GLOBALS['__POST']["do_action"];
 }
 if($GLOBALS["action"]=="") $GLOBALS["action"]="list";
-$GLOBALS["action"]=stripslashes($GLOBALS["action"]);
+$GLOBALS["action"]=$GLOBALS["action"];
 _debug("xxx3 action: " . $GLOBALS['__GET']["action"] . "/" . $GLOBALS["__GET"]["do_action"] . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
 
 
 // Get Item
-if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=stripslashes($GLOBALS['__GET']["item"]);
+if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=$GLOBALS['__GET']["item"];
 else $GLOBALS["item"]="";
 // Get Sort
-if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
+if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=$GLOBALS['__GET']["order"];
 else $GLOBALS["order"]="name";
 if($GLOBALS["order"]=="") $GLOBALS["order"]=="name";
 // Get Sortorder (yes==up)
-if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET']["srt"]);
+if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=$GLOBALS['__GET']["srt"];
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 

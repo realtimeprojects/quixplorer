@@ -68,7 +68,7 @@ function dir_print($dir_list, $new_dir) {	// print list of directories
 	$dir_up = dirname($new_dir);
 	if($dir_up==".") $dir_up = "";
 	
-	echo "<TR><TD><A HREF=\"javascript:NewDir('".$dir_up;
+	echo "<TR><TD><A HREF=\"javascript:NewDir('".addslashes($dir_up);
 	echo "');\"><IMG border=\"0\" width=\"16\" height=\"16\"";
 	echo " align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ALT=\"\">&nbsp;..</A></TD></TR>\n";
 	
@@ -76,9 +76,9 @@ function dir_print($dir_list, $new_dir) {	// print list of directories
 	if(!is_array($dir_list)) return;
 	while(list($new_item,) = each($dir_list)) {
 		$s_item=$new_item;	if(strlen($s_item)>40) $s_item=substr($s_item,0,37)."...";
-		echo "<TR><TD><A HREF=\"javascript:NewDir('".get_rel_item($new_dir,$new_item).
+		echo "<TR><TD><A HREF=\"javascript:NewDir('".addslashes(get_rel_item($new_dir,$new_item)).
 			"');\"><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ".
-			"src=\"_img/dir.gif\" ALT=\"\">&nbsp;".$s_item."</A></TD></TR>\n";
+			"src=\"_img/dir.gif\" ALT=\"\">&nbsp;".htmlspecialchars($s_item)."</A></TD></TR>\n";
 	}
 }
 //------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ function unzip_item($dir)
 	
 	// Vars
 
-	$new_dir = ( isset($GLOBALS['__POST']["new_dir"]) ) ? stripslashes($GLOBALS['__POST']["new_dir"]) : $dir;
+	$new_dir = ( isset($GLOBALS['__POST']["new_dir"]) ) ? $GLOBALS['__POST']["new_dir"] : $dir;
 	
 
 	$_img = $GLOBALS["baricons"]["unzip"];
@@ -141,8 +141,8 @@ function unzip_item($dir)
 		// "Copy / Move from .. to .."
 		$s_dir=$dir;		if(strlen($s_dir)>40) $s_dir="...".substr($s_dir,-37);
 		$s_ndir=$new_dir;	if(strlen($s_ndir)>40) $s_ndir="...".substr($s_ndir,-37);
-		echo "<!-- dirextr = ".$dir_extract." -->\n";
-		echo "<!-- zipname = ".$zip_name." -->\n";
+		echo "<!-- dirextr = ".htmlspecialchars($dir_extract)." -->\n";
+		echo "<!-- zipname = ".htmlspecialchars($zip_name)." -->\n";
 		echo "<BR><IMG SRC=\"".$_img."\" align=\"ABSMIDDLE\" ALT=\"\">&nbsp;";
 		echo "<IMG SRC=\"".$GLOBALS["baricons"]["unzipto"]."\" align=\"ABSMIDDLE\" ALT=\"\">\n";
 		
@@ -152,7 +152,7 @@ function unzip_item($dir)
 		echo "<INPUT type=\"hidden\" name=\"do_action\" value=\"".$GLOBALS["action"]."\">\n";
 		echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"false\">\n";
 		//echo "<INPUT type=\"hidden\" name=\"dir\" value=\"n\">\n";
-		echo "<INPUT type=\"hidden\" name=\"new_dir\" value=\"".$new_dir."\">\n";
+		echo "<INPUT type=\"hidden\" name=\"new_dir\" value=\"".htmlspecialchars($new_dir)."\">\n";
 		
 		// List Directories to select Target
 		dir_print(dir_list($new_dir),$new_dir);
@@ -161,7 +161,7 @@ function unzip_item($dir)
 		// Print Text Inputs to change Names
 		
 		echo "<TR><TD><IMG SRC=\"".$GLOBALS["baricons"]["zip"]."\" align=\"ABSMIDDLE\" ALT=\"\">";
-		echo "<INPUT type=\"hidden\" name=\"item\" value=\"".$s_item."\">&nbsp;".$s_item."&nbsp;";
+		echo "<INPUT type=\"hidden\" name=\"item\" value=\"".htmlspecialchars($s_item)."\">&nbsp;".htmlspecialchars($s_item)."&nbsp;";
 		
 		// Submit & Cancel
 		echo "</TABLE><BR><TABLE><TR>\n<TD>";
@@ -178,9 +178,9 @@ function unzip_item($dir)
 	// DO COPY/MOVE
 	
 	// ALL OK?
-	if(!@file_exists(get_abs_dir($new_dir))) show_error($new_dir.": ".$GLOBALS["error_msg"]["targetexist"]);
-	if(!get_show_item($new_dir,"")) show_error($new_dir.": ".$GLOBALS["error_msg"]["accesstarget"]);
-	if(!down_home(get_abs_dir($new_dir))) show_error($new_dir.": ".$GLOBALS["error_msg"]["targetabovehome"]);
+	if(!@file_exists(get_abs_dir($new_dir))) show_error(htmlspecialchars($new_dir).": ".$GLOBALS["error_msg"]["targetexist"]);
+	if(!get_show_item($new_dir,"")) show_error(htmlspecialchars($new_dir).": ".$GLOBALS["error_msg"]["accesstarget"]);
+	if(!down_home(get_abs_dir($new_dir))) show_error(htmlspecialchars($new_dir).": ".$GLOBALS["error_msg"]["targetabovehome"]);
 	
 	
 	// copy / move files

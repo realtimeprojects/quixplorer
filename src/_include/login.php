@@ -47,10 +47,10 @@ function login ()
         {
             _debug("login(): login authentication");
             // Check Login
-            if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
+            if ( ! user_activate( $_POST["p_user"], md5( $p_pass ) ) )
             {
                 global $error_msg;
-                show_error( $error_msg["login_failed"] . ": " . $_POST["p_user"] );
+                show_error( $error_msg["login_failed"] . ": " . htmlspecialchars($_POST["p_user"]) );
             }
             // authentication sucessfull
             _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
