@@ -161,7 +161,10 @@ function get_mime_type ($dir, $item, $query = 'type')
         default:
             list($mime_type, $image, $type) = _get_used_mime_info($item);
             if ($mime_type != NULL)
+            {
+                _debug("found mime type $mime_type");
                 break;
+            }
 
             if ((function_exists("is_executable") && @is_executable(get_abs_item($dir,$item)))
             || @eregi($GLOBALS["super_mimes"]["exe"][2], $item))
@@ -172,6 +175,7 @@ function get_mime_type ($dir, $item, $query = 'type')
             else
             {
                 // unknown file
+                _debug("unknown file type ");
                 $mime_type	= $GLOBALS["super_mimes"]["file"][0];
                 $image		= $GLOBALS["super_mimes"]["file"][1];
             }
