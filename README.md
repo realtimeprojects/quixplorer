@@ -9,6 +9,11 @@ quixplorer is a simple web based file management software. It allows you to:
 
 ## News
 
+### Version 2.5.8 released
+
+This version fixes some encoding issues with different language files and the
+mim-type bug. Thanks to all contributors!
+
 ### Version 2.5.7 released
 
 This version fixes a bug that disabled the "password change" function and a bug
