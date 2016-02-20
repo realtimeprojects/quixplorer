@@ -1,6 +1,12 @@
 QuiXplorer -- VERSION HISTORY & RELEASE NOTES
 =============================================
 
+### Version 2.5.8 2015-02-20
+
+- Bugfix: Mime types
+- Bugfix: file encoding of language files. Bug #30
+- Bugfix: HTML escaping
+
 ### Version 2.5.7 2014-02-03
 
 - Bugfix: is_download_allowed() evaluated a wrong variable
