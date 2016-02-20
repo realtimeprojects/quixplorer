@@ -489,6 +489,9 @@ function _print_link ($function, $allow, $dir, $item)
 function _get_link_info($dir, $item)
 {
     $type = get_mime_type($dir, $item, "type");
+    if(is_array($type)){
+        $type = $type[0];
+    }
 
     if (! file_exists(get_abs_item($dir, $item)))
     {
