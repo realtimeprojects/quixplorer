@@ -5,28 +5,28 @@
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
 	"dir"	=> "Director",
-	"exe"	=> "Fiºier Executabil",
-	"file"	=> "Fiºier",
+	"exe"	=> "FiÅŸier Executabil",
+	"file"	=> "FiÅŸier",
 
 	// text
-	"text"	=> "Fiºier Text",
+	"text"	=> "FiÅŸier Text",
 
 	// programming
 	"php"	=> "Script PHP",
-	"sql"	=> "Fiºier SQL",
+	"sql"	=> "FiÅŸier SQL",
 	"perl"	=> "Script PERL",
-	"html"	=> "Paginã HTML",
-	"js"	=> "Fiºier JavaScript",
-	"css"	=> "Fiºier CSS",
+	"html"	=> "PaginÄƒ HTML",
+	"js"	=> "FiÅŸier JavaScript",
+	"css"	=> "FiÅŸier CSS",
 	"cgi"	=> "Script CGI",
 	// C++
-	"cpps"	=> "Fiºier Sursã C++",
-	"cpph"	=> "Fiºsier Antet C++",
+	"cpps"	=> "FiÅŸier SursÄƒ C++",
+	"cpph"	=> "FiÅŸsier Antet C++",
 	// Java
-	"javas"	=> "Fiºier Sursã Java",
-	"javac"	=> "Fiºier Clasã Java",
+	"javas"	=> "FiÅŸier SursÄƒ Java",
+	"javac"	=> "FiÅŸier ClasÄƒ Java",
 	// Pascal
-	"pas"	=> "Fiºier Pascal",
+	"pas"	=> "FiÅŸier Pascal",
 
 	// images
 	"gif"	=> "Imagine GIF",
@@ -35,28 +35,28 @@ $GLOBALS["mimes"]=array(
 	"png"	=> "Imagine PNG",
 
 	// compressed
-	"zip"	=> "Arhivã ZIP",
-	"tar"	=> "Arhivã TAR",
-	"gzip"	=> "Arhivã GZIP",
-	"bzip2"	=> "Arhivã BZIP2",
-	"rar"	=> "Arhivã RAR",
+	"zip"	=> "ArhivÄƒ ZIP",
+	"tar"	=> "ArhivÄƒ TAR",
+	"gzip"	=> "ArhivÄƒ GZIP",
+	"bzip2"	=> "ArhivÄƒ BZIP2",
+	"rar"	=> "ArhivÄƒ RAR",
 
 	// music
-	"mp3"	=> "Fiºier Audio MP3",
-	"wav"	=> "Fiºier Audio WAV",
-	"midi"	=> "Fiºier Audio MIDI",
-	"real"	=> "Fiºier RealAudio",
+	"mp3"	=> "FiÅŸier Audio MP3",
+	"wav"	=> "FiÅŸier Audio WAV",
+	"midi"	=> "FiÅŸier Audio MIDI",
+	"real"	=> "FiÅŸier RealAudio",
 
 	// movie
-	"mpg"	=> "Fiºier Video MPG",
-	"mov"	=> "Fiºier Video",
-	"avi"	=> "Fiºier Video AVI",
-	"flash"	=> "Fiºier Animaþie Flash",
+	"mpg"	=> "FiÅŸier Video MPG",
+	"mov"	=> "FiÅŸier Video",
+	"avi"	=> "FiÅŸier Video AVI",
+	"flash"	=> "FiÅŸier AnimaÅ£ie Flash",
 
 	// Micosoft / Adobe
 	"word"	=> "Document Word",
 	"excel"	=> "Document Excel",
-	"pdf"	=> "Fiºier PDF",
+	"pdf"	=> "FiÅŸier PDF",
 	"xml"	=> "XML File",
 	"c"		=> "C File",
 	"psd"	=> "Photoshop File",

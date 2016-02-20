@@ -4,27 +4,27 @@
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
-	"dir"	=> "Adresáø",
-	"exe"	=> "Spustitelný soubor",
+	"dir"	=> "AdresÃ¡Ã¸",
+	"exe"	=> "SpustitelnÃ½ soubor",
 	"file"	=> "Soubor",
 
 	// text
-	"text"	=> "Textový soubor",
+	"text"	=> "TextovÃ½ soubor",
 
 	// programming
 	"php"	=> "PHP script",
 	"sql"	=> "SQL soubor",
 	"perl"	=> "PERL script",
-	"html"	=> "HTML stránka",
+	"html"	=> "HTML strÃ¡nka",
 	"js"	=> "Javascript",
 	"css"	=> "CSS",
 	"cgi"	=> "CGI script",
 	// C++
-	"cpps"	=> "C++ zdrojový soubor",
-	"cpph"	=> "C++ hlavièka",
+	"cpps"	=> "C++ zdrojovÃ½ soubor",
+	"cpph"	=> "C++ hlaviÃ¨ka",
 	// Java
-	"javas"	=> "Java zdrojový soubor",
-	"javac"	=> "Java hlavní soubor",
+	"javas"	=> "Java zdrojovÃ½ soubor",
+	"javac"	=> "Java hlavnÃ­ soubor",
 	// Pascal
 	"pas"	=> "Pascal",
 
@@ -35,11 +35,11 @@ $GLOBALS["mimes"]=array(
 	"png"	=> "PNG",
 
 	// compressed
-	"zip"	=> "ZIP Archív",
-	"tar"	=> "TAR Archív",
-	"gzip"	=> "GZIP Archív",
-	"bzip2"	=> "BZIP2 Archív",
-	"rar"	=> "RAR Archív",
+	"zip"	=> "ZIP ArchÃ­v",
+	"tar"	=> "TAR ArchÃ­v",
+	"gzip"	=> "GZIP ArchÃ­v",
+	"bzip2"	=> "BZIP2 ArchÃ­v",
+	"rar"	=> "RAR ArchÃ­v",
 
 	// music
 	"mp3"	=> "MP3 audio soubor",

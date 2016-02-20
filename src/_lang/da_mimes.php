@@ -5,7 +5,7 @@
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
 	"dir"	=> "Mappe",
-	"exe"	=> "Kørbar fil",
+	"exe"	=> "KÃ¸rbar fil",
 	"file"	=> "Fil",
 
 	// text
