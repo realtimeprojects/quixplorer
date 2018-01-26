@@ -4,6 +4,19 @@ require_once "_include/session.php";
 require_once "_include/qxpath.php";
 require_once "_include/str.php";
 
+//eregi and ereg have been removed from PHP7
+function eregi($pattern, $string)
+{
+	$new_pattern = '/'.addcslashes($pattern, '/').'/i';
+	return preg_match($new_pattern, $string);
+}
+
+function ereg($pattern, $string)
+{
+	$new_pattern = '/'.addcslashes($pattern, '/').'/';
+	return preg_match($new_pattern, $string);
+}
+
 //------------------------------------------------------------------------------
 // THESE ARE NUMEROUS HELPER FUNCTIONS FOR THE OTHER INCLUDE FILES
 //------------------------------------------------------------------------------

@@ -37,6 +37,18 @@ Comment:
 
 	Have Fun...
 ------------------------------------------------------------------------------*/
+//eregi and ereg have been removed from PHP7
+function eregi($pattern, $string)
+{
+	$new_pattern = '/'.addcslashes($pattern, '/').'/i';
+	return preg_match($new_pattern, $string);
+}
+
+function ereg($pattern, $string)
+{
+	$new_pattern = '/'.addcslashes($pattern, '/').'/';
+	return preg_match($new_pattern, $string);
+}
 //------------------------------------------------------------------------------
 function find_item($dir,$pat,&$list,$recur) {	// find items
 	$handle=@opendir(get_abs_dir($dir));
